@@ -1,22 +1,17 @@
-﻿using System;
-using System.IO;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Terraria.ModLoader;
 
 namespace Trelamium2.Common.Players
 {
     public class TrelamiumPlayer : ModPlayer
     {
+        public bool mossMonarch = false;
         public override void ResetEffects()
-        {       
+        {
+            mossMonarch = false;
         }
         public override void UpdateDead()
-        {        
+        {
+            mossMonarch = false;
         }
         public override void UpdateBiomes()
         {
