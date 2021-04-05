@@ -41,7 +41,7 @@ namespace Trelamium2.Content.Projectiles.Summon
 			}
 			var modPlayer = Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>();
 			Player player = Main.player[projectile.owner];
-			player.AddBuff(BuffType<Kindle_Spirit_Buff>(), 3600);
+			player.AddBuff(BuffType<Buffs.Minion.MossMonarchBuff>(), 3600);
 
 			if (player.dead)
 			{
