@@ -5,7 +5,7 @@ namespace Trelamium2
 {
     public class Trelamium2 : Mod
     {
-        internal static string PLACEHOLDER_TEXTURE = "Trelamium2/Content/PLACEHOLDER_TEXTURE";
+        internal static string PLACEHOLDER_TEXTURE = "Trelamium2/Assets/MarioCumming";
             
         internal static Trelamium2 Instance { get; set; }
 
