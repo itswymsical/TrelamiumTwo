@@ -13,7 +13,7 @@ namespace Trelamium2.Content.Items.Weapons.Magic
             Tooltip.SetDefault("Summons a desert wisp to fight for you");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             item.ranged = true;
             item.noMelee = true;

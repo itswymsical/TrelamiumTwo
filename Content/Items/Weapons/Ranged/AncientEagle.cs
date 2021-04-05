@@ -9,7 +9,7 @@ namespace Trelamium2.Content.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Ancient Eagle");
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             item.ranged = true;
             item.noMelee = true;

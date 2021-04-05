@@ -20,7 +20,7 @@ namespace Trelamium2.Content.Items
             }
         }
 
-        public override void SetDefaults()
+        public sealed override void SetDefaults()
         {
             if (Autosize)
                 item.Autosize();
