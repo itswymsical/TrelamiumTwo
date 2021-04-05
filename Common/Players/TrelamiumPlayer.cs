@@ -4,7 +4,7 @@ namespace Trelamium2.Common.Players
 {
     public class TrelamiumPlayer : ModPlayer
     {
-        public bool mossMonarch = false;
+        public bool mossMonarch;
         public override void ResetEffects()
         {
             mossMonarch = false;
