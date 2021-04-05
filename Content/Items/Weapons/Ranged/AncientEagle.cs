@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Trelamium2.Content.Items.Materials;
 
-namespace Trelamium2.Content.Items.Weapons.Sets.Primeval
+namespace Trelamium2.Content.Items.Weapons.Ranged
 {
     public class AncientEagle : TrelamiumItem
     {
