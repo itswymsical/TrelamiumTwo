@@ -3,13 +3,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Trelamium2.Content.Items.Materials;
 
-namespace Trelamium2.Content.Items.Weapons.Sets.Primeval
+namespace Trelamium2.Content.Items.Weapons.Ranged
 {
     public class AncientEagle : TrelamiumItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Ancient Eagle");
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             item.ranged = true;
             item.noMelee = true;

@@ -6,6 +6,6 @@ namespace Trelamium2.Content.Items.Materials
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Fossilite");
 
-        public override void SetDefaults() => item.value = Item.buyPrice(silver: 10);
+        public override void SafeSetDefaults() => item.value = Item.buyPrice(silver: 10);
     }
 }
