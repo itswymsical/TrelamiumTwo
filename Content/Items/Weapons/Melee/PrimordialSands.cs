@@ -9,7 +9,7 @@ namespace Trelamium2.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Primordial Sands");
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             item.melee = true;
             item.useTurn = true;
