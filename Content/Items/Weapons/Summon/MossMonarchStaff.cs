@@ -1,15 +1,17 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Trelamium2.Content.Items.Materials;
 
-namespace Trelamium2.Content.Items.Weapons.Melee
+namespace Trelamium2.Content.Items.Weapons.Summon
 {
     public class MossMonarchStaff : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Moss Monarch Staff");
-        public override void SetStaticDefaults() => Tooltip.SetDefault("Summons Moss Hornet to fight for you" +
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Moss Monarch Staff");
+            Tooltip.SetDefault("Summons Moss Hornet to fight for you" +
             "\nHoly! He's an inferno!");
+        }
         public override void SetDefaults()
         {
             item.summon = true;
@@ -26,8 +28,8 @@ namespace Trelamium2.Content.Items.Weapons.Melee
 
             item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item1;
-
+            item.UseSound = SoundID.Item44;
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.MossMonarchProjectile>();
             item.value = Item.buyPrice(gold: 10);
         }
     }

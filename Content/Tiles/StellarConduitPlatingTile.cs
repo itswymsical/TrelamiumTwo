@@ -2,11 +2,10 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Trelamium2.Content.Tiles
 {
-    public class StellarConduitPlating : ModTile
+    public class StellarConduitPlatingTile : ModTile
     {
         public override void SetDefaults()
         {
@@ -18,6 +17,7 @@ namespace Trelamium2.Content.Tiles
             dustType = 230;
             soundType = SoundID.Tink;
             soundStyle = 2;
+            drop = ModContent.ItemType<Items.Placeable.StellarConduitPlating>();
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Stellar Conduit Plating");
             AddMapEntry(new Color(21, 87, 255), name);

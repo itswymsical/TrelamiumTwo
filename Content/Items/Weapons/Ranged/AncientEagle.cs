@@ -1,9 +1,10 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Trelamium2.Content.Items.Materials;
 
-namespace Trelamium2.Content.Items.Weapons.Sets.Primeval
+namespace Trelamium2.Content.Items.Weapons.Ranged
 {
     public class AncientEagle : TrelamiumItem
     {
@@ -13,7 +14,6 @@ namespace Trelamium2.Content.Items.Weapons.Sets.Primeval
         {
             item.ranged = true;
             item.noMelee = true;
-            item.useTurn = true;
             item.autoReuse = true;
 
             item.useAnimation = 30;
@@ -21,18 +21,18 @@ namespace Trelamium2.Content.Items.Weapons.Sets.Primeval
             item.damage = 7;
             item.crit = 2;
 
-            item.knockBack = 4.5f;
+            item.knockBack = 2.5f;
 
             item.useAmmo = AmmoID.Bullet;
             item.shoot = ProjectileID.Bullet;
-
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item1;
+            item.shootSpeed = 4f;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.UseSound = SoundID.Item11;
             item.rare = ItemRarityID.White;
 
             item.value = Item.buyPrice(silver: 30);
         }
-
+        public override Vector2? HoldoutOffset() => new Vector2(-6, -4);
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);

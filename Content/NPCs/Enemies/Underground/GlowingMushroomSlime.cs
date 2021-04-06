@@ -2,13 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.NPCs.Enemies.Overworld
+namespace Trelamium2.Content.NPCs.Enemies.Underground
 {
-    public class MushroomSlime : ModNPC
+    public class GlowingMushroomSlime : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mushroom Slime");
+            DisplayName.SetDefault("Glowing Mushroom Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
         public override void SetDefaults()
@@ -30,12 +30,12 @@ namespace Trelamium2.Content.NPCs.Enemies.Overworld
             npc.value = Item.buyPrice(copper: 20);
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.UndergroundMushroom.Chance * 0.35f;
 
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(2))
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));           
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GlowingMushroom, Main.rand.Next(1, 3));           
         }
     }
 }

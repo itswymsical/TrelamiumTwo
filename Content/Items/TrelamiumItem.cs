@@ -11,10 +11,9 @@ namespace Trelamium2.Content.Items
         {
             get
             {
-                if (ModContent.TextureExists(base.Texture))
-                    return base.Texture;
+                mod.Logger.Warn("Couldn't find a texture for " + Name + ", going for a placeholder texture!");
 
-                return Trelamium2.PLACEHOLDER_TEXTURE;
+                return ModContent.TextureExists(base.Texture) ? base.Texture : Trelamium2.PLACEHOLDER_TEXTURE;
             }
         }
 

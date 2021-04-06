@@ -1,4 +1,8 @@
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Trelamium2
@@ -39,6 +43,11 @@ namespace Trelamium2
                     NPCType("AzolinthHead"),
                     NPCType("AzolinthBody"),
                     NPCType("AzolinthTail"));
+            }
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Ref<Effect> darkScreenRef = new Ref<Effect>(GetEffect("Effects/DarkenVisuals"));
+                Filters.Scene["Trelamium2:DarkenVisuals"] = new Filter(new ScreenShaderData(darkScreenRef, "SkyTint").UseIntensity(0.8f), EffectPriority.Medium);
             }
         }
 
