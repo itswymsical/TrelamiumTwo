@@ -14,10 +14,10 @@ namespace Trelamium2.Content.Items.Weapons.Ranged
 		{
 			item.width = 34;
 			item.height = 62;
-			item.rare = ItemRarityID.Green;
-			item.value = Item.sellPrice(silver: 49);
+			item.rare = ItemRarityID.LightRed;
+			item.value = Item.sellPrice(gold: 2);
 
-			item.damage = 9;
+			item.damage = 19;
 			item.knockBack = 2f;
 
 			item.useTime = 10;
@@ -36,7 +36,7 @@ namespace Trelamium2.Content.Items.Weapons.Ranged
 
 			item.UseSound = SoundID.Item5;
 		}
-
+		public override Vector2? HoldoutOffset() => new Vector2(-7, 0);
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			if (type == ProjectileID.WoodenArrowFriendly)

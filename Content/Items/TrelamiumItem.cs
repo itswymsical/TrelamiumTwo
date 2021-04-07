@@ -6,7 +6,6 @@ namespace Trelamium2.Content.Items
     public abstract class TrelamiumItem : ModItem
     {
         public bool Autosize;
-
         public override string Texture
         {
             get
