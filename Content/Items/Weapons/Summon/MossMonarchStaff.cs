@@ -26,7 +26,7 @@ namespace Trelamium2.Content.Items.Weapons.Summon
 
             item.knockBack = 1.75f;
 
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Cyan;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item44;
             item.shoot = ModContent.ProjectileType<Projectiles.Summon.MossMonarchProjectile>();
