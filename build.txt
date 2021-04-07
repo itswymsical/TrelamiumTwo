@@ -1,5 +1,5 @@
-displayName = Trelamity Mod
-author = LUDICROUS TOMFOOLERY
+displayName = Trelamium 2
+author = Signia, Blossom, HugeKraken, Lemmy, & More
 version = 0.1
 hideCode = false
 hideResources = false

@@ -11,7 +11,6 @@ namespace Trelamium2.Content.NPCs.Enemies.Overworld
             DisplayName.SetDefault("Mushroom Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
-
         public override void SetDefaults()
         {
             npc.width = 32;
@@ -30,12 +29,6 @@ namespace Trelamium2.Content.NPCs.Enemies.Overworld
 
             npc.value = Item.buyPrice(copper: 20);
         }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.5f);
-        } // Arent enemy stats automatically scaled?
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
 

@@ -9,7 +9,7 @@ namespace Trelamium2.Content.Items.Weapons.Ranged
 {
     public class DemoniteKunai : ModItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Demonite Kunai");
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Soulrender");
 
         public override void SetDefaults()
         {
@@ -31,7 +31,7 @@ namespace Trelamium2.Content.Items.Weapons.Ranged
 
             item.shoot = ProjectileID.PurificationPowder;
 
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.value = Item.sellPrice(silver: 3);
             item.shoot = ModContent.ProjectileType<DemoniteKunaiProjectile>();
         }

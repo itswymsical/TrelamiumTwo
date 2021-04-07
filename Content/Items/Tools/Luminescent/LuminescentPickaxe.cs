@@ -21,7 +21,8 @@ namespace Trelamium2.Content.Items.Tools.Luminescent
             item.damage = 10;
 
             item.knockBack = 2f;
-
+            item.pick = 50;
+            item.UseSound = SoundID.Item1;
             item.useStyle = ItemUseStyleID.SwingThrow;
         }
 

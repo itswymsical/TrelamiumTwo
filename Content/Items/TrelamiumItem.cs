@@ -6,21 +6,17 @@ namespace Trelamium2.Content.Items
     public abstract class TrelamiumItem : ModItem
     {
         public bool Autosize;
-
         public override string Texture
         {
             get
             {
-                if (ModContent.TextureExists(base.Texture))
-                    return base.Texture;
-
                 mod.Logger.Warn("Couldn't find a texture for " + Name + ", going for a placeholder texture!");
 
-                return Trelamium2.PLACEHOLDER_TEXTURE;
+                return ModContent.TextureExists(base.Texture) ? base.Texture : Trelamium2.PLACEHOLDER_TEXTURE;
             }
         }
 
-        public sealed override void SetDefaults()
+        public override void SetDefaults()
         {
             if (Autosize)
                 item.Autosize();
