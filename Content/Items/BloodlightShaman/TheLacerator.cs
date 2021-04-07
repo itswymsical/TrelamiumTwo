@@ -16,7 +16,7 @@ namespace Trelamium2.Content.Items.BloodlightShaman
 			item.value = Item.sellPrice(gold: 5, silver: 25);
 
 			item.crit = 4;
-			item.damage = 35;
+			item.damage = 60;
 			item.knockBack = 4.75f;
 
 			item.useTime = item.useAnimation = 26;

@@ -9,7 +9,7 @@ namespace Trelamium2.Content.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gelatinous Cart");
-            Tooltip.SetDefault("Summons a rideable Slime Minecart");
+            Tooltip.SetDefault("Summons a rideable Slime Minecart (may potentially kill your game)");
         }
         public override void SetDefaults()
         {

@@ -29,11 +29,17 @@ namespace Trelamium2.Content.NPCs.Enemies.Desert
 
             npc.value = Item.buyPrice(copper: 20);
         }
-        public override void AI() // haha ported code cuz im a bad funni
+        int frameCount;
+        public override void AI()
         {
+            frameCount++; //Frame Counter
+            if (frameCount > 4)
+            {
+                frameCount = 0;
+            }
             npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
-            npc.TargetClosest(true);
+            npc.TargetClosest(true); 
             if (npc.ai[0] == 0f)
             {
                 npc.TargetClosest(true);
@@ -48,17 +54,18 @@ namespace Trelamium2.Content.NPCs.Enemies.Desert
                 }
             }
             if (npc.velocity.Y >= 0f)
-            {
                 Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
-            }
         }
         public override void FindFrame(int frameHeight)
         {
-            int frames = 0;
-            frames++;
-            npc.frame.Y = (frames / 2) * frameHeight;
-            if (frames > 12)
-                    frames = 0;
+            if (frameCount == 0)
+            {
+                npc.frame.Y = 0 * frameHeight;
+            }
+            if (frameCount == 4)
+            {
+                npc.frame.Y = 1 * frameHeight;
+            }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.DesertCave.Chance * 0.305f;
 
