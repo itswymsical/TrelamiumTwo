@@ -5,25 +5,23 @@ using Terraria.ModLoader;
 
 namespace Trelamium2.Content.Tiles
 {
-    public class CarbonTile : ModTile
+    public class LimestoneTile : ModTile
     {
         public override void SetDefaults()
         {
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
-            Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
 
-            dustType = 54;
-            mineResist = 0.65f;
+            dustType = 1;
+            mineResist = 0.35f;
             soundType = SoundID.Tink;
             soundStyle = 2;
 
-            drop = ModContent.ItemType<Items.Placeable.Carbon>();
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Carbon");
-            AddMapEntry(new Color(55, 0, 55), name);
+            name.SetDefault("Limestone");
+            AddMapEntry(new Color(11, 88, 175), name);
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
         {

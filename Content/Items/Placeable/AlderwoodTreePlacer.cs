@@ -3,13 +3,11 @@ using Terraria.ModLoader;
 
 namespace Trelamium2.Content.Items.Placeable
 {
-    public class Carbon : TrelamiumItem
+    public class AlderwoodTreePlacer : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Carbon Fragment");
-
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.Yellow;
             item.maxStack = 999;
             item.width = 18;
             item.height = 24;
@@ -18,9 +16,7 @@ namespace Trelamium2.Content.Items.Placeable
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useTurn = true;
             item.autoReuse = true;
-            item.consumable = true;
-            item.value = Terraria.Item.sellPrice(copper: 80);
-            item.createTile = ModContent.TileType<Tiles.CarbonTile>();
+            item.createTile = ModContent.TileType<Tiles.AlderwoodTree>();
         }
     }
 }
