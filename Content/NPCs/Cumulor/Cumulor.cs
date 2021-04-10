@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Trelamium2.Content.NPCs.Cumulor
+namespace TrelamiumTwo.Content.NPCs.Cumulor
 {
 	public class Cumulor : ModNPC
 	{

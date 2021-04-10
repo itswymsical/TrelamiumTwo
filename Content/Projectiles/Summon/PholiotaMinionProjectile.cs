@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Trelamium2.Content.Projectiles.Summon
+namespace TrelamiumTwo.Content.Projectiles.Summon
 {
 	public class PholiotaMinionProjectile : ModProjectile
 	{

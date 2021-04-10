@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Projectiles.Ranged
+namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
     public class DemoniteKunaiProjectile : ModProjectile
     {
-        public override string Texture => "Trelamium2/Content/Items/Weapons/Ranged/DemoniteKunai";
+        public override string Texture => "TrelamiumTwo/Content/Items/Weapons/Ranged/DemoniteKunai";
         public override void SetDefaults()
         {
             projectile.tileCollide = true;

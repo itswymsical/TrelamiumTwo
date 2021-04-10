@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Trelamium2.Common.Items;
+using TrelamiumTwo.Common.Items;
 
-namespace Trelamium2.Content.Items.Tools.Shovels
+namespace TrelamiumTwo.Content.Items.Tools.Shovels
 {
     public class WoodShovel : ShovelItem
     {

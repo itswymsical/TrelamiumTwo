@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Buffs.Mounts
+namespace TrelamiumTwo.Content.Buffs.Mounts
 {
 	public class KingSlimeCartBuff : ModBuff
 	{

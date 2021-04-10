@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Trelamium2.Core
+namespace TrelamiumTwo.Core
 {
     internal static class WeakReferences
     {

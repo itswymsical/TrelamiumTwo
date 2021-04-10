@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Trelamium2.Common.Utilities;
+using TrelamiumTwo.Common.Utilities;
 
-namespace Trelamium2.Content.Mounts
+namespace TrelamiumTwo.Content.Mounts
 {
 	public sealed class KingSlimeCart : ModMountData
 	{

@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Items
+namespace TrelamiumTwo.Content.Items
 {
     public class GelatinousCart : TrelamiumItem
     {

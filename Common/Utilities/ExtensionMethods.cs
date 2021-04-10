@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Trelamium2.Common.Utilities
+namespace TrelamiumTwo.Common.Utilities
 {
     internal static class ExtensionMethods
     {

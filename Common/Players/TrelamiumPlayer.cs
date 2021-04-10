@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Trelamium2.Common.Players
+namespace TrelamiumTwo.Common.Players
 {
     public class TrelamiumPlayer : ModPlayer
     {

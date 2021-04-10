@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Projectiles.Ranged
+namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	public class LesionProjectile : ModProjectile
 	{
-        public override string Texture => Trelamium2.PLACEHOLDER_TEXTURE;
+        public override string Texture => TrelamiumTwo.PLACEHOLDER_TEXTURE;
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Lesion");

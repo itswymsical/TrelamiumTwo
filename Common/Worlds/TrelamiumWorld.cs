@@ -10,7 +10,7 @@ using Terraria.World.Generation;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Generation;
 
-namespace Trelamium2.Common.Worlds
+namespace TrelamiumTwo.Common.Worlds
 {
     public class TrelamiumWorld : ModWorld
     {

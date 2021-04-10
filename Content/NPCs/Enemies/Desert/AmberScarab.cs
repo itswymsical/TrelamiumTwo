@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.NPCs.Enemies.Desert
+namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 {
     public class AmberScarab : ModNPC
     {

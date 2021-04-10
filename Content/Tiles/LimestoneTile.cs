@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Tiles
+namespace TrelamiumTwo.Content.Tiles
 {
     public class LimestoneTile : ModTile
     {

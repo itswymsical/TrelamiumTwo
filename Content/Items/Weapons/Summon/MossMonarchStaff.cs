@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Items.Weapons.Summon
+namespace TrelamiumTwo.Content.Items.Weapons.Summon
 {
     public class MossMonarchStaff : TrelamiumItem
     {

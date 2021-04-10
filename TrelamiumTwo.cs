@@ -5,15 +5,15 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2
+namespace TrelamiumTwo
 {
-    public class Trelamium2 : Mod
+    public class TrelamiumTwo : Mod
     {
-        internal static string PLACEHOLDER_TEXTURE = "Trelamium2/Assets/PLACEHOLDER_TEXTURE";
-        internal static string Invisible_Texture = "Trelamium2/Assets/InvisibleTexture";
-        internal static Trelamium2 Instance { get; set; }
+        internal static string PLACEHOLDER_TEXTURE = "TrelamiumTwo/Assets/PLACEHOLDER_TEXTURE";
+        internal static string Invisible_Texture = "TrelamiumTwo/Assets/InvisibleTexture";
+        internal static TrelamiumTwo Instance { get; set; }
 
-        public Trelamium2()
+        public TrelamiumTwo()
         {
             Instance = this;
 
@@ -47,7 +47,7 @@ namespace Trelamium2
             if (Main.netMode != NetmodeID.Server)
             {
                 Ref<Effect> darkScreenRef = new Ref<Effect>(GetEffect("Effects/DarkenVisuals"));
-                Filters.Scene["Trelamium2:DarkenVisuals"] = new Filter(new ScreenShaderData(darkScreenRef, "SkyTint").UseIntensity(0.8f), EffectPriority.Medium);
+                Filters.Scene["TrelamiumTwo:DarkenVisuals"] = new Filter(new ScreenShaderData(darkScreenRef, "SkyTint").UseIntensity(0.8f), EffectPriority.Medium);
             }
         }
 

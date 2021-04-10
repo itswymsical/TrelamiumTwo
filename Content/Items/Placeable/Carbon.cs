@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Items.Placeable
+namespace TrelamiumTwo.Content.Items.Placeable
 {
     public class Carbon : TrelamiumItem
     {

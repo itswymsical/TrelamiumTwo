@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Projectiles.Ranged
+namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	public class ToadstoolProjectile : ModProjectile
 	{

@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace Trelamium2.Content.Items.Materials
+namespace TrelamiumTwo.Content.Items.Materials
 {
     public class Fossilite : TrelamiumItem
     {

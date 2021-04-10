@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace Trelamium2.Core.Utils
+namespace TrelamiumTwo.Core.Utils
 {
 	public static class DustUtils // Eldrazi Code imported from EH
 	{

@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Trelamium2.Content.NPCs.ForestGuardian
+namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
 	public class ForestGuardian : ModNPC
 	{

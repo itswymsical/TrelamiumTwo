@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Buffs.Minion
+namespace TrelamiumTwo.Content.Buffs.Minion
 {
     public class MossMonarchBuff : ModBuff
     {

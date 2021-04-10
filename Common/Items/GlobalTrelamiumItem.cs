@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using Trelamium2.Common.Hooks;
+using TrelamiumTwo.Common.Hooks;
 
-namespace Trelamium2.Common.Items
+namespace TrelamiumTwo.Common.Items
 {
     public class GlobalTrelamiumItem : GlobalItem
     {

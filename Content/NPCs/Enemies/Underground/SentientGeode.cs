@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
 
-namespace Trelamium2.Content.NPCs.Enemies.Underground
+namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 {
 	public class SentientGeode : ModNPC
 	{

@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Trelamium2.Content.Items.Materials
+namespace TrelamiumTwo.Content.Items.Materials
 {
     public class Coralstone : ModItem
     {

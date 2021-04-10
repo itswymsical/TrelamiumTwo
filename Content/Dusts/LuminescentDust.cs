@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Dusts
+namespace TrelamiumTwo.Content.Dusts
 {
     public class LuminescentDust : ModDust
     {

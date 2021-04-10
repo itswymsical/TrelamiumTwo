@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Trelamium2.Common.Extensions;
+using TrelamiumTwo.Common.Extensions;
 
-namespace Trelamium2.Content.Projectiles.Melee // Eldrazi Code imported from EH
+namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from EH
 {
 	public sealed class TheLaceratorProjectile : ModProjectile
 	{
-		public override string Texture => "Trelamium2/Content/Items/BloodlightShaman/TheLacerator";
+		public override string Texture => "TrelamiumTwo/Content/Items/BloodlightShaman/TheLacerator";
 
 		private enum AIState
 		{

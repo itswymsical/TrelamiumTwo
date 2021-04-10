@@ -4,13 +4,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Tiles
+namespace TrelamiumTwo.Content.Tiles
 {
     public class AlderwoodTree : ModTile
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = Trelamium2.Invisible_Texture;
+            texture = TrelamiumTwo.Invisible_Texture;
             return base.Autoload(ref name, ref texture);
         }
         public override void SetDefaults()

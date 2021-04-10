@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Trelamium2.Content.Dusts;
+using TrelamiumTwo.Content.Dusts;
 
-namespace Trelamium2.Content.Items.Tools.Luminescent
+namespace TrelamiumTwo.Content.Items.Tools.Luminescent
 {
     public class LuminescentPickaxe : TrelamiumItem
     {

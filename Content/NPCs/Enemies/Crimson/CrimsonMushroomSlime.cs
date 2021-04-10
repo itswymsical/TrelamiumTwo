@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.NPCs.Enemies.Crimson
+namespace TrelamiumTwo.Content.NPCs.Enemies.Crimson
 {
     public class CrimsonMushroomSlime : ModNPC
     {

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
 
-namespace Trelamium2.Content.Items.BloodlightShaman
+namespace TrelamiumTwo.Content.Items.BloodlightShaman
 {
 	public sealed class TheLacerator : TrelamiumItem
 	{

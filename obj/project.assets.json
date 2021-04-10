@@ -36,11 +36,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Trelamium2\\Trelamium2.csproj",
+      "projectUniqueName": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
       "projectName": "Trelamium2",
-      "projectPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Trelamium2\\Trelamium2.csproj",
+      "projectPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
       "packagesPath": "C:\\Users\\NewUser\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Trelamium2\\obj\\",
+      "outputPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NewUser\\AppData\\Roaming\\NuGet\\NuGet.Config",

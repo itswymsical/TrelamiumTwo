@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Items.BloodlightShaman
+namespace TrelamiumTwo.Content.Items.BloodlightShaman
 {
 	public class Lesion : TrelamiumItem
 	{

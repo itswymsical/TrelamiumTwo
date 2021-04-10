@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.NPCs.Enemies.Overworld
+namespace TrelamiumTwo.Content.NPCs.Enemies.Overworld
 {
     public class MushroomSlime : ModNPC
     {

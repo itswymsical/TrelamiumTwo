@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.NPCs.Enemies.Underground
+namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 {
     public class GlowingMushroomSlime : ModNPC
     {

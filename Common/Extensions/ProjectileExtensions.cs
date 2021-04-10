@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 #endregion
 
-namespace Trelamium2.Common.Extensions
+namespace TrelamiumTwo.Common.Extensions
 {
 	internal static class ProjectileExtensions // Eldrazi Code imported from EH
 	{

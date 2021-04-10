@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace Trelamium2.Common.NPCs
+namespace TrelamiumTwo.Common.NPCs
 {
     public class TrelamiumGlobalNPC : GlobalNPC
     {

@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace Trelamium2.Common.Hooks
+namespace TrelamiumTwo.Common.Hooks
 {
     public static class TrelamiumHooks
     {

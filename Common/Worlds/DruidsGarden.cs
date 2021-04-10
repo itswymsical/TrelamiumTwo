@@ -7,7 +7,7 @@ using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
 using Microsoft.Xna.Framework;
 
-namespace Trelamium2.Common.Worlds
+namespace TrelamiumTwo.Common.Worlds
 {
     public class DruidsGarden : ModWorld
     {

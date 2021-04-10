@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Trelamium2.Common.Items
+namespace TrelamiumTwo.Common.Items
 {
     public abstract class ShovelItem : ModItem
     {

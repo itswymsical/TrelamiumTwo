@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
-using Trelamium2.Common.Utilities;
+using TrelamiumTwo.Common.Utilities;
 
-namespace Trelamium2.Content.Items
+namespace TrelamiumTwo.Content.Items
 {
     public abstract class TrelamiumItem : ModItem
     {
@@ -12,7 +12,7 @@ namespace Trelamium2.Content.Items
             {
                 mod.Logger.Warn("Couldn't find a texture for " + Name + ", going for a placeholder texture!");
 
-                return ModContent.TextureExists(base.Texture) ? base.Texture : Trelamium2.PLACEHOLDER_TEXTURE;
+                return ModContent.TextureExists(base.Texture) ? base.Texture : TrelamiumTwo.PLACEHOLDER_TEXTURE;
             }
         }
 

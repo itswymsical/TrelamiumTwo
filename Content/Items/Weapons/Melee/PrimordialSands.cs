@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Trelamium2.Content.Items.Materials;
+using TrelamiumTwo.Content.Items.Materials;
 
-namespace Trelamium2.Content.Items.Weapons.Melee
+namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
     public class PrimordialSands : TrelamiumItem
     {

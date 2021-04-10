@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Projectiles.Summon
+namespace TrelamiumTwo.Content.Projectiles.Summon
 {
 	public class MossMonarchProjectile : ModProjectile
 	{
