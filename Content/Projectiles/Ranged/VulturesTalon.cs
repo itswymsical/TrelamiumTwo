@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Trelamium2.Content.Projectiles.Ranged
+namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
     public class VulturesTalon : ModProjectile
     {
