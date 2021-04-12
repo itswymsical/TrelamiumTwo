@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace TrelamiumTwo.Content.NPCs.BloodlightShaman
+namespace TrelamiumTwo.Content.NPCs.BloodShaman
 {
     public class BloodlightShaman : ModNPC
     {
@@ -41,7 +41,10 @@ namespace TrelamiumTwo.Content.NPCs.BloodlightShaman
         private bool locust;
         #endregion
 
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Bloodlight Shaman");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bloodlight Shaman");
+        }
 
         public override void SetDefaults()
         {
@@ -65,6 +68,7 @@ namespace TrelamiumTwo.Content.NPCs.BloodlightShaman
         }
         public override void AI()
         {
+            npc.lifeRegen++;
             Player target = Main.player[npc.target];
 
             if (State == AIState.Idle)
@@ -110,7 +114,6 @@ namespace TrelamiumTwo.Content.NPCs.BloodlightShaman
 
             #endregion
         }
-
         private bool HoleBelow()
         {
             // Width of npc in tiles
@@ -168,6 +171,10 @@ namespace TrelamiumTwo.Content.NPCs.BloodlightShaman
                 if (bloodShot)
                     Projectile.NewProjectile(npc.position, npc.velocity, ProjectileID.DeathLaser, npc.damage, default, Main.myPlayer);
             }
+        }
+        public override bool CheckActive()
+        {
+            return false;
         }
     }
 }

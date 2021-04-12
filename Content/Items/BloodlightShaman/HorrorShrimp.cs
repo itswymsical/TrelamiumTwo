@@ -26,11 +26,11 @@ namespace TrelamiumTwo.Content.Items.BloodlightShaman
 		}
 
 		public override bool CanUseItem(Player player) {
-			return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BloodlightShaman.BloodlightShaman>());
+			return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BloodShaman.BloodlightShaman>());
 		}
 
 		public override bool UseItem(Player player) {
-			NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.BloodlightShaman.BloodlightShaman>());
+			NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.BloodShaman.BloodlightShaman>());
 			Main.PlaySound(SoundID.Roar, player.position, 0);
 			return true;
 		}
