@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.NPCs.Cumulor
 {
-	public class Cumulor : ModNPC
+	public sealed class Cumulor : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
