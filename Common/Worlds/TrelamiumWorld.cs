@@ -1,21 +1,46 @@
-using System;
-using System.IO;
-using System.Linq;
+#region Using directives
+
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
+
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-using Microsoft.Xna.Framework;
-using Terraria.GameContent.Generation;
+
+using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
+
+#endregion
+
 
 namespace TrelamiumTwo.Common.Worlds
 {
-    public class TrelamiumWorld : ModWorld
+    public sealed partial class TrelamiumWorld : ModWorld
     {
         public override void Initialize()
         {
         }
-    }
+		public static int DustifiedCavernTiles;
+
+		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+		{
+			//ModifyWorldGenTasks_Campsites(tasks, ref totalWeight);
+			ModifyWorldGenTasks_DustifiedCaverns(tasks, ref totalWeight);
+		}
+
+		public override void ResetNearbyTileEffects()
+		{
+			DustifiedCavernTiles = 0;
+		}
+
+		public override void TileCountsAvailable(int[] tileCounts)
+		{
+			/*DustifiedCavernTiles =
+				tileCounts[ModContent.TileType<Ironsand>()] +
+				tileCounts[ModContent.TileType<Huskstone>()] +
+				tileCounts[ModContent.TileType<AetherousSoil>()];*/
+		}
+
+		public override void PostWorldGen()
+		{
+			//PostWorldGen_SpawnChestContent();
+		}
+	}
 }

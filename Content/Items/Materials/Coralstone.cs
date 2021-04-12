@@ -4,7 +4,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-    public class Coralstone : ModItem
+    public sealed class Coralstone : TrelamiumItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Coralstone");
         public override void SetDefaults()

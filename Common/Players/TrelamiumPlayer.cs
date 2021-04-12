@@ -4,12 +4,14 @@ using Terraria.ID;
 
 namespace TrelamiumTwo.Common.Players
 {
-    public class TrelamiumPlayer : ModPlayer
+    public sealed partial class TrelamiumPlayer : ModPlayer
     {
+        public bool floralSpirit;
         public bool mossMonarch;
         public bool pholiotaMinion;
         public bool toadstoolExplode;
-        public float shakeEffects = 0; 
+        public float shakeEffects = 0;
+        #region Shovel PickTile method
         public void ShovelPickTile(int x, int y)
         {
             int digTile = player.HeldItem.GetGlobalItem<Items.GlobalTrelamiumItem>().digPower;
@@ -19,16 +21,22 @@ namespace TrelamiumTwo.Common.Players
                 int posy = y / 16 + i;
                 Tile t1 = Main.tile[posx, y / 16];
                 Tile t2 = Main.tile[x / 16, posy];
-
-                if (Main.tile[posx, y / 16].type != TileID.DemonAltar)
+                if (Main.tile[posx, y / 16].type != TileID.DemonAltar && Main.tile[x / 16, posy].type != TileID.DemonAltar
+                    && Main.tile[posx, y / 16].type != TileID.Trees && Main.tile[x / 16, posy].type != TileID.Trees
+                    && Main.tile[posx, y / 16].type != TileID.PalmTree && Main.tile[x / 16, posy].type != TileID.PalmTree
+                    && Main.tile[posx, y / 16].type != TileID.MushroomTrees && Main.tile[x / 16, posy].type != TileID.MushroomTrees
+                    && Main.tile[posx, y / 16].type != TileID.ShadowOrbs && Main.tile[x / 16, posy].type != TileID.ShadowOrbs
+                    && Main.tile[posx, y / 16].type != TileID.Cactus && Main.tile[x / 16, posy].type != TileID.Cactus)
                 {
                     player.PickTile(posx, y / 16, digTile);
                     player.PickTile(x / 16, posy, digTile);
                 }
             }
         }
+        #endregion
         public override void ResetEffects()
         {
+            floralSpirit = false;
             mossMonarch = false;
             pholiotaMinion = false;
             toadstoolExplode = false;
@@ -36,6 +44,7 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void UpdateDead()
         {
+            floralSpirit = false;
             mossMonarch = false;
             pholiotaMinion = false;
             toadstoolExplode = false;
@@ -46,7 +55,6 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void UpdateBiomeVisuals()
         {
-
         }
         public override void ModifyScreenPosition()
         {

@@ -9,12 +9,12 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Overworld
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Goat");
-            Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Bunny];
+            Main.npcFrameCount[npc.type] = 4;
         }
         public override void SetDefaults()
         {
-            npc.width = 32;
-            npc.height = 26;
+            npc.width = 78;
+            npc.height = 56;
 
             npc.damage = 18;
             npc.lifeMax = 45;
@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Overworld
 
             npc.knockBackResist = 0.75f;
 
-            animationType = NPCID.Bunny;
+            animationType = NPCID.Zombie;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
 
@@ -32,10 +32,5 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Overworld
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDay.Chance * 0.235f;
 
-        public override void NPCLoot()
-        {
-            if (Main.rand.NextBool(2))
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));           
-        }
     }
 }
