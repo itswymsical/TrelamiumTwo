@@ -18,8 +18,5 @@ namespace TrelamiumTwo.Content.Projectiles
 
 			projectile.tileCollide = false;
 		}
-		public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-		}
 	}
 }
