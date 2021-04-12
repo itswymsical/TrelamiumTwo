@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Content.Mounts
 			mountData.blockExtraJumps = true;
 
 			mountData.spawnDust = 12;
-			mountData.buff = ModContent.BuffType<Buffs.Mounts.KingSlimeCartBuff>();
+			mountData.buff = ModContent.BuffType<Buffs.Mount.KingSlimeCartBuff>();
 
 			mountData.totalFrames = 1;
 			int[] array = new int[mountData.totalFrames];

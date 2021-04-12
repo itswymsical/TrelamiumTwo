@@ -2,7 +2,7 @@
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-    public class Fossilite : TrelamiumItem
+    public sealed class Fossilite : TrelamiumItem
     {
         public override void SetStaticDefaults() => DisplayName.SetDefault("Fossilite");
 
