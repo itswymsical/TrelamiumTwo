@@ -27,7 +27,6 @@ namespace TrelamiumTwo
 
         internal static string PLACEHOLDER_TEXTURE = "TrelamiumTwo/Assets/PLACEHOLDER_TEXTURE";
         internal static string Invisible_Texture = "TrelamiumTwo/Assets/InvisibleTexture";
-        internal static string LightingTexture = "TrelamiumTwo/Assets/Lightsource";
         internal static TrelamiumTwo Instance { get; set; }
 
         public TrelamiumTwo()

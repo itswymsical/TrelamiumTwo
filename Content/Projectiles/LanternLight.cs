@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Projectiles
 {
 	public sealed class LanternLight : ModProjectile
 	{
-		public override string Texture => "TrelamiumTwo/Assets/Lightsource";
+		public override string Texture => "TrelamiumTwo/Assets/Glow";
 
 		public override void SetDefaults()
 		{

@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 			npc.DeathSound = SoundID.NPCDeath52;
 			npc.behindTiles = true;
 			npc.lavaImmune = true;
-		}		
+		}
 		public override void AI()
 		{
 			int num = 30;
@@ -327,7 +327,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
         }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Cavern.Chance * 0.155f;
+			return SpawnCondition.Cavern.Chance * 0.185f;
 		}
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
