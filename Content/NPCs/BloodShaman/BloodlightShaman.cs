@@ -68,7 +68,6 @@ namespace TrelamiumTwo.Content.NPCs.BloodShaman
         }
         public override void AI()
         {
-            npc.lifeRegen++;
             Player target = Main.player[npc.target];
 
             if (State == AIState.Idle)

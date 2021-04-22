@@ -29,17 +29,16 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 
             npc.value = Item.buyPrice(copper: 20);
         }
-        int frameCount;
+        public override void NPCLoot()
+        {
+            if (Main.rand.NextBool(2))
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Amber, Main.rand.Next(1, 3));
+        }
         public override void AI()
         {
-            frameCount++; //Frame Counter
-            if (frameCount > 4)
-            {
-                frameCount = 0;
-            }
             npc.spriteDirection = npc.direction;
             Player player = Main.player[npc.target];
-            npc.TargetClosest(true); 
+            npc.TargetClosest(true);
             if (npc.ai[0] == 0f)
             {
                 npc.TargetClosest(true);
@@ -48,7 +47,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
                 npc.ai[1]++;
                 if (npc.ai[1] >= 8f * 60f)
                 {
-                    if (player.WithinRange(npc.Center, 6f * 16f))              
+                    if (player.WithinRange(npc.Center, 6f * 16f))
                         npc.ai[0] = 1f;
                     npc.ai[1] = 0f;
                 }
@@ -58,21 +57,12 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
         }
         public override void FindFrame(int frameHeight)
         {
-            if (frameCount == 0)
+            if (++npc.frameCounter > 2)
             {
-                npc.frame.Y = 0 * frameHeight;
-            }
-            if (frameCount == 4)
-            {
-                npc.frame.Y = 1 * frameHeight;
+                npc.frameCounter = 0;
+                npc.frame.Y = (npc.frame.Y + frameHeight) % (frameHeight * Main.npcFrameCount[npc.type]);
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.DesertCave.Chance * 0.305f;
-
-        public override void NPCLoot()
-        {
-            if (Main.rand.NextBool(2))
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Amber, Main.rand.Next(1, 3));           
-        }
     }
 }

@@ -1,0 +1,13 @@
+The Siren Fight (Harmonic Convergence), is a rhythm-based fight. You can only attack with instrument weapons, and you have to time your inputs.
+Dodging is also minorly tailored to rhythm.
+
+Siren #1 (Adella)
+Adella easy mode, she is the beginning of the song, and mainly has attacks consisting of bubbles and music notes.
+When the bells come in the song, the player can attack.
+
+Siren #2 (Azeala)
+Azeala is the siren who supports Adella, the more mistakes you make, the more Adella is buffed by Azeala.
+
+Siren #3 (Aurora)
+Aurora is the Siren that does the main fighting, once you weaken Adella and Azeala through correct inputs, they all begin to go into a normal fighting mode, in which you must fight them all at once.
+They are very weak in health and defense; However, they deal tolerable damage.

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Magic
 {
-    public class PharaohsSpire : TrelamiumItem
+    public class PharaohsSpire : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
             Item.staff[item.type] = true;
         }
 
-        public override void SafeSetDefaults()
+        public override void SetDefaults()
         {
             item.magic = true;
             item.noMelee = true;
@@ -22,14 +22,14 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
 
             item.useAnimation = 35;
             item.useTime = 35;
-            item.damage = 11;
+            item.damage = 7;
             item.crit = 2;
 
             item.mana = 5;
 
             item.knockBack = 2.5f;
 
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item9;
 
@@ -38,13 +38,16 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
 
             item.value = Item.buyPrice(silver: 80);
 
-            item.width = 42;
+            item.width = 52;
             item.height = 72;
         }
-        public override Vector2? HoldoutOffset() => new Vector2(5, -5f);
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-8, 0);
+        }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 65f;
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 80f;
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
             {
                 position += muzzleOffset;
@@ -58,6 +61,16 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
                     ModContent.ProjectileType<Projectiles.Magic.SandBallProjectile>(), damage / 2, knockBack, player.whoAmI);
             }
             return true;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Materials.Fossilite>(), 8);
+            recipe.AddIngredient(ItemID.FallenStar, 3);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
         }
     }
 }

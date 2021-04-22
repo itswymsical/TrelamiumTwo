@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -7,6 +9,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
 	public class ForestGuardian : ModNPC
 	{
+		private enum AIState
+		{
+			Idle = 0,
+			Smash = 1
+		}
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Forest Guardian");
@@ -46,7 +53,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Guardian's Fist");
+			DisplayName.SetDefault("Guardian's Fist L");
 		}
 		public override void SetDefaults()
 		{
@@ -56,7 +63,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 30;
 			npc.defense = 8;
-			npc.lifeMax = 250;
+			npc.lifeMax = 350;
 
 			npc.noGravity = true;
 			npc.lavaImmune = true;
@@ -65,12 +72,19 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.HitSound = SoundID.DD2_CrystalCartImpact;
 			npc.DeathSound = SoundID.Item14;
 		}
-	}
+        public override void AI()
+        {
+			Player target = Main.player[npc.target];
+			
+        }
+    }
 	public class ForestGuardian_Right : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Guardian's Fist");
+			NPCID.Sets.TrailCacheLength[npc.type] = 5;
+			NPCID.Sets.TrailingMode[npc.type] = 0;
 		}
 		public override void SetDefaults()
 		{
@@ -80,7 +94,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 30;
 			npc.defense = 8;
-			npc.lifeMax = 250;
+			npc.lifeMax = 350;
 
 			npc.noGravity = true;
 			npc.lavaImmune = true;
@@ -88,6 +102,21 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.knockBackResist = 0f;
 			npc.HitSound = SoundID.DD2_CrystalCartImpact;
 			npc.DeathSound = SoundID.Item14;
+		}
+		private int DashTimer;
+		public override void AI()
+		{
+			Player target = Main.player[npc.target];
+			DashTimer++;
+			if (DashTimer >= 90)
+			{
+				npc.TargetClosest(true);
+				npc.netUpdate = true;
+				Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
+				PlayerPosition.Normalize();
+				npc.velocity = PlayerPosition * 8f;
+				DashTimer = 0;
+			}
 		}
 	}
 }
