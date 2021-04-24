@@ -27,8 +27,10 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
             item.UseSound = SoundID.Item18;
 
             item.value = Item.buyPrice(silver: 80);
-        }
 
+            Item.staff[item.type] = true;
+            // A chasm is forming in my leg and is pussing, cannot finish now :/
+        }
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);
