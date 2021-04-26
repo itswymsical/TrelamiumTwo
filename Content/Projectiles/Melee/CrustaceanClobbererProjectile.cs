@@ -96,16 +96,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from E
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			target.AddBuff(BuffID.Bleeding, 240);
-			if (IsMaxCharge && Main.myPlayer == projectile.owner)
-			{
-				for (int i = 0; i < 2; ++i)
-				{
-					/*Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 4f,
-						ProjectileID.BloodWater, (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);*/
-				}
-			}
-
 			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 151, 60);
 		}
         public override void Kill(int timeLeft)

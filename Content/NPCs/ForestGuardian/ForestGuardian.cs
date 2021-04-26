@@ -107,6 +107,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		public override void AI()
 		{
 			Player target = Main.player[npc.target];
+			npc.TargetClosest(true);
+			npc.spriteDirection = npc.direction;
 			DashTimer++;
 			if (DashTimer >= 90)
 			{
@@ -114,7 +116,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				npc.netUpdate = true;
 				Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
 				PlayerPosition.Normalize();
-				npc.velocity = PlayerPosition * 8f;
+				npc.velocity = PlayerPosition * 5f;
 				DashTimer = 0;
 			}
 		}

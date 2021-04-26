@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Woodland
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Woodland Warrior mask");
+			DisplayName.SetDefault("Woodland Warrior Mask");
 			Tooltip.SetDefault("Increases magic damage by 5%");
 		}
 

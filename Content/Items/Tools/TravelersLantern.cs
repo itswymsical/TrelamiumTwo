@@ -16,13 +16,8 @@ using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Tools
 {
-	public sealed class TravelersLantern : ModItem
+	public sealed class TravelersLantern : TrelamiumItem
 	{
-		private int currentActiveEmber = 0;
-		
-		private readonly int MaxEmberAmount = 1;
-		private readonly float MaxActiveDistance = 120;
-
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Traveler's Lantern");
@@ -33,81 +28,16 @@ namespace TrelamiumTwo.Content.Items.Tools
 			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(0, 0, 40, 0);
 
-			item.useTime = 18;
-			item.useAnimation = 18;
-			item.useStyle = ItemUseStyleID.HoldingOut;
-
 			item.holdStyle = ItemHoldStyleID.HoldingOut;
 
 			item.noMelee = true;
-			
-			item.UseSound = SoundID.Item1; // TODO: Eldrazi - Implement correct sound.
 		}
-
-		public override bool AltFunctionUse(Player player)
-			=> true;
-
-		public override bool CanUseItem(Player player)
+        public override void HoldItem(Player player)
+        {
+			Lighting.AddLight(player.itemLocation, Color.Orange.ToVector3() * Main.essScale);
+        }
+        public override void HoldStyle(Player player)
 		{
-			if (Main.myPlayer == player.whoAmI)
-			{
-				int emberType = ModContent.ProjectileType<Projectiles.LanternLight>();
-
-				if (player.altFunctionUse == 2)
-				{
-					foreach (var proj in Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.type == emberType))
-					{
-						proj.ai[0] = 0f;
-						proj.netUpdate = true;
-						proj.localAI[0] = proj.localAI[1] = 0f;
-					}
-
-					return (false);
-				}
-
-				Vector2 targetPosition = Main.MouseWorld;
-
-				if (!Collision.CanHitLine(player.Center, 1, 1, targetPosition, 1, 1))
-				{
-					return (false);
-				}
-				
-				float distanceToTargetPosition = (targetPosition - player.Center).Length();
-				if (distanceToTargetPosition > MaxActiveDistance)
-				{
-					targetPosition += Vector2.Normalize(player.Center - targetPosition) * (distanceToTargetPosition - MaxActiveDistance);
-				}
-				
-				Projectile currentEmber = Main.projectile
-					.Where(x => x.active && x.owner == player.whoAmI && x.type == emberType)
-					.Skip(currentActiveEmber)
-					.FirstOrDefault();
-
-				currentEmber.ai[0] = 1f;
-				currentEmber.netUpdate = true;
-				currentEmber.localAI[0] = targetPosition.X;
-				currentEmber.localAI[1] = targetPosition.Y;
-
-				currentActiveEmber = (currentActiveEmber + 1) % MaxEmberAmount;
-			}
-
-			return (false);
-		}
-
-		public override void HoldStyle(Player player)
-		{
-			if (Main.myPlayer == player.whoAmI)
-			{
-				int emberType = ModContent.ProjectileType<Projectiles.LanternLight>();
-				int emberCount = player.ownedProjectileCounts[emberType];
-				for (int i = 0; i < MaxEmberAmount - emberCount; ++i)
-				{
-					Vector2 projectilePos = player.position + new Vector2(Main.rand.Next(player.width), Main.rand.Next(player.height));
-
-					Projectile.NewProjectile(projectilePos, Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi), emberType, 0, 0, player.whoAmI);
-				}
-			}
-
 			player.itemLocation.Y -= 22;
 			if (player.direction == 1)
 			{
