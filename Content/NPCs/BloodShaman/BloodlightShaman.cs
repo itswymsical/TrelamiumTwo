@@ -40,7 +40,6 @@ namespace TrelamiumTwo.Content.NPCs.BloodShaman
         private bool bloodShot;
         private bool locust;
         #endregion
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bloodlight Shaman");
@@ -48,18 +47,18 @@ namespace TrelamiumTwo.Content.NPCs.BloodShaman
 
         public override void SetDefaults()
         {
-            npc.aiStyle = -1;
-            npc.width = 32; npc.height = 52;
+            npc.width = 32; 
+            npc.height = 52;
 
             npc.npcSlots = 8f;
             npc.damage = 27;
             npc.defense = 10;
             npc.life = 2700;
             npc.boss = true;
-
-            for (int a = 0; a < npc.buffImmune.Length; a++)
-                npc.buffImmune[a] = true;
-
+            for (int k = 0; k < npc.buffImmune.Length; k++)
+            {
+                npc.buffImmune[k] = true;
+            }         
             npc.value = Item.buyPrice(gold: 2);
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCHit11;
@@ -68,7 +67,6 @@ namespace TrelamiumTwo.Content.NPCs.BloodShaman
         }
         public override void AI()
         {
-            npc.lifeRegen++;
             Player target = Main.player[npc.target];
 
             if (State == AIState.Idle)

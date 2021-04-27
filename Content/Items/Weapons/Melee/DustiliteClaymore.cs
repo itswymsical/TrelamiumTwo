@@ -1,7 +1,10 @@
-﻿using Terraria;
+﻿#region Using Directives
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Content.Items.Materials;
+#endregion
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
@@ -27,9 +30,17 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
             item.UseSound = SoundID.Item18;
 
             item.value = Item.buyPrice(silver: 80);
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            if (target.life > 0 && Main.rand.NextBool(3))
+            {
+                float length = 250f;
+                Vector2 projectilePos = target.Center + (Main.rand.NextFloat() * MathHelper.TwoPi).ToRotationVector2() * length;
+                Vector2 projectileVelocity = Vector2.Normalize(target.Center - projectilePos) * 15f;
 
-            Item.staff[item.type] = true;
-            // A chasm is forming in my leg and is pussing, cannot finish now :/
+                Projectile.NewProjectile(projectilePos, projectileVelocity, ModContent.ProjectileType<Projectiles.Melee.DustiliteClaymore_Proj>(), damage, knockBack, player.whoAmI, length);
+            }
         }
         public override void AddRecipes()
         {

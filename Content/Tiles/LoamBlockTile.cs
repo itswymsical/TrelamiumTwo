@@ -13,7 +13,7 @@ namespace TrelamiumTwo.Content.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
-            Main.tileMerge[Type][ModContent.TileType<LimestoneTile>()] = true;
+            Main.tileMerge[Type][ModContent.TileType<SlateTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<LoamBlockGrassTile>()] = true;
             dustType = 38;
             mineResist = 0.35f;

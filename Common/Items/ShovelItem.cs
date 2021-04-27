@@ -2,11 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using TrelamiumTwo.Common.Utilities;
 
 namespace TrelamiumTwo.Common.Items
 {
     public abstract class ShovelItem : ModItem
     {
+        public bool Autosize;
         public override bool CloneNewInstances => false;    
         public void diggingPower(int digPower)
         {
@@ -30,5 +32,14 @@ namespace TrelamiumTwo.Common.Items
         {
             return rand.Next(new int[] { PrefixID.Agile, PrefixID.Quick, PrefixID.Light, PrefixID.Slow, PrefixID.Sluggish, PrefixID.Lazy, PrefixID.Large });
         }
+        public override void SetDefaults()
+        {
+            if (Autosize)
+                item.Autosize();
+
+            SafeSetDefaults();
+        }
+
+        public virtual void SafeSetDefaults() { }
     }
 }

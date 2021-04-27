@@ -16,13 +16,15 @@ namespace TrelamiumTwo.Common.Worlds
     {
         public override void Initialize()
         {
-        }
+
+		}
 		public static int DustifiedCavernTiles;
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
 			//ModifyWorldGenTasks_Campsites(tasks, ref totalWeight);
 			ModifyWorldGenTasks_DustifiedCaverns(tasks, ref totalWeight);
+			ModifyWorldGenTasks_DruidsGarden(tasks, ref totalWeight);
 		}
 
 		public override void ResetNearbyTileEffects()

@@ -1,17 +1,31 @@
-﻿using Terraria;
+﻿#region Using Directives
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+#endregion
 
 namespace TrelamiumTwo.Common.Players
 {
     public sealed partial class TrelamiumPlayer : ModPlayer
     {
+        #region A-G
+        public bool dustrollerSkates;
         public bool floralSpirit;
+        #endregion
+        #region H-P
+        public bool magicGuantlet;
         public bool mossMonarch;
+        public bool onSand;
         public bool pholiotaMinion;
-        public bool toadstoolExplode;
+        #endregion
+        #region Q-T
         public float shakeEffects = 0;
-        #region Shovel PickTile method
+        public bool toadstoolExplode;
+        #endregion
+        #region U-Z
+        #endregion
+
+        #region ShovelPickTile() Method
         public void ShovelPickTile(int x, int y)
         {
             int digTile = player.HeldItem.GetGlobalItem<Items.GlobalTrelamiumItem>().digPower;
@@ -36,26 +50,48 @@ namespace TrelamiumTwo.Common.Players
         #endregion
         public override void ResetEffects()
         {
+            #region A-G
+            dustrollerSkates = false;
             floralSpirit = false;
+            #endregion
+            #region H-P
+            magicGuantlet = false;
             mossMonarch = false;
+            onSand = false;
             pholiotaMinion = false;
-            toadstoolExplode = false;
+            #endregion
+            #region Q-T
             shakeEffects = 0;
+            toadstoolExplode = false;
+            #endregion
+            #region U-Z
+            #endregion
         }
+
         public override void UpdateDead()
         {
+            #region A-G
+            dustrollerSkates = false;
             floralSpirit = false;
+            #endregion
+            #region H-P
+            magicGuantlet = false;
             mossMonarch = false;
+            onSand = false;
             pholiotaMinion = false;
-            toadstoolExplode = false;
+            #endregion
+            #region Q-T
             shakeEffects = 0;
+            toadstoolExplode = false;
+            #endregion
+            #region U-Z
+            #endregion
         }
-        public override void UpdateBiomes()
-        {
-        }
-        public override void UpdateBiomeVisuals()
-        {
-        }
+
+        public override void UpdateBiomes(){ }
+
+        public override void UpdateBiomeVisuals() => player.ManageSpecialBiomeVisuals("Blizzard", 
+            NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.Glacier.Glacier>()), player.Center);
         public override void ModifyScreenPosition()
         {
             if (shakeEffects > 0)
