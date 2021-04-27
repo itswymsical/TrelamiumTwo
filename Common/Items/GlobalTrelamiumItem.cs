@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -17,13 +18,25 @@ namespace TrelamiumTwo.Common.Items
             Item i = ModContent.GetModItem(shovel).item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
         }
+        public override void UpdateEquip(Item item, Player player)
+        {
+            if (item.Name.Contains("Boots") || player.moveSpeed >= 0)
+                item.shoeSlot = 0;
+        }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            Player player = Main.LocalPlayer;
             base.ModifyTooltips(item, tooltips);
             TooltipLine sline;
             if (item.IsShovel())
             {
-                sline = new TooltipLine(mod, "Dig Power", $"{item.GetGlobalItem<GlobalTrelamiumItem>().digPower}% digging power");
+                sline = new TooltipLine(mod, "TrelamiumTwo:Digging Power", $"{item.GetGlobalItem<GlobalTrelamiumItem>().digPower}% digging power");
+                tooltips.Add(sline);
+            }
+            if (item.shoeSlot >= 0 && player.moveSpeed > 0)
+            {
+                sline = new TooltipLine(mod, "TrelamiumTwo:Movement Speed", $"{player.moveSpeed}x movement speed");
+                sline.overrideColor = Color.LightYellow;
                 tooltips.Add(sline);
             }
         }

@@ -6,15 +6,16 @@ using Terraria.ModLoader;
 
 #endregion
 
-namespace TrelamiumTwo.Content.Items.Accessories
+namespace TrelamiumTwo.Content.Items.Accessory
 {
 	// TODO: Eldrazi - Add correct sprites and autoload.
 	//[AutoloadEquip(EquipType.Shoes)]
-	public sealed class RegolithRollerboots : ModItem
+	public sealed class RegolithRollerboots : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Grants you the effects of:\nDunerider Boots\nDustroller Skates, and the Orb of Apoplixia");
+			Tooltip.SetDefault("Allows the wearer to run super fast" +
+				"\nAllows you to safely walk over Soot Shale");
 		}
 		public override void SetDefaults()
 		{
@@ -29,7 +30,7 @@ namespace TrelamiumTwo.Content.Items.Accessories
 			var trelamiumPlayer = player.GetModPlayer<Common.Players.TrelamiumPlayer>();
 
 			player.accRunSpeed = 6f;
-
+			trelamiumPlayer.magicGuantlet = true;
 			trelamiumPlayer.dustrollerSkates = true;
 
 			if (trelamiumPlayer.onSand)

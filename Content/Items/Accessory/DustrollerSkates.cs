@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 
 #endregion
 
-namespace TrelamiumTwo.Content.Items.Accessories
+namespace TrelamiumTwo.Content.Items.Accessory
 {
 	// TODO: Eldrazi - Add correct sprites and autoload.
 	//[AutoloadEquip(EquipType.Shoes)]
-	public sealed class DustrollerSkates : ModItem
+	public sealed class DustrollerSkates : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

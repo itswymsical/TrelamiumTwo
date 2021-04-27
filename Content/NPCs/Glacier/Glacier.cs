@@ -511,6 +511,7 @@ namespace TrelamiumTwo.Content.NPCs.Glacier
                 }
             }
         }
+        #region Draw Code
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             int alpha = (int)npc.ai[1] / 4;
@@ -530,7 +531,7 @@ namespace TrelamiumTwo.Content.NPCs.Glacier
             Color color = new Color(13, 87, 189, alpha / 2);
             for (int k = 0; k < npc.oldPos.Length; k++)
             {
-                float scale = npc.scale * (npc.oldPos.Length - k) / npc.oldPos.Length * 1.05f;
+                float scale = npc.scale * (npc.oldPos.Length - k) / npc.oldPos.Length * 1f;
                 SpriteBatch spriteBatch1 = Main.spriteBatch;
                 Texture2D texture = Main.npcTexture[npc.type];
                 Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + origin2;
@@ -618,5 +619,6 @@ namespace TrelamiumTwo.Content.NPCs.Glacier
             Main.spriteBatch.Draw(texture2D3, npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY),
                 new Rectangle?(rectangle), color29, npc.rotation, origin2, npc.scale, spriteEffects, 0f);
         }
+        #endregion
     }
 }

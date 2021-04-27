@@ -22,6 +22,8 @@ namespace TrelamiumTwo.Common.Players
         public float shakeEffects = 0;
         public bool toadstoolExplode;
         #endregion
+        #region U-Z
+        #endregion
 
         #region ShovelPickTile() Method
         public void ShovelPickTile(int x, int y)
@@ -62,6 +64,8 @@ namespace TrelamiumTwo.Common.Players
             shakeEffects = 0;
             toadstoolExplode = false;
             #endregion
+            #region U-Z
+            #endregion
         }
 
         public override void UpdateDead()
@@ -79,6 +83,8 @@ namespace TrelamiumTwo.Common.Players
             #region Q-T
             shakeEffects = 0;
             toadstoolExplode = false;
+            #endregion
+            #region U-Z
             #endregion
         }
 

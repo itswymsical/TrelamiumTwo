@@ -1,15 +1,15 @@
+#region Using Directives
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using TrelamiumTwo.Content.Dusts;
-using TrelamiumTwo.Content.Items;
 using static Terraria.ModLoader.ModContent;
-using TrelamiumTwo.Content.NPCs.Fungore;
-using TrelamiumTwo.Common.Extensions;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
+#endregion
 
 namespace TrelamiumTwo.Content.NPCs.Fungore
 {
@@ -52,7 +52,6 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             DisplayName.SetDefault("Fungore");
             Main.npcFrameCount[npc.type] = 7;
         }
-
         public override void SetDefaults()
         {
             npc.lifeMax = 1700;
@@ -73,6 +72,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             npc.value = Item.sellPrice(gold: 1);
             //bossBag = ItemType<FungoreBag>();
         }
+        int textTimer;
         public override void NPCLoot()
         {
             /*
@@ -113,43 +113,75 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             }
 
         }
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            string header = "-- Fungore --";
+            string subheader = "-- The mutated fungus symbiote --";
+            spriteBatch.End();
+            spriteBatch.DrawString(Main.fontDeathText, header, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontDeathText.MeasureString(header).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(0f, 2f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Begin();
+
+            spriteBatch.End();
+            spriteBatch.DrawString(Main.fontMouseText, subheader, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontMouseText.MeasureString(subheader).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(58f, 60f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Begin();
+        }
         public override void AI()
         {
+            textTimer++;
             npc.spriteDirection = npc.direction;
-            Player target = Main.player[npc.target];
-            npc.TargetClosest(true);
-            npc.velocity.X = MathHelper.SmoothStep(npc.position.X, target.position.X, 0.1f);
-
-            #region Tile Collision
-
-            if (npc.velocity.Y == 0)
+            Player player = Main.player[npc.target];
+            if (npc.ai[0] == 0f)
             {
-                JumpTimer++;
-            }
-            else
-            {
-                JumpTimer = 0;
-            }
-            // If have been on ground for at least 1.5 seonds, and are hitting wall or there is a hole
-            if (JumpTimer >= 90 && (HoleBelow() || (npc.collideX && npc.position.X == npc.oldPosition.X)))
-            {
-                npc.netUpdate = true;
-                npc.velocity.Y = Main.rand.Next(-8, -6);
-            }
+                TileCollision();
+                npc.TargetClosest(true);
+                Vector2 speed1 = Vector2.Normalize(player.Center - npc.Center) * 2.5f;
+                npc.velocity.X = speed1.X;
+                Dust.NewDustDirect(npc.Center + new Vector2(0f, 40f), 0, 0, DustType<MushroomDust>(), 0f, 0f, 0, default, 0.5f);
+                npc.ai[1]++;
+                if (npc.ai[1] >= 8f * 60f)
+                {
+                    if (player.WithinRange(npc.Center, 6f * 16f)) // 6 tiles                
+                        npc.ai[0] = 1f;
+                    npc.ai[1] = 0f;
+                }
 
-            if (npc.velocity.Y >= 0f)
-            {
-                Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
-                //SlopedCollision();
+                npc.ai[2]++;
+                if (npc.ai[2] >= 160f)
+                {
+                    npc.TargetClosest(true);
+                    Vector2 speed2 = (player.Center - npc.Center).SafeNormalize(Vector2.UnitX) * 7.33f;
+                    float angle = npc.direction == 1 ? -10f : 10f; // Avoids tMod funnies!!!
+                    speed2 = speed2.RotatedBy(MathHelper.ToRadians(angle));
+                    int damageScale = 5;
+                    if (Main.expertMode)
+                    {
+                        damageScale = 10;
+                    }
+                    npc.ai[2] = 0f;
+                }
+                npc.ai[3]++;
+                if (npc.ai[3] >= 80f)
+                {
+                    Dust.NewDust(npc.Center + new Vector2(0f, 20f), 0, 0, DustType<MushroomDust>(), 0f, 0f, 0, default, 0.75f);
+                    npc.ai[3] = 0f;
+                }
             }
-            #endregion
-
+            else if (npc.ai[0] == 1f)
+            {
+                //PunchAttack();
+                npc.ai[2]++;
+                if (npc.ai[2] >= 120f)
+                {
+                    npc.ai[0] = 0f;
+                }
+            }
         }
         private bool HoleBelow()
         {
+            // Width of npc in tiles
             int tileWidth = (int)Math.Round(npc.width / 16f);
             int tileX = (int)(npc.Center.X / 16f) - tileWidth;
-            if (npc.velocity.X > 0f)
+            if (npc.velocity.X > 0f) // If moving to the right
             {
                 tileX += tileWidth;
             }
@@ -166,7 +198,46 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             }
             return true;
         }
-   
+        private void TileCollision()
+        {
+            npc.TargetClosest(true);
+            Player player = Main.player[npc.target];
+            if (npc.velocity.Y == 0f)
+            {
+                jumpTimer++;
+                jumpRegular++;
+            }
+            else
+            {
+                jumpTimer = 0;
+                jumpRegular = 0;
+            }
+            // If have been on ground for at least 1.5 seonds, and are hitting wall or there is a hole
+            if (jumpTimer >= 40 && (HoleBelow() || (npc.collideX && npc.position.X == npc.oldPosition.X)))
+            {
+                // Jump
+                npc.velocity.Y = Main.rand.NextFloat(-10f, -8f);
+                npc.netUpdate = true;
+            }
+            if (jumpRegular >= 140 || (npc.collideX && npc.position.X == npc.oldPosition.X))
+            {
+                // Jump
+                npc.velocity.Y = Main.rand.NextFloat(-10f, -8f);
+                npc.netUpdate = true;
+            }
+            if (npc.velocity.Y >= 0f)
+            {
+                Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+            }
+        }
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(jumpTimer);
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            jumpTimer = reader.ReadInt32();
+        }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;
