@@ -21,9 +21,8 @@ namespace TrelamiumTwo.Content.Items.Armor.Coralstone
 		}
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
-		{
-			return body.type == ModContent.ItemType<CoralstoneChestplate>() && legs.type == ModContent.ItemType<CoralstoneGreaves>();
-		}
+            => body.type == ModContent.ItemType<CoralstoneChestplate>() && legs.type == ModContent.ItemType<CoralstoneGreaves>();
+		
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

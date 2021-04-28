@@ -8,14 +8,15 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 {
 	public class PrimordialEarth : TrelamiumItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Primordial Earth");
-		public override void SetDefaults() // Eldrazi Code imported from EH
+		public override void SetStaticDefaults() 
+			=> DisplayName.SetDefault("Primordial Earth");
+		public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 2);
+			item.rare = ItemRarityID.Blue;
+			item.value = Item.sellPrice(silver: 75);
 
 			item.crit = 3;
-			item.damage = 18;
+			item.damage = 22;
 			item.knockBack = 5f;
 
 			item.useTime = item.useAnimation = 26;

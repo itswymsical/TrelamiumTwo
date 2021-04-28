@@ -19,9 +19,9 @@ namespace TrelamiumTwo.Content.Items.Tools.Luminescent
             item.useTime = 20;
             item.useAnimation = 20;
             item.damage = 10;
-
+            item.rare = ItemRarityID.White;
             item.knockBack = 2f;
-            item.pick = 50;
+            item.pick = 55;
             item.UseSound = SoundID.Item1;
             item.useStyle = ItemUseStyleID.SwingThrow;
         }
@@ -30,6 +30,15 @@ namespace TrelamiumTwo.Content.Items.Tools.Luminescent
         {
             if (Main.rand.NextBool(2))
                 Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ModContent.DustType<LuminescentDust>());
+        }
+        public override void AddRecipes()
+        {
+            var recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Granite, 10);
+            recipe.AddIngredient(ItemID.Sapphire, 2);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

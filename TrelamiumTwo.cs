@@ -120,6 +120,7 @@ namespace TrelamiumTwo
             if (bossChecklist != null)
             {
 
+                bossChecklist.Call("AddBossWithInfo", "Fungore", 1f, (Func<bool>)(() => Common.Worlds.TrelamiumWorld.downedFungore), "Use a [i:" + ModContent.ItemType<Content.Items.Fungore.Fungocybin>() + "] Anywhere during the day.");
             }
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -136,7 +137,7 @@ namespace TrelamiumTwo
                 },
                 InterfaceScaleType.UI));
             }
-
+            #region Text Drawing
             /*if (DeathTextIndex != -1)
             {
                 layers.Insert(DeathTextIndex, new LegacyGameInterfaceLayer("PrimordialSands: Boss Text", delegate
@@ -149,6 +150,7 @@ namespace TrelamiumTwo
                 },
                     InterfaceScaleType.UI));
             }*/
+            #endregion
         }
         public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {

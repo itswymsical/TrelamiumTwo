@@ -5,9 +5,9 @@ using TrelamiumTwo.Content.Items.Materials;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
-    public class FrostbarkeClaymore : TrelamiumItem
+    public class FrostbarkClaymore : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Fröstbarke Claymore");
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Frostbark Claymore");
 
         public override void SafeSetDefaults()
         {

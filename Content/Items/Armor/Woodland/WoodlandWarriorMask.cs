@@ -26,7 +26,8 @@ namespace TrelamiumTwo.Content.Items.Armor.Woodland
 			player.setBonus = "Summons a Floral Spirit to protect you";
 			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().floralSpirit = true;
         }
-        public override void UpdateEquip(Player player) => player.magicDamage += 0.05f;
+        public override void UpdateEquip(Player player) 
+			=> player.magicDamage += 0.05f;
         public override void AddRecipes()
         {
 			ModRecipe recipe = new ModRecipe(mod);

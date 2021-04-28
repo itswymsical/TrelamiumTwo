@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿#region Using Directives
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -6,12 +7,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Players;
 using static Terraria.ModLoader.ModContent;
+#endregion
 
 namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
 	public class ForestGuardian : ModNPC
 	{
-		private enum AIState
+        #region AIState
+        private enum AIState
 		{
 			Idle = 0,
 			Smash = 1
@@ -21,7 +24,9 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			get => (AIState)npc.ai[0];
 			set => npc.ai[0] = (int)value;
 		}
-		public override void SetStaticDefaults()
+        #endregion
+
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Forest Guardian");
 			NPCID.Sets.TrailCacheLength[npc.type] = 5;
@@ -98,7 +103,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			Vector2 vector90 = new Vector2(npc.Center.X, npc.Center.Y);
 			float num699 = Main.player[npc.target].Center.X - vector90.X;
 			float num700 = Main.player[npc.target].Center.Y - vector90.Y - 200f;
-			float num701 = (float)Math.Sqrt((double)(num699 * num699 + num700 * num700));
+			float num701 = (float)Math.Sqrt((num699 * num699 + num700 * num700));
 			if (num701 < 20f)
 			{
 				num699 = npc.velocity.X;

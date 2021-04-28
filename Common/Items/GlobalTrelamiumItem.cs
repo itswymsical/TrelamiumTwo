@@ -1,8 +1,11 @@
+#region Using Directives
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Hooks;
+#endregion
 
 namespace TrelamiumTwo.Common.Items
 {
@@ -18,10 +21,19 @@ namespace TrelamiumTwo.Common.Items
             Item i = ModContent.GetModItem(shovel).item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
         }
-        public override void UpdateEquip(Item item, Player player)
+        public override void UpdateInventory(Item item, Player player)
         {
             if (item.Name.Contains("Boots") || player.moveSpeed >= 0)
                 item.shoeSlot = 0;
+        }
+        public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Players.TrelamiumPlayer tp = Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>();
+            if (tp.frostbarkBonus && item.melee)
+            {
+                if (Main.rand.Next(12) == 0)
+                    target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
+            }          
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
