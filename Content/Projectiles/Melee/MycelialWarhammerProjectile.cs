@@ -101,7 +101,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from E
 				for (int i = 0; i < 2; ++i)
 				{
 					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 4f,
-						ProjectileID.Mushroom, (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
+					ModContent.ProjectileType<MushroomProjectile>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
 

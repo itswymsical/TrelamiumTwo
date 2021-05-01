@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
 using Microsoft.Xna.Framework;
+using System.Linq;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -16,98 +17,135 @@ namespace TrelamiumTwo.Common.Worlds
             int num = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Stalac"));
             if (num != -1)
             {
-                tasks.Insert(num + 1, new PassLegacy("World Tree Generation", delegate (GenerationProgress progress)
+                tasks.Insert(num + 1, new PassLegacy("TrelamiumTwo: Druid's Garden Pass", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "World Tree & Druid's Garden";
-                    int posX = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX  - 200);
-                    int baseRaycast = Raycast(posX, (int)Main.worldSurface - 200);
+                    progress.Message = "Druid's Garden";
+                    int num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX + 200);
+                    int num3 = Raycast(num2, 200);
+                    if (Main.maxTilesY == 1800)
+                    {
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 300) : (Main.spawnTileX + 300);
+                    }
+                    if (Main.maxTilesY == 2400)
+                    {
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 400) : (Main.spawnTileX  + 400);
+                    }
 
-                    if (baseRaycast > (int)Main.worldSurface - 150)
-                    {
-                        baseRaycast = (int)Main.worldSurface - 150;
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 147)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-460) : 460);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 41 || (Main.tile[posX, Raycast(posX, baseRaycast)].type == 43 || (Main.tile[posX, Raycast(posX, baseRaycast)].type == 44)))
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-150) : 150);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 60)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-200) : 200);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 226)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-100) : 100);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 404)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-100) : 100);
-                    }
+                if (num3 > (int)Main.worldSurface + 50)
+                        num3 = (int)Main.worldSurface + 50;
+                    
+                    if (num3 < (int)Main.worldSurface + 5)
+                        num3 = Raycast(num2, (int)Main.worldSurface);
+                    
+                    if (Main.tile[num2, Raycast(num2, num3)].type == 147)
+                        num2 += ((num2 < Main.spawnTileX) ? (-460) : 460);
+                    
+                    if (Main.tile[num2, Raycast(num2, num3)].type == 41 
+                    || (Main.tile[num2, Raycast(num2, num3)].type == 43 || (Main.tile[num2, Raycast(num2, num3)].type == 44)))
+                        num2 += ((num2 < Main.spawnTileX) ? (-150) : 150);
+                    
+                    if (Main.tile[num2, Raycast(num2, num3)].type == 60)
+                        num2 += ((num2 < Main.spawnTileX) ? (-200) : 200);
+                    
+                    if (Main.tile[num2, Raycast(num2, num3)].type == 226)
+                        num2 += ((num2 < Main.spawnTileX) ? (-100) : 100);
+                    
+                    if (Main.tile[num2, Raycast(num2, num3)].type == 404)
+                        num2 += ((num2 < Main.spawnTileX) ? (-100) : 100);
+                    
                     int maxValue = 0;
                     int num4 = WorldGen.genRand.Next(5, 8);
                     for (int i = 0; i < num4; i++)
                     {
-                        int strengthForBase = baseRaycast + WorldGen.genRand.Next(50, 70) * i;
+                        int num5 = num3 + WorldGen.genRand.Next(50, 70) * i;
                         for (int j = 0; j < 20; j++)
                         {
-                            int posXRand = WorldGen.genRand.Next(-120, 120);
-                            int baseSteps = WorldGen.genRand.Next(0, 120);
+                            int num6 = WorldGen.genRand.Next(-120, 120);
+                            int num7 = WorldGen.genRand.Next(0, 120);
                             for (int k = -50; k < 50; k++)
                             {
-                                if (posXRand + k >= 20 && posXRand + k <= Main.maxTilesX - 20)
+                                if (num6 + k >= 20 && num6 + k <= Main.maxTilesX - 20)
                                 {
                                     for (int l = -50; l < 50; l++)
                                     {
-                                        if (baseSteps + l >= 20 && baseSteps + l <= Main.maxTilesY - 20)
+                                        if (num7 + l >= 20 && num7 + l <= Main.maxTilesY - 20)
                                         {
-                                            ushort type = Main.tile[posXRand + k, baseSteps + l].type;
+                                            ushort type = Main.tile[num6 + k, num7 + l].type;
                                         }
                                     }
                                 }
                             }
                             int num8 = WorldGen.genRand.Next(70, 100);
-                            if (Main.tile[posX, baseRaycast].type != TileID.BlueDungeonBrick 
-                            || Main.tile[posX, baseRaycast].type != TileID.PinkDungeonBrick 
-                            || Main.tile[posX, baseRaycast].type != TileID.GreenDungeonBrick)
-                            {
-                                WorldGen.TileRunner(posX - posXRand, strengthForBase - baseSteps, (double)num8, 10, ModContent.TileType<Content.Tiles.LoamBlockTile>(), false, 9f, 9f, false, true);
-                                WorldGen.SpreadGrass(posX - posXRand, strengthForBase - baseSteps, ModContent.TileType<Content.Tiles.LoamBlockTile>(), ModContent.TileType<Content.Tiles.LoamBlockGrassTile>(), true, Main.tile[i, j].color());
-                            }
-                            if (strengthForBase - baseSteps < Main.maxTilesY - 170)
-                            {
-                                SmoothWallRunner(new Point(posX - posXRand, strengthForBase - baseSteps), num8 / 3, WallID.Dirt);
-                            }
+                            WorldGen.TileRunner(num2 - num6, num5 - num7, num8, 10, 
+                                ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>(), false, 9f, 9f, false, true);
+                            WorldGen.ChasmRunnerSideways(num2 - num6, num5 - num7, 1, 10);
+                            if (num5 - num7 < Main.maxTilesY - 200)
+                                SmoothWallRunner(new Point(num2 - num6, num5 - num7), num8, 63);
+                            
                         }
-                        maxValue = baseRaycast + i * 60;
-                    }
-
-                    WorldTree(new Vector2((float)posX, (float)(baseRaycast - 240)));
-                    CleanUpTree(new Point(posX, baseRaycast - 240));
-                    for (int num9 = 0; num9 < 55; num9++)
-                    {
-                        WorldGen.TileRunner(posX + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(baseRaycast, maxValue), (double)WorldGen.genRand.Next(8, 14), 10, ModContent.TileType<Content.Tiles.SlateTile>(), true, 0f, 0f, false, true);
-                    }
-                    for (int num9 = 0; num9 < 12; num9++)
-                    {
-                        WorldGen.Caverer(posX + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(baseRaycast, maxValue));
+                        maxValue = num3 + i * 60;
                     }
                     for (int i = 0; i < Main.maxTilesX; ++i)
                     {
                         for (int k = 0; k < Main.maxTilesY; ++k)
                         {
-                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.LoamBlockTile>() && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(5) == 0)
+                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>()
+                            && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(10) == 0)
                             {
-                                if (WorldGen.genRand.Next(18) == 0)
-                                {
-                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.AlderwoodTree>());
-                                }
+                                WorldGen.PlaceTile(i, k + 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumClusterAlt>()); //TODO sig: Implement Vines
                             }
                         }
                     }
+                    WorldTree(new Vector2((float)num2, (float)(num3 - 240)));
+                    CleanUpTree(new Point(num2, num3 - 240));
+                    for (int m = 0; m < 50; m++)
+                    {
+                        WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-120, 120), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(6, 9), 10, 
+                            ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>(), false, 0f, 0f, false, true);
+                    }
+                    for (int n = 0; n < 80; n++)
+                    {
+                        WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(5, 8), 10,
+                            ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumOreTile>(), false, 0f, 0f, false, true);
+                    }
+                    for (int num9 = 0; num9 < 40; num9++)
+                    {
+                        WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(3, 6), 10,
+                            ModContent.TileType<Content.Tiles.DruidsGarden.SlateTile>(), false, 0f, 0f, false, true);
+                    }
+                    for (int num10 = 0; num10 < 100; num10++)
+                    {
+                        WorldGen.KillTile(num2 + WorldGen.genRand.Next(-30, 30), WorldGen.genRand.Next(num3, maxValue), false, false, true);
+                    }
+                    for (int i = 0; i < Main.maxTilesX; ++i)
+                    {
+                        for (int k = 0; k < Main.maxTilesY; ++k)
+                        {
+                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>() 
+                            && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(10) == 0)
+                            {
+                                if (WorldGen.genRand.Next(2) == 0)
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumCluster>());
+                                
+                                else
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumClusterAlt>());
+                                
+                            }
+                        }
+                    }
+
+                    PlaceAltar(new Point(num2, num3));
+                    PlaceDungeons(new Point(num2, num3));
                 }));
+                num = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Guide"));
+                if (num != -1)
+                {
+                    tasks.Insert(num + 1, new PassLegacy("BiomeChest", delegate (GenerationProgress progress)
+                    {
+                        progress.Message = "Placing chest";
+                        PlaceBiomeChest();
+                    }));
+                }
             }
         }
         public void WorldTree(Vector2 pos)
@@ -123,7 +161,7 @@ namespace TrelamiumTwo.Common.Worlds
             int lastY = 0;
             for (int i = 0; i < 20; ++i)
             {
-                WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10), trunkSize * 3, 10, TileID.LivingMahogany, true, 0, 0, false, true);
+                WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10), trunkSize * 3, 10, TileID.LivingWood, true, 0, 0, false, true);
                 SmoothWallRunnerActive(new Point(leafMiddle.X, leafMiddle.Y + (i * 10)), trunkSize, WallID.LivingWood);
                 if (i < 7)
                 {
@@ -188,6 +226,156 @@ namespace TrelamiumTwo.Common.Worlds
                     }
                 }
             }
+        }
+        public bool CheckPlaceChest(int i, int k)
+        {
+            bool flag = (Main.tile[i, k].type == 41 && Main.tile[i, k].type == 41) || (Main.tile[i, k].type == 44 && Main.tile[i, k].type == 44) || (Main.tile[i, k].type == 43 && Main.tile[i, k].type == 43);
+            bool flag2 = !Main.tile[i, k - 1].active() && !Main.tile[i + 1, k - 1].active() && !Main.tile[i, k - 2].active() && !Main.tile[i + 1, k - 2].active();
+            bool flag3 = Main.tile[i, k].active() && Main.tile[i + 1, k].active();
+
+            int[] source = new int[9]
+            {7, 94, 95, 98, 99, 8, 96, 97, 9 };
+
+            bool flag4 = source.Any((int x) => x == Main.tile[i, k - 1].wall) && source.Any((int x) => x == Main.tile[i + 1, k - 1].wall);
+            if (flag && flag2 && flag3 && flag4)
+                return true;
+            
+            return false;
+        }
+        public void PlaceBiomeChest()
+        {
+            int num = (WorldGen.dungeonX < Main.spawnTileX) ? 1 : 2;
+            int i;
+            int k;
+            do
+            {
+                i = WorldGen.genRand.Next(50, Main.maxTilesX / 2 * num - 50);
+                k = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 200);
+            }
+            while (!CheckPlaceChest(i, k));
+        }
+        private void PlaceAltar(Point centre)
+        {
+            int num = 1;
+            for (int i = 0; i < num; i++)
+            {
+                Point pos = new Point(centre.X + WorldGen.genRand.Next(-120, 120), centre.Y + WorldGen.genRand.Next(-120, 220));
+                MakeAltar(pos, -1, -1, WorldGen.genRand.Next(2) == 0);
+            }
+        }
+        private void PlaceDungeons(Point centre)
+        {
+            int num = 8;
+            if (Main.maxTilesY == 1800)
+            {
+                num = 12;
+            }
+            if (Main.maxTilesY == 2400)
+            {
+                num = 16;
+            }
+            for (int i = 0; i < num; i++)
+            {
+                Point pos = new Point(centre.X + WorldGen.genRand.Next(-120, 120), centre.Y + WorldGen.genRand.Next(-120, 220));
+                MakeRuin(pos, -1, -1, WorldGen.genRand.Next(2) == 0);
+            }
+        }
+        public Point MakeAltar(Point pos, int type = -1, int wType = -1, bool doRep = true)
+        {
+            int num = 24;
+            int num2 = num - 14;
+            int type2 = (type != -1) ? type : TileID.GrayBrick;
+            int type3 = (wType != -1) ? wType : 147;
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < num2; j++)
+                {
+                    WorldGen.KillTile(pos.X + i, pos.Y + j, false, false, false);
+                    WorldGen.KillTile(pos.X + i, pos.Y - 1 + j, false, false, false);
+                    WorldGen.KillTile(pos.X + i, pos.Y + 1 + j, false, false, false);
+                    WorldGen.KillWall(pos.X + i, pos.Y + j, false);
+                    WorldGen.PlaceWall(pos.X + i, pos.Y + j, type3, false);
+                }
+            }
+            for (int k = 0; k < num; k++)
+            {
+                KillPlaceTile(pos.X + k, pos.Y, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y - 1, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y + num2, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y + 1 + num2, type2, 0);
+            }
+            for (int l = 0; l < num2; l++)
+            {
+                KillPlaceTile(pos.X, pos.Y + l, type2, 0);
+                KillPlaceTile(pos.X + num, pos.Y + l, type2, 0);
+            }
+            KillPlaceTile(pos.X + num, pos.Y + num2, type2, 0);
+            KillPlaceTile(pos.X + num, pos.Y + num2 + 1, type2, 0);
+            KillPlaceTile(pos.X + num, pos.Y - 1, type2, 0);
+            int num3 = pos.Y + (num2 - 3);
+            int num4 = pos.X + num / 2;
+
+            WorldGen.PlaceTile(num4, num3 + 2, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 + 1, num3 + 2, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 - 1, num3 + 2, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 + 2, num3 + 2, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 - 2, num3 + 2, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4, num3 + 2, type2, true, false, -1, 23);
+
+            WorldGen.PlaceTile(num4, num3 + 1, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 + 1, num3 + 1, type2, true, false, -1, 23);
+            WorldGen.PlaceTile(num4 - 1, num3 + 1, type2, true, false, -1, 23);
+
+            WorldGen.PlaceChest(num4 - 5, num3, 
+                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientTotem>(), false, 0);
+            WorldGen.PlaceChest(num4 + 6, num3, 
+                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientTotem>(), false, 0);
+            WorldGen.PlaceChest(num4, num3,
+                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientAltar>(), false, 0);
+            return new Point(pos.X + num, pos.Y + num2);
+        }
+        public Point MakeRuin(Point pos, int type = -1, int wType = -1, bool doRep = true)
+        {
+            int num = WorldGen.genRand.Next(12, 16);
+            int num2 = num - 5;
+            int type2 = (type != -1) ? type : TileID.GrayBrick;
+            int type3 = (wType != -1) ? wType : 147;
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j < num2; j++)
+                {
+                    WorldGen.KillTile(pos.X + i, pos.Y + j, false, false, false);
+                    WorldGen.KillTile(pos.X + i, pos.Y - 1 + j, false, false, false);
+                    WorldGen.KillTile(pos.X + i, pos.Y + 1 + j, false, false, false);
+                    WorldGen.KillWall(pos.X + i, pos.Y + j, false);
+                    WorldGen.PlaceWall(pos.X + i, pos.Y + j, type3, false);
+                }
+            }
+            for (int k = 0; k < num; k++)
+            {
+                KillPlaceTile(pos.X + k, pos.Y, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y - 1, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y + num2, type2, 0);
+                KillPlaceTile(pos.X + k, pos.Y + 1 + num2, type2, 0);
+            }
+            for (int l = 0; l < num2; l++)
+            {
+                KillPlaceTile(pos.X, pos.Y + l, type2, 0);
+                KillPlaceTile(pos.X + num, pos.Y + l, type2, 0);
+            }
+            KillPlaceTile(pos.X + num, pos.Y + num2, type2, 0);
+            KillPlaceTile(pos.X + num, pos.Y + num2 + 1, type2, 0);
+            KillPlaceTile(pos.X + num, pos.Y - 1, type2, 0);
+            int num3 = pos.Y + (num2 - 1);
+            num3 -= ((WorldGen.genRand.Next(2) == 0) ? 3 : 0);
+            int num4 = pos.X + WorldGen.genRand.Next(3, num - 3);
+            if (num3 != pos.Y + (num2 - 1))
+            {
+                WorldGen.PlaceTile(num4, num3 + 1, 19, true, false, -1, 23);
+                WorldGen.PlaceTile(num4 + 1, num3 + 1, 19, true, false, -1, 23);
+            }
+            WorldGen.PlaceChest(num4, num3, TileID.Containers, false, 10);
+            return new Point(pos.X + num, pos.Y + num2);
         }
         #region Runners
         public void SmoothWallRunner(Point position, int size, int wallID)

@@ -13,6 +13,9 @@ using TrelamiumTwo.Content.UI;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
 using ReLogic.Graphics;
+using TrelamiumTwo.Core.Loaders;
+using TrelamiumTwo.Common.Cutscenes;
+using TrelamiumTwo.Common.Players;
 #endregion
 
 namespace TrelamiumTwo
@@ -60,23 +63,17 @@ namespace TrelamiumTwo
             _loadCache = new List<ILoadable>();
 
             foreach (Type type in Code.GetTypes())
-            {
                 if (!type.IsAbstract && type.GetInterfaces().Contains(typeof(ILoadable)))
-                {
                     _loadCache.Add(Activator.CreateInstance(type) as ILoadable);
-                }
-            }
 
-            _loadCache.Sort((x, y) => x.Priority > y.Priority ? 1 : -1);
+            _loadCache.Sort((x, y) => x.Priority.CompareTo(y.Priority));
 
-            for (int i = 0; i < _loadCache.Count; ++i)
+            for (int i = 0; i < _loadCache.Count; i++)
             {
                 if (Main.dedServ && !_loadCache[i].LoadOnDedServer)
-                {
                     continue;
-                }
 
-                _loadCache[i].Load(this);
+                _loadCache[i].Load();
             }
             #endregion
 
@@ -87,10 +84,10 @@ namespace TrelamiumTwo
                 yabhb.Call("hbStart");
 
                 yabhb.Call("hbSetTexture",
-                    GetTexture(YABHB_AzolinthAssets + "Left"),
-                    GetTexture(YABHB_AzolinthAssets + "Mid"),
-                    GetTexture(YABHB_AzolinthAssets + "Right"),
-                    GetTexture(YABHB_AzolinthAssets + "Fill"));
+                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarLeft"),
+                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarMid"),
+                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarRight"),
+                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarFill"));
 
                 yabhb.Call("hbFinishMultiple",
                     NPCType("AzolinthHead"),
@@ -137,6 +134,15 @@ namespace TrelamiumTwo
                 },
                 InterfaceScaleType.UI));
             }
+            for (int i = 0; i < CutsceneLoader.Cutscenes.Count; i++)
+            {
+                var cutscene = CutsceneLoader.Cutscenes[i];
+                CutsceneLoader.AddCutsceneLayer(layers, cutscene, cutscene.InsertionIndex(layers), cutscene.Visible);
+            }
+
+            if (CutsceneLoader.GetCutscene<Credits>().Visible)
+                foreach (var layer in layers.Where(l => !l.Name.Equals("TrelamiumTwo:Credits")))
+                    layer.Active = false;
             #region Text Drawing
             /*if (DeathTextIndex != -1)
             {
@@ -154,14 +160,14 @@ namespace TrelamiumTwo
         }
         public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
-            /*if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
+            if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
             {
-                /*if (Main.LocalPlayer.GetModPlayer<TrelamiumModPlayer>().ZoneDruidsGarden)
+                if (CutsceneLoader.GetCutscene<Credits>().Visible)
                 {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/DruidsGarden");
-                    priority = MusicPriority.BiomeHigh;
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/IlluminantInkiness");
+                    priority = MusicPriority.BossHigh;
                 }
-            }*/
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			projectile.aiStyle = 1;
 			projectile.timeLeft = 600;
 			projectile.extraUpdates = 1;
-			projectile.thrown = true;
+			projectile.magic = true;
 			projectile.friendly = true;
 			projectile.light = 0.5f;
 		}

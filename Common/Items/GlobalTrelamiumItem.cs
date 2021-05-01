@@ -51,6 +51,12 @@ namespace TrelamiumTwo.Common.Items
                 sline.overrideColor = Color.LightYellow;
                 tooltips.Add(sline);
             }
+            if (item.modItem is FoodItem)
+            {
+                sline = new TooltipLine(mod, "TrelamiumTwo:Food Item", "-- Food Item --");
+                sline.overrideColor = Color.LimeGreen;
+                tooltips.Add(sline);
+            }
         }
     }
 }

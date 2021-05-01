@@ -1,5 +1,4 @@
 #region Using directives
-
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -8,21 +7,31 @@ using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 
 using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
-
+using TrelamiumTwo.Content.Tiles.DruidsGarden;
 #endregion
-
 
 namespace TrelamiumTwo.Common.Worlds
 {
     public sealed partial class TrelamiumWorld : ModWorld
 	{
 		public static bool downedFungore;
+		public static int DruidsGardenTiles;
+		public static int DustifiedCavernTiles;
 		public override void Initialize()
         {
 			downedFungore = false;
 		}
-        #region TagCompound & Loading
-        public override TagCompound Save()
+		public override void TileCountsAvailable(int[] tileCounts)
+        {
+            DustifiedCavernTiles = 
+				tileCounts[ModContent.TileType<DustiliteCrystal_Large1>()];
+
+            DruidsGardenTiles = 
+				tileCounts[ModContent.TileType<LoamBlockTile>()] + 
+				tileCounts[ModContent.TileType<LoamBlockGrassTile>()];
+        }
+		#region TagCompound & Loading
+		public override TagCompound Save()
 		{
 			var downed = new List<string>();
 			if (downedFungore)
@@ -67,7 +76,6 @@ namespace TrelamiumTwo.Common.Worlds
 		}
 #endregion
 
-        public static int DustifiedCavernTiles;
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
@@ -79,14 +87,7 @@ namespace TrelamiumTwo.Common.Worlds
 		public override void ResetNearbyTileEffects()
 		{
 			DustifiedCavernTiles = 0;
-		}
-
-		public override void TileCountsAvailable(int[] tileCounts)
-		{
-			/*DustifiedCavernTiles =
-				tileCounts[ModContent.TileType<Ironsand>()] +
-				tileCounts[ModContent.TileType<Huskstone>()] +
-				tileCounts[ModContent.TileType<AetherousSoil>()];*/
+			DruidsGardenTiles = 0;
 		}
 
 		public override void PostWorldGen()
