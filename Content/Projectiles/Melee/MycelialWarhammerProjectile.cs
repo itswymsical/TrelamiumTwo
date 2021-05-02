@@ -35,8 +35,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from E
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 60;
-			projectile.height = 60;
+			projectile.width = 54;
+			projectile.height = 54;
 
 			projectile.penetrate = -1;
 
