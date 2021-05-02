@@ -28,11 +28,11 @@ namespace TrelamiumTwo
         #region Texture Loading Variables
         public const string Abbreviation = "TrelamiumTwo";
         public const string AbbreviationPrefix = Abbreviation + ":";
+
         public const string DustiliteAssets = "TrelamiumTwo/Assets/Dustilite/";
         public const string ProjectileAssets = "TrelamiumTwo/Assets/Projectiles/";
-        public const string UIAssets = "TrelamiumTwo/Assets/UI";
 
-        public const string YABHB_AzolinthAssets = "TrelamiumTwo/Assets/YABHB/AzolinthBar";
+        public const string UIAssets = "TrelamiumTwo/Assets/UI";
 
         internal static string PLACEHOLDER_TEXTURE = "TrelamiumTwo/Assets/PLACEHOLDER_TEXTURE";
         internal static string Invisible_Texture = "TrelamiumTwo/Assets/InvisibleTexture";
@@ -73,27 +73,27 @@ namespace TrelamiumTwo
                 if (Main.dedServ && !_loadCache[i].LoadOnDedServer)
                     continue;
 
-                _loadCache[i].Load();
+                _loadCache[i].Load(this);
             }
             #endregion
 
             shieldHotkey = RegisterHotKey("Shield Ability", "C");
-            Mod yabhb = ModLoader.GetMod("FKBossHealthBar");
+            /*Mod yabhb = ModLoader.GetMod("FKBossHealthBar");
             if (yabhb != null)
             {
                 yabhb.Call("hbStart");
 
                 yabhb.Call("hbSetTexture",
-                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarLeft"),
-                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarMid"),
-                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarRight"),
-                    GetTexture("TrelamiumTwo/Assets/YABHB/AzolinthBarFill"));
-
+                    GetTexture("Assets/YABHB/AzolinthBarLeft"),
+                    GetTexture("Assets/YABHB/AzolinthBarMid"),
+                    GetTexture("Assets/YABHB/AzolinthBarRight"),
+                    GetTexture("Assets/YABHB/AzolinthBarFill"));
+                
                 yabhb.Call("hbFinishMultiple",
                     NPCType("AzolinthHead"),
                     NPCType("AzolinthBody"),
                     NPCType("AzolinthTail"));
-            }
+            }*/
             if (Main.netMode != NetmodeID.Server)
             {
                 Ref<Effect> darkScreenRef = new Ref<Effect>(GetEffect("Effects/darkSky"));
@@ -118,6 +118,7 @@ namespace TrelamiumTwo
             {
 
                 bossChecklist.Call("AddBossWithInfo", "Fungore", 1f, (Func<bool>)(() => Common.Worlds.TrelamiumWorld.downedFungore), "Use a [i:" + ModContent.ItemType<Content.Items.Fungore.Fungocybin>() + "] Anywhere during the day.");
+                bossChecklist.Call("AddBossWithInfo", "Glacier", 10f, (Func<bool>)(() => Common.Worlds.TrelamiumWorld.downedGlacier), "Use a [i:" + ModContent.ItemType<Content.Items.Fungore.Fungocybin>() + "] in the Tundra during night.");
             }
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)

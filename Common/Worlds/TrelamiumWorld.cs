@@ -15,11 +15,13 @@ namespace TrelamiumTwo.Common.Worlds
     public sealed partial class TrelamiumWorld : ModWorld
 	{
 		public static bool downedFungore;
+		public static bool downedGlacier;
 		public static int DruidsGardenTiles;
 		public static int DustifiedCavernTiles;
 		public override void Initialize()
         {
 			downedFungore = false;
+			downedGlacier = false;
 		}
 		public override void TileCountsAvailable(int[] tileCounts)
         {
@@ -38,6 +40,10 @@ namespace TrelamiumTwo.Common.Worlds
 			{
 				downed.Add("Fungore");
 			}
+			if (downedFungore)
+			{
+				downed.Add("Glacier");
+			}
 			return new TagCompound
 			{
 			};
@@ -46,6 +52,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			var downed = tag.GetList<string>("downed");
 			downedFungore = downed.Contains("Fungore");
+			downedGlacier = downed.Contains("Glacier");
 		}
 
 		public override void LoadLegacy(BinaryReader reader)
@@ -55,10 +62,11 @@ namespace TrelamiumTwo.Common.Worlds
 			{
 				BitsByte flags = reader.ReadByte();
 				downedFungore = flags[0];
+				downedGlacier = flags[1];
 			}
 			else
 			{
-				mod.Logger.WarnFormat("PrimordialSands: Unknown loadVersion: {0}", loadVersion);
+				mod.Logger.WarnFormat("TrelamiumTwo: Unknown loadVersion: {0}", loadVersion);
 			}
 		}
 
@@ -66,6 +74,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			var flags = new BitsByte();
 			flags[0] = downedFungore;
+			flags[1] = downedGlacier;
 			writer.Write(flags);
 		}
 
@@ -73,9 +82,9 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			BitsByte flags = reader.ReadByte();
 			downedFungore = flags[0];
+			downedGlacier = flags[1];
 		}
 #endregion
-
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{

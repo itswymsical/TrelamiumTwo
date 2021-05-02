@@ -19,11 +19,10 @@ namespace TrelamiumTwo.Core.Loaders
 
 		public bool LoadOnDedServer => false;
 
-		public void Load()
+		public void Load(Mod mod)
 		{
 			MethodInfo info = typeof(Mod).GetProperty("File", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
-			var file = (TmodFile)info.Invoke(TrelamiumTwo.Instance, null);
-
+			var file = (TmodFile)info.Invoke(mod, null);
 
 			var shaders = file.Where(x => x.Name.StartsWith("Effects/") && x.Name.EndsWith(".xnb"));
 
@@ -45,7 +44,8 @@ namespace TrelamiumTwo.Core.Loaders
 			if (ModContent.GetInstance<TrelamiumConfig>().Debug)
 				TrelamiumTwo.Instance.Logger.Debug($"Loading shader: <{shaderName}> @ <{shaderPath}>");
 
-			(Filters.Scene[shaderName] = new Filter(new ScreenShaderData(shaderRef, shaderName + "Pass"), EffectPriority.High)).Load();
+			(Filters.Scene[shaderName] = new Filter(new ScreenShaderData(shaderRef, shaderName + "Pass"), EffectPriority.High))
+				.Load();
 		}
 	}
 }

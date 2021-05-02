@@ -31,12 +31,12 @@ namespace TrelamiumTwo.Common.Worlds
                         num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 400) : (Main.spawnTileX  + 400);
                     }
 
-                if (num3 > (int)Main.worldSurface + 50)
-                        num3 = (int)Main.worldSurface + 50;
+                if (num3 > (int)Main.worldSurface - 200)
+                        num3 = (int)Main.worldSurface - 200;
                     
-                    if (num3 < (int)Main.worldSurface + 5)
-                        num3 = Raycast(num2, (int)Main.worldSurface);
-                    
+                    if (num3 < (int)Main.worldSurface - 50)
+                        num3 = Raycast(num2, (int)Main.worldSurface - 100) + 260;
+
                     if (Main.tile[num2, Raycast(num2, num3)].type == 147)
                         num2 += ((num2 < Main.spawnTileX) ? (-460) : 460);
                     
@@ -78,7 +78,6 @@ namespace TrelamiumTwo.Common.Worlds
                             int num8 = WorldGen.genRand.Next(70, 100);
                             WorldGen.TileRunner(num2 - num6, num5 - num7, num8, 10, 
                                 ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>(), false, 9f, 9f, false, true);
-                            WorldGen.ChasmRunnerSideways(num2 - num6, num5 - num7, 1, 10);
                             if (num5 - num7 < Main.maxTilesY - 200)
                                 SmoothWallRunner(new Point(num2 - num6, num5 - num7), num8, 63);
                             

@@ -1,4 +1,6 @@
-﻿namespace TrelamiumTwo.Core.Abstracts
+﻿using Terraria.ModLoader;
+
+namespace TrelamiumTwo.Core.Abstracts
 {
 	/// <summary>
 	/// Inspired from other mod structures, this is to be able to centralize content loading.
@@ -18,7 +20,8 @@
 		/// <summary>
 		/// Stages loading of objects specific to the deriving class.
 		/// </summary>
-		void Load();
+
+		void Load(Mod mod);
 
 		/// <summary>
 		/// Stages unloading of objects specific to the deriving class.

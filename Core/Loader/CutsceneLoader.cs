@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria.ModLoader;
 using Terraria.UI;
 using TrelamiumTwo.Core.Abstracts;
 
@@ -14,9 +15,9 @@ namespace TrelamiumTwo.Core.Loaders
 
 		public static List<Cutscene> Cutscenes = new List<Cutscene>();
 
-		public void Load()
+		public void Load(Mod mod)
 		{
-			foreach (Type t in TrelamiumTwo.Instance.Code.GetTypes())
+			foreach (Type t in mod.Code.GetTypes())
 			{
 				if (t.IsSubclassOf(typeof(Cutscene)))
 				{

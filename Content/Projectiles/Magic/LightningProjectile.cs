@@ -50,7 +50,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
             
             float scale = 1f - (Main.rand.NextFloat() * .3f);
             projectile.velocity *= perturbedSpeed;
-            projectile.velocity *= projectile.DirectionTo(Main.MouseWorld) * radians;
+            //projectile.velocity = projectile.DirectionTo(Main.MouseWorld) * radians;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

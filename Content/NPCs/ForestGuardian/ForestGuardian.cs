@@ -53,7 +53,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.HitSound = SoundID.NPCHit18;
 			npc.DeathSound = SoundID.NPCDeath13;
 			npc.value = Item.buyPrice(0, 0, 1, 25);
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/temp");
 		}
 		bool spawn;
 		public int spawnTimer;

@@ -73,7 +73,6 @@ namespace TrelamiumTwo.Common.Players
             #region U-Z
             #endregion
         }
-
         public override void UpdateDead()
         {
             #region A-G
@@ -97,9 +96,10 @@ namespace TrelamiumTwo.Common.Players
             #endregion
         }
 
-        public override void UpdateBiomes(){ }
+        public override void UpdateBiomes() { }
 
-        public override void UpdateBiomeVisuals() => player.ManageSpecialBiomeVisuals("Blizzard", 
+        public override void UpdateBiomeVisuals() 
+            => player.ManageSpecialBiomeVisuals("Blizzard", 
             NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.Glacier.Glacier>()), player.Center);
         public override void ModifyScreenPosition()
         {

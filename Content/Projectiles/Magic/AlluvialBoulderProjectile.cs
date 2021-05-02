@@ -29,6 +29,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		}
 		public override void Kill(int timeLeft)
 		{
+			Main.PlaySound(SoundID.Item14, projectile.position);
 			int num281 = 25;
 			for (int num282 = 0; num282 < num281; num282++)
 			{

@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             soundType = SoundID.Dig;
             soundStyle = 2;
 
-            AddMapEntry(new Color(190, 142, 111));
+            AddMapEntry(new Color(125, 85, 50));
         }
         public override void RandomUpdate(int i, int j)
         {
