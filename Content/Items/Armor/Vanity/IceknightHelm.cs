@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.Vanity
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class IceknightHelm : ModItem
+	public class IceknightHelm : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

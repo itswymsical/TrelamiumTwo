@@ -1,10 +1,4 @@
-﻿#region Using directives
-
-using Terraria.ModLoader;
-
-#endregion
-
-namespace TrelamiumTwo.Core.Abstracts
+﻿namespace TrelamiumTwo.Core.Abstracts
 {
 	/// <summary>
 	/// Inspired from other mod structures, this is to be able to centralize content loading.
@@ -20,11 +14,11 @@ namespace TrelamiumTwo.Core.Abstracts
 		/// Whether or not this loadable can load if the current running instance is dedicated server.
 		/// </summary>
 		bool LoadOnDedServer { get; }
-		
+
 		/// <summary>
 		/// Stages loading of objects specific to the deriving class.
 		/// </summary>
-		void Load(Mod mod);
+		void Load();
 
 		/// <summary>
 		/// Stages unloading of objects specific to the deriving class.

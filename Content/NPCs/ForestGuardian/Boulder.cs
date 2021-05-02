@@ -117,6 +117,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
                     dust2.velocity.Y = dust2.velocity.Y - 1f;
                     Main.dust[DustIndex].position = Vector2.Lerp(Main.dust[DustIndex].position, npc.Center, 1.25f);
                 }
+                Projectile.NewProjectile(npc.position, new Vector2(0, 2f), 
+                    ModContent.ProjectileType<Projectiles.Hostile.BoulderProjectile>(), 40, 2f, Main.myPlayer, 0f, 0f);
             }
         }
     }

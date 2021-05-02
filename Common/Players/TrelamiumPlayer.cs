@@ -9,10 +9,13 @@ namespace TrelamiumTwo.Common.Players
     public sealed partial class TrelamiumPlayer : ModPlayer
     {
         #region A-G
+        public bool desertKB;
         public bool dustrollerSkates;
         public bool floralSpirit;
+        public bool frostbarkBonus;
         #endregion
         #region H-P
+        public bool kindledSetBonus;
         public bool magicGuantlet;
         public bool mossMonarch;
         public bool onSand;
@@ -51,10 +54,13 @@ namespace TrelamiumTwo.Common.Players
         public override void ResetEffects()
         {
             #region A-G
+            desertKB = false;
             dustrollerSkates = false;
             floralSpirit = false;
+            frostbarkBonus = false;
             #endregion
             #region H-P
+            kindledSetBonus = false;
             magicGuantlet = false;
             mossMonarch = false;
             onSand = false;
@@ -71,10 +77,13 @@ namespace TrelamiumTwo.Common.Players
         public override void UpdateDead()
         {
             #region A-G
+            desertKB = false;
             dustrollerSkates = false;
             floralSpirit = false;
+            frostbarkBonus = false;
             #endregion
             #region H-P
+            kindledSetBonus = false;
             magicGuantlet = false;
             mossMonarch = false;
             onSand = false;

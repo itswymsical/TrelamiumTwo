@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.Armor.Kindled
 {
@@ -21,20 +20,19 @@ namespace TrelamiumTwo.Content.Items.Armor.Kindled
             item.defense = 1;
 		}
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ItemType<KindledChestplate>() && legs.type == ItemType<KindledGreaves>();
-		
-
-        public override void UpdateAccessory(Player player, bool hideVisual) => player.minionDamage += 0.03f;
-
+        public override bool IsArmorSet(Item head, Item body, Item legs) 
+            => body.type == ModContent.ItemType<KindledChestplate>() && legs.type == ModContent.ItemType<KindledGreaves>();
+        public override void UpdateAccessory(Player player, bool hideVisual) 
+            => player.minionDamage += 0.03f;
         public override void UpdateArmorSet(Player player)
         {
-            var modplayer = Main.player[Main.myPlayer].GetModPlayer<Common.Players.TrelamiumPlayer>();
+            var tp = Main.player[Main.myPlayer].GetModPlayer<Common.Players.TrelamiumPlayer>();
             player.setBonus = "Increases the amount of damage 'On Fire!' deals to enemies by 2";
-            //modplayer.kindledSetBonus = true;
+            tp.kindledSetBonus = true;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Wood, 25);
             recipe.AddIngredient(ItemID.Topaz, 2);
             recipe.AddTile(TileID.Anvils);

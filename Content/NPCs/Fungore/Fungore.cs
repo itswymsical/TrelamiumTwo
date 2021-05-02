@@ -54,7 +54,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         }
         public override void SetDefaults()
         {
-            npc.lifeMax = 1700;
+            npc.lifeMax = 1200;
             npc.defense = 10;
             npc.damage = 16;
 
@@ -117,13 +117,10 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         {
             string header = "-- Fungore --";
             string subheader = "-- The mutated fungus symbiote --";
-            spriteBatch.End();
-            spriteBatch.DrawString(Main.fontDeathText, header, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontDeathText.MeasureString(header).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(0f, 2f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-            spriteBatch.Begin();
-
-            spriteBatch.End();
-            spriteBatch.DrawString(Main.fontMouseText, subheader, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontMouseText.MeasureString(subheader).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(58f, 60f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-            spriteBatch.Begin();
+            spriteBatch.DrawString(Main.fontDeathText, header, new Vector2((float)(Main.screenWidth / 2) - Main.fontDeathText.MeasureString(header).X / 2f,
+                (float)(Main.screenHeight / 10f)), default, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(Main.fontMouseText, subheader, new Vector2((float)(Main.screenWidth / 2) - Main.fontMouseText.MeasureString(subheader).X / 2f,
+                (float)(Main.screenHeight / 10f)), default, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
         }
         public override void AI()
         {
@@ -140,7 +137,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                 npc.ai[1]++;
                 if (npc.ai[1] >= 8f * 60f)
                 {
-                    if (player.WithinRange(npc.Center, 6f * 16f)) // 6 tiles                
+                    if (player.WithinRange(npc.Center, 6f * 16f))              
                         npc.ai[0] = 1f;
                     npc.ai[1] = 0f;
                 }
@@ -150,13 +147,8 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                 {
                     npc.TargetClosest(true);
                     Vector2 speed2 = (player.Center - npc.Center).SafeNormalize(Vector2.UnitX) * 7.33f;
-                    float angle = npc.direction == 1 ? -10f : 10f; // Avoids tMod funnies!!!
+                    float angle = npc.direction == 1 ? -10f : 10f;
                     speed2 = speed2.RotatedBy(MathHelper.ToRadians(angle));
-                    int damageScale = 5;
-                    if (Main.expertMode)
-                    {
-                        damageScale = 10;
-                    }
                     npc.ai[2] = 0f;
                 }
                 npc.ai[3]++;

@@ -13,7 +13,6 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
             DisplayName.SetDefault("Alluvial Collider");
             Item.staff[item.type] = true;
         }
-
         public override void SetDefaults()
         {
             item.magic = true;

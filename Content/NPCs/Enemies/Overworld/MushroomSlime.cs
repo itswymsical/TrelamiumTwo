@@ -31,7 +31,8 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Overworld
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
-
+        public override void AI() 
+            => npc.direction = npc.spriteDirection;
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(2))

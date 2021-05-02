@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from E
 		}
 
 		private bool IsMaxCharge;
-		private readonly float MaxChargeTime = 90f;
+		private readonly float MaxChargeTime = 65f;
 
 		private float RotationStart => MathHelper.PiOver2 + (projectile.direction == -1 ? MathHelper.Pi : 0);
 		private float RotationOffset => projectile.direction == 1 ? 0 : MathHelper.PiOver2;
