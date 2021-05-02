@@ -32,8 +32,8 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			projectile.penetrate = 2;
 			projectile.timeLeft = 300;
 
-			projectile.ranged = true;
-			projectile.friendly = true;
+			projectile.ranged = projectile.friendly = true;
+			
 		}
 
 		public override bool PreAI()

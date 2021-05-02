@@ -23,8 +23,8 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			projectile.aiStyle = 1;
 			projectile.timeLeft = 600;
 			projectile.extraUpdates = 1;
-			projectile.thrown = true;
-			projectile.friendly = true;
+			projectile.thrown = projectile.friendly = true;
+			
 			projectile.light = 0.5f;
 		}
 		public override void Kill(int timeLeft)
@@ -32,11 +32,11 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			int num281 = 25;
 			for (int num282 = 0; num282 < num281; num282++)
 			{
-				int num283 = Dust.NewDust(projectile.Center, 0, 0, 0, 0f, 0f, 0, default, 1f);
+				int num283 = Dust.NewDust(projectile.Center, 0, 0, DustID.Dirt, 0f, 0f, 0, default, 1f);
 				Dust dust = Main.dust[num283];
 				dust.velocity *= 1.6f;
 				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y = dust25.velocity.Y - 1f;
+				dust25.velocity.Y =- 1f;
 				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 1f);
 			}
 		}

@@ -26,8 +26,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.ranged = true;
-			item.noMelee = true;
+			item.ranged = item.noMelee = true;
+			
 			item.autoReuse = false;
 
 			item.shootSpeed = 8f;
@@ -39,9 +39,9 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			if (type == ProjectileID.WoodenArrowFriendly){
+			if (type == ProjectileID.WoodenArrowFriendly)
                 type = ModContent.ProjectileType<Projectiles.Ranged.VulturesTalon>();
-			}
+			
 			return true;
         }
 

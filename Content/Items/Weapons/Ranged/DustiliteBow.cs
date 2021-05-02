@@ -21,9 +21,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 			item.damage = 9;
 			item.knockBack = 2f;
 
-			item.useTime = 32;
-			item.useAnimation = 32;
-
+			item.useTime = item.useAnimation = 32;
+			
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
 			item.ranged = true;

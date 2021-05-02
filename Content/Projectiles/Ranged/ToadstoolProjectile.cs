@@ -13,13 +13,12 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
 		public override void SetDefaults()
 		{
-			projectile.width = 9;
-			projectile.height = 9;
+			projectile.width = projectile.height = 9;
+			
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
 			projectile.timeLeft = 120;
-			projectile.thrown = true;
-			projectile.friendly = true;
+			projectile.thrown = projectile.friendly = true;
 		}
 		public override void AI()
 		{
@@ -70,7 +69,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 				Dust dust = Main.dust[num283];
 				dust.velocity *= 1.6f;
 				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y = dust25.velocity.Y - 1f;
+				dust25.velocity.Y =  1f;
 				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 0.5f);
 			}
 		}

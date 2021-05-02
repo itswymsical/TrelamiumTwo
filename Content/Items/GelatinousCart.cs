@@ -14,8 +14,8 @@ namespace TrelamiumTwo.Content.Items
         public override void SetDefaults()
         {
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 20;
-            item.useTime = 20;
+            item.useAnimation = item.useTime = 20;
+            
             item.mountType = ModContent.MountType<Mounts.KingSlimeCart>();
             item.UseSound = SoundID.Item81;
         }

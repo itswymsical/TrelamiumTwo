@@ -12,8 +12,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 
         public override void SafeSetDefaults()
         {
-            item.ranged = true;
-            item.noMelee = true;
+            item.ranged = item.noMelee = true;
+            
             item.autoReuse = true;
 
             item.useAnimation = 30;
