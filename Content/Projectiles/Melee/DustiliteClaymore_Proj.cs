@@ -29,8 +29,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			projectile.alpha = 255;
 			projectile.penetrate = -1;
 
-			projectile.melee = true;
-			projectile.friendly = true;
+			projectile.melee = projectile.friendly = true;
+			
 			projectile.tileCollide = false;
 		}
 

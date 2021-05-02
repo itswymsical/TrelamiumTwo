@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
     {
         public override void SetDefaults()
         {
-            projectile.tileCollide = true;
+            
             projectile.timeLeft = 200;
 
             projectile.penetrate = 3;
@@ -17,8 +17,8 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
             projectile.width = 40;
             projectile.height = 28;
 
-            projectile.friendly = true;
-            projectile.ranged = true;
+            projectile.friendly = projectile.ranged = projectile.tileCollide = true;
+            
         }
         public override void AI()
         {
@@ -28,14 +28,14 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
             if (Main.rand.Next(3) == 0)
             {
-                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 5);
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Blood);
                 Main.dust[dust].noGravity = true;
             }
         }
 
         public override void Kill(int timeLeft)
         {
-            int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 5);
+            int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Blood);
             Main.dust[dust].scale = 1.23f;
             Main.PlaySound(SoundID.NPCKilled, -1, -1, 12, 0.45f);
         }

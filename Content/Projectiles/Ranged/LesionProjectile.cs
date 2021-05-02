@@ -15,17 +15,16 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
 		public override void SetDefaults()
 		{
-			projectile.width = 8;
-			projectile.height = 8;
+			projectile.width = projectile.height = 8;
+			
 			projectile.penetrate = 1;
 			projectile.aiStyle = 1;
 
 			projectile.alpha = 255;
-			projectile.hide = true;
+			projectile.hide = projectile.ranged = projectile.friendly = true;
 
 			projectile.timeLeft = 260;
-			projectile.ranged = true;
-			projectile.friendly = true;
+
 		}
 		public override void AI()
 		{
@@ -75,11 +74,11 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			for (int num282 = 0; num282 < num281; num282++)
 			{
 				int num283 = Dust.NewDust(projectile.Center, 0, 0, 
-					4, 0f, 0f, 0, Color.OrangeRed, 0.5f);
+			    DustID.t_Slime, 0f, 0f, 0, Color.OrangeRed, 0.5f);
 				Dust dust = Main.dust[num283];
 				dust.velocity *= 1.6f;
 				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y = dust25.velocity.Y - 1f;
+				dust25.velocity.Y =- 1f;
 				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 0.5f);
 			}
 			if (Main.rand.NextBool(3))

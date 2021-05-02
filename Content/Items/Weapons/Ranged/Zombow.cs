@@ -21,19 +21,17 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 			item.damage = 9;
 			item.knockBack = 2f;
 
-			item.useTime = 28;
-			item.useAnimation = 28;
-
+			item.useTime = item.useAnimation = 28;
+			
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.ranged = true;
-			item.noMelee = true;
+			item.ranged = item.noMelee = true;
+			
 			item.autoReuse = false;
 
 			item.shootSpeed = 8f;
-			item.useAmmo = AmmoID.Arrow;
-			item.shoot = ProjectileID.WoodenArrowFriendly;
-
+			item.useAmmo = AmmoID.Arrow = item.shoot = ProjectileID.WoodenArrowFriendly;
+			
 			item.UseSound = SoundID.Item5;
 		}
 

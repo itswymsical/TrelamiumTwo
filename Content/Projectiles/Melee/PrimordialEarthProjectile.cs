@@ -35,19 +35,13 @@ namespace TrelamiumTwo.Content.Projectiles.Melee // Eldrazi Code imported from E
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 60;
-			projectile.height = 60;
+			projectile.width = projectile.height = 60;
 
 			projectile.penetrate = -1;
 
-			projectile.melee = true;
-			projectile.friendly = true;
-			projectile.tileCollide = false;
-			projectile.netImportant = true;
-			projectile.ownerHitCheck = true;
-			projectile.manualDirectionChange = true;
-
-			IsMaxCharge = false;
+			projectile.melee = projectile.friendly = projectile.netImportant = projectile.ownerHitCheck = projectile.manualDirectionChange = true;
+			
+			projectile.tileCollide = IsMaxCharge = false;
 		}
 
 		public override bool PreAI()

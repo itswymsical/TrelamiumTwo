@@ -7,14 +7,12 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
 {
     public class PharaohsSpire : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Pharaoh's Spire");
-            Item.staff[item.type] = true;
-        }
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Pharaoh's Spire"); 
+     
 
         public override void SetDefaults()
         {
+            Item.staff[item.type] = true;
             item.magic = true;
             item.noMelee = true;
             item.useTurn = false;
@@ -70,7 +68,6 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
-
         }
     }
 }

@@ -1,12 +1,9 @@
-﻿#region Using directives
-
+﻿
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
@@ -72,10 +69,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 				}
 			}
 		}
-
-		private void StartExplosion()
-		{
-			projectile.timeLeft = (projectile.timeLeft > 3) ? 3 : projectile.timeLeft;
-		}
+		private void StartExplosion() 
+			=> projectile.timeLeft = (projectile.timeLeft > 3) ? 3 : projectile.timeLeft;
 	}
 }

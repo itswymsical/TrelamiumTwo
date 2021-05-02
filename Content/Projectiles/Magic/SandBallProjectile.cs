@@ -18,14 +18,15 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 		public override void SetDefaults()
 		{
-			projectile.width = 14;
-			projectile.height = 14;
+			projectile.width = projectile.height = 14;
+
 			projectile.penetrate = 1;
 			projectile.aiStyle = -1;
 			projectile.extraUpdates = 1;
+
 			projectile.alpha = 255;
-			projectile.ranged = true;
-			projectile.friendly = true;
+			projectile.ranged = projectile.friendly = true;
+			
 			projectile.timeLeft = Main.rand.Next(75, 85);
 			projectile.light = 0.55f;
 		}
@@ -53,8 +54,8 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			if (projectile.ai[0] == 1)
 			{
 				timer++;
-				projectile.width = 36;
-				projectile.height = 36;
+				projectile.width = projectile.height = 36;
+				
 				if (timer == 2)
 				{
 					projectile.Kill();
@@ -94,7 +95,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 					Dust dust = Main.dust[DustIndex];
 					dust.velocity *= 1.6f;
 					Dust dust2 = Main.dust[DustIndex];
-					dust2.velocity.Y = dust2.velocity.Y - 1f;
+					dust2.velocity.Y =- 1f;
 					Main.dust[DustIndex].position = Vector2.Lerp(Main.dust[DustIndex].position, projectile.Center, 0.75f);
 				}
 				if (projectile.owner == Main.myPlayer)

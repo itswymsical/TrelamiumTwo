@@ -14,13 +14,9 @@ namespace TrelamiumTwo.Content.Items.Weapons.Summon
         }
         public override void SetDefaults()
         {
-            item.summon = true;
-            item.noMelee = true;
-            item.useTurn = true;
-            item.autoReuse = true;
-
-            item.useAnimation = 25;
-            item.useTime = 25;
+            item.summon =  item.noMelee  = item.useTurn = item.autoReuse = true;
+                 
+            item.useTime = item.useAnimation = 25;
             item.damage = 19;
             item.crit = 3;
 
