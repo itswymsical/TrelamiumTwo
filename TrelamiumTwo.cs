@@ -1,4 +1,3 @@
-#region Using Directives
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,10 +12,6 @@ using TrelamiumTwo.Content.UI;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
 using ReLogic.Graphics;
-using TrelamiumTwo.Core.Loaders;
-using TrelamiumTwo.Common.Cutscenes;
-using TrelamiumTwo.Common.Players;
-#endregion
 
 namespace TrelamiumTwo
 {
@@ -128,38 +123,15 @@ namespace TrelamiumTwo
 
             if (resourceBarIndex != -1)
             {
-                layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer("PrimordialSands: Absorption Bar", delegate
+                layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer("TrelamiumTwo: Movement Speed Bar", delegate
                 {
                     movementTrackerUI.Draw(Main.spriteBatch, new GameTime());
                     return true;
                 },
                 InterfaceScaleType.UI));
             }
-            for (int i = 0; i < CutsceneLoader.Cutscenes.Count; i++)
-            {
-                var cutscene = CutsceneLoader.Cutscenes[i];
-                CutsceneLoader.AddCutsceneLayer(layers, cutscene, cutscene.InsertionIndex(layers), cutscene.Visible);
-            }
-
-            if (CutsceneLoader.GetCutscene<Credits>().Visible)
-                foreach (var layer in layers.Where(l => !l.Name.Equals("TrelamiumTwo:Credits")))
-                    layer.Active = false;
-            #region Text Drawing
-            /*if (DeathTextIndex != -1)
-            {
-                layers.Insert(DeathTextIndex, new LegacyGameInterfaceLayer("PrimordialSands: Boss Text", delegate
-                {
-                    string header = "-- Fungore --";
-                    Main.spriteBatch.DrawString(Main.fontDeathText, header, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontDeathText.MeasureString(header).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(0f, 2f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-                    string subheader = "-- The mutated fungus symbiote --";
-                    Main.spriteBatch.DrawString(Main.fontMouseText, subheader, new Vector2((float)(Main.screenWidth / 2 + Main.rand.NextFloat(0f, 2f)) - Main.fontMouseText.MeasureString(subheader).X / 2f, (float)(Main.screenHeight / 10f + Main.rand.NextFloat(58f, 60f))), new Color(Main.rand.Next(100, 255), Main.rand.Next(100, 255), Main.rand.Next(100, 255), 255), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-                    return true;
-                },
-                    InterfaceScaleType.UI));
-            }*/
-            #endregion
         }
-        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        /*public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
             if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
             {
@@ -169,6 +141,6 @@ namespace TrelamiumTwo
                     priority = MusicPriority.BossHigh;
                 }
             }
-        }
+        }*/
     }
 }
