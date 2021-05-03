@@ -183,7 +183,6 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 
 			IsMaxCharge = false;
 		}
-
 		public override bool PreAI()
 		{
 			Player owner = Main.player[projectile.owner];
@@ -194,8 +193,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 
 			if (State == AIState.Swinging)
 			{
-				projectile.ai[1] -= 4;
-
+				projectile.ai[1] -= 5;
 				if (projectile.ai[1] <= 0)
 				{
 					projectile.Kill();
@@ -655,6 +653,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
+
+			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
+		}
+		public override void Kill(int timeLeft)
+		{
+			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 			if (IsMaxCharge && Main.myPlayer == projectile.owner)
 			{
 				for (int i = 0; i < 2; ++i)
@@ -663,12 +667,6 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 					ModContent.ProjectileType<MushroomProjectile>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
-
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
-		}
-		public override void Kill(int timeLeft)
-		{
-			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 

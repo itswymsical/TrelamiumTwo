@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 			item.value = Item.sellPrice(silver: 5);
 
 			item.crit = 2;
-			item.damage = 10;
+			item.damage = 14;
 			item.knockBack = 5f;
 
 			item.useTime = item.useAnimation = 26;

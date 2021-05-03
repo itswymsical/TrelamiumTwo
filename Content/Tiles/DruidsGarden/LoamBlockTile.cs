@@ -1,9 +1,8 @@
-#region Using Directives
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-#endregion
+
 
 namespace TrelamiumTwo.Content.Tiles.DruidsGarden
 {
@@ -18,7 +17,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             Main.tileMerge[Type][ModContent.TileType<SlateTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<AlluviumOreTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<LoamBlockGrassTile>()] = true;
-            dustType = 38;
+            dustType = 0;
             mineResist = 0.35f;
             soundType = SoundID.Dig;
             soundStyle = 2;
@@ -28,9 +27,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         public override void RandomUpdate(int i, int j)
         {
             if (WorldGen.genRand.Next(3) == 0)
-            {
-                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamBlockTile>(), ModContent.TileType<LoamBlockGrassTile>(), true, Main.tile[i, j].color());
-            }
+                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamBlockTile>(), ModContent.TileType<LoamBlockGrassTile>(), true, Main.tile[i, j].color());          
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
@@ -49,6 +46,8 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             soundType = SoundID.Grass;
             soundStyle = 2;
             Main.tileMerge[Type][ModContent.TileType<SlateTile>()] = true;
+            TileID.Sets.NeedsGrassFraming[Type] = true;
+            TileID.Sets.NeedsGrassFramingDirt[Type] = ModContent.TileType<LoamBlockTile>();
             Main.tileMerge[Type][ModContent.TileType<AlluviumOreTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<AlderwoodTrunk>()] = true;
             AddMapEntry(new Color(100, 111, 59));
@@ -58,13 +57,13 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         {
             num = fail ? 1 : 3;
         }
-        /*public override void RandomUpdate(int i, int j)
+        public override void RandomUpdate(int i, int j)
         {
             if (WorldGen.genRand.Next(3) == 0)
             {
                 WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamBlockTile>(), ModContent.TileType<LoamBlockGrassTile>(), true, Main.tile[i, j].color());
             }
-        }*/
+        }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (!effectOnly)
