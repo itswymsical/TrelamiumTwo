@@ -31,12 +31,12 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
                 for (int i = 0; i < 2; i++)
                 {
                     Vector2 projectilePosition = projectile.position;
-                    projectilePosition -= projectile.velocity * ((float)i * 0.28f);
+                    projectilePosition -= projectile.velocity * (i * 0.28f);
                     projectile.alpha = 255;
-                    int dust = Dust.NewDust(projectilePosition, 1, 1, DustID.WitherLightning, 0f, 0f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(projectilePosition, 1, 1, 156, 0f, 0f, 0, default, 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].position = projectilePosition;
-                    Main.dust[dust].scale = (float)Main.rand.Next(70, 110) * 0.011f;
+                    Main.dust[dust].scale = .65f;
                     Main.dust[dust].velocity *= 0.15f;
                 }
             }
@@ -47,6 +47,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
             if (projectile.ai[0] >= 8)
             {
                 Vector2 perturbedSpeed = new Vector2(projectile.velocity.X, projectile.velocity.Y).RotatedByRandom(MathHelper.ToRadians(radians));
+                projectile.DirectionTo(projectile.Center).RotatedByRandom(MathHelper.ToRadians(5));
                 if (radians >= 16)
                 {
                     radians = -24;
@@ -56,7 +57,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
                     radians = 16;
                 }
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
-                perturbedSpeed = perturbedSpeed * scale;
+                perturbedSpeed *= scale;
                 projectile.velocity.Y = perturbedSpeed.Y;
                 projectile.velocity.X = perturbedSpeed.X;
                 projectile.ai[0] = 0;

@@ -1,11 +1,7 @@
-﻿#region Using directives
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using TrelamiumTwo.Common.Items;
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
@@ -16,7 +12,7 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
         public override void SetDefaults()
 		{
 			item.maxStack = 30;
-			item.rare = ItemRarityID.Blue;
+			item.rare = ItemRarityID.White;
 			item.value = Item.buyPrice(silver: 2);
 
 			item.useTime = item.useAnimation = 25;
@@ -24,14 +20,17 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTurn = true;
 			item.consumable = true;
+			ExpireTimer = 12000;
 
+			item.buffType = BuffID.Swiftness;
+			item.buffTime = 800;
 			item.UseSound = SoundID.Item3;
 		}
+	
         public override void OnConsumeItem(Player player)
         {
 			var Index = CombatText.NewText(player.Hitbox, Color.Red, "Swiftness [III]", true, false);
 			Main.combatText[Index].lifeTime = 120;
-			player.AddBuff(BuffID.Swiftness, 800);
         }
     }
 }

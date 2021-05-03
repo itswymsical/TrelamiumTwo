@@ -14,7 +14,7 @@ namespace TrelamiumTwo.Content.Tiles
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
-            dustType = 230;
+            dustType = 226;
             soundType = SoundID.Tink;
             soundStyle = 2;
             drop = ModContent.ItemType<Items.Placeable.StellarConduitPlating>();

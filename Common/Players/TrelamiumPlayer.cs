@@ -16,6 +16,7 @@ namespace TrelamiumTwo.Common.Players
         #endregion
         #region H-P
         public bool kindledSetBonus;
+        public bool legionAccessory;
         public bool magicGuantlet;
         public bool mossMonarch;
         public bool onSand;
@@ -61,6 +62,7 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region H-P
             kindledSetBonus = false;
+            legionAccessory = false;
             magicGuantlet = false;
             mossMonarch = false;
             onSand = false;
@@ -83,6 +85,7 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region H-P
             kindledSetBonus = false;
+            legionAccessory = false;
             magicGuantlet = false;
             mossMonarch = false;
             onSand = false;

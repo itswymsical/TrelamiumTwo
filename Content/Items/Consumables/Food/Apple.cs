@@ -6,10 +6,10 @@ using TrelamiumTwo.Common.Items;
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
-	public sealed class Mango : FoodItem
+	public sealed class Apple : FoodItem
 	{
 		public override void SetStaticDefaults()
-		=> DisplayName.SetDefault("Mango");
+		=> DisplayName.SetDefault("Apple");
 		public override void SetDefaults()
 		{
 			item.maxStack = 30;
@@ -21,15 +21,15 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTurn = true;
 			item.consumable = true;
-			ExpireTimer = 12000;
+			ExpireTimer = 120000;
 
-			item.buffType = BuffID.Regeneration;
-			item.buffTime = 600;
+			item.healLife = 45;
+			item.potion = true;
 			item.UseSound = SoundID.Item3;
 		}
         public override void OnConsumeItem(Player player)
         {
-			var Index = CombatText.NewText(player.Hitbox, Color.Orange, "Life Regeneration [II]", true, false);
+			var Index = CombatText.NewText(player.Hitbox, Color.IndianRed, "Healing [I]", true, false);
 			Main.combatText[Index].lifeTime = 120;
 		}
     }

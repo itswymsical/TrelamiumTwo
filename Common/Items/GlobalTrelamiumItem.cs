@@ -21,11 +21,6 @@ namespace TrelamiumTwo.Common.Items
             Item i = ModContent.GetModItem(shovel).item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
         }
-        public override void UpdateInventory(Item item, Player player)
-        {
-            if (item.Name.Contains("Boots") || player.moveSpeed >= 0)
-                item.shoeSlot = 0;
-        }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             Players.TrelamiumPlayer tp = Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>();
@@ -43,18 +38,6 @@ namespace TrelamiumTwo.Common.Items
             if (item.IsShovel())
             {
                 sline = new TooltipLine(mod, "TrelamiumTwo:Digging Power", $"{item.GetGlobalItem<GlobalTrelamiumItem>().digPower}% digging power");
-                tooltips.Add(sline);
-            }
-            if (item.shoeSlot >= 0 && player.moveSpeed > 0)
-            {
-                sline = new TooltipLine(mod, "TrelamiumTwo:Movement Speed", $"{player.moveSpeed}x movement speed");
-                sline.overrideColor = Color.LightYellow;
-                tooltips.Add(sline);
-            }
-            if (item.modItem is FoodItem)
-            {
-                sline = new TooltipLine(mod, "TrelamiumTwo:Food Item", "-- Food Item --");
-                sline.overrideColor = Color.LimeGreen;
                 tooltips.Add(sline);
             }
         }

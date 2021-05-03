@@ -1,7 +1,4 @@
 displayName = Trelamium 2
 author = Signia, Blossom, HugeKraken, Lemmy, & More
 version = 0.1
-hideCode = false
-hideResources = false
-includeSource = true
-includePDB = true
+homepage = https://forums.terraria.org/index.php?threads/primordial-sands.72168/

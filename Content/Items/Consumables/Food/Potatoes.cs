@@ -6,11 +6,11 @@ using TrelamiumTwo.Common.Items;
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
-	public sealed class Mango : FoodItem
+	public sealed class Potatoes : FoodItem
 	{
 		public override void SetStaticDefaults()
-		=> DisplayName.SetDefault("Mango");
-		public override void SetDefaults()
+			=> DisplayName.SetDefault("Potatoes");
+        public override void SetDefaults()
 		{
 			item.maxStack = 30;
 			item.rare = ItemRarityID.White;
@@ -21,16 +21,17 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTurn = true;
 			item.consumable = true;
-			ExpireTimer = 12000;
+			ExpireTimer = 120000;
 
-			item.buffType = BuffID.Regeneration;
-			item.buffTime = 600;
+			item.buffType = BuffID.Ironskin;
+			item.buffTime = 6000;
 			item.UseSound = SoundID.Item3;
 		}
+	
         public override void OnConsumeItem(Player player)
         {
-			var Index = CombatText.NewText(player.Hitbox, Color.Orange, "Life Regeneration [II]", true, false);
+			var Index = CombatText.NewText(player.Hitbox, Color.SandyBrown, "Ironskin [IV]", true, false);
 			Main.combatText[Index].lifeTime = 120;
-		}
+        }
     }
 }

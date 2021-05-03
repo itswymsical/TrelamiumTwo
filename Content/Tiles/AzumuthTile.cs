@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Tiles
 {
-    public class CarbonTile : ModTile
+    public class AzumuthTile : ModTile
     {
         public override void SetDefaults()
         {
@@ -15,14 +15,15 @@ namespace TrelamiumTwo.Content.Tiles
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
 
-            dustType = 54;
-            mineResist = 0.65f;
+            dustType = 56;
+            minPick = 60;
+            mineResist = 0.25f;
             soundType = SoundID.Tink;
             soundStyle = 2;
 
             drop = ModContent.ItemType<Items.Placeable.Carbon>();
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Carbon");
+            name.SetDefault("Azumuth");
             AddMapEntry(new Color(55, 0, 55), name);
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
