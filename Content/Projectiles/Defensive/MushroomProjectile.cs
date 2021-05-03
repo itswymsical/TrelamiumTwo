@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace TrelamiumTwo.Content.Projectiles.Melee
+namespace TrelamiumTwo.Content.Projectiles.Defensive
 {
 	public class MushroomProjectile : ModProjectile
 	{
@@ -10,7 +10,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		{
 			DisplayName.SetDefault("Mushroom");
 		}
-
 		public override void SetDefaults()
 		{
 			projectile.width = 9;
@@ -70,7 +69,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				Dust dust = Main.dust[num283];
 				dust.velocity *= 1.6f;
 				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y = dust25.velocity.Y - 1f;
+				dust25.velocity.Y -= dust25.velocity.Y - 1f;
 				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 0.5f);
 			}
 		}

@@ -26,11 +26,10 @@ namespace TrelamiumTwo
 
         public const string DustiliteAssets = "TrelamiumTwo/Assets/Dustilite/";
         public const string ProjectileAssets = "TrelamiumTwo/Assets/Projectiles/";
-
+        public const string HeaviesAssets = "TrelamiumTwo/Assets/Heavies/";
         public const string UIAssets = "TrelamiumTwo/Assets/UI";
 
         internal static string PLACEHOLDER_TEXTURE = "TrelamiumTwo/Assets/PLACEHOLDER_TEXTURE";
-        internal static string Invisible_Texture = "TrelamiumTwo/Assets/InvisibleTexture";
         #endregion
 
         public static ModHotKey shieldHotkey;

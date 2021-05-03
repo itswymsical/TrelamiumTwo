@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Tiles
     {
         public override bool Autoload(ref string name, ref string texture)
         {
-            texture = TrelamiumTwo.Invisible_Texture;
+            texture = "Terraria/Projectile_" + ProjectileID.None;
             return base.Autoload(ref name, ref texture);
         }
         public override void SetDefaults()

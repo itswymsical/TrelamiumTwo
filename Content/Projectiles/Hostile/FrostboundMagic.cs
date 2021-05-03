@@ -8,8 +8,8 @@ namespace TrelamiumTwo.Content.Projectiles.Hostile
 {
 	public class FrostboundMagic : ModProjectile
 	{
-        public override string Texture => TrelamiumTwo.Invisible_Texture;
-        public override void SetStaticDefaults()
+		public override string Texture => "Terraria/Projectile_" + ProjectileID.None;
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Frostbound Magic");
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 20;
@@ -37,7 +37,7 @@ namespace TrelamiumTwo.Content.Projectiles.Hostile
 				Dust dust = Main.dust[num283];
 				dust.velocity *= 1.6f;
 				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y = dust25.velocity.Y - 1f;
+				dust25.velocity.Y -= dust25.velocity.Y - 1f;
 				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 1f);
 			}
 		}
