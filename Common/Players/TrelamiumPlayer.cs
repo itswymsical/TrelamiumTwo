@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using TrelamiumTwo.Common.Worlds;
 #endregion
 
 namespace TrelamiumTwo.Common.Players
@@ -27,6 +28,7 @@ namespace TrelamiumTwo.Common.Players
         public bool toadstoolExplode;
         #endregion
         #region U-Z
+        public bool ZoneDruidsGarden;
         #endregion
 
         #region ShovelPickTile() Method
@@ -37,8 +39,6 @@ namespace TrelamiumTwo.Common.Players
             {
                 int posx = x / 16 + i;
                 int posy = y / 16 + i;
-                Tile t1 = Main.tile[posx, y / 16];
-                Tile t2 = Main.tile[x / 16, posy];
                 if (Main.tile[posx, y / 16].type != TileID.DemonAltar && Main.tile[x / 16, posy].type != TileID.DemonAltar
                     && Main.tile[posx, y / 16].type != TileID.Trees && Main.tile[x / 16, posy].type != TileID.Trees
                     && Main.tile[posx, y / 16].type != TileID.PalmTree && Main.tile[x / 16, posy].type != TileID.PalmTree
@@ -73,6 +73,7 @@ namespace TrelamiumTwo.Common.Players
             toadstoolExplode = false;
             #endregion
             #region U-Z
+
             #endregion
         }
         public override void UpdateDead()
@@ -99,7 +100,10 @@ namespace TrelamiumTwo.Common.Players
             #endregion
         }
 
-        public override void UpdateBiomes() { }
+        public override void UpdateBiomes() 
+        {
+            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 180;
+        }
 
         public override void UpdateBiomeVisuals() 
             => player.ManageSpecialBiomeVisuals("Blizzard", 

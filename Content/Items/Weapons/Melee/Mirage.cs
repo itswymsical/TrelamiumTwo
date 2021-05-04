@@ -11,11 +11,11 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 
         public override void SafeSetDefaults()
         {
-            item.channel = item.melee = item.useTurn = item.autoReuse = true;
+            item.noUseGraphic = item.channel = item.melee = item.useTurn = item.autoReuse = true;
 
             item.useAnimation = 25;
             item.useTime = 25;
-            item.damage = 12;
+            item.damage = 15;
             item.crit = 2;
 
             item.knockBack = 2.5f;

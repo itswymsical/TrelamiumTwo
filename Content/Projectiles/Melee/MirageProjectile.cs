@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			projectile.aiStyle = 99;
 			projectile.friendly = projectile.melee = true;
 			projectile.penetrate = -1;
-			ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = -1f;
+			ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 30f;
 			ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 180f;
 			ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 15f;
 		}

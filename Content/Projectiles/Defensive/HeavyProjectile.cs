@@ -156,7 +156,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 			set => projectile.ai[0] = (int)value;
 		}
 
-		private bool IsMaxCharge;
+		//private bool IsMaxCharge;
 		private readonly float MaxChargeTime = 60f;
 
 		private float RotationStart => MathHelper.PiOver2 + (projectile.direction == -1 ? MathHelper.Pi : 0);
@@ -181,7 +181,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 			projectile.ownerHitCheck = true;
 			projectile.manualDirectionChange = true;
 
-			IsMaxCharge = false;
+			//IsMaxCharge = false;
 		}
 		public override bool PreAI()
 		{
@@ -203,7 +203,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 			{
 				if (++projectile.ai[1] >= MaxChargeTime)
 				{
-					IsMaxCharge = true;
+					//IsMaxCharge = true;
 					projectile.ai[1] = MaxChargeTime;
 					Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().shakeEffects = .05f;
 				}
@@ -304,8 +304,8 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 42;
-			projectile.height = 42;
+			projectile.width = 58;
+			projectile.height = 58;
 
 			projectile.penetrate = -1;
 
@@ -661,9 +661,9 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 			if (IsMaxCharge && Main.myPlayer == projectile.owner)
 			{
-				for (int i = 0; i < 2; ++i)
+				for (int i = 0; i < 3; ++i)
 				{
-					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 4f,
+					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f,
 					ModContent.ProjectileType<MushroomProjectile>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}

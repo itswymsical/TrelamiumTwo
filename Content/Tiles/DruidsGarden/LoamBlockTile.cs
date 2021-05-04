@@ -48,6 +48,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             Main.tileMerge[Type][ModContent.TileType<SlateTile>()] = true;
             TileID.Sets.NeedsGrassFraming[Type] = true;
             TileID.Sets.NeedsGrassFramingDirt[Type] = ModContent.TileType<LoamBlockTile>();
+            Main.tileMerge[Type][ModContent.TileType<LoamBlockTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<AlluviumOreTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<AlderwoodTrunk>()] = true;
             AddMapEntry(new Color(100, 111, 59));

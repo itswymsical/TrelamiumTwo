@@ -12,7 +12,7 @@ namespace TrelamiumTwo.Common.Worlds
 {
     public sealed partial class TrelamiumWorld : ModWorld
     {
-        private void ModifyWorldGenTasks_DruidsGarden(List<GenPass> tasks, ref float totalWeight)
+        private void ModifyWorldGenTasks_DruidsGarden(List<GenPass> tasks)
         {
             int num = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Stalac"));
             if (num != -1)
@@ -20,15 +20,15 @@ namespace TrelamiumTwo.Common.Worlds
                 tasks.Insert(num + 1, new PassLegacy("TrelamiumTwo: Druid's Garden Pass", delegate (GenerationProgress progress)
                 {
                     progress.Message = "Druid's Garden";
-                    int num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX + 200);
+                    int num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 100) : (Main.spawnTileX + 100);
                     int num3 = Raycast(num2, 200);
                     if (Main.maxTilesY == 1800)
                     {
-                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 300) : (Main.spawnTileX + 300);
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 140) : (Main.spawnTileX + 150);
                     }
                     if (Main.maxTilesY == 2400)
                     {
-                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 400) : (Main.spawnTileX  + 400);
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX  + 200);
                     }
 
                 if (num3 > (int)Main.worldSurface - 100)
@@ -38,7 +38,7 @@ namespace TrelamiumTwo.Common.Worlds
                         num3 = Raycast(num2, (int)Main.worldSurface - 100) + 160;
 
                     if (Main.tile[num2, Raycast(num2, num3)].type == 147)
-                        num2 += ((num2 < Main.spawnTileX) ? (-460) : 460);
+                        num2 += ((num2 < Main.spawnTileX) ? (-250) : 250);
                     
                     if (Main.tile[num2, Raycast(num2, num3)].type == 41 
                     || (Main.tile[num2, Raycast(num2, num3)].type == 43 || (Main.tile[num2, Raycast(num2, num3)].type == 44)))

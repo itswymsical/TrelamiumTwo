@@ -90,7 +90,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			//ModifyWorldGenTasks_Campsites(tasks, ref totalWeight);
 			ModifyWorldGenTasks_DustifiedCaverns(tasks, ref totalWeight);
-			ModifyWorldGenTasks_DruidsGarden(tasks, ref totalWeight);
+			ModifyWorldGenTasks_DruidsGarden(tasks);
 		}
 
 		public override void ResetNearbyTileEffects()
