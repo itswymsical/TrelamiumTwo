@@ -12,11 +12,11 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 9;
-			projectile.height = 9;
+			projectile.width = 10;
+			projectile.height = 10;
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
-			projectile.timeLeft = 120;
+			projectile.timeLeft = 240;
 			projectile.melee = true;
 			projectile.friendly = true;
 		}

@@ -1,11 +1,9 @@
 ﻿using Terraria.ModLoader;
-using TrelamiumTwo.Common.Utilities;
 
 namespace TrelamiumTwo.Content.Items
 {
     public abstract class TrelamiumItem : ModItem
     {
-        public bool Autosize;
         public override string Texture
         {
             get
@@ -18,9 +16,6 @@ namespace TrelamiumTwo.Content.Items
 
         public override void SetDefaults()
         {
-            if (Autosize)
-                item.Autosize();
-
             SafeSetDefaults();
         }
 

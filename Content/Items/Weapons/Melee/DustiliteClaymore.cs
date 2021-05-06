@@ -1,16 +1,18 @@
-﻿#region Using Directives
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Content.Items.Materials;
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
     public class DustiliteClaymore : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Dustilite Claymore");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dustilite Claymore");
+            Tooltip.SetDefault("Creates shadows of claymores on enemy hit");
+        }
 
         public override void SafeSetDefaults()
         {

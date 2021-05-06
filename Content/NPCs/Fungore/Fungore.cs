@@ -9,6 +9,7 @@ using TrelamiumTwo.Content.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
+using TrelamiumTwo.Core.Utils;
 #endregion
 
 namespace TrelamiumTwo.Content.NPCs.Fungore
@@ -17,35 +18,13 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
     public class Fungore : ModNPC
     {
         #region AIState
-        private enum AIState
-        {
-            Idle = 0,
-            Jump = 1,
-            Stomp = 2
-        }
-        private AIState State
-        {
-            get => (AIState)npc.ai[0];
-            set => npc.ai[0] = (int)value;
-        }
         public float AttackTimer
         {
             get => npc.ai[1];
             set => npc.ai[1] = value;
         }
-        private float JumpTimer
-        {
-            get => npc.ai[2];
-            set => npc.ai[2] = value;
-        }
-        private float StopTimer
-        {
-            get => npc.ai[3];
-            set => npc.ai[3] = value;
-        }
         private int jumpTimer;
         private int jumpRegular;
-        private int Timer2;
         #endregion
         public override void SetStaticDefaults()
         {
@@ -113,14 +92,22 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             }
 
         }
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            string header = "-- Fungore --";
-            string subheader = "-- The mutated fungus symbiote --";
-            spriteBatch.DrawString(Main.fontDeathText, header, new Vector2((float)(Main.screenWidth / 2) - Main.fontDeathText.MeasureString(header).X / 2f,
-                (float)(Main.screenHeight / 10f)), default, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(Main.fontMouseText, subheader, new Vector2((float)(Main.screenWidth / 2) - Main.fontMouseText.MeasureString(subheader).X / 2f,
-                (float)(Main.screenHeight / 10f)), default, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            if (textTimer < 200)
+            {
+                var screenCenter = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+                var fontScale = 0.8f;
+                var namePosition = new Vector2(screenCenter.X, 300f);
+                string[] names =
+                {
+                    "-- Fungore --",
+                    "-- Numbskull Mycelia Brute --"
+                };
+
+                foreach (var name in names)
+                    DrawUtils.DrawTextCollumn(spriteBatch, lightColor, name, ref namePosition, fontScale);
+            }
         }
         public override void AI()
         {
@@ -148,7 +135,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                     npc.TargetClosest(true);
                     Vector2 speed2 = (player.Center - npc.Center).SafeNormalize(Vector2.UnitX) * 7.33f;
                     float angle = npc.direction == 1 ? -10f : 10f;
-                    speed2 = speed2.RotatedBy(MathHelper.ToRadians(angle));
+                    speed2.RotatedBy(MathHelper.ToRadians(angle));
                     npc.ai[2] = 0f;
                 }
                 npc.ai[3]++;
@@ -193,7 +180,6 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         private void TileCollision()
         {
             npc.TargetClosest(true);
-            Player player = Main.player[npc.target];
             if (npc.velocity.Y == 0f)
             {
                 jumpTimer++;
@@ -222,14 +208,12 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                 Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
             }
         }
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write(jumpTimer);
-        }
+        public override void SendExtraAI(BinaryWriter writer) 
+            => writer.Write(jumpTimer);
+        
         public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            jumpTimer = reader.ReadInt32();
-        }
+            => jumpTimer = reader.ReadInt32();
+        
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;

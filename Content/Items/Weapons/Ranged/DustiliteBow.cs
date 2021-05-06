@@ -18,7 +18,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 			item.rare = ItemRarityID.Green;
 			item.value = Item.sellPrice(silver: 49);
 
-			item.damage = 9;
+			item.damage = 17;
 			item.knockBack = 2f;
 
 			item.useTime = item.useAnimation = 32;

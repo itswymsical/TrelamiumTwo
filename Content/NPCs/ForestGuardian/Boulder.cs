@@ -1,10 +1,8 @@
-﻿#region Using Directives
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-#endregion
 
 namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
@@ -31,8 +29,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
             npc.boss = true;
             npc.netUpdate = true;
 
-            npc.HitSound = SoundID.NPCHit19;
-            npc.DeathSound = SoundID.NPCDeath8;
+            npc.HitSound = SoundID.Item50;
+            npc.DeathSound = SoundID.DD2_WitherBeastCrystalImpact;
         }
         float charge = 0f;
         public override bool CheckActive()
@@ -96,13 +94,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
             npc.rotation += 0.01f;
             npc.ai[1] += charge;
             return false;
-        }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            if (Main.rand.Next(20) == 0)
-            {
-                target.AddBuff(BuffID.Stoned, 30);
-            }
         }
         public override void HitEffect(int hitDirection, double damage)
         {

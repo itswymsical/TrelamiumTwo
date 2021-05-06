@@ -58,7 +58,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Heavies
 			item.value = Item.sellPrice(silver: 10);
 
 			item.crit = 8;
-			item.damage = 18;
+			item.damage = 25;
 			item.knockBack = 5f;
 
 			item.useTime = item.useAnimation = 26;

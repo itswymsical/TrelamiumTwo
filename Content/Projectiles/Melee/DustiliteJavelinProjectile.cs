@@ -6,32 +6,35 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
-	public class SkyPiercerProjectile : ModProjectile
+	public class DustiliteJavelinProjectile : ModProjectile
 	{
 		public float MovementFactor
 		{
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
 		}
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Sky Piercer");
+		public override void SetStaticDefaults() 
+			=> DisplayName.SetDefault("Dustilite Javelin");
 
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 80;
+			projectile.width = 76;
+			projectile.height = 86;
 
 			projectile.aiStyle = 19;
 			projectile.scale = 1.1f;
 			projectile.penetrate = -1;
 
-			projectile.hide = projectile.friendly = projectile.melee = projectile.ownerHitCheck = true;
+			projectile.hide = 
+				projectile.friendly = 
+				projectile.melee = 
+				projectile.ownerHitCheck = true;
 
 			projectile.tileCollide = false;
 
 			projectile.width = projectile.height = 32;
 
 		}
-
-		int Timer = 0;
 		public override void AI()
 		{
 			Player projOwner = Main.player[projectile.owner];
@@ -70,21 +73,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			{
 				projectile.rotation -= MathHelper.ToRadians(90f);
 			}
-
-			Timer++;
-			if (Timer < 4)
-            {
-				Player player = Main.player[projectile.owner];
-				if (player.direction == -1)
-				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 3) * .25f, Main.rand.Next(-10, 5) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-				}
-				else if(player.direction == 1)
-				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-3, 10) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-				}
-                 	
-            }
 		}
     }
 }

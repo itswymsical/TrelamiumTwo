@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 			item.value = Item.sellPrice(silver: 25);
 
 			item.crit = 2;
-			item.damage = 22;
+			item.damage = 36;
 			item.knockBack = 8f;
 
 			item.useTime = item.useAnimation = 26;
