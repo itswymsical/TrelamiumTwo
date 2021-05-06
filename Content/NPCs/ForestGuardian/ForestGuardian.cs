@@ -38,7 +38,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 0;
 			npc.defense = 12;
-			npc.lifeMax = 1800;
+			npc.lifeMax = 2100;
 
 			npc.noTileCollide = true;
 			npc.noGravity = true;
@@ -52,7 +52,12 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		}
 		bool spawn;
 		public int spawnTimer;
-		private bool segmentsSpawned;
+		private bool segmentsSpawned; 
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.35f * bossLifeScale);
+			npc.damage = (int)(npc.damage * 0.55f);
+		}
 		public override void AI()
 		{
 			Player target = Main.player[npc.target];
@@ -76,7 +81,12 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				Main.npc[Right].ai[0] = npc.whoAmI;
 				spawn = true;
 			}
-
+			if (NPC.AnyNPCs(NPCType<ForestGuardian_Left>()) || NPC.AnyNPCs(NPCType<ForestGuardian_Right>()))
+				npc.defense = npc.defense * 4;
+			
+			if (NPC.AnyNPCs(NPCType<Boulder>()))
+				npc.defense =  npc.defense + (NPC.CountNPCS(NPCType<Boulder>()) * 2);
+			
 			if (State == AIState.Idle)
             {
 				Movement();
@@ -327,7 +337,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		private int sec; 
 		private int AITimer;
 		private int BeamTimer;
-		private int DashTimer;
+		private int DashTimer; public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.35f * bossLifeScale);
+			npc.damage = (int)(npc.damage * 0.55f);
+		}
 		public override void FindFrame(int frameHeight)
 		{
 			npc.spriteDirection = npc.direction;
@@ -382,7 +396,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, -30);
+				var position = boss.Center - new Vector2(200, -50);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -397,7 +411,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, -30);
+				var position = boss.Center - new Vector2(200, -50);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -490,7 +504,12 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		}
 		private int AITimer;
 		private int BeamTimer;
-		private int DashTimer;
+		private int DashTimer; 
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.35f * bossLifeScale);
+			npc.damage = (int)(npc.damage * 0.55f);
+		}
 		public override void FindFrame(int frameHeight)
 		{
 			npc.spriteDirection = npc.direction;
@@ -523,10 +542,10 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			}
 			AITimer++;
 			if (AITimer == 300)
-				State = AIState.Dash;
+				State = AIState.Beam;
 
 			if (AITimer == 900)
-				State = AIState.Beam;
+				State = AIState.Dash;
 
 			if (AITimer == 1200)
 				AITimer = 0;
@@ -539,7 +558,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, 30);
+				var position = boss.Center + new Vector2(200, 50);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -554,7 +573,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, 30);
+				var position = boss.Center + new Vector2(200, 50);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
