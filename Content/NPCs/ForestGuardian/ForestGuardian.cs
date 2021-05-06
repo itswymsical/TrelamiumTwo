@@ -55,50 +55,53 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		private bool segmentsSpawned;
 		public override void AI()
 		{
+			Player target = Main.player[npc.target];
 			spawnTimer++;
+			if (target.dead || !target.active)
+			{
+				npc.TargetClosest(false);
+				npc.velocity = new Vector2(0f, -10f);
+				npc.timeLeft--;
+				if (npc.timeLeft <= 0)
+				{
+					npc.active = false;
+				}
+			}
+
 			if (!spawn)
 			{
-				var Left = NPC.NewNPC((int)npc.Center.X - 180, (int)npc.Center.Y + 40, NPCType<ForestGuardian_Left>());
+				var Left = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<ForestGuardian_Left>());
 				Main.npc[Left].ai[0] = npc.whoAmI;
-				var Right = NPC.NewNPC((int)npc.Center.X + 180, (int)npc.Center.Y + 40, NPCType<ForestGuardian_Right>());
+				var Right = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<ForestGuardian_Right>());
 				Main.npc[Right].ai[0] = npc.whoAmI;
 				spawn = true;
 			}
 
-			if (State == AIState.Idle)	
-				Movement(); Boulders();
-
+			if (State == AIState.Idle)
+            {
+				Movement();
+				if (!segmentsSpawned)
+				{
+					int Index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+					Main.npc[Index].ai[0] = npc.whoAmI;
+					int Index1 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+					Main.npc[Index1].ai[0] = npc.whoAmI;
+					Main.npc[Index1].ai[1] = 45;
+					int Index2 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+					Main.npc[Index2].ai[0] = npc.whoAmI;
+					Main.npc[Index2].ai[1] = 90;
+					int Index3 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+					Main.npc[Index3].ai[0] = npc.whoAmI;
+					Main.npc[Index3].ai[1] = 135;
+					int Index4 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+					Main.npc[Index4].ai[0] = npc.whoAmI;
+					Main.npc[Index4].ai[1] = 180;
+					segmentsSpawned = true;
+				}
+			}				
 			if (State == AIState.Smash)
 			{
 
-			}
-			Player target = Main.player[npc.target];
-			if (target.dead)
-			{
-				npc.TargetClosest(false);
-				npc.velocity = new Vector2(0f, -10f);
-				npc.timeLeft--;				
-			}
-		}
-		private void Boulders()
-		{
-			if (!segmentsSpawned)
-			{
-				int Index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-				Main.npc[Index].ai[0] = npc.whoAmI;
-				int Index1 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-				Main.npc[Index1].ai[0] = npc.whoAmI;
-				Main.npc[Index1].ai[1] = 45;
-				int Index2 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-				Main.npc[Index2].ai[0] = npc.whoAmI;
-				Main.npc[Index2].ai[1] = 90;
-				int Index3 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-				Main.npc[Index3].ai[0] = npc.whoAmI;
-				Main.npc[Index3].ai[1] = 135;
-				int Index4 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-				Main.npc[Index4].ai[0] = npc.whoAmI;
-				Main.npc[Index4].ai[1] = 180;
-				segmentsSpawned = true;
 			}
 		}
 		private void Movement()
@@ -328,15 +331,15 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		public override void FindFrame(int frameHeight)
 		{
 			npc.spriteDirection = npc.direction;
-			if (npc.ai[1] == 0)
+			if (State == AIState.Dash || State == AIState.Idle)
 			{
 				npc.frame.Y = 2 * frameHeight;
 			}
-			if (npc.ai[1] == 1)
+			if (State == AIState.Beam)
 			{
 				npc.frame.Y = 1 * frameHeight;
 			}
-			if (npc.ai[1] == 2)
+			if (State == AIState.Grab)
 			{
 				npc.frame.Y = 0 * frameHeight;
 			}
@@ -345,7 +348,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		{
 			Player target = Main.player[npc.target];
 			NPC boss = Main.npc[(int)npc.ai[0]];
-			if (target.dead || target.active)
+			if (target.dead || !target.active)
 			{
 				npc.TargetClosest(false);
 				npc.velocity = new Vector2(0f, -10f);
@@ -359,10 +362,18 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			AITimer++;
 			if (sec == 60)
 			{
-				Main.NewText("Guardian's Fist - Time Alive:" + $"{AITimer / 60}");
+				Main.NewText("Guardian's Fist - Timer Value:" + $"{AITimer}");
 				sec = 0;
 			}
-
+			if (AITimer == 300)
+				State = AIState.Dash;
+            
+			if (AITimer == 900)
+				State = AIState.Beam;
+			
+			if (AITimer == 1200)
+				AITimer = 0;
+            
 			if (State == AIState.Idle)
             {
 				var angle = target.Center - npc.Center;
@@ -371,7 +382,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, 50);
+				var position = boss.Center - new Vector2(200, -30);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -386,7 +397,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, 50);
+				var position = boss.Center - new Vector2(200, -30);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -397,9 +408,24 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					BeamTimer = 0;
 				}
 			}
-
 			if (State == AIState.Dash)
-				DashAI();
+			{
+				var angle = target.Center - npc.Center;
+				npc.rotation = angle.ToRotation() + MathHelper.PiOver2;
+				angle.Normalize();
+				angle.X *= 2f;
+				angle.Y *= 2f;
+				DashTimer++;
+				if (DashTimer >= Main.rand.Next(90, 120))
+				{
+					npc.TargetClosest();
+					npc.netUpdate = true;
+					Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
+					PlayerPosition.Normalize();
+					npc.velocity = PlayerPosition * 8f;
+					DashTimer = 0;
+				}
+			}
 		}
 		private void Move(Vector2 position, float speed)
 		{
@@ -408,29 +434,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			Vector2 velocity = direction * speed;
 
 			npc.velocity = Vector2.SmoothStep(npc.velocity, velocity, 0.2f);
-		}
-		private void DashAI()
-		{
-			Player target = Main.player[npc.target];
-			var angle = target.Center - npc.Center;
-			npc.rotation = angle.ToRotation() + MathHelper.PiOver2;
-			angle.Normalize();
-			angle.X *= 2f;
-			angle.Y *= 2f;
-			DashTimer++;
-			if (DashTimer >= Main.rand.Next(90, 120))
-			{
-				npc.TargetClosest();
-				npc.netUpdate = true;
-				Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
-				PlayerPosition.Normalize();
-				npc.velocity = PlayerPosition * 8f;
-				DashTimer = 0;
-			}
-			if (AITimer == 400)
-			{
-				State = AIState.Beam;
-			}
 		}
 		public override bool CheckActive()
 		{
@@ -485,22 +488,21 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.HitSound = SoundID.DD2_CrystalCartImpact;
 			npc.DeathSound = SoundID.Item14;
 		}
-		private int sec;
 		private int AITimer;
 		private int BeamTimer;
 		private int DashTimer;
 		public override void FindFrame(int frameHeight)
 		{
 			npc.spriteDirection = npc.direction;
-			if (npc.ai[1] == 0)
+			if (State == AIState.Dash || State == AIState.Idle)
 			{
 				npc.frame.Y = 2 * frameHeight;
 			}
-			if (npc.ai[1] == 1)
+			if (State == AIState.Beam)
 			{
 				npc.frame.Y = 1 * frameHeight;
 			}
-			if (npc.ai[1] == 2)
+			if (State == AIState.Grab)
 			{
 				npc.frame.Y = 0 * frameHeight;
 			}
@@ -509,7 +511,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		{
 			Player target = Main.player[npc.target];
 			NPC boss = Main.npc[(int)npc.ai[0]];
-			if (target.dead || target.active)
+			if (target.dead || !target.active)
 			{
 				npc.TargetClosest(false);
 				npc.velocity = new Vector2(0f, -10f);
@@ -519,13 +521,15 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					npc.active = false;
 				}
 			}
-			sec++;
 			AITimer++;
-			if (sec == 60)
-			{
-				Main.NewText("Guardian's Fist - Time Alive:" + $"{AITimer / 60}");
-				sec = 0;
-			}
+			if (AITimer == 300)
+				State = AIState.Dash;
+
+			if (AITimer == 900)
+				State = AIState.Beam;
+
+			if (AITimer == 1200)
+				AITimer = 0;
 
 			if (State == AIState.Idle)
 			{
@@ -535,7 +539,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, -50);
+				var position = boss.Center + new Vector2(200, 30);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -550,7 +554,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, -50);
+				var position = boss.Center + new Vector2(200, 30);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -561,9 +565,25 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					BeamTimer = 0;
 				}
 			}
-
 			if (State == AIState.Dash)
-				DashAI();
+			{
+				var angle = target.Center - npc.Center;
+				npc.rotation = angle.ToRotation() + MathHelper.PiOver2;
+				angle.Normalize();
+				angle.X *= 2f;
+				angle.Y *= 2f;
+				DashTimer++;
+				if (DashTimer >= Main.rand.Next(90, 120))
+				{
+					npc.TargetClosest();
+					npc.netUpdate = true;
+					Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
+					PlayerPosition.Normalize();
+					npc.velocity = PlayerPosition * 8f;
+					DashTimer = 0;
+				}
+
+			}
 		}
 		private void Move(Vector2 position, float speed)
 		{
@@ -572,25 +592,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			Vector2 velocity = direction * speed;
 
 			npc.velocity = Vector2.SmoothStep(npc.velocity, velocity, 0.2f);
-		}
-		private void DashAI()
-		{
-			Player target = Main.player[npc.target];
-			var angle = target.Center - npc.Center;
-			npc.rotation = angle.ToRotation() + MathHelper.PiOver2;
-			angle.Normalize();
-			angle.X *= 2f;
-			angle.Y *= 2f;
-			DashTimer++;
-			if (DashTimer >= Main.rand.Next(90, 120))
-			{
-				npc.TargetClosest();
-				npc.netUpdate = true;
-				Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
-				PlayerPosition.Normalize();
-				npc.velocity = PlayerPosition * 8f;
-				DashTimer = 0;
-			}
 		}
 		public override bool CheckActive()
 		{
