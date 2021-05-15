@@ -1,11 +1,9 @@
-﻿#region Using directives
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+
 using TrelamiumTwo.Common.Items;
-#endregion
+
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
@@ -21,16 +19,18 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTime = item.useAnimation = 25;
 			item.useStyle = ItemUseStyleID.EatingUsing;
+			ExpireTimer = 12000;
 
+			item.potion = true;
 			item.useTurn = true;
 			item.consumable = true;
-
+			item.healLife = 75;
 			item.UseSound = SoundID.Item3;
 		}
         public override void OnConsumeItem(Player player)
         {
-			CombatText.NewText(player.Hitbox, Color.Red, "Healing [II]", true, false);
-			player.HealEffect(60, true);
-        }
+			var Index = CombatText.NewText(player.Hitbox, Color.LimeGreen, "Healing [II]", true, false);
+			Main.combatText[Index].lifeTime = 120;
+		}
     }
 }

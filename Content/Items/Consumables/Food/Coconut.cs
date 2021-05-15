@@ -1,11 +1,8 @@
-﻿#region Using directives
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+
 using TrelamiumTwo.Common.Items;
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
@@ -24,14 +21,16 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTurn = true;
 			item.consumable = true;
+			ExpireTimer = 12000;
 
+			item.buffType = BuffID.Mining;
+			item.buffTime = 600;
 			item.UseSound = SoundID.Item3;
 		}
         public override void OnConsumeItem(Player player)
         {
-			var Index = CombatText.NewText(player.Hitbox, Color.Red, "Ironskin [II]", true, false);
+			var Index = CombatText.NewText(player.Hitbox, Color.SaddleBrown, "Mining Speed [II]", true, false);
 			Main.combatText[Index].lifeTime = 120;
-			player.AddBuff(BuffID.Ironskin, 260);
         }
     }
 }

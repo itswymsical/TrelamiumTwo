@@ -5,7 +5,7 @@ using TrelamiumTwo.Content.Projectiles.Melee;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
-    public class SkyPiercer : ModItem
+    public class SkyPiercer : TrelamiumItem
     {
 
         public override void SetStaticDefaults() => DisplayName.SetDefault("Sky Piercer");

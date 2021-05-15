@@ -13,7 +13,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
 		}
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Sky Piercer Projectile");
+		public override void SetStaticDefaults() => DisplayName.SetDefault("Sky Piercer");
 
 		public override void SetDefaults()
 		{

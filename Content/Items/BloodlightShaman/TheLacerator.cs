@@ -8,29 +8,25 @@ namespace TrelamiumTwo.Content.Items.BloodlightShaman
 {
 	public sealed class TheLacerator : TrelamiumItem
 	{
+		public override string Texture => TrelamiumTwo.HeaviesAssets + "TheLacerator";
 		public override void SetDefaults() // Eldrazi Code imported from EH
 		{
-			item.width = 62;
-			item.height = 72;
-			item.rare = ItemRarityID.LightRed;
-			item.value = Item.sellPrice(gold: 5, silver: 25);
+			item.rare = ItemRarityID.Blue;
+			item.value = Item.sellPrice(silver: 25);
 
-			item.crit = 4;
-			item.damage = 60;
-			item.knockBack = 4.75f;
+			item.crit = 2;
+			item.damage = 22;
+			item.knockBack = 8f;
 
 			item.useTime = item.useAnimation = 26;
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.melee = true;
-			item.noMelee = true;
-			item.channel = true;
+			item.noUseGraphic = item.melee = item.noMelee = item.channel = true;
 			item.autoReuse = false;
-			item.noUseGraphic = true;
 
 			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.TheLaceratorProjectile>();
-			
+			item.shoot = ModContent.ProjectileType<Projectiles.Defensive.TheLaceratorProjectile>();
+
 			item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}
 

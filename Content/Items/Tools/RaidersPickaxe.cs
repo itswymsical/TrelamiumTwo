@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Content.Dusts;
 
-namespace TrelamiumTwo.Content.Items.Tools.Luminescent
+namespace TrelamiumTwo.Content.Items.Tools
 {
     public class RaidersPickaxe : TrelamiumItem
     {

@@ -1,20 +1,19 @@
-﻿#region Using directives
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+
 using TrelamiumTwo.Common.Items;
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Consumables.Food
 {
 	public sealed class Mango : FoodItem
 	{
+		public override void SetStaticDefaults()
+		=> DisplayName.SetDefault("Mango");
 		public override void SetDefaults()
 		{
 			item.maxStack = 30;
-			item.rare = ItemRarityID.Blue;
+			item.rare = ItemRarityID.White;
 			item.value = Item.buyPrice(silver: 2);
 
 			item.useTime = item.useAnimation = 25;
@@ -22,13 +21,16 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 
 			item.useTurn = true;
 			item.consumable = true;
+			ExpireTimer = 12000;
 
+			item.buffType = BuffID.Regeneration;
+			item.buffTime = 600;
 			item.UseSound = SoundID.Item3;
 		}
         public override void OnConsumeItem(Player player)
         {
-			CombatText.NewText(player.Hitbox, Color.Orange, "Life Regeneration [II]", true, false);
-			player.AddBuff(BuffID.Regeneration, 600);
-        }
+			var Index = CombatText.NewText(player.Hitbox, Color.Orange, "Life Regeneration [II]", true, false);
+			Main.combatText[Index].lifeTime = 120;
+		}
     }
 }

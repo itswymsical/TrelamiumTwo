@@ -8,29 +8,27 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 {
 	public class PrimordialEarth : TrelamiumItem
 	{
+		public override string Texture => TrelamiumTwo.HeaviesAssets + "PrimordialEarth";
 		public override void SetStaticDefaults() 
 			=> DisplayName.SetDefault("Primordial Earth");
 		public override void SetDefaults()
 		{
 			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 75);
+			item.value = Item.sellPrice(silver: 25);
 
-			item.crit = 3;
-			item.damage = 22;
-			item.knockBack = 5f;
+			item.crit = 2;
+			item.damage = 36;
+			item.knockBack = 8f;
 
 			item.useTime = item.useAnimation = 26;
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.melee = true;
-			item.noMelee = true;
-			item.channel = true;
+			item.noUseGraphic = item.melee = item.noMelee = item.channel = true;
 			item.autoReuse = false;
-			item.noUseGraphic = true;
 
 			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.PrimordialEarthProjectile>();
-			
+			item.shoot = ModContent.ProjectileType<Projectiles.Defensive.PrimordialEarthProjectile>();
+
 			item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}
 

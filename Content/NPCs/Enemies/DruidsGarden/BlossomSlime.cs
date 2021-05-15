@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.NPCs.Enemies.DruidsGarden
 {
-    public sealed class BlossomSlime : ModNPC
+    public class BlossomSlime : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mushroom Slime");
+            DisplayName.SetDefault("Blossom Slime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
         public override void SetDefaults()

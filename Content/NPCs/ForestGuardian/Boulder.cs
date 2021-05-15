@@ -1,10 +1,8 @@
-﻿#region Using Directives
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-#endregion
 
 namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
@@ -31,8 +29,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
             npc.boss = true;
             npc.netUpdate = true;
 
-            npc.HitSound = SoundID.NPCHit19;
-            npc.DeathSound = SoundID.NPCDeath8;
+            npc.HitSound = SoundID.Item50;
+            npc.DeathSound = SoundID.DD2_WitherBeastCrystalImpact;
         }
         float charge = 0f;
         public override bool CheckActive()
@@ -45,12 +43,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
         }
         public override bool PreAI()
         {
-            Player P = Main.player[npc.target];
-            if (!P.active || P.dead)
+            Player target = Main.player[npc.target];
+            if (!target.active || target.dead)
             {
                 npc.TargetClosest(false);
-                P = Main.player[npc.target];
-                if (!P.active || P.dead)
+                if (!target.active || target.dead)
                 {
                     npc.velocity = new Vector2(0f, -10f);
                     if (npc.timeLeft > 150)
@@ -60,13 +57,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
                 }
             }
             else if (npc.timeLeft > 1800)
-            {
                 npc.timeLeft = 1800;
-            }
+            
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead)
-            {
-                npc.TargetClosest(true);
-            }
+                npc.TargetClosest();
+            
             npc.ai[3] += 1;
             if (Main.rand.Next(2) == 0)
             {
@@ -74,35 +69,28 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
             }
             if (npc.ai[2] <= 100)
             {
-                npc.ai[2] += 1;
+                npc.ai[2]++;
             }
             double deg = npc.ai[1];
             double rad = deg * (Math.PI / 240);
             double dist = npc.ai[2];
-            NPC p = Main.npc[(int)npc.ai[0]];
-            npc.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - npc.width / 2;
-            npc.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 2;
+            NPC parent = Main.npc[(int)npc.ai[0]];
+            npc.position.X = parent.Center.X - (int)(Math.Cos(rad) * dist) - npc.width / 3;
+            npc.position.Y = parent.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 3;
             if (charge <= 5f)
             {
                 charge += 0.02f;
             }
-            if (p.life <= 0 || !p.active)
+            if (parent.life <= 0 || !parent.active)
             {
                 npc.active = false;
                 npc.life = 0;
                 npc.checkDead();
                 npc.HitEffect();
             }
-            npc.rotation += 0.01f;
+            npc.rotation += .01f;
             npc.ai[1] += charge;
             return false;
-        }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            if (Main.rand.Next(20) == 0)
-            {
-                target.AddBuff(BuffID.Stoned, 30);
-            }
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -114,11 +102,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
                     Dust dust = Main.dust[DustIndex];
                     dust.velocity *= 1.6f;
                     Dust dust2 = Main.dust[DustIndex];
-                    dust2.velocity.Y = dust2.velocity.Y - 1f;
+                    dust2.velocity.Y -= dust2.velocity.Y - 1f;
                     Main.dust[DustIndex].position = Vector2.Lerp(Main.dust[DustIndex].position, npc.Center, 1.25f);
                 }
-                Projectile.NewProjectile(npc.position, new Vector2(0, 2f), 
-                    ModContent.ProjectileType<Projectiles.Hostile.BoulderProjectile>(), 40, 2f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.position, new Vector2(0, 1.5f), 
+                    ModContent.ProjectileType<Projectiles.Hostile.BoulderProjectile>(), 20, 2f, Main.myPlayer, 0f, 0f);
             }
         }
     }
