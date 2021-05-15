@@ -23,8 +23,10 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
         }
 
         int radians = 16;
+        
         public override void AI()
         {
+            
             projectile.localAI[0] += 1f;
             if (projectile.localAI[0] > 9f)
             {
@@ -36,7 +38,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
                     int dust = Dust.NewDust(projectilePosition, 1, 1, DustID.WitherLightning, 0f, 0f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].position = projectilePosition;
-                    Main.dust[dust].scale = (float)Main.rand.Next(70, 110) * 0.011f;
+                    Main.dust[dust].scale = (float)Main.rand.Next(45, 55) * 0.011f;
                     Main.dust[dust].velocity *= 0.15f;
                 }
             }

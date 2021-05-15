@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 80;
+			projectile.width = projectile.height = 10;
 
 			projectile.aiStyle = 19;
 			projectile.scale = 1.1f;
@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			projectile.tileCollide = false;
 
-			projectile.width = projectile.height = 32;
+			projectile.width = projectile.height = 10;
 
 		}
 
@@ -72,18 +72,20 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			}
 
 			Timer++;
-			if (Timer < 4)
+			if (Timer >= 7)
             {
 				Player player = Main.player[projectile.owner];
 				if (player.direction == -1)
 				{
 					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 3) * .25f, Main.rand.Next(-10, 5) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+					Main.PlaySound(SoundID.Item93, -1, -1);
 				}
 				else if(player.direction == 1)
 				{
 					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-3, 10) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+					Main.PlaySound(SoundID.Item93, -1, -1);
 				}
-                 	
+
             }
 		}
     }
