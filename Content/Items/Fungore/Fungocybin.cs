@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Fungocybin");
-			Tooltip.SetDefault("Summons a fungus symbiote");
+			Tooltip.SetDefault("Summons the pea-brained fungus giant");
 			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 12;
 		}
 

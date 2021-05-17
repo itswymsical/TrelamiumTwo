@@ -1,4 +1,3 @@
-#region Using Directives
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,9 +7,8 @@ using System.IO;
 using TrelamiumTwo.Content.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using TrelamiumTwo.Core.Utils;
-#endregion
+using TrelamiumTwo.Utilities;
+
 
 namespace TrelamiumTwo.Content.NPCs.Fungore
 {
@@ -18,6 +16,17 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
     public class Fungore : ModNPC
     {
         #region AIState
+        private enum AIState
+        {
+            Idle,
+            Jump,
+            Punch
+        }
+        private AIState State
+        {
+            get => (AIState)npc.ai[0];
+            set => npc.ai[0] = (int)value;
+        }
         public float AttackTimer
         {
             get => npc.ai[1];
@@ -29,7 +38,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fungore");
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 8;
         }
         public override void SetDefaults()
         {
@@ -42,8 +51,8 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             npc.noGravity = false;
             npc.lavaImmune = true;
 
-            npc.width = 90;
-            npc.height = 92;
+            npc.width = 108;
+            npc.height = 118;
             npc.knockBackResist = 0f;
             npc.aiStyle = -1;
             npc.HitSound = SoundID.DD2_OgreHurt;
@@ -85,12 +94,14 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         {
 
             npc.spriteDirection = npc.direction;
-            if (++npc.frameCounter > 7)
+            if (State == AIState.Idle)
             {
-                npc.frameCounter = 0;
-                npc.frame.Y = (npc.frame.Y + frameHeight) % (frameHeight * Main.npcFrameCount[npc.type]);
+                if (++npc.frameCounter > 8)
+                {
+                    npc.frameCounter = 0;
+                    npc.frame.Y = (npc.frame.Y + frameHeight) % (frameHeight * Main.npcFrameCount[npc.type]);
+                }
             }
-
         }
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
@@ -190,16 +201,23 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                 jumpTimer = 0;
                 jumpRegular = 0;
             }
-            // If have been on ground for at least 1.5 seonds, and are hitting wall or there is a hole
+
+            if (jumpTimer > 0)
+            {
+
+                State = AIState.Jump;
+                JumpAI();
+            }
+        }
+        private void JumpAI()
+        {
             if (jumpTimer >= 40 && (HoleBelow() || (npc.collideX && npc.position.X == npc.oldPosition.X)))
             {
-                // Jump
                 npc.velocity.Y = Main.rand.NextFloat(-10f, -8f);
                 npc.netUpdate = true;
             }
             if (jumpRegular >= 140 || (npc.collideX && npc.position.X == npc.oldPosition.X))
             {
-                // Jump
                 npc.velocity.Y = Main.rand.NextFloat(-10f, -8f);
                 npc.netUpdate = true;
             }

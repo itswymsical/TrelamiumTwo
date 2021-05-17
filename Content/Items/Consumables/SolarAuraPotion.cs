@@ -1,18 +1,14 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
-
 namespace TrelamiumTwo.Content.Items.Consumables
 {
-	public sealed class SolarAuraPotion : ModItem
+	public class SolarAuraPotion : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Infused with the power of the sun...");
+			Tooltip.SetDefault("Increases the damage of fire related buffs and increases defense while in lava");
 		}
 		public override void SetDefaults()
 		{
@@ -36,6 +32,7 @@ namespace TrelamiumTwo.Content.Items.Consumables
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Bottle);
 			recipe.AddIngredient(ItemID.Daybloom);
 			recipe.AddIngredient(ItemID.Fireblossom);
 			recipe.AddIngredient(ModContent.ItemType<Fish.Sunfish>());

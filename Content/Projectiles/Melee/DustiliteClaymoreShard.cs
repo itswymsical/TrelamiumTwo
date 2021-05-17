@@ -1,6 +1,4 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,14 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 using TrelamiumTwo.Common.Extensions;
 
-#endregion
-
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
 	public sealed class DustiliteClaymoreShard : ModProjectile
 	{
-		public override string Texture => TrelamiumTwo.DustiliteAssets + "DustiliteShards";
-
 		private enum AIState
 		{
 			Charging = 0,
@@ -93,7 +87,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			=> State == AIState.Shooting;
 
 		public override void Kill(int timeLeft)
-			=> Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Dustilite>());
+			=> Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Dustilite>());
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{

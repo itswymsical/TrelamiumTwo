@@ -1,6 +1,4 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Graphics.Effects;
@@ -8,9 +6,7 @@ using Terraria.Graphics.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using TrelamiumTwo.Common.Extensions;
-
-#endregion
+using TrelamiumTwo.Utilities.Extensions;
 
 namespace TrelamiumTwo.Content.Tiles.DustifiedCaverns
 {

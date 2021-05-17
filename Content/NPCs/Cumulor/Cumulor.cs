@@ -9,8 +9,8 @@ namespace TrelamiumTwo.Content.NPCs.Cumulor
 {
 	public sealed class Cumulor : ModNPC
 	{
-		#region AIState
-		private enum AIState
+        #region AIState
+        private enum AIState
 		{
 			Normal = 0,
 			Dash = 1,
@@ -37,9 +37,6 @@ namespace TrelamiumTwo.Content.NPCs.Cumulor
 			get => npc.ai[3];
 			set => npc.ai[3] = value;
 		}
-		private bool aetherRain;
-		private bool lightningShock;
-		private bool gasSpew;
 		#endregion
 		public override void SetStaticDefaults()
 		{
@@ -100,14 +97,13 @@ namespace TrelamiumTwo.Content.NPCs.Cumulor
 		}
 		private void AttackTypes()
         {
-			Player player = Main.player[npc.target];
+			/*Player player = Main.player[npc.target];
 			bool[] attackTypes = new bool[]
 			{
 				aetherRain,
 				lightningShock,
 				gasSpew
-			};
-
+			};*/
 		}
 		private void NormalStateMovement()
 		{
@@ -152,14 +148,14 @@ namespace TrelamiumTwo.Content.NPCs.Cumulor
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(npc.position, npc.width, npc.height, 16, hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(npc.position, npc.width, npc.height, 16, hitDirection, -1f, 0, default, 1f);
 			}
 			if (npc.life <= 0)
 			{
 				Gore.NewGore(npc.position, npc.velocity, 825, 1f);
 				for (int k = 0; k < 25; k++)
 				{
-					Dust.NewDust(npc.position, npc.width, npc.height, 16, hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(npc.position, npc.width, npc.height, 16, hitDirection, -1f, 0, default, 1f);
 				}
 				for (int k2 = 0; k2 < 3; k2++)
 				{

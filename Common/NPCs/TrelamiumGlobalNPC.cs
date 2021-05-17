@@ -26,6 +26,36 @@ namespace TrelamiumTwo.Common.NPCs
                     damage = 1;
                 }
             }
+            if (Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>().solarAura)
+            {
+                if (npc.HasBuff(BuffID.OnFire))
+                {
+                    if (npc.lifeRegen > 0)
+                        npc.lifeRegen = 0;
+                    
+                    npc.lifeRegen -= 7;
+                    if (damage < 2)
+                        damage = 2;
+                }
+                if (npc.HasBuff(BuffID.CursedInferno))
+                {
+                    if (npc.lifeRegen > 0)
+                        npc.lifeRegen = 0;
+
+                    npc.lifeRegen -= 8;
+                    if (damage < 3)
+                        damage = 3;
+                }
+                if (npc.HasBuff(BuffID.ShadowFlame))
+                {
+                    if (npc.lifeRegen > 0)
+                        npc.lifeRegen = 0;
+
+                    npc.lifeRegen -= 8;
+                    if (damage < 6)
+                        damage = 6;
+                }
+            }
         }
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {

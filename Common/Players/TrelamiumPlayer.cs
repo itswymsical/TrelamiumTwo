@@ -1,9 +1,8 @@
-﻿#region Using Directives
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using TrelamiumTwo.Common.Worlds;
-#endregion
+using Microsoft.Xna.Framework;
 
 namespace TrelamiumTwo.Common.Players
 {
@@ -14,6 +13,7 @@ namespace TrelamiumTwo.Common.Players
         public bool dustrollerSkates;
         public bool floralSpirit;
         public bool frostbarkBonus;
+        public bool gleamingNectar;
         #endregion
         #region H-P
         public bool kindledSetBonus;
@@ -25,6 +25,7 @@ namespace TrelamiumTwo.Common.Players
         #endregion
         #region Q-T
         public float shakeEffects = 0;
+        public bool solarAura;
         public bool toadstoolExplode;
         #endregion
         #region U-Z
@@ -51,6 +52,7 @@ namespace TrelamiumTwo.Common.Players
                 }
             }
         }
+        
         #endregion
         public override void ResetEffects()
         {
@@ -59,6 +61,7 @@ namespace TrelamiumTwo.Common.Players
             dustrollerSkates = false;
             floralSpirit = false;
             frostbarkBonus = false;
+            gleamingNectar = false;
             #endregion
             #region H-P
             kindledSetBonus = false;
@@ -70,6 +73,7 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region Q-T
             shakeEffects = 0;
+            solarAura = false;
             toadstoolExplode = false;
             #endregion
             #region U-Z
@@ -83,6 +87,7 @@ namespace TrelamiumTwo.Common.Players
             dustrollerSkates = false;
             floralSpirit = false;
             frostbarkBonus = false;
+            gleamingNectar = false;
             #endregion
             #region H-P
             kindledSetBonus = false;
@@ -94,12 +99,26 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region Q-T
             shakeEffects = 0;
+            solarAura = false;
             toadstoolExplode = false;
             #endregion
             #region U-Z
             #endregion
         }
-
+        public override void UpdateBadLifeRegen()
+        {
+            if (gleamingNectar)
+            {
+                player.lifeRegen += 4;
+                player.manaRegen += 4;
+            }
+            if (solarAura)
+            {
+                if (player.lavaWet)
+                    player.statDefense %= 10;
+            }
+        }
+    
         public override void UpdateBiomes() 
         {
             ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 180;

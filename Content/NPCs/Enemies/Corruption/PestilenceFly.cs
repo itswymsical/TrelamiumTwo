@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Corruption
 			npc.lifeMax = 14;
 
 			npc.noGravity = true;
-
+			npc.noTileCollide = true;
 			npc.knockBackResist = 0f;
 			npc.HitSound = SoundID.NPCHit9;
 			npc.DeathSound = SoundID.NPCDeath12;

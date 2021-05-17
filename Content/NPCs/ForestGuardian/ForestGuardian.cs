@@ -4,26 +4,23 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
-using TrelamiumTwo.Core.Utils;
+using TrelamiumTwo.Utilities;
 using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
 	public class ForestGuardian : ModNPC
 	{
-        #region AIState
         private enum AIState
 		{
-			Idle = 0,
-			Smash = 1
+			Idle,
+			Smash
 		}
 		private AIState State
 		{
 			get => (AIState)npc.ai[0];
 			set => npc.ai[0] = (int)value;
 		}
-        #endregion
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Forest Guardian");
@@ -38,7 +35,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 0;
 			npc.defense = 12;
-			npc.lifeMax = 2100;
+			npc.lifeMax = 2000;
 
 			npc.noTileCollide = true;
 			npc.noGravity = true;
@@ -55,8 +52,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		private bool segmentsSpawned; 
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
-			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.35f * bossLifeScale);
-			npc.damage = (int)(npc.damage * 0.55f);
+			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.45f * bossLifeScale);
+			npc.damage = (int)(npc.damage * .5f);
 		}
 		public override void AI()
 		{
@@ -81,9 +78,12 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				Main.npc[Right].ai[0] = npc.whoAmI;
 				spawn = true;
 			}
-			if (NPC.AnyNPCs(NPCType<ForestGuardian_Left>()) || NPC.AnyNPCs(NPCType<ForestGuardian_Right>()))
-				npc.defense = npc.defense * 4;
-			
+			if (NPC.AnyNPCs(NPCType<ForestGuardian_Left>()))
+				npc.defense = (npc.defense * 2) + NPC.CountNPCS(NPCType<ForestGuardian_Left>());
+
+			if (NPC.AnyNPCs(NPCType<ForestGuardian_Right>()))
+				npc.defense = (npc.defense * 2) + NPC.CountNPCS(NPCType<ForestGuardian_Right>());
+
 			if (NPC.AnyNPCs(NPCType<Boulder>()))
 				npc.defense =  npc.defense + (NPC.CountNPCS(NPCType<Boulder>()) * 2);
 			
@@ -122,7 +122,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			float num698 = 0.50f;
 			Vector2 vector90 = new Vector2(npc.Center.X, npc.Center.Y);
 			float num699 = Main.player[npc.target].Center.X - vector90.X;
-			float num700 = Main.player[npc.target].Center.Y - vector90.Y - 200f;
+			float num700 = Main.player[npc.target].Center.Y - vector90.Y - 320f;
 			float num701 = (float)Math.Sqrt((num699 * num699 + num700 * num700));
 			if (num701 < 20f)
 			{
@@ -299,7 +299,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			Main.npcFrameCount[npc.type] = 3;
 		}
-		#region AIState
 		private enum AIState
 		{
 			Idle,
@@ -312,7 +311,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			get => (AIState)npc.ai[1];
 			set => npc.ai[1] = (int)value;
 		}
-		#endregion
 
 		public override void SetDefaults()
 		{
@@ -327,7 +325,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.noTileCollide = true;
 			npc.noGravity = true;
 			npc.lavaImmune = true;
-			npc.boss = true;
 			npc.netUpdate = true;
 
 			npc.knockBackResist = 0f;
@@ -396,7 +393,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, -50);
+				var position = boss.Center - new Vector2(200, -80);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -411,7 +408,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center - new Vector2(200, -50);
+				var position = boss.Center - new Vector2(200, -80);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -467,7 +464,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			Main.npcFrameCount[npc.type] = 3;
 		}
-		#region AIState
 		private enum AIState
 		{
 			Idle,
@@ -480,7 +476,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			get => (AIState)npc.ai[1];
 			set => npc.ai[1] = (int)value;
 		}
-		#endregion
 
 		public override void SetDefaults()
 		{
@@ -495,7 +490,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.noTileCollide = true;
 			npc.noGravity = true;
 			npc.lavaImmune = true;
-			npc.boss = true;
 			npc.netUpdate = true;
 
 			npc.knockBackResist = 0f;
@@ -558,7 +552,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, 50);
+				var position = boss.Center + new Vector2(200, 80);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 
@@ -573,7 +567,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				angle.X *= 3f;
 				angle.Y *= 3f;
 
-				var position = boss.Center + new Vector2(200, 50);
+				var position = boss.Center + new Vector2(200, 80);
 				float speed = Vector2.Distance(npc.Center, position);
 				speed = MathHelper.Clamp(speed, -18f, 18f);
 

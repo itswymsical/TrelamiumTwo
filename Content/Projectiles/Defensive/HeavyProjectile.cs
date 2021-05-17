@@ -92,12 +92,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 60);
 		}
         public override void Kill(int timeLeft)
         {
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -228,12 +228,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 151, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 151, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 151, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 151, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -371,12 +371,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 32, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -515,12 +515,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 				}
 			}
 
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 5, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 5, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 5, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 5, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -654,7 +654,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
@@ -667,7 +667,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 					ModContent.ProjectileType<MushroomProjectile>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -803,12 +803,12 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive // Eldrazi Code imported fr
 				}
 			}
 
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			Core.Utils.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
+			Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
