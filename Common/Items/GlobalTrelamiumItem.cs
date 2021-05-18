@@ -34,7 +34,14 @@ namespace TrelamiumTwo.Common.Items
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
-            }          
+            }
+        }
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.Acorn)
+            {
+                item.ammo = item.type;
+            }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {

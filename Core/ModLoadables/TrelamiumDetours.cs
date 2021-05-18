@@ -15,14 +15,5 @@ namespace TrelamiumTwo.Core.ModLoadables
 		public void Load() => Main.OnTick += TrelamiumTwo.Update;
 
 		public void Unload() => Main.OnTick -= TrelamiumTwo.Update;
-		/*
-		private void DrawDiscordInvite(On.Terraria.Main.orig_DrawMenu orig, Main self, GameTime gameTime)
-		{
-			UILoader.GetUserInterface<DiscordInviteUI>()?.Draw(Main.spriteBatch, gameTime);
-			UILoader.GetUserInterface<DiscordInviteUI>()?.Update(gameTime);
-
-			orig(self, gameTime);
-		}
-		*/
 	}
 }

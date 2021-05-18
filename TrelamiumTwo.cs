@@ -12,6 +12,10 @@ using Terraria.UI;
 using Microsoft.Xna.Framework;
 using TrelamiumTwo.Core.Abstracts.Interface;
 using TrelamiumTwo.Core.Loaders;
+using TrelamiumTwo.Content.UI.ArchaeologistUI;
+using System.Threading;
+using Microsoft.Xna.Framework.Audio;
+using MonoMod.Cil;
 
 namespace TrelamiumTwo
 {
@@ -20,6 +24,9 @@ namespace TrelamiumTwo
         public const bool DEBUG = true;
         private List<ILoadable> loadCache;
         public static int GeneralTimer;
+        private bool stopTitleMusic = false;
+        private ManualResetEvent titleMusicStopped = new ManualResetEvent(false);
+        private int customTitleMusicSlot;
 
         #region Texture Loading Variables
         public const string Abbreviation = "TrelamiumTwo";
@@ -36,6 +43,8 @@ namespace TrelamiumTwo
         public static ModHotKey shieldHotkey;
         internal MovementTrackerUI MovementTracker;
         private UserInterface movementTrackerUI;
+        internal ArchaeologistsWorkshopUI ArcheologistsWorkshop;
+        private UserInterface archaeologistsWorkshopUI;
         internal static TrelamiumTwo Instance { get; set; }
         public TrelamiumTwo()
         {
@@ -63,6 +72,10 @@ namespace TrelamiumTwo
                 MovementTracker = new MovementTrackerUI();
                 movementTrackerUI = new UserInterface();
                 movementTrackerUI.SetState(MovementTracker);
+
+                ArcheologistsWorkshop = new ArchaeologistsWorkshopUI();
+                archaeologistsWorkshopUI = new UserInterface();
+                archaeologistsWorkshopUI.SetState(ArcheologistsWorkshop);
             }
         }
 
@@ -107,6 +120,40 @@ namespace TrelamiumTwo
                 bossChecklist.Call("AddBossWithInfo", "Fungore", 1f, (Func<bool>)(() => Common.Worlds.TrelamiumWorld.downedFungore), "Use a [i:" + ModContent.ItemType<Content.Items.Fungore.Fungocybin>() + "] Anywhere during the day.");
                 bossChecklist.Call("AddBossWithInfo", "Glacier", 10f, (Func<bool>)(() => Common.Worlds.TrelamiumWorld.downedGlacier), "Use a [i:" + ModContent.ItemType<Content.Items.Fungore.Fungocybin>() + "] in the Tundra during night.");
             }
+            customTitleMusicSlot = GetSoundSlot(SoundType.Music, "Sounds/Music/IlluminantInkiness");
+            IL.Terraria.Main.UpdateAudio += il => {
+                var c = new ILCursor(il);
+                c.GotoNext(MoveType.After, i => i.MatchLdfld<Main>("newMusic"));
+                c.EmitDelegate<Func<int, int>>(newMusic => newMusic == MusicID.Title ? customTitleMusicSlot : newMusic);
+            };
+        }
+        public override void Close()
+        {
+            // Close isn't called on the main thread. Who doesn't love a bit of thread safety
+            // Close may be called even if we didn't reach PostSetupContent, so don't try and stop a music track which hasn't been loaded or played
+            if (customTitleMusicSlot > 0)
+            {
+                stopTitleMusic = true;
+                titleMusicStopped.WaitOne();
+            }
+            base.Close();
+        }
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        {
+            if (stopTitleMusic)
+            {
+                // prevent our IL hook trying to play the track anymore
+                // we could just remove our IL hook, but then we'd have to save it in a variable. tML removes it for us anyway
+                customTitleMusicSlot = MusicID.Title;
+
+                // stop the music if it's playing (which it probably is)
+                var m = GetMusic("Sounds/Music/IlluminantInkiness");
+                if (m.IsPlaying)
+                    m.Stop(AudioStopOptions.Immediate);
+
+                titleMusicStopped.Set();
+                stopTitleMusic = false;
+            }
         }
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
@@ -116,6 +163,15 @@ namespace TrelamiumTwo
             if (resourceBarIndex != -1)
             {
                 layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer("TrelamiumTwo: Movement Speed Bar", delegate
+                {
+                    movementTrackerUI.Draw(Main.spriteBatch, new GameTime());
+                    return true;
+                },
+                InterfaceScaleType.UI));
+            }
+            if (resourceBarIndex != -1)
+            {
+                layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer("TrelamiumTwo: Archaeologist's Workshop", delegate
                 {
                     movementTrackerUI.Draw(Main.spriteBatch, new GameTime());
                     return true;
