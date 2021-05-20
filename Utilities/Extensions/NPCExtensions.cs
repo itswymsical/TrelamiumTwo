@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using System;
+using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Utilities.Extensions
 {
@@ -10,6 +11,11 @@ namespace TrelamiumTwo.Utilities.Extensions
 	{
 		public static void GenericFighterAI(this NPC npc, float maxSpeed = 1.5f, int maxAllowedStuckTime = 60, float jumpHeightModifier = 1f)
 		{
+			if (npc.type == ModContent.NPCType<Content.NPCs.Fungore.Fungore>())
+            {
+				maxSpeed = 2.75f;
+				jumpHeightModifier = 1.25f;
+            }
 			bool isStuck = npc.ai[1] >= maxAllowedStuckTime;
 
 			bool canJump = false;

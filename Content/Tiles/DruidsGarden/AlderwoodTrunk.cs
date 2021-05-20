@@ -15,7 +15,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             soundType = 0;
             Main.tileMerge[Type][ModContent.TileType<SlateTile>()] = true;
             Main.tileMerge[Type][ModContent.TileType<AlluviumOreTile>()] = true;
-            Main.tileMerge[Type][ModContent.TileType<LoamBlockGrassTile>()] = true;
+            Main.tileMerge[Type][ModContent.TileType<LoamTile>()] = true;
 
             AddMapEntry(new Color(244, 235, 66));
         }

@@ -21,7 +21,7 @@ namespace TrelamiumTwo.Content.Tiles
             soundType = SoundID.Tink;
             soundStyle = 2;
 
-            drop = ModContent.ItemType<Items.Placeable.Carbon>();
+            drop = ModContent.ItemType<Items.Placeable.AzumuthOre>();
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Azumuth");
             AddMapEntry(new Color(55, 0, 55), name);

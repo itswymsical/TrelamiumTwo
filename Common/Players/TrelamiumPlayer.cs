@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using TrelamiumTwo.Common.Worlds;
 using Microsoft.Xna.Framework;
+using TrelamiumTwo.Content.Buffs;
 
 namespace TrelamiumTwo.Common.Players
 {
@@ -118,7 +119,15 @@ namespace TrelamiumTwo.Common.Players
                     player.statDefense %= 10;
             }
         }
-    
+        public override void FrameEffects()
+        {
+            if (player.HasBuff(ModContent.BuffType<SlitheringGrace>()))
+            {
+                player.legs = mod.GetEquipSlot("RattlesnakeLeg", EquipType.Legs);
+                player.body = mod.GetEquipSlot("RattlesnakeBody", EquipType.Body);
+                player.head = mod.GetEquipSlot("RattlesnakeHead", EquipType.Head);
+            }
+        }
         public override void UpdateBiomes() 
         {
             ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 180;

@@ -3,14 +3,14 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Placeable
 {
-    public class ArcheologistsWorkshop : TrelamiumItem
+    public class AzumuthOre : TrelamiumItem
     {
         public override void SetStaticDefaults() 
-            => DisplayName.SetDefault("Archeologist's Workshop");
+            => DisplayName.SetDefault("Azumuth Ore");
 
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.maxStack = 999;
             item.width = 18;
             item.height = 24;
@@ -21,7 +21,7 @@ namespace TrelamiumTwo.Content.Items.Placeable
             item.autoReuse = true;
             item.consumable = true;
             item.value = Terraria.Item.sellPrice(copper: 80);
-            item.createTile = ModContent.TileType<Tiles.Stationary.ArchaeologistsWorkshopTile>();
+            item.createTile = ModContent.TileType<Tiles.AzumuthTile>();
         }
     }
 }

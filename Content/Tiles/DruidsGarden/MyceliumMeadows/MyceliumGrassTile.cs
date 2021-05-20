@@ -31,7 +31,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden.MyceliumMeadows
             if (!effectOnly)
             {
                 fail = true;
-                Main.tile[i, j].type = (ushort)ModContent.TileType<LoamBlockTile>();
+                Main.tile[i, j].type = (ushort)ModContent.TileType<LoamTile>();
                 WorldGen.SquareTileFrame(i, j, true);
                 for (int i1 = 0; i1 < 3; i1++)
                 {

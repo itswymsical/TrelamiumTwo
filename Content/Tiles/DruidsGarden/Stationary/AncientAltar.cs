@@ -1,11 +1,9 @@
-﻿#region Using Directives
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-#endregion
 
-namespace TrelamiumTwo.Content.Tiles.DruidsGarden
+namespace TrelamiumTwo.Content.Tiles.DruidsGarden.Stationary
 {
     public class AncientAltar : ModTile
     {

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using TrelamiumTwo.Core.Loaders;
 using TrelamiumTwo.Content.UI.ArchaeologistUI;
 
-namespace TrelamiumTwo.Content.Tiles
+namespace TrelamiumTwo.Content.Tiles.Stationary
 {
 	public sealed class ArchaeologistsWorkshopTile : ModTile
 	{

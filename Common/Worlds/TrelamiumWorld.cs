@@ -1,4 +1,3 @@
-#region Using directives
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -8,7 +7,6 @@ using Terraria.World.Generation;
 
 using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
 using TrelamiumTwo.Content.Tiles.DruidsGarden;
-#endregion
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -29,8 +27,8 @@ namespace TrelamiumTwo.Common.Worlds
 				tileCounts[ModContent.TileType<DustiliteCrystal_Large1>()];
 
             DruidsGardenTiles = 
-				tileCounts[ModContent.TileType<LoamBlockTile>()] + 
-				tileCounts[ModContent.TileType<LoamBlockGrassTile>()];
+				tileCounts[ModContent.TileType<LoamTile>()] + 
+				tileCounts[ModContent.TileType<LoamTile_Grass>()];
         }
 		#region TagCompound & Loading
 		public override TagCompound Save()

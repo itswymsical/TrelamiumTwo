@@ -1,13 +1,11 @@
-﻿#region Using Directives
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-#endregion
 
-namespace TrelamiumTwo.Content.Tiles.DruidsGarden
+namespace TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient
 {
     public sealed class AlluviumCluster : ModTile
     {
@@ -35,7 +33,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         {
             if (Main.rand.Next(300) == 0)
             {
-                int Index = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 151, 0f, 0f, 0, default(Color), 1.4f);
+                int Index = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 151, 0f, 0f, 0, default, 1.4f);
                 Main.dust[Index].scale = 1.15f;
                 Main.dust[Index].noGravity = true;
                 Main.dust[Index].velocity *= 0f;
@@ -86,7 +84,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         {
             if (Main.rand.Next(300) == 0)
             {
-                int Index = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 151, 0f, 0f, 0, default(Color), 1.4f);
+                int Index = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 151, 0f, 0f, 0, default, 1.4f);
                 Main.dust[Index].scale = 1.15f;
                 Main.dust[Index].noGravity = true;
                 Main.dust[Index].velocity *= 0f;

@@ -11,17 +11,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 {
 	public class ForestGuardian : ModNPC
 	{
-        private enum AIState
-		{
-			Idle,
-			Smash
-		}
-		private AIState State
-		{
-			get => (AIState)npc.ai[0];
-			set => npc.ai[0] = (int)value;
-		}
-        public override void SetStaticDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Forest Guardian");
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;
@@ -34,8 +24,8 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.height = 184;
 
 			npc.damage = 0;
-			npc.defense = 12;
-			npc.lifeMax = 2000;
+			npc.defense = 13;
+			npc.lifeMax = 1800;
 
 			npc.noTileCollide = true;
 			npc.noGravity = true;
@@ -49,7 +39,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 		}
 		bool spawn;
 		public int spawnTimer;
-		private bool segmentsSpawned; 
+		private bool segmentsSpawned;
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
 			npc.lifeMax = (int)(npc.lifeMax / Main.expertLife * 1.45f * bossLifeScale);
@@ -69,7 +59,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					npc.active = false;
 				}
 			}
-
 			if (!spawn)
 			{
 				var Left = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<ForestGuardian_Left>());
@@ -78,41 +67,19 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				Main.npc[Right].ai[0] = npc.whoAmI;
 				spawn = true;
 			}
-			if (NPC.AnyNPCs(NPCType<ForestGuardian_Left>()))
-				npc.defense = (npc.defense * 2) + NPC.CountNPCS(NPCType<ForestGuardian_Left>());
 
-			if (NPC.AnyNPCs(NPCType<ForestGuardian_Right>()))
-				npc.defense = (npc.defense * 2) + NPC.CountNPCS(NPCType<ForestGuardian_Right>());
-
-			if (NPC.AnyNPCs(NPCType<Boulder>()))
-				npc.defense =  npc.defense + (NPC.CountNPCS(NPCType<Boulder>()) * 2);
-			
-			if (State == AIState.Idle)
-            {
-				Movement();
-				if (!segmentsSpawned)
-				{
-					int Index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-					Main.npc[Index].ai[0] = npc.whoAmI;
-					int Index1 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-					Main.npc[Index1].ai[0] = npc.whoAmI;
-					Main.npc[Index1].ai[1] = 45;
-					int Index2 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-					Main.npc[Index2].ai[0] = npc.whoAmI;
-					Main.npc[Index2].ai[1] = 90;
-					int Index3 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-					Main.npc[Index3].ai[0] = npc.whoAmI;
-					Main.npc[Index3].ai[1] = 135;
-					int Index4 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
-					Main.npc[Index4].ai[0] = npc.whoAmI;
-					Main.npc[Index4].ai[1] = 180;
-					segmentsSpawned = true;
-				}
-			}				
-			if (State == AIState.Smash)
+			if (NPC.AnyNPCs(NPCType<ForestGuardian_Left>()) || NPC.AnyNPCs(NPCType<ForestGuardian_Right>()))
 			{
-
+				npc.dontTakeDamage = true;
+				Movement();
+				SpawnSegments();
 			}
+			else
+			{
+				npc.dontTakeDamage = false;
+				Movement_Smash();
+			}
+
 		}
 		private void Movement()
 		{
@@ -168,6 +135,94 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 				}
 			}
 		}
+		private void Movement_Smash()
+		{
+			npc.damage = 75;
+			npc.TargetClosest();
+			float num697 = 5.85f;
+			float num698 = 0.50f;
+			Vector2 vector90 = new Vector2(npc.Center.X, npc.Center.Y);
+			float num699 = Main.player[npc.target].Center.X - vector90.X;
+			float num700 = Main.player[npc.target].Center.Y - vector90.Y;
+			npc.noGravity = false;
+			npc.ai[3]++;
+			if (npc.ai[3] >= 120 && npc.ai[3] <= 280)
+			{
+				npc.damage = 0;
+				num700 = Main.player[npc.target].Center.Y - vector90.Y - 320f;
+				npc.noGravity = true;
+			}
+			if (npc.ai[3] >= 280)
+            {
+				npc.ai[3] = 0;
+			}
+			float num701 = (float)Math.Sqrt((num699 * num699 + num700 * num700));
+			if (num701 < 20f)
+			{
+				num699 = npc.velocity.X;
+				num700 = npc.velocity.Y;
+			}
+			else
+			{
+				num701 = num697 / num701;
+				num699 *= num701;
+				num700 *= num701;
+			}
+			if (npc.velocity.X < num699)
+			{
+				npc.velocity.X = npc.velocity.X + num698;
+				if (npc.velocity.X < 0f && num699 > 0f)
+				{
+					npc.velocity.X = npc.velocity.X + num698 * 0.06f;
+				}
+			}
+			else if (npc.velocity.X > num699)
+			{
+				npc.velocity.X = npc.velocity.X - num698;
+				if (npc.velocity.X > 0f && num699 < 0f)
+				{
+					npc.velocity.X = npc.velocity.X - num698 * 0.06f;
+				}
+			}
+			if (npc.velocity.Y < num700)
+			{
+				npc.velocity.Y = npc.velocity.Y + num698;
+				if (npc.velocity.Y < 0f && num700 > 0f)
+				{
+					npc.velocity.Y = npc.velocity.Y + num698 * 2f;
+				}
+			}
+			else if (npc.velocity.Y > num700)
+			{
+				npc.velocity.Y = npc.velocity.Y - num698;
+				if (npc.velocity.Y > 0f && num700 < 0f)
+				{
+					npc.velocity.Y = npc.velocity.Y - num698 * 2f;
+				}
+			}
+		}
+		private void SpawnSegments()
+		{
+			if (!segmentsSpawned)
+			{
+				int Index = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+				Main.npc[Index].ai[0] = npc.whoAmI;
+				int Index1 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+				Main.npc[Index1].ai[0] = npc.whoAmI;
+				Main.npc[Index1].ai[1] = 45;
+				int Index2 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+				Main.npc[Index2].ai[0] = npc.whoAmI;
+				Main.npc[Index2].ai[1] = 90;
+				int Index3 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+				Main.npc[Index3].ai[0] = npc.whoAmI;
+				Main.npc[Index3].ai[1] = 135;
+				int Index4 = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCType<Boulder>());
+				Main.npc[Index4].ai[0] = npc.whoAmI;
+				Main.npc[Index4].ai[1] = 180;
+				segmentsSpawned = true;
+			}
+		}
+
 		#region Draw Code
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 		{
@@ -320,7 +375,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 30;
 			npc.defense = 8;
-			npc.lifeMax = 350;
+			npc.lifeMax = 800;
 
 			npc.noTileCollide = true;
 			npc.noGravity = true;
@@ -331,7 +386,6 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 			npc.HitSound = SoundID.DD2_CrystalCartImpact;
 			npc.DeathSound = SoundID.Item14;
 		}
-		private int sec; 
 		private int AITimer;
 		private int BeamTimer;
 		private int DashTimer; public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -369,13 +423,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					npc.active = false;
                 }
 			}
-			sec++;
 			AITimer++;
-			if (sec == 60)
-			{
-				Main.NewText("Guardian's Fist - Timer Value:" + $"{AITimer}");
-				sec = 0;
-			}
 			if (AITimer == 300)
 				State = AIState.Dash;
             
@@ -418,6 +466,14 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					Projectile.NewProjectile(npc.Center, angle * 2.5f, ProjectileID.EyeBeam, 5, 0f, Main.myPlayer);
 					BeamTimer = 0;
 				}
+				if (npc.life < npc.lifeMax * 0.20f)
+                {
+					if (BeamTimer >= 30)
+					{
+						Projectile.NewProjectile(npc.Center, angle * 2.5f, ProjectileID.EyeBeam, 6, 0f, Main.myPlayer);
+						BeamTimer = 0;
+					}
+				}
 			}
 			if (State == AIState.Dash)
 			{
@@ -435,6 +491,18 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					PlayerPosition.Normalize();
 					npc.velocity = PlayerPosition * 8f;
 					DashTimer = 0;
+				}
+				if (npc.life < npc.lifeMax * 0.20f)
+				{
+					if (DashTimer >= 60)
+					{
+						npc.TargetClosest();
+						npc.netUpdate = true;
+						Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
+						PlayerPosition.Normalize();
+						npc.velocity = PlayerPosition * 12f;
+						DashTimer = 0;
+					}
 				}
 			}
 		}
@@ -485,7 +553,7 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 
 			npc.damage = 30;
 			npc.defense = 8;
-			npc.lifeMax = 350;
+			npc.lifeMax = 800;
 
 			npc.noTileCollide = true;
 			npc.noGravity = true;
@@ -577,6 +645,14 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					Projectile.NewProjectile(npc.Center, angle * 2.5f, ProjectileID.EyeBeam, 5, 0f, Main.myPlayer);
 					BeamTimer = 0;
 				}
+				if (npc.life < npc.lifeMax * 0.20f)
+				{
+					if (BeamTimer >= 30)
+					{
+						Projectile.NewProjectile(npc.Center, angle * 2.5f, ProjectileID.EyeBeam, 6, 0f, Main.myPlayer);
+						BeamTimer = 0;
+					}
+				}
 			}
 			if (State == AIState.Dash)
 			{
@@ -595,7 +671,18 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
 					npc.velocity = PlayerPosition * 8f;
 					DashTimer = 0;
 				}
-
+				if (npc.life < npc.lifeMax * 0.20f)
+				{
+					if (DashTimer >= 60)
+					{
+						npc.TargetClosest();
+						npc.netUpdate = true;
+						Vector2 PlayerPosition = new Vector2(target.Center.X - npc.Center.X, target.Center.Y - npc.Center.Y);
+						PlayerPosition.Normalize();
+						npc.velocity = PlayerPosition * 12f;
+						DashTimer = 0;
+					}
+				}
 			}
 		}
 		private void Move(Vector2 position, float speed)

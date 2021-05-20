@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework;
 
 using TrelamiumTwo.Core.Abstracts;
 using TrelamiumTwo.Content.Items.Materials;
+using TrelamiumTwo.Content.Items.Tools;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TrelamiumTwo.Content.UI.ArchaeologistUI
 {
@@ -25,7 +27,12 @@ namespace TrelamiumTwo.Content.UI.ArchaeologistUI
 			=> WorkshopItems.Select(x => x.Item).ToArray();
 		public override int InsertionIndex(List<GameInterfaceLayer> layers)
 			=> layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-
+		public override void Draw(SpriteBatch spriteBatch)
+		{
+			if (!(Main.playerInventory))
+				return;
+			base.Draw(spriteBatch);
+		}
 		public override void OnInitialize()
 		{
 			for (int i = 0; i < WorkshopItems.Length; ++i)
@@ -42,7 +49,6 @@ namespace TrelamiumTwo.Content.UI.ArchaeologistUI
 			ResultItemSlot.Left.Set(Main.screenWidth / 2 + 100, 0f);
 			ResultItemSlot.ValidItemFunc = item => item.IsAir;
 		}
-
 		public override void OnActivate()
 			=> this.Visible = true;
 		public override void OnDeactivate()
@@ -82,7 +88,7 @@ namespace TrelamiumTwo.Content.UI.ArchaeologistUI
 			// EXAMPLE:          First Slot         Second Slot       Third Slot        Fourth Slot  Result
 			AddWorkshopRecipe(ItemID.StoneBlock, ItemID.DirtBlock, ItemID.ClayBlock, ItemID.Wood, ItemID.CopperShortsword);
 			AddWorkshopRecipe(ItemType<VultureGizzard>(), ItemID.Leather, ItemType<AridFiber>(), ItemType<SandwormTooth>(), ItemID.TerraBlade);
-			AddWorkshopRecipe(ItemType<RattlesnakeTail>(), ItemType<DesolateHusk>(), ItemID.AntlionMandible, ItemID.None, ItemID.TerraBlade);
+			AddWorkshopRecipe(ItemType<RattlesnakeTail>(), ItemType<DesolateHusk>(), ItemID.AntlionMandible, ItemID.None, ItemType<RattletailMaraca>());
 			AddWorkshopRecipe(ItemType<CrackedScarabHorn>(), ItemType<HardenedCarapace>(), ItemType<DesolateHusk>(), ItemType<SandwormTooth>(), ItemType<AFunny>());
 			AddWorkshopRecipe(ItemType<SeveredSpiderLegs>(), ItemID.AntlionMandible, ItemType<SandwormTooth>(), ItemID.None, ItemID.TerraBlade);
 			AddWorkshopRecipe(ItemType<HeliacalFeather>(), ItemType<HardenedCarapace>(), ItemID.Silk, ItemID.Leather, ItemID.TerraBlade);

@@ -1,6 +1,4 @@
-﻿#region Using directives
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Terraria;
 using Terraria.ModLoader;
@@ -12,29 +10,27 @@ using Microsoft.Xna.Framework;
 
 using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
 
-#endregion
-
 namespace TrelamiumTwo.Common.Worlds
 {
 	public sealed partial class TrelamiumWorld : ModWorld
 	{
-		private readonly int largeCrystalAmount = 5;
-		private readonly int mediumCrystalAmount = 25;
+		private readonly int largeCrystalAmount = 10;
+		private readonly int mediumCrystalAmount = 30;
 
 		private void ModifyWorldGenTasks_DustifiedCaverns(List<GenPass> tasks, ref float totalWeight)
 		{
 			int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
 			if (shiniesIndex != -1)
 			{
-				tasks.Insert(shiniesIndex + 1, new PassLegacy("TrelamiumTwo:DustifiedCaverns_Crystals", GenPass_DustifiedCaverns_Crystals));
+				tasks.Insert(shiniesIndex + 1, new PassLegacy("TrelamiumTwo:Dustilite Caverns Crystals", GenPass_DustifiedCaverns_Crystals));
 			}
 		}
 
 		private void GenPass_DustifiedCaverns_Crystals(GenerationProgress progress)
 		{
-			progress.Message = "Growing desert crystals...";
+			progress.Message = "Growing dustilite crystals...";
 
-			int genTries = 50;
+			int genTries = 75;
 			int genAmount = largeCrystalAmount + mediumCrystalAmount;
 
 			int minXGen = WorldGen.UndergroundDesertLocation.X;
@@ -118,25 +114,5 @@ namespace TrelamiumTwo.Common.Worlds
 
 			return (false);
 		}
-
-		/* TODO: Eldrazi
-		 * Uncomment and modify to test different world gen features.
-		 * 
-		public override void PostUpdate()
-		{
-			if (JustPressed(Microsoft.Xna.Framework.Input.Keys.D1))
-			{
-				int genX = (int)Main.MouseWorld.X / 16;
-
-				int genY = (int)Main.MouseWorld.Y / 16;
-
-				Point point = new Point(genX, genY);
-				WorldUtils.Gen(point, new Shapes.Tail(10, new Vector2(10, -10)), new Actions.SetTile(Terraria.ID.TileID.RubyGemspark));
-			}
-		}
-		public static bool JustPressed(Microsoft.Xna.Framework.Input.Keys key)
-		{
-			return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
-		}*/
 	}
 }
