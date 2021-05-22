@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class HorseshoeScarab : ModItem
+	public sealed class HorseshoeScarab : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Consumables
 {
-	public class SolarAuraPotion : ModItem
+	public class SolarAuraPotion : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

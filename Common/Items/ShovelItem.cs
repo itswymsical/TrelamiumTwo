@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Common.Items
     {
         public bool Autosize;
         public override bool CloneNewInstances => false;    
-        public void diggingPower(int digPower)
+        public void DiggingPower(int digPower)
         {
             item.GetGlobalItem<GlobalTrelamiumItem>().Shovel = true;
             item.GetGlobalItem<GlobalTrelamiumItem>().digPower = digPower;

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.Vanity.Peepo
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class SigniasLegs : ModItem
+	public class SigniasLegs : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

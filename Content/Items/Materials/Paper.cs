@@ -1,14 +1,10 @@
-#region Using directives
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
-
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class Paper : ModItem
+	public class Paper : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{
@@ -16,8 +12,6 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.maxStack = 999;
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(0, 0, 1, 0);
-
-			item.material = true;
 		}
 
 		public override void AddRecipes()

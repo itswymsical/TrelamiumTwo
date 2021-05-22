@@ -1,14 +1,10 @@
-#region Using directives
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
-
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class Nut : ModItem
+	public class Nut : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{
@@ -27,7 +23,7 @@ namespace TrelamiumTwo.Content.Items.Materials
 			
 			item.shootSpeed = 4f;
 			item.ammo = item.type;
-			//item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();
+			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();
 		}
 
 		public override bool ConsumeItem(Player player)
@@ -36,7 +32,7 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.potion = true;
 			item.shoot = ProjectileID.None;
 
-			return (true);
+			return true;
 		}
 	}
 }

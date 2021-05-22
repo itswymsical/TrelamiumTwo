@@ -26,20 +26,19 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
                 [ModContent.TileType<SlateTile>()] = true;
             Main.tileMerge[Type]
                 [ModContent.TileType<AlluviumOreTile>()] = true;
-            Main.tileMerge[Type][ModContent.TileType<LoamTile_Grass>()] = true;
+            Main.tileMerge[Type][ModContent.TileType<LoamTileGrass>()] = true;
             #endregion
             AddMapEntry(new Color(125, 85, 50));
         }
         public override void RandomUpdate(int i, int j)
         {
             if (WorldGen.genRand.Next(3) == 0)
-                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTile_Grass>(), true, Main.tile[i, j].color());          
+                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTileGrass>(), true, Main.tile[i, j].color());          
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
-            => num = fail ? 1 : 3;
-        
+            => num = fail ? 1 : 3;    
     }
-    public class LoamTile_Grass : ModTile
+    public class LoamTileGrass : ModTile
     {
         public override void SetDefaults()
         {
@@ -65,7 +64,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         public override void RandomUpdate(int i, int j)
         {
             if (WorldGen.genRand.Next(3) == 0)
-                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTile_Grass>(), true, Main.tile[i, j].color());
+                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTileGrass>(), true, Main.tile[i, j].color());
             
             if (WorldGen.genRand.Next(100) == 0)
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<DGFoliageTile>());

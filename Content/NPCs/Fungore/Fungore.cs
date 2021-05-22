@@ -2,12 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using System;
-using System.IO;
-using TrelamiumTwo.Content.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework.Graphics;
-using TrelamiumTwo.Utilities;
 using TrelamiumTwo.Common.Worlds;
 using TrelamiumTwo.Utilities.Extensions;
 
@@ -29,15 +25,15 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         }
         public float AttackTimer
         {
-            get => npc.ai[1];
-            set => npc.ai[1] = value;
-        }
-
-        private float JumpTimer
-        {
             get => npc.ai[2];
             set => npc.ai[2] = value;
         }
+
+        /*private float JumpTimer
+        {
+            get => npc.ai[3];
+            set => npc.ai[3] = value;
+        }*/
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fungore");
@@ -66,18 +62,17 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
             npc.value = Item.sellPrice(gold: 1);
             bossBag = ItemType<Items.Fungore.FungoreBag>();
         }
-        int textTimer;
         public override void FindFrame(int frameHeight)
         {
-            npc.frame.Width = 100;
+            npc.frame.Width = 118;
             npc.spriteDirection = npc.direction;
             npc.TargetClosest();
             if (State == AIState.Idle)
             {
                 if (++npc.frameCounter >= 8)
                 {
-                    npc.frameCounter = 0;
-                    npc.frame.X = 1 * npc.frame.Width;
+                    npc.frameCounter = 1;
+                    npc.frame.X = 0 * npc.frame.Width;
                     npc.frame.Y = (npc.frame.Y + frameHeight) % (frameHeight * 8);
                 }
             }
@@ -86,7 +81,7 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
                 if (++npc.frameCounter >= 12)
                 {
                     npc.frameCounter = 0;
-                    npc.frame.X = 0 * npc.frame.Width;
+                    npc.frame.X = 1 * npc.frame.Width;
                     npc.frame.Y = (npc.frame.Y + frameHeight) % (frameHeight * 12);
                 }
             }
@@ -97,9 +92,8 @@ namespace TrelamiumTwo.Content.NPCs.Fungore
         }
         public override void AI()
         {
-            textTimer++;
             AttackTimer++;
-            Player target = Main.player[npc.target];
+            //Player target = Main.player[npc.target];
             npc.spriteDirection = npc.direction;
             if (State == AIState.Idle)
             {

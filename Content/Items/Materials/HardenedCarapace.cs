@@ -1,14 +1,9 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	internal sealed class HardenedCarapace : ModItem
+	public class HardenedCarapace : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -20,8 +15,6 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.maxStack = 999;
 			item.rare = ItemRarityID.Blue;
 			item.value = Item.buyPrice(silver: 50);
-
-			item.material = true;
 		}
 	}
 }

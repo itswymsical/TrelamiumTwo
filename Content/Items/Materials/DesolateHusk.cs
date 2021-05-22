@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-    public sealed class DesolateHusk : ModItem
+    public sealed class DesolateHusk : TrelamiumItem
     {
         public override void SetDefaults()
         {

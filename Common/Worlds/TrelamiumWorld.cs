@@ -4,9 +4,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-
-using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
 using TrelamiumTwo.Content.Tiles.DruidsGarden;
+using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -24,11 +23,11 @@ namespace TrelamiumTwo.Common.Worlds
 		public override void TileCountsAvailable(int[] tileCounts)
         {
             DustifiedCavernTiles = 
-				tileCounts[ModContent.TileType<DustiliteCrystal_Large1>()];
+				tileCounts[ModContent.TileType<DarkSandstoneTile>()];
 
             DruidsGardenTiles = 
 				tileCounts[ModContent.TileType<LoamTile>()] + 
-				tileCounts[ModContent.TileType<LoamTile_Grass>()];
+				tileCounts[ModContent.TileType<LoamTileGrass>()];
         }
 		#region TagCompound & Loading
 		public override TagCompound Save()
@@ -86,9 +85,9 @@ namespace TrelamiumTwo.Common.Worlds
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
-			//ModifyWorldGenTasks_Campsites(tasks, ref totalWeight);
-			ModifyWorldGenTasks_DustifiedCaverns(tasks, ref totalWeight);
+			ModifyWorldGenTasks_DustifiedCaverns(tasks);
 			ModifyWorldGenTasks_DruidsGarden(tasks);
+			int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
 		}
 
 		public override void ResetNearbyTileEffects()

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Consumables
 {
-	public sealed class GleamingNectar : ModItem
+	public class GleamingNectar : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient;
 using TrelamiumTwo.Content.Tiles.DruidsGarden.Stationary;
+using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
+using TrelamiumTwo.Content.Walls;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -99,6 +101,11 @@ namespace TrelamiumTwo.Common.Worlds
                     }
                     WorldTree(new Vector2((float)num2, (float)(num3 - 280)));
                     CleanUpTree(new Point(num2, num3 - 280));
+
+                    Point point = new Point(num2, num3 + 200);
+                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.Clear());
+                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.PlaceWall((byte)ModContent.WallType<LoamWall>()));
+
                     for (int m = 0; m < 50; m++)
                     {
                         WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-120, 120), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(6, 9), 10, 
@@ -285,7 +292,7 @@ namespace TrelamiumTwo.Common.Worlds
         }
         private void PlaceAltar(Point centre)
         {
-            int num = 1;
+            int num = 4;
             for (int i = 0; i < num; i++)
             {
                 Point pos = new Point(centre.X + WorldGen.genRand.Next(-120, 120), centre.Y + WorldGen.genRand.Next(-120, 220));

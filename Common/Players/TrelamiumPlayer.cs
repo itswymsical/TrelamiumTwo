@@ -2,12 +2,11 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using TrelamiumTwo.Common.Worlds;
-using Microsoft.Xna.Framework;
 using TrelamiumTwo.Content.Buffs;
 
 namespace TrelamiumTwo.Common.Players
 {
-    public sealed partial class TrelamiumPlayer : ModPlayer
+    public partial class TrelamiumPlayer : ModPlayer
     {
         #region A-G
         public bool desertKB;
@@ -20,6 +19,7 @@ namespace TrelamiumTwo.Common.Players
         public bool kindledSetBonus;
         public bool legionAccessory;
         public bool magicGuantlet;
+        public bool microlith;
         public bool mossMonarch;
         public bool onSand;
         public bool pholiotaMinion;
@@ -31,6 +31,7 @@ namespace TrelamiumTwo.Common.Players
         #endregion
         #region U-Z
         public bool ZoneDruidsGarden;
+        public bool ZoneDustifiedCaverns;
         #endregion
 
         #region ShovelPickTile() Method
@@ -130,7 +131,8 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void UpdateBiomes() 
         {
-            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 180;
+            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 150;
+            ZoneDustifiedCaverns = TrelamiumWorld.DustifiedCavernTiles > 150;
         }
 
         public override void UpdateBiomeVisuals() 

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class Dripwish : ModItem
+	public sealed class Dripwish : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

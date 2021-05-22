@@ -1,14 +1,10 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
-
 namespace TrelamiumTwo.Content.Items.Ammo
 {
-	public sealed class DustiliteArrow : ModItem
+	public class DustiliteArrow : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

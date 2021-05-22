@@ -1,12 +1,11 @@
 ﻿using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-    public sealed class Frostbark : TrelamiumItem
+    public class Frostbark : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Frostbark");
+        public override void SetStaticDefaults() 
+            => DisplayName.SetDefault("Frostbark");
         public override void SetDefaults()
         {
             item.rare = ItemRarityID.White;

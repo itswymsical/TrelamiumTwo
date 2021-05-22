@@ -29,13 +29,15 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient
 		public override void SetDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
-			Main.tileNoFail[Type] = true;
-
+			Main.tileAlch[Type] = true;
+			Main.tileNoFail[Type] = false;
+			Main.tileWaterDeath[Type] = true;
+			Main.tileLavaDeath[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
 			TileObjectData.newTile.AnchorValidTiles = new int[]
 			{
 				ModContent.TileType<LoamTile>(),
-				ModContent.TileType<LoamTile_Grass>()
+				ModContent.TileType<LoamTileGrass>()
 			};
 			TileObjectData.addTile(Type);
 			AddMapEntry(new Color(90, 160, 40));

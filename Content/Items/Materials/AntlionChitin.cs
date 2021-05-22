@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class AntlionChitin : ModItem
+	public sealed class AntlionChitin : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

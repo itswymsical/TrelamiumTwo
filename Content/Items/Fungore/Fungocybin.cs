@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.Fungore
 {
-	public class Fungocybin : ModItem
+	public class Fungocybin : TrelamiumItem
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Fungocybin");

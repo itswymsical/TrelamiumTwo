@@ -87,6 +87,7 @@ namespace TrelamiumTwo.Content.UI.ArchaeologistUI
 
 			// EXAMPLE:          First Slot         Second Slot       Third Slot        Fourth Slot  Result
 			AddWorkshopRecipe(ItemID.StoneBlock, ItemID.DirtBlock, ItemID.ClayBlock, ItemID.Wood, ItemID.CopperShortsword);
+			AddWorkshopRecipe(ItemID.BorealWood, ItemID.IceBlock, ItemID.Chain, ItemID.None, ItemType<Frostbark>());
 			AddWorkshopRecipe(ItemType<VultureGizzard>(), ItemID.Leather, ItemType<AridFiber>(), ItemType<SandwormTooth>(), ItemID.TerraBlade);
 			AddWorkshopRecipe(ItemType<RattlesnakeTail>(), ItemType<DesolateHusk>(), ItemID.AntlionMandible, ItemID.None, ItemType<RattletailMaraca>());
 			AddWorkshopRecipe(ItemType<CrackedScarabHorn>(), ItemType<HardenedCarapace>(), ItemType<DesolateHusk>(), ItemType<SandwormTooth>(), ItemType<AFunny>());

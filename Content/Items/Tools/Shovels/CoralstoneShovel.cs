@@ -16,7 +16,7 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
             item.useTime = 26;
             item.useAnimation = 26;
             item.rare = ItemRarityID.White;
-            diggingPower(45);
+            DiggingPower(45);
 
             item.autoReuse = true;
             item.useTurn = true;

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class Leaf : ModItem
+	public sealed class Leaf : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

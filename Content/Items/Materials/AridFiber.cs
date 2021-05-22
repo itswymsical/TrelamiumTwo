@@ -1,14 +1,9 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class AridFiber : ModItem
+	public sealed class AridFiber : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

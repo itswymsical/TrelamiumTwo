@@ -1,14 +1,9 @@
-#region Using directives
-
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class Magnethine : ModItem
+	public class Magnethine : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{
@@ -16,8 +11,6 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.maxStack = 999;
 			item.rare = ItemRarityID.White;
 			item.value = Item.buyPrice(silver: 5);
-
-			item.material = true;
 		}
 	}
 }

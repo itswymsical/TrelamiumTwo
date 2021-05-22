@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.Kindled
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class KindledChestplate : ModItem
+	public class KindledChestplate : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

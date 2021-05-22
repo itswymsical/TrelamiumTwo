@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class ScatteredFlower : ModItem
+	public sealed class ScatteredFlower : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

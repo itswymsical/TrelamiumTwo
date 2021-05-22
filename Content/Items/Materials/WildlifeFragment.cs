@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class WildlifeFragment : ModItem
+	public sealed class WildlifeFragment : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{
