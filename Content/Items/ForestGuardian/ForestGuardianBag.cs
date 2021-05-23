@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 			=> ModContent.NPCType<NPCs.Fungore.Fungore>();
 		public override void OpenBossBag(Player player)
 		{
-			int choice = Main.rand.Next(3);
+			int choice = Main.rand.Next(4);
 			if (Main.rand.Next(7) == 0)
             {
 				player.QuickSpawnItem(ModContent.ItemType<ForestGuardianMask>());
@@ -38,6 +38,8 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 				player.QuickSpawnItem(ModContent.ItemType<AlluvialCollider>());
 			if (choice == 2)
 				player.QuickSpawnItem(ModContent.ItemType<TheAncient>());
+			if (choice == 2)
+				player.QuickSpawnItem(ModContent.ItemType<PrimordialEarth>());
 		}
 	}
 }

@@ -1,21 +1,20 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
-namespace TrelamiumTwo.Content.Items.Accessories
+namespace TrelamiumTwo.Content.Items.Accessory
 {
 	public class Microlith : TrelamiumItem
 	{
         public float MoveTimer;
-
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Microlith");
 			Tooltip.SetDefault("Grants the player the chance to gain more ore from mining");
-			ItemID.Sets.ItemNoGravity[item.type] = true;
 		}
 		public override void SetDefaults()
 		{
-			item.value = Item.buyPrice(0, 10, 0, 0);
+			item.value = Item.sellPrice(gold: 5);
 			item.rare = ItemRarityID.Blue;
 			item.width = 24;
 			item.height = 30;
@@ -23,9 +22,8 @@ namespace TrelamiumTwo.Content.Items.Accessories
 		}
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-			if (++MoveTimer >= 200f)
-				MoveTimer = 0f;
-			item.velocity.Y += (float)Math.Sin(MoveTimer * 0.05f);
+			MoveTimer++;
+			gravity *= (float)Math.Sin(MoveTimer * 0.002f);
 		}
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

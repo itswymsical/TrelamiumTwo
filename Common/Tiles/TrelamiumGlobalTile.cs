@@ -24,11 +24,6 @@ namespace TrelamiumTwo.Common.Tiles
                         Item.NewItem(i * 16, j * 16, 16, 48, ItemID.CopperOre, amount);
                         CombatText.NewText(player.Hitbox, new Color(255, 146, 97), "Copper Harvest +" + amount);
                     }
-                    if (Main.tileSpelunker[type] == true)
-                    {
-                        Item.NewItem(i * 16, j * 16, 16, 48, type, amount);
-                        CombatText.NewText(player.Hitbox, new Color(229, 220, 163), $"{type} Harvest +" + amount);
-                    }
                     if (type == TileID.Tin)
                     {
                         Item.NewItem(i * 16, j * 16, 16, 48, ItemID.TinOre, amount);

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TrelamiumTwo.Utilities.Extensions;
 
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {
@@ -74,7 +75,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 					int num3 = Dust.NewDust(projectile.position, 0, 0, 32, 0f, 0f, 0, default, 1f);
 					Dust.NewDust(projectile.position, 0, 0, 32, 0f, 0f, 0, default, 1f);
 					Main.dust[num3].position = projectile.Center;
-					Main.dust[num3].velocity = spinningpoint.RotatedBy((double)(6.28318548f * num2 / num), default(Vector2)) * value * (0.8f + Main.rand.NextFloat() * 0.4f);
+					Main.dust[num3].velocity = spinningpoint.RotatedBy((double)(6.28318548f * num2 / num), default) * value * (0.8f + Main.rand.NextFloat() * 0.4f);
 					Main.dust[num3].noGravity = true;
 					Main.dust[num3].scale = 1f;
 					if (num3 != 6000)
@@ -91,7 +92,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 				int i = 6;
 				for (int k = 0; k < i; k++)
 				{
-					int DustIndex = Dust.NewDust(projectile.Center, 0, 0, 32, 0f, 0f, 0, default(Color), 0.75f);
+					int DustIndex = Dust.NewDust(projectile.Center, 0, 0, 32, 0f, 0f, 0, default, 0.75f);
 					Dust dust = Main.dust[DustIndex];
 					dust.velocity *= 1.6f;
 					Dust dust2 = Main.dust[DustIndex];
@@ -115,13 +116,12 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		{
 			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width, Main.projectileTexture[projectile.type].Height);
 			Texture2D texture2D = mod.GetTexture("Assets/Glow");
-
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
 				float scale = projectile.scale * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .35f;
 				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
 				Color color = projectile.GetAlpha(Color.SandyBrown) * ((projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-
+				projectile.DrawProjectileCenteredWithTexture(texture2D, spriteBatch, default);
 				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.rotation, drawOrigin, scale, SpriteEffects.None, 0f);
 			}
 			return true;

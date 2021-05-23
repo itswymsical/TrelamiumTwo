@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace TrelamiumTwo.Core.Abstracts
+namespace TrelamiumTwo.Common.Projectiles
 {
 	public abstract class StickyProjectile : ModProjectile
 	{

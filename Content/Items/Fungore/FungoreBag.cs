@@ -29,9 +29,15 @@ namespace TrelamiumTwo.Content.Items.Fungore
 			=> ModContent.NPCType<NPCs.Fungore.Fungore>();
 		public override void OpenBossBag(Player player)
 		{
-			//int choice = Main.rand.Next(2);
-
-			player.QuickSpawnItem(ModContent.ItemType<MycelialWarhammer>());
+			int choice = Main.rand.Next(2);
+			if (Main.rand.Next(7) == 0)
+			{
+				player.QuickSpawnItem(ModContent.ItemType<FungoreMask>());
+			}
+			if (choice == 0)
+				player.QuickSpawnItem(ModContent.ItemType<MycelialWarhammer>());
+			if (choice == 1)
+				player.QuickSpawnItem(ModContent.ItemType<ToadstoolClusterclot>());
 
 		}
 	}
