@@ -15,7 +15,7 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
             item.useTime = 24;
             item.useAnimation = 24;
 
-            diggingPower(37);
+            DiggingPower(37);
 
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.autoReuse = true;

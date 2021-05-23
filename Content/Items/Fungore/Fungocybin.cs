@@ -5,11 +5,11 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.Fungore
 {
-	public class Fungocybin : ModItem
+	public class Fungocybin : TrelamiumItem
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Fungocybin");
-			Tooltip.SetDefault("Summons a fungus symbiote");
+			Tooltip.SetDefault("Summons the pea-brained fungus giant");
 			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 12;
 		}
 

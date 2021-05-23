@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TrelamiumTwo.Content.Items.ForestGuardian
 {
-	public class ForestGuardianSpawn : ModItem
+	public class ForestGuardianSpawn : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Core.Utils;
-using TrelamiumTwo.Common.Extensions;
 
 namespace TrelamiumTwo.Content.NPCs.Glacier
 {

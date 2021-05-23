@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.Items.Consumables.Food
 			item.consumable = true;
 			ExpireTimer = 12000;
 
-			item.buffType = BuffID.Poisoned;
+			item.buffType = BuffID.WaterWalking;
 			item.buffTime = 800;
 			item.UseSound = SoundID.Item3;
 		}

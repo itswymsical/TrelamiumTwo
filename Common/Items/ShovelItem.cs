@@ -10,10 +10,11 @@ namespace TrelamiumTwo.Common.Items
     {
         public bool Autosize;
         public override bool CloneNewInstances => false;    
-        public void diggingPower(int digPower)
+        public void DiggingPower(int digPower)
         {
             item.GetGlobalItem<GlobalTrelamiumItem>().Shovel = true;
             item.GetGlobalItem<GlobalTrelamiumItem>().digPower = digPower;
+            item.GetGlobalItem<GlobalTrelamiumItem>().radius = 6;
             return;
         }
         public void DigTile(Player player, int rangeinBlocks)
@@ -32,13 +33,9 @@ namespace TrelamiumTwo.Common.Items
         {
             return rand.Next(new int[] { PrefixID.Agile, PrefixID.Quick, PrefixID.Light, PrefixID.Slow, PrefixID.Sluggish, PrefixID.Lazy, PrefixID.Large });
         }
-        public override void SetDefaults()
-        {
-            if (Autosize)
-                item.Autosize();
 
-            SafeSetDefaults();
-        }
+        public override void SetDefaults() 
+            => SafeSetDefaults();        
 
         public virtual void SafeSetDefaults() { }
     }

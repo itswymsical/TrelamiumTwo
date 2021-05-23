@@ -15,7 +15,6 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	internal sealed class DustiliteShard : ModProjectile
 	{
-		public override string Texture => TrelamiumTwo.DustiliteAssets + "DustiliteShards";
 
 		public override void SetStaticDefaults()
 		{

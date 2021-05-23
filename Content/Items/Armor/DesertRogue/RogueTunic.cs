@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.DesertRogue
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class RogueTunic : ModItem
+	public class RogueTunic : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

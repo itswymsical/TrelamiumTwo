@@ -65,7 +65,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 				for (int i = 0; i < 5; ++i)
 				{
 					Vector2 velocity = (-Vector2.UnitY).RotatedByRandom(MathHelper.PiOver2) * 6f;
-					Projectile.NewProjectile(projectile.Center, velocity, ModContent.ProjectileType<DustiliteShard>(), 4, 0.5f, projectile.owner);
+					Projectile.NewProjectile(projectile.Center, velocity, ModContent.ProjectileType<DustiliteShard>(), 1, 0.5f, projectile.owner);
 				}
 			}
 		}

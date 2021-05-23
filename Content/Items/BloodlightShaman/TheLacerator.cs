@@ -6,22 +6,27 @@ using Microsoft.Xna.Framework;
 
 namespace TrelamiumTwo.Content.Items.BloodlightShaman
 {
-	public sealed class TheLacerator : TrelamiumItem
+	public class TheLacerator : TrelamiumItem
 	{
-		public override string Texture => TrelamiumTwo.HeaviesAssets + "TheLacerator";
-		public override void SetDefaults() // Eldrazi Code imported from EH
+		public override string Texture 
+			=> TrelamiumTwo.HeaviesAssets + "TheLacerator";
+		public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.Blue;
+			item.rare = ItemRarityID.LightRed;
 			item.value = Item.sellPrice(silver: 25);
 
 			item.crit = 2;
-			item.damage = 22;
+			item.damage = 38;
 			item.knockBack = 8f;
 
 			item.useTime = item.useAnimation = 26;
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.noUseGraphic = item.melee = item.noMelee = item.channel = true;
+			item.noUseGraphic = 
+				item.melee = 
+				item.noMelee = 
+				item.channel = true;
+
 			item.autoReuse = false;
 
 			item.shootSpeed = 6f;

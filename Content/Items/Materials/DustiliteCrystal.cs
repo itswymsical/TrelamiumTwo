@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class DustiliteCrystal : ModItem
+	public sealed class DustiliteCrystal : TrelamiumItem
 	{
 		public override void SetDefaults()
 		{

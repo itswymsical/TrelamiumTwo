@@ -1,34 +1,37 @@
-﻿#region Using Directives
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using TrelamiumTwo.Common.Worlds;
-#endregion
+using TrelamiumTwo.Content.Buffs;
 
 namespace TrelamiumTwo.Common.Players
 {
-    public sealed partial class TrelamiumPlayer : ModPlayer
+    public partial class TrelamiumPlayer : ModPlayer
     {
         #region A-G
         public bool desertKB;
         public bool dustrollerSkates;
         public bool floralSpirit;
         public bool frostbarkBonus;
+        public bool gleamingNectar;
         #endregion
         #region H-P
         public bool kindledSetBonus;
         public bool legionAccessory;
         public bool magicGuantlet;
+        public bool microlith;
         public bool mossMonarch;
         public bool onSand;
         public bool pholiotaMinion;
         #endregion
         #region Q-T
         public float shakeEffects = 0;
+        public bool solarAura;
         public bool toadstoolExplode;
         #endregion
         #region U-Z
         public bool ZoneDruidsGarden;
+        public bool ZoneDustifiedCaverns;
         #endregion
 
         #region ShovelPickTile() Method
@@ -51,6 +54,7 @@ namespace TrelamiumTwo.Common.Players
                 }
             }
         }
+        
         #endregion
         public override void ResetEffects()
         {
@@ -59,6 +63,7 @@ namespace TrelamiumTwo.Common.Players
             dustrollerSkates = false;
             floralSpirit = false;
             frostbarkBonus = false;
+            gleamingNectar = false;
             #endregion
             #region H-P
             kindledSetBonus = false;
@@ -70,6 +75,7 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region Q-T
             shakeEffects = 0;
+            solarAura = false;
             toadstoolExplode = false;
             #endregion
             #region U-Z
@@ -83,6 +89,7 @@ namespace TrelamiumTwo.Common.Players
             dustrollerSkates = false;
             floralSpirit = false;
             frostbarkBonus = false;
+            gleamingNectar = false;
             #endregion
             #region H-P
             kindledSetBonus = false;
@@ -94,15 +101,38 @@ namespace TrelamiumTwo.Common.Players
             #endregion
             #region Q-T
             shakeEffects = 0;
+            solarAura = false;
             toadstoolExplode = false;
             #endregion
             #region U-Z
             #endregion
         }
-
+        public override void UpdateBadLifeRegen()
+        {
+            if (gleamingNectar)
+            {
+                player.lifeRegen += 4;
+                player.manaRegen += 4;
+            }
+            if (solarAura)
+            {
+                if (player.lavaWet)
+                    player.statDefense %= 10;
+            }
+        }
+        public override void FrameEffects()
+        {
+            if (player.HasBuff(ModContent.BuffType<SlitheringGrace>()))
+            {
+                player.legs = mod.GetEquipSlot("RattlesnakeLeg", EquipType.Legs);
+                player.body = mod.GetEquipSlot("RattlesnakeBody", EquipType.Body);
+                player.head = mod.GetEquipSlot("RattlesnakeHead", EquipType.Head);
+            }
+        }
         public override void UpdateBiomes() 
         {
-            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 180;
+            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 150;
+            ZoneDustifiedCaverns = TrelamiumWorld.DustifiedCavernTiles > 150;
         }
 
         public override void UpdateBiomeVisuals() 

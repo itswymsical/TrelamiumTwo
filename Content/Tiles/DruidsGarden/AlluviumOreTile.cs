@@ -1,9 +1,7 @@
-#region Using Directives
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-#endregion
 
 namespace TrelamiumTwo.Content.Tiles.DruidsGarden
 {
@@ -21,7 +19,7 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
             minPick = 50;
             soundType = SoundID.Tink;
             soundStyle = 2;
-            drop = ModContent.ItemType<Items.Placeable.Slate>();
+            drop = ModContent.ItemType<Items.Placeable.AlluviumOre>();
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Alluvium");
             AddMapEntry(new Color(81, 144, 37), name);

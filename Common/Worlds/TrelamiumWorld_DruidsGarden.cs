@@ -7,6 +7,10 @@ using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
 using Microsoft.Xna.Framework;
 using System.Linq;
+using TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient;
+using TrelamiumTwo.Content.Tiles.DruidsGarden.Stationary;
+using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
+using TrelamiumTwo.Content.Walls;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -24,11 +28,11 @@ namespace TrelamiumTwo.Common.Worlds
                     int num3 = Raycast(num2, 200);
                     if (Main.maxTilesY == 1800)
                     {
-                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 140) : (Main.spawnTileX + 150);
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 190) : (Main.spawnTileX + 190);
                     }
                     if (Main.maxTilesY == 2400)
                     {
-                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX  + 200);
+                        num2 = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 240) : (Main.spawnTileX  + 240);
                     }
 
                 if (num3 > (int)Main.worldSurface - 100)
@@ -77,43 +81,35 @@ namespace TrelamiumTwo.Common.Worlds
                             }
                             int num8 = WorldGen.genRand.Next(70, 100);
                             WorldGen.TileRunner(num2 - num6, num5 - num7, num8, 10,
-                                ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>(), false, 9f, 9f, false, true);
-                            if (num5 - num7 < Main.maxTilesY - 200)
-                                SmoothWallRunner(new Point(num2 - num6, num5 - num7), num8, 63);
+                                ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>(), false, 9f, 9f, false, true);
 
                             int X = num2 - num6;
                             int Y = num5 - num7;
-                            int radius = 15;
+                            int radius = 8;
                             for (int x = X - radius; x <= X + radius; x++)
                             {
                                 for (int y = Y - radius; y <= Y + radius; y++)
                                 {
                                     if (Vector2.Distance(new Vector2(X, Y), new Vector2(x, y)) <= radius)
                                     {
-                                        WorldGen.KillTile(X, Y, false, false, true);
+                                        WorldGen.KillTile(num2 - num6, num5 - num7, false, false, true);
                                     }
                                 }
                             }                    
                         }
                         maxValue = num3 + i * 60;
                     }
-                    for (int i = 0; i < Main.maxTilesX; ++i)
-                    {
-                        for (int k = 0; k < Main.maxTilesY; ++k)
-                        {
-                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>()
-                            && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(10) == 0)
-                            {
-                                WorldGen.PlaceTile(i, k + 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumClusterAlt>()); //TODO sig: Implement Vines
-                            }
-                        }
-                    }
-                    WorldTree(new Vector2((float)num2, (float)(num3 - 240)));
-                    CleanUpTree(new Point(num2, num3 - 240));
+                    WorldTree(new Vector2((float)num2, (float)(num3 - 280)));
+                    CleanUpTree(new Point(num2, num3 - 280));
+
+                    Point point = new Point(num2, num3 + 200);
+                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.Clear());
+                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.PlaceWall((byte)ModContent.WallType<LoamWall>()));
+
                     for (int m = 0; m < 50; m++)
                     {
                         WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-120, 120), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(6, 9), 10, 
-                            ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>(), false, 0f, 0f, false, true);
+                            ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>(), false, 0f, 0f, false, true);
                     }
                     for (int n = 0; n < 80; n++)
                     {
@@ -122,7 +118,7 @@ namespace TrelamiumTwo.Common.Worlds
                     }
                     for (int num9 = 0; num9 < 40; num9++)
                     {
-                        WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(3, 6), 10,
+                        WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(3, 11), 10,
                             ModContent.TileType<Content.Tiles.DruidsGarden.SlateTile>(), false, 0f, 0f, false, true);
                     }
                     for (int num10 = 0; num10 < 100; num10++)
@@ -133,18 +129,47 @@ namespace TrelamiumTwo.Common.Worlds
                     {
                         for (int k = 0; k < Main.maxTilesY; ++k)
                         {
-                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamBlockTile>() 
+                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>() 
                             && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(10) == 0)
                             {
                                 if (WorldGen.genRand.Next(2) == 0)
-                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumCluster>());
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<AlluviumCluster>());
                                 
                                 else
-                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumClusterAlt>());                               
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<AlluviumClusterAlt>());
                             }
                         }
                     }
+                    for (int i = 0; i < Main.maxTilesX; ++i)
+                    {
+                        for (int k = 0; k < Main.maxTilesY; ++k)
+                        {
+                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>()
+                            && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(10) == 0)
+                            {
+                                if (WorldGen.genRand.Next(2) == 0)
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<LeafTile>());
 
+                                else
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<DaisyTile>());
+                            }
+                        }
+                    }
+                    for (int i = 0; i < Main.maxTilesX; ++i)
+                    {
+                        for (int k = 0; k < Main.maxTilesY; ++k)
+                        {
+                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>()
+                            && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(6) == 0)
+                            {
+                                if (WorldGen.genRand.Next(2) == 0)
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<DGFoliageTile>());
+
+                                else
+                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<DGFoliageTile>());
+                            }
+                        }
+                    }
                     PlaceAltar(new Point(num2, num3));
                     PlaceDungeons(new Point(num2, num3));
                 }));
@@ -164,13 +189,13 @@ namespace TrelamiumTwo.Common.Worlds
             Point leafMiddle = pos.ToPoint();
             for (int i = 0; i < 10; ++i)
             {
-                int size = WorldGen.genRand.Next(27, 35);
+                int size = 20;
                 Point position = (pos - new Vector2(WorldGen.genRand.Next(-30, 30), WorldGen.genRand.Next(-30, 30))).ToPoint();
                 WorldGen.TileRunner(position.X, position.Y, size * 3, 8, TileID.LivingMahoganyLeaves, true, 0, 0, false, true);
             }
-            int trunkSize = 10;
+            int trunkSize = 8;
             int lastY = 0;
-            for (int i = 0; i < 20; ++i)
+            for (int i = 0; i < 16; ++i)
             {
                 WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10), trunkSize * 3, 10, TileID.LivingWood, true, 0, 0, false, true);
                 SmoothWallRunnerActive(new Point(leafMiddle.X, leafMiddle.Y + (i * 10)), trunkSize, WallID.LivingWood);
@@ -189,7 +214,7 @@ namespace TrelamiumTwo.Common.Worlds
                 if (i >= 15)
                     WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10) + 15, 25, 10, -1);
             }
-            int xSize = 7;
+            int xSize = 5;
             for (int i = leafMiddle.Y; i < lastY + 5; ++i)
             {
                 LineTunnel(new Point(leafMiddle.X, i), xSize);
@@ -267,7 +292,7 @@ namespace TrelamiumTwo.Common.Worlds
         }
         private void PlaceAltar(Point centre)
         {
-            int num = 1;
+            int num = 4;
             for (int i = 0; i < num; i++)
             {
                 Point pos = new Point(centre.X + WorldGen.genRand.Next(-120, 120), centre.Y + WorldGen.genRand.Next(-120, 220));
@@ -338,11 +363,11 @@ namespace TrelamiumTwo.Common.Worlds
             WorldGen.PlaceTile(num4 - 1, num3 + 1, type2, true, false, -1, 23);
 
             WorldGen.PlaceChest(num4 - 5, num3, 
-                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientTotem>(), false, 0);
+                (ushort)ModContent.TileType<AncientTotem>(), false, 0);
             WorldGen.PlaceChest(num4 + 6, num3, 
-                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientTotem>(), false, 0);
+                (ushort)ModContent.TileType<AncientTotem>(), false, 0);
             WorldGen.PlaceChest(num4, num3,
-                (ushort)ModContent.TileType<Content.Tiles.DruidsGarden.AncientAltar>(), false, 0);
+                (ushort)ModContent.TileType<AncientAltar>(), false, 0);
             return new Point(pos.X + num, pos.Y + num2);
         }
         public Point MakeRuin(Point pos, int type = -1, int wType = -1, bool doRep = true)

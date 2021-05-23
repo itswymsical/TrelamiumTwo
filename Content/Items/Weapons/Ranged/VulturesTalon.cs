@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Ranged
 {
-    public class VulturesTalon : ModItem
+    public class VulturesTalon : TrelamiumItem
     {
 
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Vultures Talon");

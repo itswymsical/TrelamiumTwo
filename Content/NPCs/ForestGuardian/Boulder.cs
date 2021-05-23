@@ -72,11 +72,11 @@ namespace TrelamiumTwo.Content.NPCs.ForestGuardian
                 npc.ai[2]++;
             }
             double deg = npc.ai[1];
-            double rad = deg * (Math.PI / 240);
+            double rad = deg * (Math.PI / 360);
             double dist = npc.ai[2];
             NPC parent = Main.npc[(int)npc.ai[0]];
-            npc.position.X = parent.Center.X - (int)(Math.Cos(rad) * dist) - npc.width / 3;
-            npc.position.Y = parent.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 3;
+            npc.position.X = parent.Center.X - (int)(Math.Cos(rad) * dist) - npc.width / 4;
+            npc.position.Y = parent.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 4;
             if (charge <= 5f)
             {
                 charge += 0.02f;

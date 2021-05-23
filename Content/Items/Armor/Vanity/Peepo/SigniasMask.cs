@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.Vanity.Peepo
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class SigniasMask : ModItem
+	public class SigniasMask : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{

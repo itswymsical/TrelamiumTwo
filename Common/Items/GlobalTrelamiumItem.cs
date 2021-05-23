@@ -16,10 +16,16 @@ namespace TrelamiumTwo.Common.Items
 
         public bool Shovel;
         public int digPower = 0;
+        public int radius = 2;
         public static int GetDigPower(int shovel)
         {
             Item i = ModContent.GetModItem(shovel).item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
+        }
+        public static int GetShovelRadius(int shovel)
+        {
+            Item i = ModContent.GetModItem(shovel).item;
+            return i.GetGlobalItem<GlobalTrelamiumItem>().radius;
         }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
@@ -28,11 +34,17 @@ namespace TrelamiumTwo.Common.Items
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
-            }          
+            }
+        }
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.Acorn)
+            {
+                item.ammo = item.type;
+            }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            Player player = Main.LocalPlayer;
             base.ModifyTooltips(item, tooltips);
             TooltipLine sline;
             if (item.IsShovel())

@@ -62,7 +62,6 @@ namespace TrelamiumTwo.Content.UI
 			int steps = (int)((right - left) * quotient);
 			for (int i = 0; i < steps; i += 1)
 			{
-				float percent = (float)i / (right - left);
 				spriteBatch.Draw(Main.magicPixel, new Rectangle(left + i, hitbox.Y, 1, hitbox.Height), default);
 			}
 		}

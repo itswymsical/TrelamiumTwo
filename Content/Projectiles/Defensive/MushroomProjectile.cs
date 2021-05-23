@@ -16,7 +16,7 @@ namespace TrelamiumTwo.Content.Projectiles.Defensive
 			projectile.height = 10;
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
-			projectile.timeLeft = 240;
+			projectile.timeLeft = 600;
 			projectile.melee = true;
 			projectile.friendly = true;
 		}

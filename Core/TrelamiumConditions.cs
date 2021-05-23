@@ -1,8 +1,4 @@
-﻿#region Using directives
-
-using Terraria.World.Generation;
-
-#endregion
+﻿using Terraria.World.Generation;
 
 namespace TrelamiumTwo.Core
 {
