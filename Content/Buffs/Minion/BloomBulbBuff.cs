@@ -1,15 +1,20 @@
+﻿using TrelamiumTwo.Common.Players;
 using Terraria;
 using Terraria.ModLoader;
-using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Buffs.Minion
 {
-	public class FloralSpiritBuff : ModBuff
+	public class BloomBulbBuff : ModBuff
 	{
+		public override bool Autoload(ref string name, ref string texture)
+		{
+			return mod.Properties.Autoload;
+		}
+
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Floral Spirit");
-			Description.SetDefault("The Floral Spirit will protect you");
+			DisplayName.SetDefault("Bloom Bulb");
+			Description.SetDefault("The Bloom Bulb will fight for you");
 
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
@@ -18,9 +23,9 @@ namespace TrelamiumTwo.Content.Buffs.Minion
 		public override void Update(Player player, ref int buffIndex)
 		{
 			MinionPlayer minionPlayer = player.GetModPlayer<MinionPlayer>();
-			minionPlayer.BloomBulb = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.FloralSpiritGuardian>()] > 0;
+			minionPlayer.BloomBulb = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.BloomBulb>()] > 0;
 
-			if (!minionPlayer.floralSpirit)
+			if (!minionPlayer.BloomBulb)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

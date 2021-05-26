@@ -1,38 +1,25 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using TrelamiumTwo.Common.Worlds;
 using TrelamiumTwo.Content.Buffs;
+using TrelamiumTwo.Content.Items.Fish;
+using TrelamiumTwo.Common.Extensions;
 
 namespace TrelamiumTwo.Common.Players
 {
     public partial class TrelamiumPlayer : ModPlayer
     {
-        #region A-G
-        public bool desertKB;
         public bool dustrollerSkates;
-        public bool floralSpirit;
-        public bool frostbarkBonus;
-        public bool gleamingNectar;
-        #endregion
-        #region H-P
-        public bool kindledSetBonus;
-        public bool legionAccessory;
-        public bool magicGuantlet;
+
+        public bool gluttonAmulet;
+
         public bool microlith;
-        public bool mossMonarch;
+
         public bool onSand;
-        public bool pholiotaMinion;
-        #endregion
-        #region Q-T
+
         public float shakeEffects = 0;
-        public bool solarAura;
+
         public bool toadstoolExplode;
-        #endregion
-        #region U-Z
-        public bool ZoneDruidsGarden;
-        public bool ZoneDustifiedCaverns;
-        #endregion
 
         #region ShovelPickTile() Method
         public void ShovelPickTile(int x, int y)
@@ -57,69 +44,20 @@ namespace TrelamiumTwo.Common.Players
         
         #endregion
         public override void ResetEffects()
-        {
-            #region A-G
-            desertKB = false;
+        {        
             dustrollerSkates = false;
-            floralSpirit = false;
-            frostbarkBonus = false;
-            gleamingNectar = false;
-            #endregion
-            #region H-P
-            kindledSetBonus = false;
-            legionAccessory = false;
-            magicGuantlet = false;
-            mossMonarch = false;
-            onSand = false;
-            pholiotaMinion = false;
-            #endregion
-            #region Q-T
-            shakeEffects = 0;
-            solarAura = false;
-            toadstoolExplode = false;
-            #endregion
-            #region U-Z
 
-            #endregion
-        }
-        public override void UpdateDead()
-        {
-            #region A-G
-            desertKB = false;
-            dustrollerSkates = false;
-            floralSpirit = false;
-            frostbarkBonus = false;
-            gleamingNectar = false;
-            #endregion
-            #region H-P
-            kindledSetBonus = false;
-            legionAccessory = false;
-            magicGuantlet = false;
-            mossMonarch = false;
+            gluttonAmulet = false;
+
+            microlith = false;
+
             onSand = false;
-            pholiotaMinion = false;
-            #endregion
-            #region Q-T
+
             shakeEffects = 0;
-            solarAura = false;
+
             toadstoolExplode = false;
-            #endregion
-            #region U-Z
-            #endregion
         }
-        public override void UpdateBadLifeRegen()
-        {
-            if (gleamingNectar)
-            {
-                player.lifeRegen += 4;
-                player.manaRegen += 4;
-            }
-            if (solarAura)
-            {
-                if (player.lavaWet)
-                    player.statDefense %= 10;
-            }
-        }
+
         public override void FrameEffects()
         {
             if (player.HasBuff(ModContent.BuffType<SlitheringGrace>()))
@@ -129,15 +67,40 @@ namespace TrelamiumTwo.Common.Players
                 player.head = mod.GetEquipSlot("RattlesnakeHead", EquipType.Head);
             }
         }
-        public override void UpdateBiomes() 
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            ZoneDruidsGarden = TrelamiumWorld.DruidsGardenTiles > 150;
-            ZoneDustifiedCaverns = TrelamiumWorld.DustifiedCavernTiles > 150;
+            if (player.ZoneForest() && Main.rand.NextBool(1050 / power))
+            {
+                caughtType = ModContent.ItemType<Fleurer>();
+            }
+            if (player.ZoneForest() && Main.rand.NextBool(300 / power))
+            {
+                caughtType = ModContent.ItemType<Barkfish>();
+            }
+            if (player.ZoneForest() && Main.rand.NextBool(300 / power))
+            {
+                caughtType = ModContent.ItemType<ShreemCarp>();
+            }
+            if (player.ZoneDesert && Main.rand.NextBool(1050 / power))
+            {
+                caughtType = ModContent.ItemType<UraeusEel>();
+            }
+            if (player.ZoneDesert && Main.rand.NextBool(300 / power))
+            {
+                caughtType = ModContent.ItemType<Scaracod>();
+            }
+            if (player.ZoneDesert && Main.rand.NextBool(300 / power))
+            {
+                caughtType = ModContent.ItemType<Sunfish>();
+            }
         }
-
-        public override void UpdateBiomeVisuals() 
-            => player.ManageSpecialBiomeVisuals("Blizzard", 
-            NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.Glacier.Glacier>()), player.Center);
+        public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
+        {
+            if (gluttonAmulet)
+            {
+                healValue = (int)(healValue * 1.33f);
+            }
+        }
         public override void ModifyScreenPosition()
         {
             if (shakeEffects > 0)

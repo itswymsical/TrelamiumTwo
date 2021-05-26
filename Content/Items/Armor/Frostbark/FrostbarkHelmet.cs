@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Armor.Frostbark
 {
@@ -23,15 +24,14 @@ namespace TrelamiumTwo.Content.Items.Armor.Frostbark
         public override bool IsArmorSet(Item head, Item body, Item legs)
             => body.type == ModContent.ItemType<FrostbarkLamellar>() && legs.type == ModContent.ItemType<FrostbarkBrogues>();
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-            => player.meleeCrit += 5;
+        public override void UpdateAccessory(Player player, bool hideVisual) => player.meleeCrit += 5;
 
         public override void UpdateArmorSet(Player player)
         {
-            var tp = Main.player[Main.myPlayer].GetModPlayer<Common.Players.TrelamiumPlayer>();
+            ArmorSetPlayer armorSetPlayer = player.GetModPlayer<ArmorSetPlayer>();
             player.setBonus = "Melee weapons are imbued with 'Frostburn'" +
                 "\nWhile in the tundra you deal more 'Frostburn' damage";
-            tp.frostbarkBonus = true;
+            armorSetPlayer.frostbarkSet = true;
         }
         public override void AddRecipes()
         {

@@ -13,7 +13,7 @@ namespace TrelamiumTwo.Content.Buffs.Potions
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().gleamingNectar = true;
+			Main.LocalPlayer.GetModPlayer<Common.Players.BuffPlayer>().gleamingNectar = true;
 		}
 	}
 }

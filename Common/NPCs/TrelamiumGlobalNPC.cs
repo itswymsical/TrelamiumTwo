@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Common.NPCs
                     damage = 1;
                 }
             }
-            if (Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>().solarAura)
+            if (Main.LocalPlayer.GetModPlayer<Players.BuffPlayer>().solarAura)
             {
                 if (npc.HasBuff(BuffID.OnFire))
                 {

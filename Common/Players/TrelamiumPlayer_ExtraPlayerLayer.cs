@@ -1,19 +1,13 @@
-﻿#region Using directives
-
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-
 using Microsoft.Xna.Framework;
-
-#endregion
 
 namespace TrelamiumTwo.Common.Players
 {
 	public delegate void HeldItemOverlayOperation(Player player, TrelamiumPlayer modPlayer);
 
-	public sealed partial class TrelamiumPlayer : ModPlayer
+	public partial class TrelamiumPlayer : ModPlayer
 	{
 		public HeldItemOverlayOperation HeldItemOverlayOperationModifier;
 

@@ -1,23 +1,20 @@
-﻿#region Using directives
-
-using System.Linq;
-
+﻿using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using TrelamiumTwo.Common.Players;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Items.Tools
 {
-	public sealed class TravelersLantern : TrelamiumItem
+	public class TravelersLantern : TrelamiumItem
 	{
+		private int currentActiveEmber = 0;
+
+		private readonly int MaxEmberAmount = 5;
+		private readonly float MaxActiveDistance = 320;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Traveler's Lantern");
@@ -36,8 +33,71 @@ namespace TrelamiumTwo.Content.Items.Tools
         {
 			Lighting.AddLight(player.itemLocation, Color.Orange.ToVector3() * Main.essScale);
         }
-        public override void HoldStyle(Player player)
+		public override bool AltFunctionUse(Player player)
+		 => true;
+
+		public override bool CanUseItem(Player player)
 		{
+			if (Main.myPlayer == player.whoAmI)
+			{
+				int emberType = ModContent.ProjectileType<Projectiles.TravelersEmber>();
+
+				if (player.altFunctionUse == 2)
+				{
+					foreach (var proj in Main.projectile.Where(x => x.active && x.owner == player.whoAmI && x.type == emberType))
+					{
+						proj.ai[0] = 0f;
+						proj.netUpdate = true;
+						proj.localAI[0] = proj.localAI[1] = 0f;
+					}
+
+					return (false);
+				}
+
+				Vector2 targetPosition = Main.MouseWorld;
+
+				if (!Collision.CanHitLine(player.Center, 1, 1, targetPosition, 1, 1))
+				{
+					return (false);
+				}
+
+				float distanceToTargetPosition = (targetPosition - player.Center).Length();
+				if (distanceToTargetPosition > MaxActiveDistance)
+				{
+					targetPosition += Vector2.Normalize(player.Center - targetPosition) * (distanceToTargetPosition - MaxActiveDistance);
+				}
+
+				Projectile currentEmber = Main.projectile
+					.Where(x => x.active && x.owner == player.whoAmI && x.type == emberType)
+					.Skip(currentActiveEmber)
+					.FirstOrDefault();
+
+				currentEmber.ai[0] = 1f;
+				currentEmber.netUpdate = true;
+				currentEmber.localAI[0] = targetPosition.X;
+				currentEmber.localAI[1] = targetPosition.Y;
+
+				currentActiveEmber = (currentActiveEmber + 1) % MaxEmberAmount;
+			}
+
+			return (false);
+		}
+
+		public override void HoldStyle(Player player)
+		{
+			if (Main.myPlayer == player.whoAmI)
+			{
+				int emberType = ModContent.ProjectileType<Projectiles.TravelersEmber>();
+				int emberCount = player.ownedProjectileCounts[emberType];
+
+				for (int i = 0; i < MaxEmberAmount - emberCount; ++i)
+				{
+					Vector2 projectilePos = player.position + new Vector2(Main.rand.Next(player.width), Main.rand.Next(player.height));
+
+					Projectile.NewProjectile(projectilePos, Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi), emberType, 0, 0, player.whoAmI);
+				}
+			}
+
 			player.itemLocation.Y -= 22;
 			if (player.direction == 1)
 			{
@@ -50,13 +110,13 @@ namespace TrelamiumTwo.Content.Items.Tools
 			player.GetModPlayer<TrelamiumPlayer>().HeldItemOverlayOperationModifier += TravelersLanternGlow;
 		}
 
-		private void TravelersLanternGlow(Player player, TrelamiumPlayer mPlayer)
+		private void TravelersLanternGlow(Player player, TrelamiumPlayer ep)
 		{
 			Texture2D glowmask = ModContent.GetTexture(Texture + "_Glow");
 			Rectangle frame = glowmask.Frame();
 			SpriteEffects effects = player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			Vector2 origin = new Vector2(0, 0);
-			
+
 			Vector2 drawPosition = player.itemLocation - Main.screenPosition + new Vector2(0, player.gfxOffY);
 			drawPosition.X += 33 * player.direction;
 

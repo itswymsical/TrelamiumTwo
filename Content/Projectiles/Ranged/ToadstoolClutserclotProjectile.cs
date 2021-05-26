@@ -29,7 +29,8 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
 			projectile.timeLeft = 280;
 			projectile.penetrate = -1;
-			projectile.aiStyle = 0;
+			projectile.aiStyle = -1;
+			base.SetDefaults();
 		}
 		public override void AI()
 		{

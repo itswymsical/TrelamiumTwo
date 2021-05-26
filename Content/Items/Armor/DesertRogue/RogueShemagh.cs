@@ -1,8 +1,7 @@
-#region Using Directives
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-#endregion
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Armor.DesertRogue
 {
@@ -14,7 +13,6 @@ namespace TrelamiumTwo.Content.Items.Armor.DesertRogue
             DisplayName.SetDefault("Desert Raider Shemagh");
             Tooltip.SetDefault("Decreases enemy detection by 5%");
 		}
-
 		public override void SetDefaults()
 		{
             item.height = 24;
@@ -34,11 +32,9 @@ namespace TrelamiumTwo.Content.Items.Armor.DesertRogue
 
         public override void UpdateArmorSet(Player player)
         {
-            var tp = Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>();
-            player.setBonus = "Movement speed is Moderately increased"
-            + "\nAttacks ";
-            player.moveSpeed += 0.15f;
-            tp.desertKB = true;
+            ArmorSetPlayer armorSetPlayer = player.GetModPlayer<ArmorSetPlayer>();
+            player.setBonus = "[To be conceptualized]";
+            armorSetPlayer.desertRogueSet = true;
         }
         public override void AddRecipes()
         {

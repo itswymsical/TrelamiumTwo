@@ -23,36 +23,31 @@ namespace TrelamiumTwo.Common.Items
         }
 
         public override void Load(TagCompound tag)
-            => ExpireTimer = tag.GetInt(nameof(ExpireTimer));     
+            => ExpireTimer = tag.GetInt(nameof(ExpireTimer));
 
-        public override void NetSend(BinaryWriter writer) 
+        public override void NetSend(BinaryWriter writer)
             => writer.Write(ExpireTimer);
-        
+
         public override void NetRecieve(BinaryReader reader)
             => ExpireTimer = reader.ReadInt32();
-        
+
         public override void UpdateInventory(Player player)
         {
-            if (player.whoAmI == Main.myPlayer && Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>().legionAccessory)
+            ExpireTimer -= 1;
+            if (ExpireTimer <= 0)
             {
-                ExpireTimer -= 1;
-                if (ExpireTimer <= 0)
-                {
-                    ExpireTimer = 0;
-                    expired = true;
-                }
+                ExpireTimer = 0;
+                expired = true;
             }
         }
+
         public override void PostUpdate()
         {
-            if (Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>().legionAccessory)
+            ExpireTimer -= 1;
+            if (ExpireTimer <= 0)
             {
-                ExpireTimer -= 1;
-                if (ExpireTimer <= 0)
-                {
-                    ExpireTimer = 0;
-                    expired = true;
-                }
+                ExpireTimer = 0;
+                expired = true;
             }
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -81,25 +76,25 @@ namespace TrelamiumTwo.Common.Items
             }
             if (canExpire && item.consumable && ExpireTimer < 3600 && !expired)
             {
-                TooltipLine sline2 = 
+                TooltipLine sline2 =
                     new TooltipLine(mod, "TrelamiumTwo: Expiry (seconds)", $"Expires in: [c/FA8072:{ExpireTimer / 60}] [c/FA8072:{seconds:N0}]");
                 tooltips.Add(sline2);
             }
             if (canExpire && item.consumable && ExpireTimer > 3599 && ExpireTimer < 216000 && !expired)
             {
-                TooltipLine sline2 = 
+                TooltipLine sline2 =
                     new TooltipLine(mod, "TrelamiumTwo: Expiry (minutes)", $"Expires in: [c/FA8072:{ExpireTimer / 3599}] [c/FA8072:{minutes:N0}]");
                 tooltips.Add(sline2);
             }
             if (canExpire && item.consumable && ExpireTimer > 215999 && !expired)
             {
-                TooltipLine sline2 = 
+                TooltipLine sline2 =
                     new TooltipLine(mod, "TrelamiumTwo: Expiry (hours)", $"Expires in: [c/FA8072:{ExpireTimer / 216000}] [c/FA8072:{hours:N0}]");
                 tooltips.Add(sline2);
             }
             if (canExpire && item.consumable && expired)
             {
-                TooltipLine sline2 = 
+                TooltipLine sline2 =
                     new TooltipLine(mod, "TrelamiumTwo: Expired", "[c/FA8072:Expired food]");
                 tooltips.Add(sline2);
             }
