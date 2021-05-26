@@ -35,7 +35,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 		public override bool PreAI()
 		{
 			Player owner = Main.player[projectile.owner];
-			Common.Players.TrelamiumPlayer modPlayer = owner.GetModPlayer<Common.Players.TrelamiumPlayer>();
+			MinionPlayer modPlayer = owner.GetModPlayer<MinionPlayer>();
 
 			if (JustSpawned)
 			{

@@ -1,16 +1,11 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-#endregion
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Accessory
 {
-	// TODO: Eldrazi - Add correct sprites and autoload.
-	//[AutoloadEquip(EquipType.Shoes)]
-	public sealed class DustrollerSkates : TrelamiumItem
+	public class DustrollerSkates : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -25,7 +20,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 
 		public override void UpdateEquip(Player player)
-			=> player.GetModPlayer<Common.Players.TrelamiumPlayer>().dustrollerSkates = true;
+			=> player.GetModPlayer<TrelamiumPlayer>().dustrollerSkates = true;
 
 		public override void AddRecipes()
 		{

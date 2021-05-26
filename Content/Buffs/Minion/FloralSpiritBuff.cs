@@ -1,15 +1,10 @@
-#region Using directives
-
 using Terraria;
 using Terraria.ModLoader;
-
 using TrelamiumTwo.Common.Players;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Buffs.Minion
 {
-	public sealed class FloralSpiritBuff : ModBuff
+	public class FloralSpiritBuff : ModBuff
 	{
 		public override void SetDefaults()
 		{
@@ -22,16 +17,13 @@ namespace TrelamiumTwo.Content.Buffs.Minion
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			TrelamiumPlayer modPlayer = player.GetModPlayer<TrelamiumPlayer>();
+			MinionPlayer minionPlayer = player.GetModPlayer<MinionPlayer>();
+			minionPlayer.BloomBulb = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.FloralSpiritGuardian>()] > 0;
 
-			if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.FloralSpiritGuardian>()] > 0)
+			if (!minionPlayer.floralSpirit)
 			{
-				modPlayer.floralSpirit = true;
-			}
-
-			if (!modPlayer.floralSpirit)
-			{
-				player.DelBuff(buffIndex--);
+				player.DelBuff(buffIndex);
+				buffIndex--;
 			}
 			else
 			{

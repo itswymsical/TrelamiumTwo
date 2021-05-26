@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
             item.mana = 8;
             item.knockBack = 2.5f;
 
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item9;
 

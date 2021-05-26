@@ -21,7 +21,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.knockBack = 3f;
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.value = Item.sellPrice(copper: 50);
             item.noUseGraphic = true;
             item.shoot = ModContent.ProjectileType<TheAncientProjectile>();

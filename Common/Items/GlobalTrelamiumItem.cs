@@ -1,12 +1,9 @@
-#region Using Directives
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Hooks;
-#endregion
-
+using TrelamiumTwo.Common.Players;
 namespace TrelamiumTwo.Common.Items
 {
     public class GlobalTrelamiumItem : GlobalItem
@@ -29,8 +26,8 @@ namespace TrelamiumTwo.Common.Items
         }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Players.TrelamiumPlayer tp = Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>();
-            if (tp.frostbarkBonus && item.melee)
+            ArmorSetPlayer armorSetPlayer = Main.LocalPlayer.GetModPlayer<ArmorSetPlayer>();
+            if (armorSetPlayer.frostbarkSet && item.melee)
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));

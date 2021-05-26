@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Armor.Kindled
 {
@@ -26,9 +27,9 @@ namespace TrelamiumTwo.Content.Items.Armor.Kindled
             => player.minionDamage += 0.03f;
         public override void UpdateArmorSet(Player player)
         {
-            var tp = Main.player[Main.myPlayer].GetModPlayer<Common.Players.TrelamiumPlayer>();
+            ArmorSetPlayer armorSetPlayer = Main.player[Main.myPlayer].GetModPlayer<ArmorSetPlayer>();
             player.setBonus = "Increases the amount of damage 'On Fire!' deals to enemies by 2";
-            tp.kindledSetBonus = true;
+            armorSetPlayer.kindledSet = true;
         }
         public override void AddRecipes()
         {

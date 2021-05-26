@@ -9,8 +9,8 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("cloud sprite");
-			Tooltip.SetDefault("Summons Atlas");
+			DisplayName.SetDefault("Forest Altar");
+			Tooltip.SetDefault("Summons Forest Guardian");
 			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 12;
 		}
 

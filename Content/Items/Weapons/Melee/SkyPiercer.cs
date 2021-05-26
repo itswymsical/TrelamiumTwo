@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Content.Items.Materials;
 using TrelamiumTwo.Content.Projectiles.Melee;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
@@ -28,5 +29,13 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 
         public override bool CanUseItem(Player player)
            => player.ownedProjectileCounts[item.shoot] < 1;
+        public override void AddRecipes()
+        {
+            var recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<AzumuthBar>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Buffs.Minion
 {
@@ -15,12 +16,10 @@ namespace TrelamiumTwo.Content.Buffs.Minion
 
         public override void Update(Player player, ref int buffIndex)
         {
-            Common.Players.TrelamiumPlayer modPlayer = player.GetModPlayer<Common.Players.TrelamiumPlayer>();
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.MossMonarchProjectile>()] > 0)
-            {
-                modPlayer.mossMonarch = true;
-            }
-            if (!modPlayer.mossMonarch)
+            MinionPlayer minionPlayer = player.GetModPlayer<MinionPlayer>();
+            minionPlayer.mossMonarch = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.MossMonarchProjectile>()] > 0;
+
+            if (!minionPlayer.mossMonarch)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

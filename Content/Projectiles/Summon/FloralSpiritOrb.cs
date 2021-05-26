@@ -1,21 +1,14 @@
-﻿#region Using directives
-
-using System.IO;
-
+﻿using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using TrelamiumTwo.Common.Extensions;
-
-#endregion
 
 namespace TrelamiumTwo.Content.Projectiles.Summon
 {
-	internal sealed class FloralSpiritOrb : ModProjectile
+	internal class FloralSpiritOrb : ModProjectile
 	{
 		private readonly float maxSpeed = 10f;
 

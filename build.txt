@@ -1,4 +1,5 @@
-displayName = Trelamium 2
+displayName = Trelamium 2 (No Music)
 author = Signia, Blossom, HugeKraken, Lemmy, & More
 version = 0.1
 homepage = https://discord.gg/HmZ6GUP3mm
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .git\*

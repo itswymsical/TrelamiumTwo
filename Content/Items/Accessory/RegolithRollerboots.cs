@@ -1,16 +1,11 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-#endregion
+using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Accessory
 {
-	// TODO: Eldrazi - Add correct sprites and autoload.
-	//[AutoloadEquip(EquipType.Shoes)]
-	public sealed class RegolithRollerboots : TrelamiumItem
+	public class RegolithRollerboots : TrelamiumItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -27,10 +22,9 @@ namespace TrelamiumTwo.Content.Items.Accessory
 
 		public override void UpdateEquip(Player player)
 		{
-			var trelamiumPlayer = player.GetModPlayer<Common.Players.TrelamiumPlayer>();
+			TrelamiumPlayer trelamiumPlayer = player.GetModPlayer<TrelamiumPlayer>();
 
 			player.accRunSpeed = 6f;
-			trelamiumPlayer.magicGuantlet = true;
 			trelamiumPlayer.dustrollerSkates = true;
 
 			if (trelamiumPlayer.onSand)
@@ -46,9 +40,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 
 		public override void AddRecipes()
 		{
-			// TODO 1.4: Eldrazi - Set correct recipe.
-			var recipe = new ModRecipe(mod);
-
+			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ModContent.ItemType<DustrollerSkates>());
 			recipe.AddTile(TileID.TinkerersWorkbench);
 			recipe.SetResult(this);
