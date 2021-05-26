@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Magic
 {
-    public class MarbleStaff : ModItem
+    public class MarbleStaff : TrelamiumItem
     {
 
         public override void SetStaticDefaults() => DisplayName.SetDefault("Marble Staff");

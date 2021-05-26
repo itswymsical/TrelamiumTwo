@@ -21,7 +21,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			Lighting.AddLight(player.Center, Color.Black.ToVector3() * Main.essScale);
+			Lighting.AddLight(player.Center, Color.Orange.ToVector3() * Main.essScale);
 		}
 	}
 }

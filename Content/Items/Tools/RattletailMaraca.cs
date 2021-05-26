@@ -11,7 +11,8 @@ namespace TrelamiumTwo.Content.Items.Tools
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("The rattling is strangely invigorating");
+			Tooltip.SetDefault("Transforms the player into a Rattletail snake." +
+				"\nClicking automatically defaults to spitting venom.");
 		}
 		protected override void SafeSetDefaults()
 		{
@@ -28,7 +29,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 			item.accessory = true;
 			item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Maraka");
 		}
-
+		// TODO: Make the Rattletail Maraca transform the player into a snake that can only run fast. Clicking will fire a venom spit projectile.
 		public override bool CanUseItem(Player player)
 			=> cooldown <= 0;
 

@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Hooks;
+using TrelamiumTwo.Content.Items.Tools.Shovels;
 
 namespace TrelamiumTwo.Common.Tiles
 {
@@ -12,8 +13,14 @@ namespace TrelamiumTwo.Common.Tiles
         {
             var ModPlayer = Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>();
             Player player = Main.LocalPlayer;
-            int amount = Main.rand.Next(1, 3);
+            bool flag = false;
+            if (Main.rand.Next(2) == 0)
+                flag = true;
+            else
+                flag = false;
 
+            #region Microlith
+            int amount = Main.rand.Next(1, 3);
             if (ModPlayer.microlith && player.HeldItem.IsShovel()
             || ModPlayer.microlith && player.HeldItem.IsPickaxe())
             {
@@ -145,6 +152,30 @@ namespace TrelamiumTwo.Common.Tiles
                         Item.NewItem(i * 16, j * 16, 16, 48, ItemID.ChlorophyteOre, amount);
                         CombatText.NewText(player.Hitbox, new Color(161, 236, 0), "Chlorophyte Harvest +" + amount);
                     }
+                }
+            }
+            #endregion
+            if (player.HeldItem.modItem is Bottomfeeder)
+            {
+                int choice = Main.rand.Next(5);
+                if (choice == 0)
+                    choice = flag ? ItemID.CopperOre : ItemID.TinOre;
+
+                if (choice == 1)
+                    choice = flag ? ItemID.IronOre : ItemID.LeadOre;
+
+                if (choice == 2)
+                    choice = flag ? ItemID.SilverOre : ItemID.TungstenOre;
+
+                if (choice == 3)
+                    choice = flag ? ItemID.GoldOre : ItemID.PlatinumOre;
+
+                if (choice == 4 && NPC.downedBoss1)
+                    choice = flag ? ItemID.DemoniteOre : ItemID.CrimtaneOre;
+                if (Main.rand.Next(20) == 0)
+                {
+                    CombatText.NewText(player.Hitbox, Color.LightGoldenrodYellow, "Treasure!", true, false);
+                    Item.NewItem(i * 16, j * 16, 16, 48, choice, 1);
                 }
             }
             return true;

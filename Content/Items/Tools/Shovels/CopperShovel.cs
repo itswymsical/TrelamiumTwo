@@ -12,8 +12,8 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             item.melee = true;
             item.damage = 4;
-            item.useTime = 27;
-            item.useAnimation = 27;
+            item.useTime = 22;
+            item.useAnimation = 22;
 
             DiggingPower(37);
 

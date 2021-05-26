@@ -10,8 +10,7 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Bottomfeeder");
-            Tooltip.SetDefault("Creates gem shape, gem shape that breaks blocks gives that gem." +
-                "\nCode this");
+            Tooltip.SetDefault("Has a chance to dig up a random ore");
         }
         public override void SetDefaults()
         {

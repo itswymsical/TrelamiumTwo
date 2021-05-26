@@ -9,12 +9,13 @@ using TrelamiumTwo.Common.Players;
 
 namespace TrelamiumTwo.Content.Items.Tools
 {
-	public class TravelersLantern : TrelamiumItem
+	public class TravelersLantern : ModItem
 	{
 		private int currentActiveEmber = 0;
-
+		
 		private readonly int MaxEmberAmount = 5;
 		private readonly float MaxActiveDistance = 320;
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Traveler's Lantern");
@@ -25,16 +26,19 @@ namespace TrelamiumTwo.Content.Items.Tools
 			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(0, 0, 40, 0);
 
+			item.useTime = 18;
+			item.useAnimation = 18;
+			item.useStyle = ItemUseStyleID.HoldingOut;
+
 			item.holdStyle = ItemHoldStyleID.HoldingOut;
 
 			item.noMelee = true;
+
+			item.UseSound = SoundID.Item1;
 		}
-        public override void HoldItem(Player player)
-        {
-			Lighting.AddLight(player.itemLocation, Color.Orange.ToVector3() * Main.essScale);
-        }
+
 		public override bool AltFunctionUse(Player player)
-		 => true;
+			=> true;
 
 		public override bool CanUseItem(Player player)
 		{
@@ -60,13 +64,13 @@ namespace TrelamiumTwo.Content.Items.Tools
 				{
 					return (false);
 				}
-
+				
 				float distanceToTargetPosition = (targetPosition - player.Center).Length();
 				if (distanceToTargetPosition > MaxActiveDistance)
 				{
 					targetPosition += Vector2.Normalize(player.Center - targetPosition) * (distanceToTargetPosition - MaxActiveDistance);
 				}
-
+				
 				Projectile currentEmber = Main.projectile
 					.Where(x => x.active && x.owner == player.whoAmI && x.type == emberType)
 					.Skip(currentActiveEmber)
@@ -116,7 +120,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 			Rectangle frame = glowmask.Frame();
 			SpriteEffects effects = player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			Vector2 origin = new Vector2(0, 0);
-
+			
 			Vector2 drawPosition = player.itemLocation - Main.screenPosition + new Vector2(0, player.gfxOffY);
 			drawPosition.X += 33 * player.direction;
 

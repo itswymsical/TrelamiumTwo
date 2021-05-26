@@ -13,8 +13,8 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             item.melee = true;
             item.damage = 6;
-            item.useTime = 26;
-            item.useAnimation = 26;
+            item.useTime = 22;
+            item.useAnimation = 22;
             item.rare = ItemRarityID.White;
             DiggingPower(45);
 
