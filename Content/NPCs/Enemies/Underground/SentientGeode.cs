@@ -32,8 +32,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 		public override void AI()
 		{
 			int num = 30;
-			int num2 = 10;
-			bool flag = false;
+            bool flag = false;
 			bool flag2 = false;
 			bool flag3 = false;
 			Dust dust22;
@@ -48,8 +47,8 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 				flag2 = true;
 				npc.ai[3] += 1f;
 			}
-			num2 = 4;
-			bool flag4 = npc.velocity.Y == 0f;
+            int num2 = 4;
+            bool flag4 = npc.velocity.Y == 0f;
 			for (int i = 0; i < 200; i++)
 			{
 				if (i != npc.whoAmI && Main.npc[i].active && Main.npc[i].type == npc.type && Math.Abs(npc.position.X - Main.npc[i].position.X) + Math.Abs(npc.position.Y - Main.npc[i].position.Y) < (float)npc.width)
@@ -114,7 +113,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
                 }
 				for (int k = 0; k < 10; k++)
 				{
-					Dust.NewDust(npc.position, npc.width, npc.height, 4, 0f, -1f, 0, default(Color), 1f);
+					Dust.NewDust(npc.position, npc.width, npc.height, 4, 0f, -1f, 0, default, 1f);
 				}
 			}
 			if (npc.ai[3] < (float)num)
@@ -146,9 +145,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 					npc.direction = 1;
 				}
 			}
-			float num7 = 6f;
-			float num8 = 0.07f;
-			if (!flag && (npc.velocity.Y == 0f || npc.wet || (npc.velocity.X <= 0f && npc.direction < 0) || (npc.velocity.X >= 0f && npc.direction > 0)))
+            if (!flag && (npc.velocity.Y == 0f || npc.wet || (npc.velocity.X <= 0f && npc.direction < 0) || (npc.velocity.X >= 0f && npc.direction > 0)))
 			{
 				if (Math.Sign(npc.velocity.X) != npc.direction)
 				{
@@ -159,9 +156,9 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 				{
 					num9 = 0f;
 				}
-				num7 = 4f + num9 * (float)npc.direction * 4f;
-				num8 = 0.1f;
-				if (npc.velocity.X < -num7 || npc.velocity.X > num7)
+                float num7 = 4f + num9 * (float)npc.direction * 4f;
+                float num8 = 0.1f;
+                if (npc.velocity.X < -num7 || npc.velocity.X > num7)
 				{
 					if (npc.velocity.Y == 0f)
 					{
@@ -365,19 +362,18 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Amber);
             }
-            //Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemType<Ore_Cluster>(), Main.rand.Next(1, 4));
         }
 		public override void HitEffect(int hitDirection, double damage)
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, 0, default, 1f);
 			}
 			if (npc.life <= 0)
 			{
 				for (int k = 0; k < 40; k++)
 				{
-					Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, 0, default, 1f);
 				}
 			}
 		}

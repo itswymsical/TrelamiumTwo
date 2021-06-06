@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient;
+using TrelamiumTwo.Content.Tiles.DruidsGarden.Trees;
 
 namespace TrelamiumTwo.Content.Tiles.DruidsGarden
 {
@@ -44,30 +45,32 @@ namespace TrelamiumTwo.Content.Tiles.DruidsGarden
         {
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileLighted[Type] = true;
+            Main.tileBlendAll[Type] = true;
+            Main.tileMerge[Type][ModContent.TileType<LoamTileGrass>()] = true;
 
-            dustType = 39;
-            mineResist = 0.35f;
-
-            soundType = SoundID.Grass;
-            soundStyle = 2;
             TileID.Sets.ChecksForMerge[Type] = true;
             TileID.Sets.NeedsGrassFraming[Type] = true;
             TileID.Sets.NeedsGrassFramingDirt[Type] = ModContent.TileType<LoamTile>();
-
+            
+            dustType = 39;
+            mineResist = 0.35f;
+            soundType = SoundID.Grass;
+            soundStyle = 2;
+            SetModTree(new AlderwoodTree());
             AddMapEntry(new Color(90, 160, 40));
         }
         #region RandomUpdate, Dust, KillTile
         public override void NumDust(int i, int j, bool fail, ref int num)
             => num = fail ? 1 : 3;
-        
+        public override int SaplingGrowthType(ref int style)
+        {
+            style = 0;
+            return ModContent.TileType<AlderwoodSapling>();
+        }
         public override void RandomUpdate(int i, int j)
         {
             if (WorldGen.genRand.Next(3) == 0)
-                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTileGrass>(), true, Main.tile[i, j].color());
-            
-            if (WorldGen.genRand.Next(100) == 0)
-                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<DGFoliageTile>());
+                WorldGen.SpreadGrass(i, j, ModContent.TileType<LoamTile>(), ModContent.TileType<LoamTileGrass>(), true, Main.tile[i, j].color());          
         }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {

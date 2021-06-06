@@ -1,13 +1,13 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Content.Items.Materials;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Melee
 {
     public class FrostbarkClaymore : TrelamiumItem
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Frostbark Claymore");
+        public override void SetStaticDefaults() 
+            => DisplayName.SetDefault("Frostbark Claymore");
 
         public override void SafeSetDefaults()
         {
@@ -28,12 +28,16 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 
             item.value = Item.buyPrice(silver: 50);
         }
-
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(BuffID.Frostburn, 30);
+        }
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Frostbark>(), 18);
+            recipe.AddIngredient(ItemID.BorealWood, 18);
             recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+            recipe.AddIngredient(ItemID.IceBlock, 6);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

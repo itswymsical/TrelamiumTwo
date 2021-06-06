@@ -39,7 +39,8 @@ namespace TrelamiumTwo.Content.Items.Armor.DesertRogue
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Leather, 3);           
+            recipe.AddIngredient(ModContent.ItemType<Materials.AridFiber>(), 8);
+            recipe.AddIngredient(ItemID.Chain, 2);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

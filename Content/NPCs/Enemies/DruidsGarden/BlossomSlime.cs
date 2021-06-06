@@ -29,7 +29,23 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.DruidsGarden
 
             npc.value = Item.buyPrice(copper: 20);
         }
-
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life > 0)
+            {
+                for (int i = 0; i < damage / npc.lifeMax * 100f; ++i)
+                {
+                    Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, npc.alpha, Microsoft.Xna.Framework.Color.Green, npc.scale);
+                    Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -1f, npc.alpha, Microsoft.Xna.Framework.Color.Pink, npc.scale);
+                }
+                return;
+            }
+            for (int i = 0; i < 50; ++i)
+            {
+                Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -2f, npc.alpha, Microsoft.Xna.Framework.Color.Green, npc.scale);
+                Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -2f, npc.alpha, Microsoft.Xna.Framework.Color.Pink, npc.scale);
+            }
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
         public override void AI() 
             => npc.direction = -npc.spriteDirection;

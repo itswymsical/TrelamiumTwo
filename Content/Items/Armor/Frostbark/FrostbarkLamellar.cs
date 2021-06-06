@@ -26,8 +26,9 @@ namespace TrelamiumTwo.Content.Items.Armor.Frostbark
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Materials.Frostbark>(), 18);
-            recipe.AddIngredient(ItemID.Chain, 4);
+            recipe.AddIngredient(ItemID.BorealWood, 22);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 4);
+            recipe.AddIngredient(ItemID.Chain, 1);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -35,8 +35,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 		public override bool PreAI()
 		{
 			Player owner = Main.player[projectile.owner];
-			MinionPlayer modPlayer = owner.GetModPlayer<MinionPlayer>();
-
+			ArmorSetPlayer armorSetPlayer = owner.GetModPlayer<ArmorSetPlayer>();
 			if (JustSpawned)
 			{
 				for (int i = 0; i < 40; ++i)
@@ -58,9 +57,9 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 
 			if (owner.dead)
 			{
-				modPlayer.floralSpirit = false;
+				armorSetPlayer.EverbloomSet = false;
 			}
-			if (modPlayer.floralSpirit)
+			if (armorSetPlayer.EverbloomSet)
 			{
 				projectile.timeLeft = 2;
 			}

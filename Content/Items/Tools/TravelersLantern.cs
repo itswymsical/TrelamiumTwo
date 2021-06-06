@@ -19,6 +19,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Traveler's Lantern");
+			Tooltip.SetDefault("Holding the Traveler's Latern attracts fireflies that light the way");
 		}
 		public override void SetDefaults()
 		{

@@ -23,14 +23,15 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 			item.value = Item.sellPrice(silver: 1, copper: 20);
 		}
 
-		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<EverbloomTunic>() && legs.type == ModContent.ItemType<EverbloomLeggings>();
+		public override bool IsArmorSet(Item head, Item body, Item legs) 
+			=> body.type == ModContent.ItemType<EverbloomTunic>() && legs.type == ModContent.ItemType<EverbloomLeggings>();
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Increases maximum mana by 20";
+			player.setBonus = "Increases maximum mana by 20 and mana regeneration by 5";
 
 			player.statManaMax2 += 20;
-
+			player.manaRegen += 5;
 			player.GetModPlayer<ArmorSetPlayer>().EverbloomSet = true;
 		}
 

@@ -87,6 +87,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			ModifyWorldGenTasks_DustifiedCaverns(tasks);
 			ModifyWorldGenTasks_DruidsGarden(tasks);
+			ModifyWorldGenTasks_TestBiome(tasks);
 			int shiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
 		}
 

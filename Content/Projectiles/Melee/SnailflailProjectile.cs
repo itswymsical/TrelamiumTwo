@@ -112,16 +112,5 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			this.DrawProjectileTrailCentered(spriteBatch, lightColor);
 			return this.DrawProjectileCentered(spriteBatch, lightColor);
 		}
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-
-			if (Main.rand.Next(4) == 0)
-            {
-				var Index = Projectile.NewProjectile(projectile.position, projectile.velocity,
-					ModContent.ProjectileType<SnailflailProjectile>(), default, default, default);
-				Main.projectile[Index].scale *= Main.rand.NextFloat(.33f, .66f);
-				Main.projectile[Index].damage = Main.rand.Next(projectile.damage % 33, projectile.damage % 70);
-			}
-		}
     }
 }

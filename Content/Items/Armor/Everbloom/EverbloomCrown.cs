@@ -1,6 +1,5 @@
 ﻿using TrelamiumTwo.Common.Players;
 using TrelamiumTwo.Content.Items.Materials;
-using TrelamiumTwo.Core;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,14 +24,13 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 
 		public override void DrawHair(ref bool drawHair, ref bool drawAltHair) => drawHair = true;
 
-		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<EverbloomTunic>() && legs.type == ModContent.ItemType<EverbloomLeggings>();
+		public override bool IsArmorSet(Item head, Item body, Item legs) 
+			=> body.type == ModContent.ItemType<EverbloomTunic>() && legs.type == ModContent.ItemType<EverbloomLeggings>();
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Increases your max amount of minions by 1";
-
-			player.maxMinions += 1;
-
+			player.setBonus = "Summons a Floral Spirit to protect you";
+			player.AddBuff(ModContent.BuffType<Buffs.Minion.FloralSpiritBuff>(), 69); // XD 69!!!
 			player.GetModPlayer<ArmorSetPlayer>().EverbloomSet = true;
 		}
 

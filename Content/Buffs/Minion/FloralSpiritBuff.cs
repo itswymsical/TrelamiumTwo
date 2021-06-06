@@ -1,6 +1,8 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Players;
+using TrelamiumTwo.Content.Projectiles.Summon;
 
 namespace TrelamiumTwo.Content.Buffs.Minion
 {
@@ -17,17 +19,10 @@ namespace TrelamiumTwo.Content.Buffs.Minion
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			MinionPlayer minionPlayer = player.GetModPlayer<MinionPlayer>();
-			minionPlayer.BloomBulb = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.FloralSpiritGuardian>()] > 0;
-
-			if (!minionPlayer.floralSpirit)
+			bool notSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<FloralSpiritGuardian>()] <= 0 && Main.LocalPlayer.GetModPlayer<ArmorSetPlayer>().EverbloomSet;
+			if (notSpawned && player.whoAmI == Main.myPlayer)
 			{
-				player.DelBuff(buffIndex);
-				buffIndex--;
-			}
-			else
-			{
-				player.buffTime[buffIndex] = 18000;
+				Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<FloralSpiritGuardian>(), 0, 0f, player.whoAmI);
 			}
 		}
 	}

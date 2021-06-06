@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using TrelamiumTwo.Content.Tiles.DruidsGarden.Ambient;
 using TrelamiumTwo.Content.Tiles.DruidsGarden.Stationary;
-using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
+using TrelamiumTwo.Content.Tiles.DruidsGarden;
 using TrelamiumTwo.Content.Walls;
 
 namespace TrelamiumTwo.Common.Worlds
@@ -102,24 +102,27 @@ namespace TrelamiumTwo.Common.Worlds
                     WorldTree(new Vector2((float)num2, (float)(num3 - 280)));
                     CleanUpTree(new Point(num2, num3 - 280));
 
-                    Point point = new Point(num2, num3 + 200);
-                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.Clear());
-                    WorldUtils.Gen(point, new Shapes.Circle(80, 45), new Actions.PlaceWall((byte)ModContent.WallType<LoamWall>()));
+                    Point point = new Point(num2, num3 + 180);
+                    //WorldUtils.Gen(point, new Shapes.Rectangle(80, 60), new Actions.Clear());
+                    WorldUtils.Gen(point, new Shapes.Rectangle(80, 60), new Actions.PlaceWall((byte)ModContent.WallType<LoamWall>()));
+
+                    WorldUtils.Gen(point, new Shapes.Rectangle(80, 60), new Actions.PlaceTile((ushort)ModContent.TileType<SlateTile>()));
+                    WorldUtils.Gen(point, new Shapes.Rectangle(60, 40), new Actions.Clear());
 
                     for (int m = 0; m < 50; m++)
                     {
                         WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-120, 120), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(6, 9), 10, 
-                            ModContent.TileType<Content.Tiles.DruidsGarden.LoamTile>(), false, 0f, 0f, false, true);
+                            ModContent.TileType<LoamTile>(), false, 0f, 0f, false, true);
                     }
                     for (int n = 0; n < 80; n++)
                     {
                         WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(5, 8), 10,
-                            ModContent.TileType<Content.Tiles.DruidsGarden.AlluviumOreTile>(), false, 0f, 0f, false, true);
+                            ModContent.TileType<AlluviumOreTile>(), false, 0f, 0f, false, true);
                     }
                     for (int num9 = 0; num9 < 40; num9++)
                     {
                         WorldGen.TileRunner(num2 + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(num3, maxValue), WorldGen.genRand.Next(3, 11), 10,
-                            ModContent.TileType<Content.Tiles.DruidsGarden.SlateTile>(), false, 0f, 0f, false, true);
+                            ModContent.TileType<SlateTile>(), false, 0f, 0f, false, true);
                     }
                     for (int num10 = 0; num10 < 100; num10++)
                     {

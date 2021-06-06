@@ -50,6 +50,8 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 				}
 				return;
 			}
+			for (int i = 1; i <= 2; i++)
+				Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Content/Gores/Scarab/ScarabGore" + i));
 
 			for (int i = 0; i < 50; ++i)
 			{

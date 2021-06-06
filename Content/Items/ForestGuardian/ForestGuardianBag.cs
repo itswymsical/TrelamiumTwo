@@ -24,7 +24,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 		public override bool CanRightClick() => true;
 		
 		public override int BossBagNPC 
-			=> ModContent.NPCType<NPCs.Fungore.Fungore>();
+			=> ModContent.NPCType<NPCs.ForestGuardian.ForestGuardian>();
 		public override void OpenBossBag(Player player)
 		{
 			int choice = Main.rand.Next(4);
