@@ -87,7 +87,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			=> State == AIState.Shooting;
 
 		public override void Kill(int timeLeft)
-			=> Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Dustilite>());
+			=> Helpers.DustHelpers.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Dustilite>());
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{

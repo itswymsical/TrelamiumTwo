@@ -1,9 +1,12 @@
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using TrelamiumTwo.Common.Extensions;
 
 namespace TrelamiumTwo.Content.Projectiles.Melee
@@ -11,7 +14,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 	public class TheWalnut : ModProjectile
 	{
 		private readonly float rotationSpeed = MathHelper.TwoPi / 50;
-
 		public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
@@ -71,7 +73,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 			=> false;
-
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Player owner = Main.player[projectile.owner];

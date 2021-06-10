@@ -1,6 +1,6 @@
 ﻿using TrelamiumTwo.Content.Dusts;
 using TrelamiumTwo.Core;
-using TrelamiumTwo.Utilities.Extensions;
+using TrelamiumTwo.Helpers.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

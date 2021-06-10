@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
+
 using Microsoft.Xna.Framework;
-using TrelamiumTwo.Content.Tiles.DustifiedCaverns.Ambient;
-using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
-using TrelamiumTwo.Content.Walls;
+
+using TrelamiumTwo.Content.Tiles.Archaea.DustifiedCaverns.Ambient;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -37,13 +38,7 @@ namespace TrelamiumTwo.Common.Worlds
 
 			int minYGen = WorldGen.UndergroundDesertLocation.Y;
 			int genHeight = WorldGen.UndergroundDesertLocation.Height;
-			
-			Point origin = new Point(maxXGen, minYGen + genHeight);
-			/*
-			WorldUtils.Gen(origin, new Shapes.Circle(WorldGen.UndergroundDesertLocation.Width, WorldGen.UndergroundDesertLocation.Height / 3), new Actions.SwapSolidTile((ushort)ModContent.TileType<DarkSandstoneTile>()));
-			WorldUtils.Gen(origin, new Shapes.Circle(WorldGen.UndergroundDesertLocation.Width, WorldGen.UndergroundDesertLocation.Height / 3), new Actions.PlaceWall((byte)ModContent.WallType<DarkSandstoneWall>()));
-			*/
-			for (int i = 0; i <= genAmount; ++i)
+            for (int i = 0; i <= genAmount; ++i)
 			{
 				int currentTries = genTries;
 

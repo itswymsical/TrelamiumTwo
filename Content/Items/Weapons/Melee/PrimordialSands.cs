@@ -11,12 +11,11 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 
         public override void SafeSetDefaults()
         {
-            item.melee = true;
-            item.useTurn = true;
-            item.autoReuse = true;
+            item.melee = 
+                item.useTurn = 
+                item.autoReuse = true;
 
-            item.useAnimation = 25;
-            item.useTime = 25;
+            item.useAnimation = item.useTime = 25;
             item.damage = 9;
             item.crit = 1;
 
@@ -26,7 +25,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
 
-            item.value = Item.buyPrice(silver: 50);
+            item.value = Item.sellPrice(copper: 30);
         }
 
         public override void AddRecipes()

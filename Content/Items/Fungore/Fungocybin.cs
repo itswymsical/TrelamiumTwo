@@ -26,11 +26,11 @@ namespace TrelamiumTwo.Content.Items.Fungore
 		}
 
 		public override bool CanUseItem(Player player) {
-			return !NPC.AnyNPCs(NPCType<NPCs.Fungore.Fungore>());
+			return !NPC.AnyNPCs(NPCType<NPCs.Bosses.Fungore.Fungore>());
 		}
 
 		public override bool UseItem(Player player) {
-			NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Fungore.Fungore>());
+			NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Bosses.Fungore.Fungore>());
 			Main.PlaySound(SoundID.Roar, player.position, 0);
 			return true;
 		}

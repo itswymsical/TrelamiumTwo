@@ -8,9 +8,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 {
 	public class PrimordialEarth : TrelamiumItem
 	{
-		public override string Texture => TrelamiumTwo.HeaviesAssets + "PrimordialEarth";
-		public override void SetStaticDefaults() 
-			=> DisplayName.SetDefault("Primordial Earth");
+		public override void SetStaticDefaults() => DisplayName.SetDefault("Primordial Earth");
 		public override void SetDefaults()
 		{
 			item.rare = ItemRarityID.Blue;
@@ -27,7 +25,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 			item.autoReuse = false;
 
 			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Defensive.PrimordialEarthProjectile>();
+			item.shoot = ModContent.ProjectileType<Projectiles.Melee.PrimordialEarthProjectile>();
 
 			item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}

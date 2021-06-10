@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Content.Items.AwakeCheeks
 			item.autoReuse = false;
 
 			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Defensive.CheekCrusherProjectile>();
+			item.shoot = ModContent.ProjectileType<Projectiles.Melee.CheekCrusherProjectile>();
 			item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}
 

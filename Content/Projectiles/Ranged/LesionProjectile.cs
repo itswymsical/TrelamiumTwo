@@ -28,10 +28,9 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 		}
 		public override void AI()
 		{
-			int num3;
-			projectile.ai[1] += 1f;
-			float num227 = (60f - projectile.ai[1]) / 60f;
-			if (projectile.ai[1] > 40f)
+            int num3;
+            projectile.ai[1] += 1f;
+            if (projectile.ai[1] > 40f)
 			{
 				projectile.Kill();
 			}

@@ -8,7 +8,6 @@ namespace TrelamiumTwo.Content.Items.Fungore
 {
 	public class MycelialWarhammer : TrelamiumItem
 	{
-		public override string Texture => TrelamiumTwo.HeaviesAssets + "MycelialWarhammer";
 		public override void SetStaticDefaults() 
 			=> DisplayName.SetDefault("Mycelial Warhammer");
 		public override void SetDefaults()
@@ -27,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 			item.autoReuse = false;
 
 			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Defensive.MycelialWarhammerProjectile>();
+			item.shoot = ModContent.ProjectileType<Projectiles.Melee.MycelialWarhammerProjectile>();
 			
 			item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}

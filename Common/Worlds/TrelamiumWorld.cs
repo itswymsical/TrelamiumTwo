@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using TrelamiumTwo.Content.Tiles.DruidsGarden;
-using TrelamiumTwo.Content.Tiles.DustifiedCaverns;
+using TrelamiumTwo.Content.Tiles.Archaea.DustifiedCaverns;
 
 namespace TrelamiumTwo.Common.Worlds
 {

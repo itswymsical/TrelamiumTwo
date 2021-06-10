@@ -1,16 +1,17 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	public class ToadstoolProjectile : ModProjectile
 	{
+		public override string Texture => "Terraria/Projectile_" + ProjectileID.None;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Toadstool");
 		}
-
 		public override void SetDefaults()
 		{
 			projectile.width = projectile.height = 9;

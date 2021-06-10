@@ -78,7 +78,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		}
 
 		public override void Kill(int timeLeft)
-			=> Utilities.DustUtils.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Wood>(), 10);
+			=> Helpers.DustHelpers.SpawnDustCloud(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.Wood>(), 10);
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 			=> this.DrawProjectileCentered(spriteBatch, lightColor * projectile.Opacity);

@@ -19,7 +19,10 @@ namespace TrelamiumTwo.Common.Players
 
         public float shakeEffects = 0;
 
+        public bool theMagnolia;
+
         public bool toadstoolExplode;
+        public bool tuskscaleMinion;
 
         #region ShovelPickTile() Method
         public void ShovelPickTile(int x, int y)
@@ -55,17 +58,9 @@ namespace TrelamiumTwo.Common.Players
 
             shakeEffects = 0;
 
-            toadstoolExplode = false;
-        }
+            theMagnolia = false;
 
-        public override void FrameEffects()
-        {
-            if (player.HasBuff(ModContent.BuffType<SlitheringGrace>()))
-            {
-                player.legs = mod.GetEquipSlot("RattlesnakeLeg", EquipType.Legs);
-                player.body = mod.GetEquipSlot("RattlesnakeBody", EquipType.Body);
-                player.head = mod.GetEquipSlot("RattlesnakeHead", EquipType.Head);
-            }
+            toadstoolExplode = false;
         }
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
@@ -97,9 +92,7 @@ namespace TrelamiumTwo.Common.Players
         public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
         {
             if (gluttonAmulet)
-            {
-                healValue = (int)(healValue * 1.33f);
-            }
+                healValue = (int)(healValue * 1.33f);          
         }
         public override void ModifyScreenPosition()
         {

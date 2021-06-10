@@ -9,7 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 using Microsoft.Xna.Framework;
 
-using TrelamiumTwo.Core.Abstracts;
+using TrelamiumTwo.Core.Abstraction;
 using TrelamiumTwo.Content.Items.Materials;
 using TrelamiumTwo.Content.Items.Tools;
 using Microsoft.Xna.Framework.Graphics;

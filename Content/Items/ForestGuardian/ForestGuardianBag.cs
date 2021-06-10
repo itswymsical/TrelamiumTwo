@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using TrelamiumTwo.Content.Items.Armor.Vanity.ForestGuardian;
+
 namespace TrelamiumTwo.Content.Items.ForestGuardian
 {
 	public class ForestGuardianBag : TrelamiumItem
@@ -24,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 		public override bool CanRightClick() => true;
 		
 		public override int BossBagNPC 
-			=> ModContent.NPCType<NPCs.ForestGuardian.ForestGuardian>();
+			=> ModContent.NPCType<NPCs.Bosses.ForestGuardian.ForestGuardian>();
 		public override void OpenBossBag(Player player)
 		{
 			int choice = Main.rand.Next(4);

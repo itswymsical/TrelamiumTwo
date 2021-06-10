@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Utilities.Extensions;
+using TrelamiumTwo.Helpers.Extensions;
 
 namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 {

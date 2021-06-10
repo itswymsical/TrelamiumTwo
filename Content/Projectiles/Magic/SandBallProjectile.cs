@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TrelamiumTwo.Utilities.Extensions;
+using TrelamiumTwo.Helpers.Extensions;
 
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {

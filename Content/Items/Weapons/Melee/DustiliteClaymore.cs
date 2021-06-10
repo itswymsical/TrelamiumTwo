@@ -41,7 +41,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
                 Vector2 projectilePos = target.Center + (Main.rand.NextFloat() * MathHelper.TwoPi).ToRotationVector2() * length;
                 Vector2 projectileVelocity = Vector2.Normalize(target.Center - projectilePos) * 15f;
 
-                Projectile.NewProjectile(projectilePos, projectileVelocity, ModContent.ProjectileType<Projectiles.Melee.DustiliteClaymore_Proj>(), damage, knockBack, player.whoAmI, length);
+                Projectile.NewProjectile(projectilePos, projectileVelocity, ModContent.ProjectileType<Projectiles.Melee.DustiliteClaymoreProjectile>(), damage, knockBack, player.whoAmI, length);
             }
         }
         public override void AddRecipes()

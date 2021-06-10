@@ -32,9 +32,9 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
             OnHit++;
             if(OnHit == 5)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-5, 12) * .25f, Main.rand.Next(-6, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-2, 9) * .25f, Main.rand.Next(-3, 5) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-1, 8) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-5, 12) * .25f, Main.rand.Next(-6, 10) * .25f, ModContent.ProjectileType<LightningProjectile>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-2, 9) * .25f, Main.rand.Next(-3, 5) * .25f, ModContent.ProjectileType<LightningProjectile>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-1, 8) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProjectile>(), (int)(projectile.damage * .5f), 0, projectile.owner);
                 Main.PlaySound(SoundID.Item93, -1, -1);
                 for (double i = 0; i < 6.28; i += 0.1)
                 {

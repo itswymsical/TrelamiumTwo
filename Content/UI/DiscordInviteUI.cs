@@ -1,5 +1,5 @@
 ﻿using TrelamiumTwo.Common.Configuration;
-using TrelamiumTwo.Core.Abstracts;
+using TrelamiumTwo.Core.Abstraction;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

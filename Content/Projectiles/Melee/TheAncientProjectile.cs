@@ -29,8 +29,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			projectile.tileCollide = false;
 		}
-
-		int Timer = 0;
 		public override void AI()
 		{
 			Player projOwner = Main.player[projectile.owner];
@@ -39,7 +37,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			projOwner.heldProj = projectile.whoAmI;
 			projOwner.itemTime = projOwner.itemAnimation;
 			projectile.position = ownerCenter - projectile.Size / 2;
-
 			if (!projOwner.frozen)
 			{
 				if (MovementFactor == 0f)
@@ -64,26 +61,10 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			}
 
 			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
-
 			if (projectile.spriteDirection == -1)
 			{
 				projectile.rotation -= MathHelper.ToRadians(90f);
 			}
-
-			Timer++;
-			if (Timer < 4)
-            {
-				Player player = Main.player[projectile.owner];
-				if (player.direction == -1)
-				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 3) * .25f, Main.rand.Next(-10, 5) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-				}
-				else if(player.direction == 1)
-				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-3, 10) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
-				}
-                 	
-            }
 		}
     }
 }

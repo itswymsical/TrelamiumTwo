@@ -28,12 +28,12 @@ namespace TrelamiumTwo.Content.Items.ForestGuardian
 		}
 
 		public override bool CanUseItem(Player player) 
-			=> !NPC.AnyNPCs(NPCType<NPCs.ForestGuardian.ForestGuardian>());
+			=> !NPC.AnyNPCs(NPCType<NPCs.Bosses.ForestGuardian.ForestGuardian>());
 
 
 		public override bool UseItem(Player player)
 		{
-			NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.ForestGuardian.ForestGuardian>());
+			NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Bosses.ForestGuardian.ForestGuardian>());
 			Main.PlaySound(SoundID.Roar, player.position, 0);
 			return true;
 		}

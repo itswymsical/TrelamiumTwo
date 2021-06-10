@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
+
 using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
-using Terraria.GameContent.Biomes;
-using Microsoft.Xna.Framework;
 
 namespace TrelamiumTwo.Common.Worlds
 {
@@ -38,7 +35,7 @@ namespace TrelamiumTwo.Common.Worlds
 						progress.Set(value17);
 						if (WorldGen.rockLayerHigh <= (double)Main.maxTilesY)
 						{
-							WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerHigh, Main.maxTilesY), WorldGen.genRand.Next(6, 20), WorldGen.genRand.Next(50, 300), -1);
+							WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerHigh, Main.maxTilesY), WorldGen.genRand.Next(6, 20), WorldGen.genRand.Next(50, 70), -1);
 						}
 					}
 				}));

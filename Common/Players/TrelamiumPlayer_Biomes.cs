@@ -45,7 +45,7 @@ namespace TrelamiumTwo.Common.Players
 
         public override void UpdateBiomeVisuals() 
             => player.ManageSpecialBiomeVisuals("Blizzard", 
-            NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.Glacier.Glacier>()), player.Center);
+            NPC.AnyNPCs(ModContent.NPCType<Content.NPCs.Bosses.Glacier.Glacier>()), player.Center);
 
     }
 }

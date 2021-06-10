@@ -77,12 +77,12 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				Player player = Main.player[projectile.owner];
 				if (player.direction == -1)
 				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 3) * .25f, Main.rand.Next(-10, 5) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-10, 3) * .25f, Main.rand.Next(-10, 5) * .25f, ModContent.ProjectileType<LightningProjectile>(), (int)(projectile.damage * .5f), 0, projectile.owner);
 					Main.PlaySound(SoundID.Item93, -1, -1);
 				}
 				else if(player.direction == 1)
 				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-3, 10) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProj>(), (int)(projectile.damage * .5f), 0, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y - 16f, Main.rand.Next(-3, 10) * .25f, Main.rand.Next(-5, 10) * .25f, ModContent.ProjectileType<LightningProjectile>(), (int)(projectile.damage * .5f), 0, projectile.owner);
 					Main.PlaySound(SoundID.Item93, -1, -1);
 				}
 

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TrelamiumTwo.Common.Projectiles;
-using TrelamiumTwo.Utilities.Extensions;
+using TrelamiumTwo.Helpers.Extensions;
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {

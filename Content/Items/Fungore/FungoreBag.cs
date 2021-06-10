@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using TrelamiumTwo.Content.Items.Armor.Vanity.Fungore;
+
 namespace TrelamiumTwo.Content.Items.Fungore
 {
 	public class FungoreBag : TrelamiumItem
@@ -26,7 +28,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 			return true;
 		}
 		public override int BossBagNPC 
-			=> ModContent.NPCType<NPCs.Fungore.Fungore>();
+			=> ModContent.NPCType<NPCs.Bosses.Fungore.Fungore>();
 		public override void OpenBossBag(Player player)
 		{
 			int choice = Main.rand.Next(2);
