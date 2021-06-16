@@ -1,11 +1,11 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI.Chat;
 
 namespace TrelamiumTwo.Helpers
 {
-    internal static class DrawHelpers
+    internal static partial class Helper
     {
         public static Vector2 GetMiddleBetween(this Vector2 start, Vector2 end) => (start + end) / 2;
 
@@ -87,7 +87,7 @@ namespace TrelamiumTwo.Helpers
                 pass.Apply();
 
                 device.DrawPrimitives(PrimitiveType.TriangleList, 0, 3);
-            }
+            }   
         }
 
         public static void DrawTriangle(Texture2D texture, Vector2[] vertices, Vector2[] texCoords)

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-
 using System.Collections.Generic;
 
 namespace TrelamiumTwo.Core.Mechanics
 {
-    internal class BezierCurve
-    {
+    public class BezierCurve
+	{
 		public List<Vector2> ControlPoints;
 
 		public BezierCurve(List<Vector2> controlPoints) => ControlPoints = controlPoints;
@@ -36,7 +35,7 @@ namespace TrelamiumTwo.Core.Mechanics
 				nextPoints.Add(Vector2.Lerp(points[i], points[i + 1], t));
 			}
 
-			return Evaluate(nextPoints, t);
+			return Evaluate(nextPoints, t);			
 		}
 
 		public Vector2 GetPoint(float t)

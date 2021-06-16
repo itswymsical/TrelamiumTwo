@@ -30,7 +30,7 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 
         public List<Vector2> Points  = new List<Vector2>();
 
-        public Trail(GraphicsDevice graphicsDevice, object oldPositionCacheLength)
+        public Trail()
         {
             Device = Main.graphics.GraphicsDevice;
 

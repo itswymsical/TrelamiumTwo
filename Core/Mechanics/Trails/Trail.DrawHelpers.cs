@@ -39,7 +39,7 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 		{
 			Effect = Effect ?? Filters.Scene["TM:Primitives"].GetShader().Shader;
 
-            Effect.Parameters["WorldViewProjection"].SetValue(DrawHelpers.DefaultEffectMatrix);
+            Effect.Parameters["WorldViewProjection"].SetValue(Helpers.Helper.DefaultEffectMatrix);
 			Effect.Parameters["uScreenPos"].SetValue(Main.screenPosition);
 		}
 	}

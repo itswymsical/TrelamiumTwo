@@ -1,15 +1,14 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-
 namespace TrelamiumTwo.Helpers
 {
-	public static class DustHelpers
-	{
+    internal static partial class Helper
+    {
 		public static void SpawnDustCloud(Vector2 position, int width, int height, int type, int amount = 10, float speedX = 0, float speedY = 0, int alpha = 0, Color c = default, float scale = 1f)
 		{
 			for (int i = 0; i < amount; ++i)
@@ -25,7 +24,7 @@ namespace TrelamiumTwo.Helpers
 				float rotation = Main.rand.NextFloat(-rot, rot);
 				Texture2D texture = ModContent.GetTexture(imagePath);
 				int[] pixelData = new int[texture.Width * texture.Height];
-				
+
 				texture.GetData(pixelData);
 
 				for (int i = 0; i < texture.Width; i += 2)
