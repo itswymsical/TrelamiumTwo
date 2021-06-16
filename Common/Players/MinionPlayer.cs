@@ -13,7 +13,9 @@ namespace TrelamiumTwo.Common.Players
 		public bool mossMonarch;
 
 		public bool pholiotaMinion;
-		public override void ResetEffects()
+		public bool tuskscaleMinion;
+
+        public override void ResetEffects()
 		{
 			Avalanche = false;
 

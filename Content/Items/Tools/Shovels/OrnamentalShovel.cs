@@ -8,10 +8,8 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
 {
     public class OrnamentalShovel : ShovelItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Ornamental Shovel");
-        }
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Ornamental Shovel");
+        
         public override void SetDefaults()
         {
             item.melee = true;

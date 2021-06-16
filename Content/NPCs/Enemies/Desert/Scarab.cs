@@ -58,6 +58,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 				Dust.NewDust(npc.position, npc.width, npc.height, 18, hitDirection, -2f, npc.alpha, npc.color, npc.scale);
 			}
 		}
+		public override void NPCLoot() => Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.DesolateHusk>(), Main.rand.Next(1, 2));
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 			=> SpawnCondition.DesertCave.Chance * 0.35f;

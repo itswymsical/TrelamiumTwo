@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0021: Use block body for constructors
+csharp_style_expression_bodied_constructors = false

@@ -14,7 +14,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 			item.value = Item.buyPrice(0, 0, 4, 66);
 			
 			item.crit = 4;
-			item.damage = 12;
+			item.damage = 10;
 			item.knockBack = 6f;
 			
 			item.useTime = 20;
