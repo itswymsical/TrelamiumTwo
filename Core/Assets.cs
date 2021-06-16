@@ -47,6 +47,7 @@
             public const string Critters = Directory + "Critters/";
 
 			public const string Enemies = Directory + "Enemies/";
+			public const string Forest = Enemies + "Forest/";
 		}
 
 		internal class Projectiles
