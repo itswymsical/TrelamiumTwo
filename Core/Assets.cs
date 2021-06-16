@@ -29,8 +29,8 @@
 
             #region Weapons
             public const string Weapons = Directory + "Weapons/";
-			public const string Melee = Weapons + "Melee/";
-			public const string Ranged = Weapons + "Ranged/";
+			public const string Nut = Weapons + "Nut/";
+			public const string Viking = Weapons + "Viking/";
 			public const string Magic = Weapons + "Magic/";
 			public const string Summoner = Weapons + "Summoner/";
             #endregion
@@ -71,7 +71,7 @@
 
 			public const string Ores = Directory + "Ores/";
 
-			public const string Plants = Directory + "Plants/";
+			public const string Forest = Directory + "Forest/";
 		}
 	}
 }
