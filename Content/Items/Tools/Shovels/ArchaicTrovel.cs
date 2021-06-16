@@ -10,8 +10,7 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Archaic Trovel");
-            Tooltip.SetDefault("Has a chance to dig up desert fossils on tile break" +
-                "\nCode this");
+            Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {

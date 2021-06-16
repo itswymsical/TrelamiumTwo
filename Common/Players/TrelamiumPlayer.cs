@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using TrelamiumTwo.Content.Buffs;
+
 using TrelamiumTwo.Content.Items.Fish;
 using TrelamiumTwo.Common.Extensions;
 
@@ -17,12 +17,14 @@ namespace TrelamiumTwo.Common.Players
 
         public bool onSand;
 
+        public bool scarabIdol;
+
         public float shakeEffects = 0;
 
         public bool theMagnolia;
 
         public bool toadstoolExplode;
-        public bool tuskscaleMinion;
+
 
         #region ShovelPickTile() Method
         public void ShovelPickTile(int x, int y)
@@ -44,10 +46,10 @@ namespace TrelamiumTwo.Common.Players
                 }
             }
         }
-        
+
         #endregion
         public override void ResetEffects()
-        {        
+        {
             dustrollerSkates = false;
 
             gluttonAmulet = false;
@@ -55,6 +57,8 @@ namespace TrelamiumTwo.Common.Players
             microlith = false;
 
             onSand = false;
+
+            scarabIdol = false;
 
             shakeEffects = 0;
 

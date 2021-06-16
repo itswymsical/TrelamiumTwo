@@ -171,6 +171,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.ForestGuardian
 				}
 			}
 		}
+		public override void BossHeadRotation(ref float rotation) => rotation = npc.rotation;
 		private void Move(Vector2 position, float speed)
 		{
 			Vector2 direction = npc.DirectionTo(position);

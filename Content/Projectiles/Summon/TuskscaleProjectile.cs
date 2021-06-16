@@ -47,7 +47,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 		public override bool PreAI()
 		{
 			Player owner = Main.player[projectile.owner];
-			TrelamiumPlayer ep = owner.GetModPlayer<TrelamiumPlayer>();
+			MinionPlayer ep = owner.GetModPlayer<MinionPlayer>();
 
 			if (!CheckAliveState(ep))
 			{
@@ -62,7 +62,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 		public override bool OnTileCollide(Vector2 oldVelocity)
 			=> false;
 
-		private bool CheckAliveState(TrelamiumPlayer owner)
+		private bool CheckAliveState(MinionPlayer owner)
 		{
 			if (!owner.player.active)
 			{

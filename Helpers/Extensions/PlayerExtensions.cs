@@ -3,6 +3,7 @@
 using System.Linq;
 
 using Terraria;
+using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Helpers.Extensions
 {
@@ -31,7 +32,15 @@ namespace TrelamiumTwo.Helpers.Extensions
 			&& !player.ZoneBeach
 			&& !player.ZoneDesert
 			&& player.ZoneOverworldHeight;
-
+		public static bool ZoneNoEvent(this Player player) =>
+		!player.ZoneTowerStardust
+			|| !player.ZoneTowerVortex
+			|| !player.ZoneTowerNebula
+			|| !player.ZoneTowerStardust
+			&& !Main.pumpkinMoon
+			&& !Main.snowMoon
+			&& !Main.eclipse
+			&& SpawnCondition.GoblinArmy.Chance == 0;
 		public static void AddAllCrit(this Player player, int crit)
 		{
 			player.meleeCrit += crit;

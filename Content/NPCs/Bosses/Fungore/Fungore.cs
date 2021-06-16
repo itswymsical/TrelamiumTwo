@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Helpers.Extensions;
 
 using TrelamiumTwo.Helpers;
 
@@ -62,7 +63,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
             npc.lavaImmune = true;
 
             npc.width = 88;
-            npc.height = 96;
+            npc.height = 90;
 
             drawOffsetY = 10;
 
@@ -76,10 +77,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
             aiType = -1;
 
             npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Fungore");
-            musicPriority = MusicPriority.BossMedium; 
+            npc.DeathSound = SoundID.NPCDeath1; 
         }
 
         public override void FindFrame(int frameHeight)
@@ -287,16 +285,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = Main.npcTexture[npc.type];
-
-            Vector2 drawPosition = (npc.Center / .5f) - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
-
-            Vector2 origin = npc.frame.Size() / 2f;
-
-            SpriteEffects effects = npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-
-            spriteBatch.Draw(texture, drawPosition, npc.frame, drawColor, npc.rotation, origin, scale, effects, 0f);
-
+            npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);
             return false;
         }
 
@@ -308,11 +297,6 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
 
             return null;
         }
-
-        public override void BossHeadRotation(ref float rotation) => rotation = npc.rotation;
-
-        public override void BossHeadSpriteEffects(ref SpriteEffects spriteEffects) => spriteEffects = npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-
         private void HandleScale()
         {
             Vector2 targetScale = Vector2.One;
@@ -331,7 +315,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
         private void HandleScreenText(SpriteBatch spriteBatch)
         {
             var position = new Vector2(Main.screenWidth / 2f, 200f);
-
+            var position2 = new Vector2(Main.screenWidth / 2f, 280f);
             Color color = Color.White * alpha;
 
             alphaTimer++;
@@ -346,6 +330,7 @@ namespace TrelamiumTwo.Content.NPCs.Bosses.Fungore
             }
 
             DrawHelpers.DrawText(spriteBatch, position, "- Fungore -", color);
+            DrawHelpers.DrawText(spriteBatch, position2, "The Numbskull Fungus Brute", color, default, .45f);
         }
     }
 }

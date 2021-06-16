@@ -9,11 +9,12 @@ namespace TrelamiumTwo.Common.Tiles
 {
     public class TrelamiumGlobalTile : GlobalTile
     {
+        bool flag = false;
         public override bool Drop(int i, int j, int type)
         {
             var ModPlayer = Main.LocalPlayer.GetModPlayer<Players.TrelamiumPlayer>();
             Player player = Main.LocalPlayer;
-            bool flag = false;
+            
             if (Main.rand.Next(2) == 0)
                 flag = true;
             else
@@ -177,6 +178,11 @@ namespace TrelamiumTwo.Common.Tiles
                     CombatText.NewText(player.Hitbox, Color.LightGoldenrodYellow, "Treasure!", true, false);
                     Item.NewItem(i * 16, j * 16, 16, 48, choice, 1);
                 }
+            }
+            if (type == TileID.Trees)
+            {
+                if (Main.rand.Next(5) == 0)
+                    Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Content.Items.Materials.Nut>(), Main.rand.Next(1, 3));
             }
             return true;
         }

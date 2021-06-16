@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Common.Players;
+using TrelamiumTwo.Helpers.Extensions;
 
 namespace TrelamiumTwo.Content.NPCs.Enemies.DruidsGarden
 {
@@ -46,7 +48,15 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.DruidsGarden
                 Dust.NewDust(npc.position, npc.width, npc.height, 4, hitDirection, -2f, npc.alpha, Microsoft.Xna.Framework.Color.Pink, npc.scale);
             }
         }
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            Player player = spawnInfo.player;
+            if (player.ZoneNoEvent())
+            {
+                return spawnInfo.player.GetModPlayer<TrelamiumPlayer>().ZoneDruidsGarden ? 1.0f : 0f;
+            }
+            return 0f;
+        }
         public override void AI() 
             => npc.direction = -npc.spriteDirection;
     }

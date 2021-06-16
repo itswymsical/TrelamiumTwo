@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Core.Mechanics.Verlet;
 
 namespace TrelamiumTwo.Content.Tiles.DruidsGarden
 {
