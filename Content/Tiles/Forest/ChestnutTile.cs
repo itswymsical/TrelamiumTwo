@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+
 using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Tiles.Forest
@@ -51,31 +52,6 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             chest = "Chestnut";
             chestDrop = ModContent.ItemType<Chestnut>();
         }
-
-        public string MapChestName(string name, int i, int j)
-        {
-            int left = i;
-            int top = j;
-            Tile tile = Main.tile[i, j];
-            if (tile.frameX % 36 != 0)
-            {
-                left--;
-            }
-            if (tile.frameY != 0)
-            {
-                top--;
-            }
-            int chest = Chest.FindChest(left, top);
-            if (Main.chest[chest].name == "")
-            {
-                return name;
-            }
-            else
-            {
-                return name + ": " + Main.chest[chest].name;
-            }
-        }
-
         public override void NumDust(int i, int j, bool fail, ref int num) => num = 1;     
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -83,8 +59,8 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             Item.NewItem(i * 16, j * 16, 32, 32, chestDrop);
             Chest.DestroyChest(i, j);
         }
-
-        public override void RightClick(int i, int j)
+        public override bool HasSmartInteract() => true;
+        public override bool NewRightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
             Tile tile = Main.tile[i, j];
@@ -114,10 +90,11 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             }
             if (player.editedChestName)
             {
-                NetMessage.SendData(33, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
                 player.editedChestName = false;
             }
-            if (Main.netMode == 1)
+            bool isLocked = IsLockedChest(left, top);
+            if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked)
             {
                 if (left == player.chestX && top == player.chestY && player.chest >= 0)
                 {
@@ -127,7 +104,7 @@ namespace TrelamiumTwo.Content.Tiles.Forest
                 }
                 else
                 {
-                    NetMessage.SendData(31, -1, -1, null, left, (float)top, 0f, 0f, 0, 0, 0);
+                    NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top, 0f, 0f, 0, 0, 0);
                     Main.stackSplit = 600;
                 }
             }
@@ -153,7 +130,8 @@ namespace TrelamiumTwo.Content.Tiles.Forest
                     }
                     Recipe.FindRecipes();
                 }
-            }
+            }           
+            return true;
         }
         public override void MouseOver(int i, int j)
         {
@@ -173,19 +151,46 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             player.showItemIcon2 = -1;
             if (chest < 0)
             {
-                player.showItemIconText = Lang.chestType[0].Value;
+                player.showItemIconText = Language.GetTextValue("LegacyChestType.0");
             }
             else
             {
-                player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Alien Chest";
-                if (player.showItemIconText == "Alien Chest")
+                player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Chestnut";
+                if (player.showItemIconText == "Chestnut")
                 {
-                    player.showItemIcon2 = mod.ItemType("AlienChest");
+                    player.showItemIcon2 = ModContent.ItemType<Chestnut>();
                     player.showItemIconText = "";
                 }
             }
             player.noThrow = 2;
             player.showItemIcon = true;
+        }
+        public string MapChestName(string name, int i, int j)
+        {
+            int left = i;
+            int top = j;
+            Tile tile = Main.tile[i, j];
+            if (tile.frameX % 36 != 0)
+            {
+                left--;
+            }
+            if (tile.frameY != 0)
+            {
+                top--;
+            }
+            int chest = Chest.FindChest(left, top);
+            if (chest < 0)
+            {
+                return Language.GetTextValue("LegacyChestType.0");
+            }
+            else if (Main.chest[chest].name == "")
+            {
+                return name;
+            }
+            else
+            {
+                return name + ": " + Main.chest[chest].name;
+            }
         }
         public override void MouseOverFar(int i, int j)
         {
@@ -200,7 +205,7 @@ namespace TrelamiumTwo.Content.Tiles.Forest
     }
     public class Chestnut : ModItem
     {
-        public override string Texture => Assets.Tiles.Forest + "ChestnutTile";
+        public override string Texture => Assets.Tiles.Forest + "Chestnut";
         public override void SetDefaults()
         {
             item.rare = ItemRarityID.White;

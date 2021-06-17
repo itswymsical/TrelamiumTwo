@@ -49,6 +49,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private float alpha;
         private float alphaTimer;
+        private int jumpTimer;
+        private int jumpRegular;
+
         public override string Texture => Assets.NPCs.Fungore + "Fungore";
         public override void SetStaticDefaults()
         {
@@ -79,7 +82,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Fungore");
-            //musicPriority = MusicPriority.BossHigh;
+            musicPriority = MusicPriority.BossMedium;
         }
 
         public override void FindFrame(int frameHeight)
@@ -105,7 +108,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 npc.frameCounter = 0;
             }
 
-            frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : 2;
+            frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 0;
 
             if (State == States.Walking && frameY > 7)
             {
@@ -124,7 +127,8 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ItemID.HealingPotion;
+            potionType = ItemID.LesserHealingPotion;
+            Item.NewItem(npc.Hitbox, ItemID.Mushroom, Main.rand.Next(2, 7));
 
             if (Main.netMode == NetmodeID.Server)
             {
@@ -191,13 +195,20 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 const float minPunchDistance = 8f * 16f;
 
                 // Punch if the player is close enough to Fungore.
-                if (player.Distance(npc.Center) < minPunchDistance)
+                if (player.Distance(npc.Center) < minPunchDistance || Main.rand.Next(9) == 0)
                 {
                     punchDirection = Math.Sign(player.position.X - npc.position.X);
 
                     frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
                     State = States.Punching;
+                    AttackCooldown = 0;
+                }
+                if (Main.rand.Next(7) == 0)
+                {
+                    frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
+
+                    State = States.Jumping;
                     AttackCooldown = 0;
                 }
             }
@@ -283,8 +294,30 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
         }
 
-        private void Jump() { }
-
+        private void Jump() 
+        {
+            npc.TargetClosest();
+            if (npc.HoleBelow() || (npc.collideX && npc.position.X == npc.oldPosition.X))
+            {
+                npc.velocity.Y = Main.rand.NextFloat(-16f, -14f);
+                npc.netUpdate = true;
+            }
+            if ((npc.collideX && npc.position.X == npc.oldPosition.X))
+            {
+                npc.velocity.Y = Main.rand.NextFloat(-16f, -14f);
+                npc.netUpdate = true;
+            }
+            if (npc.velocity.Y >= 0f)
+            {
+                Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+            }
+            if (frameY >= 16 || npc.collideY)
+            {
+                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 1f;
+                frameY = 0;
+                State = States.Walking;
+            }
+        }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);
@@ -317,7 +350,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         private void HandleScreenText(SpriteBatch spriteBatch)
         {
             var position = new Vector2(Main.screenWidth / 2f, 200f);
-            var position2 = new Vector2(Main.screenWidth / 2f, 260f);
+            var position2 = new Vector2(Main.screenWidth / 2f, 250f);
             Color color = Color.White * alpha;
 
             alphaTimer++;
