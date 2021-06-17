@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 {
 	public class NutGrabberProjectile : ModProjectile
 	{
-		public override string Texture => Assets.Items.Tools + "NutGrabberProjectile";
+		public override string Texture => Assets.Projectiles.Typeless + "NutGrabberProjectile";
 
 		private readonly float hangDistance = 20f;
 		public override void SetDefaults()

@@ -36,7 +36,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 54;
+			projectile.width = projectile.height = 66;
 			projectile.penetrate = -1;
 
 			projectile.melee =
@@ -71,7 +71,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				{
 					IsMaxCharge = true;
 					projectile.ai[1] = MaxChargeTime;
-					Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = .025f;
 				}
 
 				if (Main.myPlayer == projectile.owner && !owner.channel && projectile.ai[1] >= (MaxChargeTime / 2))
@@ -88,8 +87,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			return false;
 		}
 
-		public override bool CanDamage()
-			=> State != AIState.Spawning;
+		public override bool CanDamage() => State != AIState.Spawning;
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
@@ -107,6 +105,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
+			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = .8f;
 			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 
@@ -114,9 +113,9 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		{
 			if (State == AIState.Swinging)
 			{
-				projectile.DrawProjectileTrailCentered(spriteBatch, lightColor, 1, 0.15f);
+				projectile.DrawProjectileTrailCentered(spriteBatch, lightColor, 0.2f, 0.15f, 1);
 			}
-			return projectile.DrawProjectileCentered(spriteBatch, lightColor);
+			return true;
 		}
 
 		private void SetProjectilePosition(Player owner)
@@ -126,7 +125,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			Vector2 rotatedPoint = owner.RotatedRelativePoint(owner.MountedCenter);
 
 			projectile.rotation = RotationStart - (MathHelper.Pi / MaxChargeTime * projectile.ai[1]) * projectile.direction;
-			projectile.Center = rotatedPoint + (projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 48;
+			projectile.Center = rotatedPoint + (projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 42;
 		}
 
 		private void SetOwnerAnimation(Player owner)

@@ -49,7 +49,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private float alpha;
         private float alphaTimer;
-        public override string Texture => Assets.NPCs.Boss + "Fungore/Fungore";
+        public override string Texture => Assets.NPCs.Fungore + "Fungore";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fungore");
@@ -77,7 +77,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             aiType = -1;
 
             npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1; 
+            npc.DeathSound = SoundID.NPCDeath1;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Fungore");
+            //musicPriority = MusicPriority.BossHigh;
         }
 
         public override void FindFrame(int frameHeight)

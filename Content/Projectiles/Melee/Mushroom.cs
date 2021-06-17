@@ -15,11 +15,13 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		public override void SetDefaults()
 		{
 			projectile.width = projectile.height = 16;
+
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
 			projectile.timeLeft = 500;
-			projectile.melee = true;
-			projectile.friendly = true;
+
+			projectile.melee =
+				projectile.friendly = true;
 		}
 		public override void AI()
 		{
@@ -38,7 +40,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			projectile.velocity.X = projectile.velocity.X * 0.98f;
 			for (int num228 = 0; num228 < 2; num228 = num3 + 1)
 			{
-				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 4, projectile.velocity.X, projectile.velocity.Y, 50, Color.Orange, 1.1f);
+				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.Mushroom>(), projectile.velocity.X, projectile.velocity.Y, 50, default, 1.1f);
 				Main.dust[num229].position = (Main.dust[num229].position + projectile.Center) / 2f;
 				Main.dust[num229].noGravity = true;
 				Dust dust = Main.dust[num229];
@@ -49,7 +51,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			}
 			for (int num230 = 0; num230 < 1; num230 = num3 + 1)
 			{
-				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 4, projectile.velocity.X, projectile.velocity.Y, 50, Color.Orange, 0.6f);
+				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.Mushroom>(), projectile.velocity.X, projectile.velocity.Y, 50, default, 0.6f);
 				Main.dust[num229].position = (Main.dust[num229].position + projectile.Center * 5f) / 6f;
 				Dust dust = Main.dust[num229];
 				dust.velocity *= 0.1f;
@@ -63,15 +65,10 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		}
 		public override void Kill(int timeLeft)
 		{
-			int num281 = 22;
-			for (int num282 = 0; num282 < num281; num282++)
+			for (int i = 0; i < 16; i++)
 			{
-				int num283 = Dust.NewDust(projectile.Center, 0, 0, 4, 0f, 0f, 0, Color.Orange, 0.5f);
-				Dust dust = Main.dust[num283];
-				dust.velocity *= 1.6f;
-				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y -= dust25.velocity.Y - 1f;
-				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 0.5f);
+				var velocity = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
+				Dust.NewDustDirect(projectile.Center, 0, 0, ModContent.DustType<Dusts.Mushroom>(), velocity.X, velocity.Y);
 			}
 		}
 	}

@@ -19,11 +19,15 @@
 
 			public const string Armor = Directory + "Armor/";
 
+			public const string Accessory = Directory + "Accessory/";
+
 			public const string Materials = Directory + "Materials/";
 
 			public const string Tools = Directory + "Tools/";
-            #region Boss
-            public const string Boss = Directory + "Boss/";
+
+			public const string Shovels = Tools + "Shovels/";
+			#region Boss
+			public const string Boss = Directory + "Boss/";
 			public const string Fungore = Boss + "Fungore/";
             #endregion
 
