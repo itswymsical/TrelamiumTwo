@@ -102,7 +102,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (State == States.Jumping && (frameY == 2 || frameY == 6))
             {
-                frameRate = 60;
+                frameRate = 35;
             }
 
             if (npc.frameCounter > frameRate)
@@ -303,9 +303,10 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         private void Jump()
         {
             npc.TargetClosest();
-            if (frameY >= 2 && frameY < 3)
+            npc.velocity.X = player.position.X;
+            if (frameY > 2 && frameY < 4)
             {
-                npc.velocity.Y = Main.rand.NextFloat(-11f, -10f);
+                npc.velocity.Y = Main.rand.NextFloat(-9f, -8f);
                 npc.netUpdate = true;
                 if (npc.velocity.Y >= 0f)
                 {
