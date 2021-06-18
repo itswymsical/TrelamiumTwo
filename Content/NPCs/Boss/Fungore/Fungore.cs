@@ -198,7 +198,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 const float minPunchDistance = 8f * 16f;
 
                 // Punch if the player is close enough to Fungore.
-                if (player.Distance(npc.Center) < minPunchDistance)
+                if (player.Distance(npc.Center) < minPunchDistance || (Main.rand.Next(60) == 0))
                 {
                     punchDirection = Math.Sign(player.position.X - npc.position.X);
 
@@ -209,7 +209,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 }
                 if (AttackCooldown > minAttackCooldown)
                 {
-                    if (Main.rand.Next(16) == 0)
+                    if (Main.rand.Next(60) == 0)
                     {
                         frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
@@ -243,7 +243,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void Walk()
         {
-            const float maxSpeed = 2.5f;
+            const float maxSpeed = 2.2f;
 
             if (npc.velocity.X < -maxSpeed || npc.velocity.X > maxSpeed)
             {
@@ -302,7 +302,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void Jump()
         {
-            npc.velocity.X = 0;   
+            Walk();
             if (frameY > 2 && frameY < 4)
             {
                 npc.velocity.Y = Main.rand.NextFloat(-9f, -8f);
@@ -315,7 +315,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
-                Walk();
                 Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;
                 frameY = 0;
                 State = States.Walking;
