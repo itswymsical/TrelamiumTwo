@@ -270,6 +270,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void Punch()
         {
+            if (frameY == 5)
+                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);
+
             if (frameY == 4 || frameY == 5)
             {
                 npc.velocity.X += punchDirection * 1.25f;
@@ -316,12 +319,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
                 Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;
+                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                Projectile.NewProjectile(npc.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSlam>(), npc.damage, 16f, Main.myPlayer, 0, 0);
                 frameY = 0;
                 State = States.Walking;
             }
-
             if (frameY > 11 && (npc.collideY || npc.collideX))
             {
+                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
                 frameY = 0; 
                 State = States.Walking;
             }
