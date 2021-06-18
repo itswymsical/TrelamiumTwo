@@ -16,7 +16,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 			item.value = Item.sellPrice(copper: 66);
 			
 			item.crit = 4;
-			item.damage = 10;
+			item.damage = 7;
 			item.knockBack = 6f;
 			
 			item.useTime = 20;

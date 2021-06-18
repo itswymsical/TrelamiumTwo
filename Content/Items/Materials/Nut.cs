@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.ranged = true;
 			item.material = true;
 			item.consumable = true;
-			
+			item.value = Item.sellPrice(copper: 1);
 			item.shootSpeed = 4f;
 			item.ammo = item.type;
 			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();

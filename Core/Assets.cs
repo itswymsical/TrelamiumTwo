@@ -17,7 +17,6 @@
 		{
 			public const string Directory = Assets.Directory + "Items/";
 
-			public const string Armor = Directory + "Armor/";
 
 			public const string Accessory = Directory + "Accessory/";
 
@@ -26,31 +25,59 @@
 			public const string Tools = Directory + "Tools/";
 
 			public const string Shovels = Tools + "Shovels/";
-			#region Boss
-			public const string Boss = Directory + "Boss/";
+
+            #region Armor
+            public const string Armor = Directory + "Armor/";
+
+			public const string Everbloom = Armor + "Everbloom/";
+
+			public const string VikingArmor = Armor + "Viking/";
+            #endregion
+
+            #region Boss
+            public const string Boss = Directory + "Boss/";
+
 			public const string Fungore = Boss + "Fungore/";
             #endregion
 
             #region Weapons
             public const string Weapons = Directory + "Weapons/";
-			public const string Nut = Weapons + "Nut/";
-			public const string Viking = Weapons + "Viking/";
-			public const string Magic = Weapons + "Magic/";
-			public const string Summoner = Weapons + "Summoner/";
-            #endregion
-        }
 
-        internal class NPCs
+			public const string BloomRose = Weapons + "BloomRose/";
+
+			public const string Nut = Weapons + "Nut/";
+
+			public const string Viking = Weapons + "Viking/";
+
+			public const string Magic = Weapons + "Magic/";
+
+			public const string Summoner = Weapons + "Summoner/";
+			#endregion
+		}
+		internal class Buffs
+		{
+			public const string Directory = Assets.Directory + "Buffs/";
+
+			public const string Minions = Directory + "Minions/";
+
+			public const string Potions = Directory + "Potions/";
+
+			public const string Debuffs = Directory + "Debuffs/";
+
+		}
+
+		internal class NPCs
 		{
 			public const string Directory = Assets.Directory + "NPCs/";
-            #region Boss
+
             public const string Boss = Directory + "Boss/";
+
 			public const string Fungore = Boss + "Fungore/";
-            #endregion
 
             public const string Critters = Directory + "Critters/";
 
 			public const string Enemies = Directory + "Enemies/";
+
 			public const string Forest = Enemies + "Forest/";
 		}
 
@@ -61,9 +88,12 @@
 			public const string Typeless = Directory + "Typeless/";
 
 			public const string Melee = Directory + "Melee/";
+
 			public const string Ranged = Directory + "Ranged/";
+
 			public const string Magic = Directory + "Magic/";
-			public const string Minions = Directory + "Minions/";
+
+			public const string Summon = Directory + "Summon/";
 		}
 
 		internal class Tiles

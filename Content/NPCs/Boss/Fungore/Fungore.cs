@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 
 using Terraria;
 using Terraria.ID;
+
 using Terraria.ModLoader;
 using TrelamiumTwo.Core;
 using TrelamiumTwo.Helpers;
@@ -49,8 +51,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private float alpha;
         private float alphaTimer;
-        private int jumpTimer;
-        private int jumpRegular;
 
         public override string Texture => Assets.NPCs.Fungore + "Fungore";
         public override void SetStaticDefaults()
@@ -70,9 +70,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             drawOffsetY = 10;
 
-            npc.lifeMax = 2700;
+            npc.lifeMax = 2400;
             npc.defense = 14;
-            npc.damage = 26;
+            npc.damage = 18;
 
             npc.knockBackResist = 0f;
 
@@ -100,6 +100,10 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 frameRate = 15;
             }
+            if (State == States.Jumping && (frameY == 2 || frameY == 6))
+            {
+                frameRate = 60;
+            }
 
             if (npc.frameCounter > frameRate)
             {
@@ -108,13 +112,12 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 npc.frameCounter = 0;
             }
 
-            frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 0;
+            frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 3;
 
             if (State == States.Walking && frameY > 7)
             {
                 frameY = 0;
             }
-
             npc.frame.Y = frameY * frameHeight;
             npc.frame.X = frameX * npc.frame.Width;
         }
@@ -195,7 +198,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 const float minPunchDistance = 8f * 16f;
 
                 // Punch if the player is close enough to Fungore.
-                if (player.Distance(npc.Center) < minPunchDistance || Main.rand.Next(9) == 0)
+                if (player.Distance(npc.Center) < minPunchDistance)
                 {
                     punchDirection = Math.Sign(player.position.X - npc.position.X);
 
@@ -204,12 +207,15 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     State = States.Punching;
                     AttackCooldown = 0;
                 }
-                if (Main.rand.Next(7) == 0)
+                if (AttackCooldown > minAttackCooldown)
                 {
-                    frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
+                    if (Main.rand.Next(7) == 0)
+                    {
+                        frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
-                    State = States.Jumping;
-                    AttackCooldown = 0;
+                        State = States.Jumping;
+                        AttackCooldown = 60;
+                    }
                 }
             }
         }
@@ -294,33 +300,33 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
         }
 
-        private void Jump() 
+        private void Jump()
         {
             npc.TargetClosest();
-            if (npc.HoleBelow() || (npc.collideX && npc.position.X == npc.oldPosition.X))
+            if (frameY >= 2 && frameY < 3)
             {
-                npc.velocity.Y = Main.rand.NextFloat(-16f, -14f);
+                npc.velocity.Y = Main.rand.NextFloat(-11f, -10f);
                 npc.netUpdate = true;
+                if (npc.velocity.Y >= 0f)
+                {
+                    Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+                }
             }
-            if ((npc.collideX && npc.position.X == npc.oldPosition.X))
+            if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
-                npc.velocity.Y = Main.rand.NextFloat(-16f, -14f);
-                npc.netUpdate = true;
+                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;            
             }
-            if (npc.velocity.Y >= 0f)
+            if (frameY > 11 && (npc.collideY || npc.collideX))
             {
-                Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
-            }
-            if (frameY >= 16 || npc.collideY)
-            {
-                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 1f;
                 frameY = 0;
                 State = States.Walking;
             }
         }
+        
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);
+            //npc.DrawNPCTrailCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor, default, default, 1);
             return false;
         }
 

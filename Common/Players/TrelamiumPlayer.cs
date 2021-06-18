@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 
+using Terraria;
 using Terraria.ModLoader;
+
 using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Common.Players

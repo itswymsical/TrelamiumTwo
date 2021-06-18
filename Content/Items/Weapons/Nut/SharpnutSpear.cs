@@ -15,7 +15,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(copper: 50);
 			
-			item.damage = 5;
+			item.damage = 4;
 			item.knockBack = 3f;
 			
 			item.useTime = item.useAnimation = 20;
