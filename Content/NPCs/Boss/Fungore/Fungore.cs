@@ -70,7 +70,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             drawOffsetY = 10;
 
-            npc.lifeMax = 2400;
+            npc.lifeMax = 2560;
             npc.defense = 14;
             npc.damage = 18;
 
@@ -100,9 +100,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 frameRate = 15;
             }
-            if (State == States.Jumping && frameY == 6)
+            if (State == States.Jumping && (frameY == 2 || frameY == 6))
             {
-                frameRate = 30;
+                frameRate = 35;
             }
 
             if (npc.frameCounter > frameRate)
@@ -209,12 +209,12 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 }
                 if (AttackCooldown > minAttackCooldown)
                 {
-                    if (Main.rand.Next(7) == 0)
+                    if (Main.rand.Next(16) == 0)
                     {
                         frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
                         State = States.Jumping;
-                        AttackCooldown = 60;
+                        AttackCooldown = 0;
                     }
                 }
             }
@@ -302,11 +302,11 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void Jump()
         {
-            npc.TargetClosest();
-            npc.velocity.X = player.position.X;
-            if (frameY == 2)
+            npc.velocity.X = 0;   
+            if (frameY > 2 && frameY < 4)
             {
                 npc.velocity.Y = Main.rand.NextFloat(-9f, -8f);
+                npc.TargetClosest();
                 npc.netUpdate = true;
                 if (npc.velocity.Y >= 0f)
                 {
@@ -315,11 +315,15 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
-                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;            
+                Walk();
+                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;
+                frameY = 0;
+                State = States.Walking;
             }
+
             if (frameY > 11 && (npc.collideY || npc.collideX))
             {
-                frameY = 0;
+                frameY = 0; 
                 State = States.Walking;
             }
         }
