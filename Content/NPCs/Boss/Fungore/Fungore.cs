@@ -19,7 +19,8 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         {
             Walking,
             Punching,
-            Jumping
+            Jumping,
+            SuperJumping
         }
 
         private States State
@@ -104,7 +105,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 frameRate = 35;
             }
-
+            if (State == States.SuperJumping && frameY == 2)
+            {
+                frameRate = 35;
+            }
+            if (State == States.SuperJumping && frameY == 7)
+            {
+                frameRate = 20;
+            }
             if (npc.frameCounter > frameRate)
             {
                 frameY++;
@@ -183,6 +191,10 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 case States.Jumping:
                 Jump();
                 break;
+
+                case States.SuperJumping:
+                SuperJump();
+                break;
             }
         }
 
@@ -196,7 +208,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             if (AttackCooldown > minAttackCooldown)
             {
                 const float minPunchDistance = 8f * 16f;
-
                 // Punch if the player is close enough to Fungore.
                 if (player.Distance(npc.Center) < minPunchDistance || (Main.rand.Next(60) == 0))
                 {
@@ -207,18 +218,23 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     State = States.Punching;
                     AttackCooldown = 0;
                 }
-                if (AttackCooldown > minAttackCooldown)
+                if (Main.rand.Next(80) == 0)
                 {
-                    if (Main.rand.Next(60) == 0)
-                    {
-                        frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
+                    frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
-                        State = States.Jumping;
-                        AttackCooldown = 0;
-                    }
+                    State = States.SuperJumping;
+                    AttackCooldown = 0;
+                }
+
+                if (Main.rand.Next(60) == 0)
+                {
+                    frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
+
+                    State = States.Jumping;
+                    AttackCooldown = 0;
                 }
             }
-        }
+        }        
 
         private void HandleDespawn() { }
 
@@ -270,7 +286,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void Punch()
         {
-            if (frameY == 5)
+            if (frameY == 3)
                 Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);
 
             if (frameY == 4 || frameY == 5)
@@ -318,20 +334,52 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
-                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 4f;
                 Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
-                Projectile.NewProjectile(npc.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSlam>(), npc.damage, 16f, Main.myPlayer, 0, 0);
+                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 3f;
+
+                Projectile.NewProjectile(npc.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSmoke>(),
+                    npc.damage / 2, 16f, Main.myPlayer);
+
                 frameY = 0;
                 State = States.Walking;
             }
-            if (frameY > 11 && (npc.collideY || npc.collideX))
+            if (frameY > 15 && (npc.collideY || npc.collideX))
             {
                 Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
                 frameY = 0; 
                 State = States.Walking;
             }
         }
-        
+        private void SuperJump()
+        {
+            Walk();
+            if (frameY > 2 && frameY < 4)
+            {
+                npc.velocity.Y = Main.rand.NextFloat(-13f, -12f);
+                npc.TargetClosest();
+                npc.netUpdate = true;
+                if (npc.velocity.Y >= 0f)
+                {
+                    Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+                }
+            }
+            if (frameY >= 8 && (npc.collideY || npc.collideX))
+            {
+                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 5f;
+
+                Projectile.NewProjectile(npc.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSlam>(), npc.damage / 2, 16f, Main.myPlayer);
+
+                frameY = 0;
+                State = States.Walking;
+            }
+            if (frameY > 15 && (npc.collideY || npc.collideX))
+            {
+                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                frameY = 0;
+                State = States.Walking;
+            }
+        }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);

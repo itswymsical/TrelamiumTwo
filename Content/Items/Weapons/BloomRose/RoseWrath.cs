@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			item.noMelee = true;
 			item.autoReuse = false;
 
-			item.damage = 14;
+			item.damage = 11;
 			item.knockBack = 1f;
 			item.mana = 4;
 

@@ -5,17 +5,17 @@ using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.NPCs.Boss.Fungore.Projectiles
 {
-    public class FungoreSlam : ModProjectile
+    public class FungoreSmoke : ModProjectile
     {
-        public override string Texture => Assets.NPCs.Fungore + "FungoreSlam";
+        public override string Texture => Assets.NPCs.Fungore + "FungoreSmoke";
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 4;
         }
         public override void SetDefaults()
         {
-            projectile.width = 244;
-            projectile.height = 208;
+            projectile.width = 172;
+            projectile.height = 104;
             projectile.hostile = true;
             projectile.tileCollide = false;
         }
@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore.Projectiles
                 projectile.frameCounter = 0;
             }
 
-            if (projectile.frame > 5)
+            if (projectile.frame > 3)
             {
                 projectile.Kill();
                 projectile.frame = 0;

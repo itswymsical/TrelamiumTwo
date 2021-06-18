@@ -24,6 +24,8 @@
 
 			public const string Tools = Directory + "Tools/";
 
+			public const string Fish = Directory + "Fish/";
+
 			public const string Shovels = Tools + "Shovels/";
 
             #region Armor
