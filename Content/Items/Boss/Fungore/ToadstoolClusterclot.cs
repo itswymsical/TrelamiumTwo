@@ -1,36 +1,38 @@
 using Terraria;
 using Terraria.ID;
+
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+
 using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Boss.Fungore
 {
-	public class MycelialWarhammer : ModItem
+	public class ToadstoolClusterclot : ModItem
 	{
-		public override string Texture => Assets.Items.Fungore + "MycelialWarhammer";
-		public override void SetDefaults()
+        public override string Texture => Assets.Items.Fungore + "ToadstoolClusterclot";
+        public override void SetDefaults()
 		{
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(silver: 5);
 
-			item.crit = 5;
-			item.damage = 18;
+			item.crit = 2;
+			item.damage = 13;
 			item.knockBack = 5f;
 
 			item.useTime = item.useAnimation = 26;
 			item.useStyle = ItemUseStyleID.HoldingOut;
 
-			item.noUseGraphic = 
-				item.melee = 
-				item.noMelee = 
-				item.channel = true;
+			item.noUseGraphic =
+				item.ranged =
+				item.noMelee = true;
 
 			item.autoReuse = false;
 
-			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.MycelialWarhammer>();		
-			item.UseSound = SoundID.DD2_MonkStaffSwing;
+			item.shootSpeed = 8f;
+			//item.shoot = ModContent.ProjectileType<Projectiles.Ranged.ToadstoolClutserclotProjectile>();
+			
+			item.UseSound = SoundID.Item1;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -45,7 +47,7 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 			projectile.netUpdate = true;
 			projectile.direction = direction;
 
-			return false;
+			return (false);
 		}
 	}
 }

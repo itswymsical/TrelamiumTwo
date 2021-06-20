@@ -36,7 +36,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
 			aiType = -1;
 
 			npc.value = Item.sellPrice(copper: 10);
-
+			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
 		}
 

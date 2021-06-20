@@ -17,9 +17,9 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
             npc.width = 32;
             npc.height = 26;
 
-            npc.damage = 18;
-            npc.lifeMax = 45;
-            npc.defense = 2;
+            npc.damage = 12;
+            npc.lifeMax = 20;
+            npc.defense = 1;
             npc.aiStyle = 1;
 
             npc.knockBackResist = 0.75f;
@@ -35,8 +35,15 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
         public override void AI() => npc.direction = npc.spriteDirection;
         public override void NPCLoot()
         {
-            if (Main.rand.NextBool(2))
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));           
+            if (Main.rand.NextBool(3))
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+                for (int i = 1; i <= 30; i++)
+                    Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, -1f);
+
         }
     }
 }

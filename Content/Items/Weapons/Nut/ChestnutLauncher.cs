@@ -21,8 +21,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(copper: 30);
 
-			item.damage = 3;
-			item.knockBack = 0f;
+			item.damage = 4;
+			item.knockBack = .5f;
 
 			item.useTime = item.useAnimation = 25;
 			item.useStyle = ItemUseStyleID.HoldingOut;

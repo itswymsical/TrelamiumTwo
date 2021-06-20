@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Input;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ModLoader;
-
+using TrelamiumTwo.Core.Mechanics.Trails;
 using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Common.Players

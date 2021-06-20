@@ -51,6 +51,8 @@
 
 			public const string Viking = Weapons + "Viking/";
 
+			public const string Melee = Weapons + "Melee/";
+
 			public const string Magic = Weapons + "Magic/";
 
 			public const string Summoner = Weapons + "Summoner/";

@@ -18,7 +18,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
-			projectile.timeLeft = 500;
+			projectile.timeLeft = 700;
 
 			projectile.melee =
 				projectile.friendly = true;
