@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Common.Players
 {
     public partial class TrelamiumPlayer : ModPlayer
-    {
+    {    
         public void ShovelPickTile(int x, int y)
         {
             int digTile = player.HeldItem.GetGlobalItem<Globals.GlobalTrelamiumItem>().digPower;

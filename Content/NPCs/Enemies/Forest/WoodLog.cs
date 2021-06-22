@@ -82,7 +82,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
 		{
 			if (npc.life <= 0)
 				for (int i = 1; i <= 3; i++)
-					Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Content/Gores/WoodLog/WoodLogGore" + i));
+					Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WoodLog/WoodLogGore" + i));
 
 			for (int i = 0; i < 5; i++)
 				Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Wood>(), hitDirection, -1f);		

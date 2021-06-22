@@ -26,8 +26,10 @@ namespace TrelamiumTwo.Common.Players
 
         public bool theMagnolia;
 
-        public bool toadstoolExplode; 
-        
+        public bool toadstoolExplode;
+
+        public int toadstoolCount;
+
         public bool mushroomHeal;
         public override void ResetEffects()
         {
@@ -84,15 +86,7 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void ModifyScreenPosition()
         {
-            if (ScreenShakeIntensity > 0f)
-            {
-                var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
-
-                Main.screenPosition += shake;
-
-                ScreenShakeIntensity *= 0.95f;
-            }
-            if (ScreenShakeIntensityHammer > 0f && ScreenShakeIntensityHammer < 3f)
+            if (ScreenShakeIntensity > 0.15f)
             {
                 var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
 

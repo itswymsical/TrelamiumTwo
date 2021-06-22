@@ -40,7 +40,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			projectile.tileCollide = IsMaxCharge = false;
 		}
-
+		private Player player;
 		public override bool PreAI()
 		{
 			Player owner = Main.player[projectile.owner];
@@ -90,6 +90,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		}
 		public override void Kill(int timeLeft)
 		{
+			player = Main.player[projectile.owner];
 			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 			if (IsMaxCharge && Main.myPlayer == projectile.owner)
 			{
@@ -98,7 +99,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
-			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensityHammer = .8f;
+			player.ApplyScreenShake(.8f, default, default);
 			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 

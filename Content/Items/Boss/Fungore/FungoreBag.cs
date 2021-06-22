@@ -19,15 +19,12 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 		{
 			item.maxStack = 999;
 			item.consumable = true;
-			item.width = 24;
-			item.height = 24;
+			item.width = item.height = 24;
 			item.rare = ItemRarityID.Expert;
 			item.expert = true;
 		}
-		public override bool CanRightClick()
-		{
-			return true;
-		}
+		public override bool CanRightClick() => true;
+		
 		public override int BossBagNPC => ModContent.NPCType<NPCs.Boss.Fungore.Fungore>();
 		public override void OpenBossBag(Player player)
 		{

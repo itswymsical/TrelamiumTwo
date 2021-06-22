@@ -85,6 +85,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             npc.HitSound = SoundID.DD2_OgreHurt;
             npc.DeathSound = SoundID.DD2_SkeletonDeath;
             bossBag = ModContent.ItemType<FungoreBag>();
+            npc.value = Item.buyPrice(gold: 1);
             //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FungalFracas");
             //musicPriority = MusicPriority.BossMedium;
         }
@@ -140,7 +141,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
             float damage = npc.damage;
-            npc.damage += (int)(damage * .25f);
+            npc.damage += (int)(damage * .15f);
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -517,6 +518,19 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             Helper.DrawText(spriteBatch, position, "- Fungore -", color);
             Helper.DrawText(spriteBatch, position2, "The Numbskull Fungus Brute", color, default, .45f);
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/Fungore/FungoreGore" + i));
+                }
+            }
+            
+            for (int i = 0; i < 28; i++)
+                Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, -1f);
         }
     }
 }

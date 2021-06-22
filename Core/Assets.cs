@@ -12,7 +12,6 @@
 		public const string Icon = "TrelamiumTwo/icon";
 
 		public const string Dusts = Directory + "Dusts/";
-
 		internal class Items
 		{
 			public const string Directory = Assets.Directory + "Items/";
@@ -69,7 +68,6 @@
 			public const string Debuffs = Directory + "Debuffs/";
 
 		}
-
 		internal class NPCs
 		{
 			public const string Directory = Assets.Directory + "NPCs/";
@@ -84,7 +82,6 @@
 
 			public const string Forest = Enemies + "Forest/";
 		}
-
 		internal class Projectiles
 		{
 			public const string Directory = Assets.Directory + "Projectiles/";
@@ -99,7 +96,6 @@
 
 			public const string Summon = Directory + "Summon/";
 		}
-
 		internal class Tiles
 		{
 			public const string Directory = Assets.Directory + "Tiles/";

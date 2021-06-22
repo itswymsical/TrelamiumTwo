@@ -1,13 +1,13 @@
-﻿using TrelamiumTwo.Content.Dusts;
-using TrelamiumTwo.Core;
-using TrelamiumTwo.Helpers;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
+using TrelamiumTwo.Content.Dusts;
+using TrelamiumTwo.Core;
+using TrelamiumTwo.Helpers;
 using TrelamiumTwo.Core.Mechanics.Trails;
 using TrelamiumTwo.Core.Abstraction.Interfaces;
 
