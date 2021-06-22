@@ -1,7 +1,11 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+
 using TrelamiumTwo.Core;
+using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
@@ -11,6 +15,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mushroom");
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 		public override void SetDefaults()
 		{
@@ -18,26 +24,21 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			projectile.penetrate = -1;
 			projectile.aiStyle = 1;
-			projectile.timeLeft = 700;
+			projectile.timeLeft = 130;
 
-			projectile.melee =
-				projectile.friendly = true;
+			projectile.melee = projectile.friendly = true;
 		}
 		public override void AI()
 		{
 			int num3;
 			projectile.ai[1] += 1f;
-			float num227 = (60f - projectile.ai[1]) / 60f;
-			if (projectile.ai[1] > 40f)
-			{
-				projectile.Kill();
-			}
 			projectile.velocity.Y = projectile.velocity.Y + 0.2f;
+
 			if (projectile.velocity.Y > 18f)
-			{
 				projectile.velocity.Y = 18f;
-			}
+			
 			projectile.velocity.X = projectile.velocity.X * 0.98f;
+
 			for (int num228 = 0; num228 < 2; num228 = num3 + 1)
 			{
 				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.Mushroom>(), projectile.velocity.X, projectile.velocity.Y, 50, default, 1.1f);
@@ -46,20 +47,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				Dust dust = Main.dust[num229];
 				dust.velocity *= 0.3f;
 				dust = Main.dust[num229];
-				dust.scale *= num227;
+				dust.scale = .45f;
 				num3 = num228;
-			}
-			for (int num230 = 0; num230 < 1; num230 = num3 + 1)
-			{
-				int num229 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.Mushroom>(), projectile.velocity.X, projectile.velocity.Y, 50, default, 0.6f);
-				Main.dust[num229].position = (Main.dust[num229].position + projectile.Center * 5f) / 6f;
-				Dust dust = Main.dust[num229];
-				dust.velocity *= 0.1f;
-				Main.dust[num229].noGravity = true;
-				Main.dust[num229].fadeIn = 0.9f * num227;
-				dust = Main.dust[num229];
-				dust.scale *= num227;
-				num3 = num230;
 			}
 			return;
 		}
@@ -71,5 +60,16 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				Dust.NewDustDirect(projectile.Center, 0, 0, ModContent.DustType<Dusts.Mushroom>(), velocity.X, velocity.Y);
 			}
 		}
-	}
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			for (int k = 0; k < projectile.oldPos.Length; k++)
+			{
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
+				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+			}
+			return true;
+		}
+    }
 }

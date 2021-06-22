@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Core;
 
-//using TrelamiumTwo.Content.Items.Boss.Fungore.Equippable;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Boss.Fungore
 {
@@ -32,10 +31,11 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 		public override int BossBagNPC => ModContent.NPCType<NPCs.Boss.Fungore.Fungore>();
 		public override void OpenBossBag(Player player)
 		{
+			player.QuickSpawnItem(ModContent.ItemType<Equippable.Fungroids>());
 			int choice = Main.rand.Next(2);
 			if (Main.rand.Next(7) == 0)
 			{
-				//player.QuickSpawnItem(ModContent.ItemType<FungoreMask>());
+				player.QuickSpawnItem(ModContent.ItemType<Equippable.FungoreMask>());
 			}
 			if (choice == 0)
 				player.QuickSpawnItem(ModContent.ItemType<MycelialWarhammer>());

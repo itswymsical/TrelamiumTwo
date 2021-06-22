@@ -24,19 +24,12 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			set => projectile.ai[0] = (int)value;
 		}
 		private bool IsMaxCharge;
-		private readonly float MaxChargeTime = 45f;
+		private readonly float MaxChargeTime = 35f;
 		private float RotationStart => MathHelper.PiOver2 + (projectile.direction == -1 ? MathHelper.Pi : 0);
 		private float RotationOffset => projectile.direction == 1 ? 0 : MathHelper.PiOver2;
-
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mycelial Warhammer");
-			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 6;
-		}
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 66;
+			projectile.width = projectile.height = 74;
 			projectile.penetrate = -1;
 
 			projectile.melee =
@@ -105,17 +98,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
-			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = .8f;
+			Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensityHammer = .8f;
 			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
-		}
-
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			if (State == AIState.Swinging)
-			{
-				projectile.DrawProjectileTrailCentered(spriteBatch, lightColor, 0.2f, 0.15f, 1);
-			}
-			return true;
 		}
 
 		private void SetProjectilePosition(Player owner)
@@ -125,7 +109,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			Vector2 rotatedPoint = owner.RotatedRelativePoint(owner.MountedCenter);
 
 			projectile.rotation = RotationStart - (MathHelper.Pi / MaxChargeTime * projectile.ai[1]) * projectile.direction;
-			projectile.Center = rotatedPoint + (projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 42;
+			projectile.Center = rotatedPoint + (projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 60;
 		}
 
 		private void SetOwnerAnimation(Player owner)

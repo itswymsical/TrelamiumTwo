@@ -5,12 +5,15 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 using TrelamiumTwo.Core.Mechanics.Trails;
 using TrelamiumTwo.Helpers;
+using Terraria.ID;
 
 namespace TrelamiumTwo.Common.Players
 {
     public partial class TrelamiumPlayer : ModPlayer
     {
         public float ScreenShakeIntensity;
+        public float ScreenShakeIntensityHammer;
+
         public bool dustrollerSkates;
 
         public bool gluttonAmulet;
@@ -21,11 +24,11 @@ namespace TrelamiumTwo.Common.Players
 
         public bool scarabIdol;
 
-        public float shakeEffects = 0;
-
         public bool theMagnolia;
 
-        public bool toadstoolExplode;
+        public bool toadstoolExplode; 
+        
+        public bool mushroomHeal;
         public override void ResetEffects()
         {
             dustrollerSkates = false;
@@ -38,11 +41,11 @@ namespace TrelamiumTwo.Common.Players
 
             scarabIdol = false;
 
-            shakeEffects = 0;
-
             theMagnolia = false;
 
             toadstoolExplode = false;
+
+            mushroomHeal = false;
         }
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
@@ -75,10 +78,21 @@ namespace TrelamiumTwo.Common.Players
         {
             if (gluttonAmulet)
                 healValue = (int)(healValue * 1.33f);
+
+            if (mushroomHeal && item.type == ItemID.Mushroom)
+                healValue = (int)(healValue * 3f);
         }
         public override void ModifyScreenPosition()
         {
             if (ScreenShakeIntensity > 0f)
+            {
+                var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
+
+                Main.screenPosition += shake;
+
+                ScreenShakeIntensity *= 0.95f;
+            }
+            if (ScreenShakeIntensityHammer > 0f && ScreenShakeIntensityHammer < 3f)
             {
                 var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
 

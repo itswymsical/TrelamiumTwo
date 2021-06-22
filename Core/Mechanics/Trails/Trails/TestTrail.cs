@@ -7,8 +7,13 @@ using TrelamiumTwo.Core.Mechanics.Trails;
 
 public class TestTrail : Trail
 {
-    public TestTrail(Entity entity) => Entity = entity;
-
+    public TestTrail(Entity entity)
+    {
+        Entity = entity;
+        Color = Microsoft.Xna.Framework.Color.Pink;
+        Width = 13;
+    }
+    public override void SetShaders() => SetBasicShader();
     public override void SetVertices()
     {
         if (!Entity.active)

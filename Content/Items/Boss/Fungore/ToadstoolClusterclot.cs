@@ -30,7 +30,7 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 			item.autoReuse = false;
 
 			item.shootSpeed = 8f;
-			//item.shoot = ModContent.ProjectileType<Projectiles.Ranged.ToadstoolClutserclotProjectile>();
+			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.ToadstoolClusterclot>();
 			
 			item.UseSound = SoundID.Item1;
 		}

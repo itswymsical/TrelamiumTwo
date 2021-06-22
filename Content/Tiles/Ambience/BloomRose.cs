@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Content.Tiles.Ambience
 			Main.tileSpelunker[Type] = true;
 			Main.tileLavaDeath[Type] = true;
 			Main.tileFrameImportant[Type] = true;
-
+			soundType = SoundID.Grass;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
 			TileObjectData.newTile.Origin = Point16.Zero;
 

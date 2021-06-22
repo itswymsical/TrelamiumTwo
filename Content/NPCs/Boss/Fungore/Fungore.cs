@@ -56,7 +56,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         private float alphaTimer;
         private int AITimer;
         private bool flag = false;
-
         public override string Texture => Assets.NPCs.Fungore + "Fungore";
         public override void SetStaticDefaults()
         {
@@ -74,7 +73,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             drawOffsetY = 8;
 
-            npc.lifeMax = 2260;
+            npc.lifeMax = 1840;
             npc.defense = 5;
             npc.damage = 15;
 
@@ -86,8 +85,8 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             npc.HitSound = SoundID.DD2_OgreHurt;
             npc.DeathSound = SoundID.DD2_SkeletonDeath;
             bossBag = ModContent.ItemType<FungoreBag>();
-           music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FungalFracas");
-           musicPriority = MusicPriority.BossMedium;
+            //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FungalFracas");
+            //musicPriority = MusicPriority.BossMedium;
         }
 
         public override void FindFrame(int frameHeight)
@@ -264,7 +263,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 }
             }
         }
-
         private void HandleDespawn()
         {
             if (!player.active || player.dead)
@@ -278,7 +276,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 }
             }
         }
-
         private void HandleCollision(int maxTime, float jumpHeight)
         {
             if (npc.velocity.Y == 0f)
@@ -297,7 +294,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY);
         }
-
         private void Walk()
         {
             const float maxSpeed = 2.7f;
@@ -401,8 +397,8 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 }
             }
             if (frameY == 4)
-                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);
-            
+                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);              
+         
             if (frameY >= 8 && (npc.collideY || npc.collideX))
             {
                 Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
@@ -413,7 +409,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 {
                     var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
-                    Main.projectile[index].timeLeft = 700;
                 }
 
                 frameY = 0;
@@ -464,12 +459,11 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 {
                     var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
-                    Main.projectile[index].timeLeft = 700;
                 }
 
                 for (int i = 0; i < 2; ++i)
                 {
-                    NPC.NewNPC((int)npc.position.X + Main.rand.Next(-i * 14, i * 14), (int)npc.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), i);
+                    NPC.NewNPC((int)npc.position.X + Main.rand.Next(-i * -20, i * 20), (int)npc.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), 0, i);
                 }
                 
                 frameY = 0;
@@ -483,9 +477,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) => npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);        
-
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor) => HandleScreenText(spriteBatch);
-
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 1.5f;
@@ -506,7 +498,6 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 scale.X = MathHelper.Lerp(scale.X, targetScale.X, 0.33f);
             }
         }
-
         private void HandleScreenText(SpriteBatch spriteBatch)
         {
             var position = new Vector2(Main.screenWidth / 2f, 200f);
