@@ -30,13 +30,16 @@
             #region Armor
             public const string Armor = Directory + "Armor/";
 
+			public const string Antlion = Armor + "Antlion/";
+
 			public const string Everbloom = Armor + "Everbloom/";
 
 			public const string VikingArmor = Armor + "Viking/";
-            #endregion
 
-            #region Boss
-            public const string Boss = Directory + "Boss/";
+			#endregion
+
+			#region Boss
+			public const string Boss = Directory + "Boss/";
 
 			public const string Fungore = Boss + "Fungore/";
             #endregion

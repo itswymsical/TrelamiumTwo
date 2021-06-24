@@ -11,6 +11,7 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 	public class ToadstoolClusterclot : ModItem
 	{
         public override string Texture => Assets.Items.Fungore + "ToadstoolClusterclot";
+		public override void SetStaticDefaults() => Tooltip.SetDefault("Fires a cluster of fungi clots that stick to enemies");
         public override void SetDefaults()
 		{
 			item.rare = ItemRarityID.White;

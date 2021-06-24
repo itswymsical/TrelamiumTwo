@@ -30,7 +30,7 @@ namespace TrelamiumTwo.Common.Globals
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             ArmorSetPlayer armorSetPlayer = Main.LocalPlayer.GetModPlayer<ArmorSetPlayer>();
-            if (armorSetPlayer.frostbarkSet && item.melee)
+            if (armorSetPlayer.vikingSet && item.melee)
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
@@ -40,6 +40,8 @@ namespace TrelamiumTwo.Common.Globals
         {
             if (item.type == ItemID.Acorn)
             {
+                item.damage = 1;
+                item.ranged = true;
                 item.ammo = item.type;
             }
         }

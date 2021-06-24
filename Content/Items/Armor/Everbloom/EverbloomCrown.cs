@@ -29,8 +29,8 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Summons a Floral Spirit to protect you";
-			//player.AddBuff(ModContent.BuffType<Buffs.Minion.FloralSpiritBuff>(), 69);
+			player.setBonus = "Increases max minions by 1";
+			player.maxMinions++;
 			player.GetModPlayer<ArmorSetPlayer>().EverbloomSet = true;
 		}
 
