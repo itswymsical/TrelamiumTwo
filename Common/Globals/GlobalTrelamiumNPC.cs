@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace TrelamiumTwo.Common.Globals
 {
-    public class TrelamiumGlobalNPC : GlobalNPC
+    public class GlobalTrelamiumNPC : GlobalNPC
     {
         public override bool InstancePerEntity
         {
@@ -18,16 +18,15 @@ namespace TrelamiumTwo.Common.Globals
         public override void AI(NPC npc)
         {
             player = Main.player[npc.target];
-            if (npc.type == NPCID.Antlion 
-                || npc.type == NPCID.WalkingAntlion 
-                || npc.type == NPCID.FlyingAntlion)
+            if (Main.LocalPlayer.GetModPlayer<Players.ArmorSetPlayer>().AntlionSet && (npc.type == NPCID.Antlion || npc.type == NPCID.WalkingAntlion || npc.type == NPCID.FlyingAntlion))
+                npc.damage = npc.damage / 4;
+            
+        }
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
+        {
+          if (projectile.type == ModContent.ProjectileType<Content.Projectiles.Typeless.NutGrabberProjectile>() && npc.life <= 0)
             {
-                if (player.Distance(npc.Center) < 80)
-                    player.npcTypeNoAggro[69] = player.npcTypeNoAggro[508] = player.npcTypeNoAggro[509] = false;
-                
-                if (npc.justHit)
-                    player.npcTypeNoAggro[69] = player.npcTypeNoAggro[508] = player.npcTypeNoAggro[509] = false;
-                
+                Item.NewItem(npc.position, ModContent.ItemType<Content.Items.Materials.Nut>(), 2);
             }
         }
         public override void UpdateLifeRegen(NPC npc, ref int damage)

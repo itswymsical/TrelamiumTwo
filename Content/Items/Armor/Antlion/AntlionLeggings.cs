@@ -22,7 +22,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Antlion
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(silver: 2);
 		}
-		public override void UpdateEquip(Player player) => player.moveSpeed += .4f;
+		public override void UpdateEquip(Player player) => player.moveSpeed += .04f;
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);

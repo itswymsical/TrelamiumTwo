@@ -63,15 +63,10 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 		}
 		public override void Kill(int timeLeft)
 		{
-			int num281 = 22;
-			for (int num282 = 0; num282 < num281; num282++)
+			for (int i = 0; i < 5; i++)
 			{
-				int num283 = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<Dusts.Mushroom>(), 0f, 0f, 0, default, 0.5f);
-				Dust dust = Main.dust[num283];
-				dust.velocity *= 1.6f;
-				Dust dust25 = Main.dust[num283];
-				dust25.velocity.Y =  1f;
-				Main.dust[num283].position = Vector2.Lerp(Main.dust[num283].position, projectile.Center, 0.5f);
+				var velocity = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
+				Dust.NewDustDirect(projectile.Center, 0, 0, ModContent.DustType<Dusts.Mushroom>(), velocity.X, velocity.Y);
 			}
 		}
 	}

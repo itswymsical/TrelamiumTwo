@@ -43,7 +43,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 3);
+			recipe.AddIngredient(ItemID.VineRope, 6);
 			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 18);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);

@@ -80,11 +80,10 @@ namespace TrelamiumTwo
 
 		private void UnloadCache()
 		{
-			foreach (var loadable in loadCache)
+			for (int i = 0; i < loadCache.Count; i++)
 			{
-				loadable?.Unload();
+				loadCache[i].Unload();
 			}
-
 			loadCache?.Clear();
 		}
 	}

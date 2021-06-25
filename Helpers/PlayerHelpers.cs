@@ -38,23 +38,5 @@ namespace TrelamiumTwo.Helpers
 			player.magicCrit += crit;
 			player.thrownCrit += crit;
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="player"></param>
-		/// <param name="intensitiy">The intensity of the screen shake.</param>
-		/// <param name="minValue">the minimum value that is required for screen shakes to take effect and the value that the shake ends at. Defaults to .15f.</param>
-		/// <param name="multiplier">Multiplies the intensity of the shake. Defaults to .95f.</param>
-		public static void ApplyScreenShake(this Entity entity, float intensitiy = 1f, float minValue = .15f, float multiplier = .95f)
-        {
-			if (intensitiy > minValue)
-			{
-				var shake = new Vector2(Main.rand.NextFloat(-intensitiy, intensitiy), Main.rand.NextFloat(-intensitiy, intensitiy));
-
-				Main.screenPosition += shake;
-
-				intensitiy *= multiplier;
-			}
-		}
 	}
 }

@@ -3,7 +3,6 @@ using Terraria.ID;
 
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 using TrelamiumTwo.Helpers;
 using TrelamiumTwo.Core;
@@ -99,7 +98,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
 				}
 			}
-			player.ApplyScreenShake(.8f, default, default);
+			player.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = .7f;
 			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
 		}
 
@@ -122,17 +121,14 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			float currentAnimationFraction = projectile.ai[1] / MaxChargeTime;
 
 			if (currentAnimationFraction < 0.4f)
-			{
 				owner.bodyFrame.Y = owner.bodyFrame.Height * 3;
-			}
+			
 			else if (currentAnimationFraction < 0.75f)
-			{
 				owner.bodyFrame.Y = owner.bodyFrame.Height * 2;
-			}
+			
 			else
-			{
 				owner.bodyFrame.Y = owner.bodyFrame.Height;
-			}
+			
 		}
 	}
 }

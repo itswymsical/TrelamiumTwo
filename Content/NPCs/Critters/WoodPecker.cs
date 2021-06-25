@@ -1,13 +1,14 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using TrelamiumTwo.Core;
 using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Content.NPCs.Critters
 {
 	public class WoodPecker : ModNPC
 	{
+		public override string Texture => Assets.NPCs.Critters + "WoodPecker";
 		public override void SetStaticDefaults()
 		{
 			Main.npcFrameCount[npc.type] = 5;
@@ -27,7 +28,7 @@ namespace TrelamiumTwo.Content.NPCs.Critters
 		{
 			if (npc.life <= 0)
 				for (int i = 1; i <= 2; i++)
-					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BirbGore" + i), npc.scale);
+					Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/WoodPecker/WoodPeckerGore" + i), npc.scale);
 		}
 	}
 }

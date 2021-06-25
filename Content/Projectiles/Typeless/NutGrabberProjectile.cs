@@ -40,7 +40,6 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 			grappleX += dirToPlayer.X * hangDistance;
 			grappleY += dirToPlayer.Y * hangDistance;
 		}
-
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Player owner = Main.player[projectile.owner];

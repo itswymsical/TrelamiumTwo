@@ -12,7 +12,6 @@ namespace TrelamiumTwo.Common.Players
     public partial class TrelamiumPlayer : ModPlayer
     {
         public float ScreenShakeIntensity;
-        public float ScreenShakeIntensityHammer;
 
         public bool dustrollerSkates;
 
@@ -86,7 +85,7 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void ModifyScreenPosition()
         {
-            if (ScreenShakeIntensity > 0.15f)
+            if (ScreenShakeIntensity > 0.195f)
             {
                 var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
 

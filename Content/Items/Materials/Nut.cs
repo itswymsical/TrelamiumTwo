@@ -11,7 +11,7 @@ namespace TrelamiumTwo.Content.Items.Materials
 		public override string Texture => Assets.Items.Materials + "Nut";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
+			item.width = item.height = 28;
 			item.maxStack = 999;
 			item.rare = ItemRarityID.White;
 			
@@ -28,8 +28,22 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.ammo = item.type;
 			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();
 		}
-
-		public override bool ConsumeItem(Player player)
+		public override void Update(ref float gravity, ref float maxFallSpeed)
+		{
+			foreach (Projectile projectile in Main.projectile)
+			{
+				if (projectile.Hitbox.Intersects(item.Hitbox) && projectile.type == ModContent.ProjectileType<Projectiles.Typeless.NutGrabberProjectile>())
+				{
+					item.position = projectile.Center;
+					item.Center = projectile.position;
+				}
+				if (!projectile.active)
+                {
+					item.position = item.position;
+                }
+			}
+		}
+        public override bool ConsumeItem(Player player)
 		{	  
 			item.healLife = 10;
 			item.potion = true;
