@@ -1,15 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using TrelamiumTwo.Core;
+
 namespace TrelamiumTwo.Content.Items.Weapons.Magic
 {
-    public class PharaohsSpire : TrelamiumItem
+    public class PharaohsSpire : ModItem
     {
-        public override void SetStaticDefaults() 
-            => DisplayName.SetDefault("Pharaoh's Spire"); 
-     
+        public override string Texture => Assets.Items.Magic + "PharaohsSpire";
+        public override void SetStaticDefaults() => DisplayName.SetDefault("Pharaoh's Spire");  
 
         public override void SetDefaults()
         {
@@ -31,7 +33,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item9;
 
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SandBallProjectile>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SandBall>();
             item.shootSpeed = 7.8f;
 
             item.value = Item.buyPrice(silver: 80);
@@ -39,8 +41,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
             item.width = 52;
             item.height = 72;
         }
-        public override Vector2? HoldoutOffset() 
-            => new Vector2(-8, 0);
+        public override Vector2? HoldoutOffset() => new Vector2(-8, 0);
         
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -54,15 +55,14 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(12));
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed *= scale;
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 
-                    ModContent.ProjectileType<Projectiles.Magic.SandBallProjectile>(), damage / 2, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage / 2, knockBack, player.whoAmI);
             }
             return true;
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Materials.Fossilite>(), 8);
+            recipe.AddIngredient(ItemID.AntlionMandible, 8);
             recipe.AddIngredient(ItemID.FallenStar, 3);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

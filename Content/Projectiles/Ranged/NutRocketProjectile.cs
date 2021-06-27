@@ -1,14 +1,19 @@
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
+using TrelamiumTwo.Core;
+
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
-	public sealed class NutRocketProjectile : ModProjectile
+	public class NutRocketProjectile : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Ranged + "NutRocketProjectile";
 		public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
@@ -22,10 +27,10 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			projectile.aiStyle = 1;
 			projectile.timeLeft = 46;
 			
-			projectile.ranged = true;
-			projectile.friendly = true;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = true;
+			projectile.ranged = 
+				projectile.friendly = 
+				projectile.ignoreWater = 
+				projectile.tileCollide = true;
 		}
 
 		public override void AI()
@@ -58,8 +63,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			{
 				Main.spriteBatch.Draw(texture, projectile.oldPos[i] + projectile.Size / 2f - Main.screenPosition, new Microsoft.Xna.Framework.Rectangle?(rectangle), color, projectile.oldRot[i], rectangle.Size() / 2f, 1f, projectile.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
 			}
-
-			return (true);
+			return true;
 		}
 	}
 }

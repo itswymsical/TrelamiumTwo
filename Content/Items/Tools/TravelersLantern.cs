@@ -1,16 +1,21 @@
 ﻿using System.Linq;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using TrelamiumTwo.Common.Players;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Tools
 {
 	public class TravelersLantern : ModItem
 	{
+		public override string Texture => Assets.Items.Tools + "TravelersLantern";
 		private int currentActiveEmber = 0;
 		
 		private readonly int MaxEmberAmount = 5;
@@ -25,16 +30,11 @@ namespace TrelamiumTwo.Content.Items.Tools
 		{
 			item.width = item.height = 12;
 			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(0, 0, 40, 0);
+			item.value = Item.sellPrice(silver: 20);
 
-			item.useTime = 18;
-			item.useAnimation = 18;
-			item.useStyle = ItemUseStyleID.HoldingOut;
-
-			item.holdStyle = ItemHoldStyleID.HoldingOut;
-
+			item.useTime = item.useAnimation = 18;
+			item.useStyle = item.holdStyle = ItemHoldStyleID.HoldingOut;
 			item.noMelee = true;
-
 			item.UseSound = SoundID.Item1;
 		}
 

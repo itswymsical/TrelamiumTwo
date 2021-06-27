@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 	[AutoloadEquip(EquipType.Head)]
 	public class EverbloomHood : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Everbloom Hood");
+		public override string Texture => Assets.Items.Everbloom + "EverbloomHood";
 
 		public override void SetDefaults()
 		{

@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 	[AutoloadEquip(EquipType.Legs)]
 	public class EverbloomLeggings : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Everbloom Leggings");
+		public override string Texture => Assets.Items.Everbloom + "EverbloomLeggings";
 
 		public override void SetDefaults()
 		{

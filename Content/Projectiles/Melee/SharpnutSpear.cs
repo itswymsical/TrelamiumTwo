@@ -3,10 +3,13 @@ using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
 
+using TrelamiumTwo.Core;
+
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
 	public class SharpnutSpear : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Melee + "SharpnutSpear";
 		public float MovementFactor
 		{
 			get => projectile.ai[0];

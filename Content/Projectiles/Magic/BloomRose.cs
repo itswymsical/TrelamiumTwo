@@ -1,18 +1,22 @@
-﻿using TrelamiumTwo.Content.Dusts;
-using TrelamiumTwo.Core;
-using TrelamiumTwo.Helpers.Extensions;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using TrelamiumTwo.Content.Dusts;
+using TrelamiumTwo.Core;
+using TrelamiumTwo.Helpers;
+using TrelamiumTwo.Core.Mechanics.Trails;
+using TrelamiumTwo.Core.Abstraction.Interfaces;
+
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {
-	public class BloomRose : ModProjectile
+	public class BloomRose : ModProjectile, IDrawTrail
 	{
-		public override void SetStaticDefaults() 
-			=> DisplayName.SetDefault("Bloom Rose");
+        public override string Texture => Assets.Items.Materials + "BloomRose";
+
 		public override void SetDefaults()
 		{
 			projectile.magic = true;
@@ -23,7 +27,10 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			projectile.timeLeft = 180;
 			projectile.aiStyle = 0;
 		}
-
+		public void DoDrawTrail(TrailManager trailManager)
+        {
+			trailManager.CreateTrail(new TestTrail(projectile));
+		}
 		public override void AI()
 		{
 			projectile.ai[0]++;
@@ -48,7 +55,6 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 			return true;
 		}
-
 		public override void Kill(int timeLeft)
 		{
 			for (int i = 0; i < 16; i++)
@@ -64,11 +70,10 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 				var velocity = rotation.ToRotationVector2() * 5f;
 
 				Projectile.NewProjectile(projectile.Center, velocity, ModContent.ProjectileType<BloomRosePetal>(), projectile.damage / 2, projectile.knockBack / 2f, projectile.owner);
-				
+
 				projectile.netUpdate = true;
 			}
 		}
-
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);	
 	}
 }

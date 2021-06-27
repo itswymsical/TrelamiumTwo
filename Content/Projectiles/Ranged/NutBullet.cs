@@ -1,15 +1,18 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TrelamiumTwo.Common.Extensions;
 
+using TrelamiumTwo.Helpers;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	public sealed class NutBullet : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Ranged + "NutBullet";
 		public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -29,8 +32,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			projectile.tileCollide = true;
 		}
 
-		public override void AI()
-			=> projectile.velocity.X *= 1.03f;
+		public override void AI() => projectile.velocity.X *= 1.03f;
 
 		public override void Kill(int timeLeft)
 		{
@@ -41,9 +43,9 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			this.DrawProjectileTrailCentered(spriteBatch, lightColor);
+			projectile.DrawProjectileTrailCentered(spriteBatch, lightColor);
 
-			return this.DrawProjectileCentered(spriteBatch, lightColor);
+			return projectile.DrawProjectileCentered(spriteBatch, lightColor);
 		}
 	}
 }

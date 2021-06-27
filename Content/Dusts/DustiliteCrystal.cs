@@ -1,16 +1,18 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
-
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Dusts
 {
-	public sealed class DustiliteCrystal : ModDust
+	public class DustiliteCrystal : ModDust
 	{
+		public override bool Autoload(ref string name, ref string texture)
+		{
+			texture = Assets.Dusts + "DustiliteCrystal";
+			return mod.Properties.Autoload;
+		}
 		public override void OnSpawn(Dust dust)
 		{
 			dust.noLight = false;
@@ -57,7 +59,7 @@ namespace TrelamiumTwo.Content.Dusts
 
 			Lighting.AddLight(dust.position, dust.color.ToVector3() * 0.1f);
 
-			return (false);
+			return false;
 		}
 	}
 }

@@ -1,13 +1,17 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TrelamiumTwo.Common.Extensions;
+
+using TrelamiumTwo.Helpers;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
 	public class NutProjectile : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Ranged + "NutProjectile";
 		public override void SetDefaults()
 		{
 			projectile.width = projectile.height = 8;
@@ -16,10 +20,10 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			projectile.penetrate = 1;
 			projectile.timeLeft = 180;
 			
-			projectile.ranged = true;
-			projectile.friendly = true;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = true;
+			projectile.ranged = 
+				projectile.friendly = 
+				projectile.ignoreWater = 
+				projectile.tileCollide = true;
 		}
 
 		public override bool PreAI()
@@ -32,7 +36,7 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 
 			projectile.rotation += projectile.velocity.Length() * 0.1f * projectile.direction;
 
-			return (false);
+			return false;
 		}
 
 		public override void Kill(int timeLeft)
@@ -45,7 +49,6 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 			}
 		}
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-			=> this.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
 	}
 }

@@ -1,10 +1,17 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
+using TrelamiumTwo.Core;
+
 namespace TrelamiumTwo.Content.Dusts
 {
 	public class Earthen : ModDust
 	{
+		public override bool Autoload(ref string name, ref string texture)
+		{
+			texture = Assets.Dusts + "Earthen";
+			return mod.Properties.Autoload;
+		}
 		public override void OnSpawn(Dust dust)
 		{
 			dust.noGravity = false;

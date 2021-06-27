@@ -3,14 +3,14 @@ using TrelamiumTwo.Content.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class EverbloomCrown : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Everbloom Crown");
-
+		public override string Texture => Assets.Items.Everbloom + "EverbloomCrown";
 		public override void SetDefaults()
 		{
 			item.defense = 2;
@@ -29,8 +29,8 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Summons a Floral Spirit to protect you";
-			player.AddBuff(ModContent.BuffType<Buffs.Minion.FloralSpiritBuff>(), 69); // XD 69!!!
+			player.setBonus = "Increases max minions by 1";
+			player.maxMinions++;
 			player.GetModPlayer<ArmorSetPlayer>().EverbloomSet = true;
 		}
 

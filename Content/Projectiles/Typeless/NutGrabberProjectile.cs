@@ -4,13 +4,15 @@ using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Projectiles.Typeless
 {
-	public sealed class NutGrabberProjectile : ModProjectile
+	public class NutGrabberProjectile : ModProjectile
 	{
-		private readonly float hangDistance = 20f;
+		public override string Texture => Assets.Projectiles.Typeless + "NutGrabberProjectile";
 
+		private readonly float hangDistance = 20f;
 		public override void SetDefaults()
 			=> projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
 
@@ -38,7 +40,6 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 			grappleX += dirToPlayer.X * hangDistance;
 			grappleY += dirToPlayer.Y * hangDistance;
 		}
-
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Player owner = Main.player[projectile.owner];

@@ -9,6 +9,7 @@ namespace TrelamiumTwo.Content.Dusts
 	{
 		public override bool Autoload(ref string name, ref string texture)
 		{
+			texture = Assets.Dusts + "PinkPetal";
 			return mod.Properties.Autoload;
 		}
 

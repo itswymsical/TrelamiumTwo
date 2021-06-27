@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using TrelamiumTwo.Helpers;
+using Terraria.ModLoader;
 
 namespace TrelamiumTwo.Core.Mechanics.Trails
 {
@@ -37,9 +38,9 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 
 		protected void SetBasicShader()
 		{
-			Effect = Effect ?? Filters.Scene["TM:Primitives"].GetShader().Shader;
+			Effect = Effect ?? ModContent.GetInstance<TrelamiumTwo>().GetEffect("Effects/Primitives");
 
-            Effect.Parameters["WorldViewProjection"].SetValue(DrawHelpers.DefaultEffectMatrix);
+			Effect.Parameters["WorldViewProjection"].SetValue(Helper.DefaultEffectMatrix);
 			Effect.Parameters["uScreenPos"].SetValue(Main.screenPosition);
 		}
 	}

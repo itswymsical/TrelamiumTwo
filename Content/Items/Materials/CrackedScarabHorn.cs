@@ -1,21 +1,20 @@
-﻿#region Using directives
-
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-	public sealed class CrackedScarabHorn : ArchaeologicalItem
+	public class CrackedScarabHorn : ModItem
 	{
-		protected override void SafeSetDefaults()
+		public override string Texture => Assets.Items.Materials + "CrackedScarabHorn";
+		public override void SetDefaults()
 		{
-			item.value = Item.buyPrice(silver: 50);
+			item.width = item.height = 20;
 			item.maxStack = 999;
-			item.rare = ItemRarityID.Blue;
-
-			item.material = true;
+			item.value = Item.sellPrice(copper: 1);
+			item.rare = ItemRarityID.White;
 		}
 	}
 }

@@ -7,12 +7,14 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using TrelamiumTwo.Common.Extensions;
+using TrelamiumTwo.Helpers;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
 	public class TheWalnut : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Melee + "TheWalnut";
 		private readonly float rotationSpeed = MathHelper.TwoPi / 50;
 		public override void SetStaticDefaults()
 		{
@@ -110,8 +112,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			}
 
 
-			this.DrawProjectileTrailCentered(spriteBatch, lightColor);
-			return this.DrawProjectileCentered(spriteBatch, lightColor);
+			projectile.DrawProjectileTrailCentered(spriteBatch, lightColor);
+			return projectile.DrawProjectileCentered(spriteBatch, lightColor);
 		}
 	}
 }

@@ -1,21 +1,20 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Fish
 {
-	public sealed class ShreemCarp : TrelamiumItem
+	public class ShreemCarp : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Shreem Carp");
-        public override void SetDefaults()
+		public override string Texture => Assets.Items.Fish + "ShreemCarp";
+		public override void SetDefaults()
 		{
+			item.width = item.height = 22;
 			item.maxStack = 999;
+			item.value = Item.sellPrice(silver: 2, copper: 50);
 			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(0, 0, 2, 50);
 		}
 	}
 }

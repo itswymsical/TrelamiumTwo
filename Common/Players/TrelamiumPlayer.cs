@@ -1,14 +1,18 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Terraria;
+using Terraria.GameInput;
 using Terraria.ModLoader;
+using TrelamiumTwo.Core.Mechanics.Trails;
+using TrelamiumTwo.Helpers;
 using Terraria.ID;
-
-using TrelamiumTwo.Content.Items.Fish;
-using TrelamiumTwo.Common.Extensions;
 
 namespace TrelamiumTwo.Common.Players
 {
     public partial class TrelamiumPlayer : ModPlayer
     {
+        public float ScreenShakeIntensity;
+
         public bool dustrollerSkates;
 
         public bool gluttonAmulet;
@@ -19,35 +23,13 @@ namespace TrelamiumTwo.Common.Players
 
         public bool scarabIdol;
 
-        public float shakeEffects = 0;
-
         public bool theMagnolia;
 
         public bool toadstoolExplode;
 
+        public int toadstoolCount;
 
-        #region ShovelPickTile() Method
-        public void ShovelPickTile(int x, int y)
-        {
-            int digTile = player.HeldItem.GetGlobalItem<Items.GlobalTrelamiumItem>().digPower;
-            for (int i = -1; i < 2; i++)
-            {
-                int posx = x / 16 + i;
-                int posy = y / 16 + i;
-                if (Main.tile[posx, y / 16].type != TileID.DemonAltar && Main.tile[x / 16, posy].type != TileID.DemonAltar
-                    && Main.tile[posx, y / 16].type != TileID.Trees && Main.tile[x / 16, posy].type != TileID.Trees
-                    && Main.tile[posx, y / 16].type != TileID.PalmTree && Main.tile[x / 16, posy].type != TileID.PalmTree
-                    && Main.tile[posx, y / 16].type != TileID.MushroomTrees && Main.tile[x / 16, posy].type != TileID.MushroomTrees
-                    && Main.tile[posx, y / 16].type != TileID.ShadowOrbs && Main.tile[x / 16, posy].type != TileID.ShadowOrbs
-                    && Main.tile[posx, y / 16].type != TileID.Cactus && Main.tile[x / 16, posy].type != TileID.Cactus)
-                {
-                    player.PickTile(posx, y / 16, digTile);
-                    player.PickTile(x / 16, posy, digTile);
-                }
-            }
-        }
-
-        #endregion
+        public bool mushroomHeal;
         public override void ResetEffects()
         {
             dustrollerSkates = false;
@@ -60,50 +42,56 @@ namespace TrelamiumTwo.Common.Players
 
             scarabIdol = false;
 
-            shakeEffects = 0;
-
             theMagnolia = false;
 
             toadstoolExplode = false;
+
+            mushroomHeal = false;
         }
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
             if (player.ZoneForest() && Main.rand.NextBool(1050 / power))
             {
-                caughtType = ModContent.ItemType<Fleurer>();
+               //caughtType = ModContent.ItemType<Fleurer>();
             }
             if (player.ZoneForest() && Main.rand.NextBool(300 / power))
             {
-                caughtType = ModContent.ItemType<Barkfish>();
+                //caughtType = ModContent.ItemType<Barkfish>();
             }
             if (player.ZoneForest() && Main.rand.NextBool(300 / power))
             {
-                caughtType = ModContent.ItemType<ShreemCarp>();
+                //caughtType = ModContent.ItemType<ShreemCarp>();
             }
             if (player.ZoneDesert && Main.rand.NextBool(1050 / power))
             {
-                caughtType = ModContent.ItemType<UraeusEel>();
+                //caughtType = ModContent.ItemType<UraeusEel>();
             }
             if (player.ZoneDesert && Main.rand.NextBool(300 / power))
             {
-                caughtType = ModContent.ItemType<Scaracod>();
+                //caughtType = ModContent.ItemType<Scaracod>();
             }
             if (player.ZoneDesert && Main.rand.NextBool(300 / power))
             {
-                caughtType = ModContent.ItemType<Sunfish>();
+                //caughtType = ModContent.ItemType<Sunfish>();
             }
         }
         public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
         {
             if (gluttonAmulet)
-                healValue = (int)(healValue * 1.33f);          
+                healValue = (int)(healValue * 1.33f);
+
+            if (mushroomHeal && item.type == ItemID.Mushroom)
+                healValue = (int)(healValue * 3f);
         }
         public override void ModifyScreenPosition()
         {
-            if (shakeEffects > 0)
+            if (ScreenShakeIntensity > 0.195f)
             {
-                Main.screenPosition.X += Main.rand.NextFloat(-shakeEffects, shakeEffects + 1);
-                Main.screenPosition.Y += Main.rand.NextFloat(-shakeEffects, shakeEffects + 1);
+                var shake = new Vector2(Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity), Main.rand.NextFloat(-ScreenShakeIntensity, ScreenShakeIntensity));
+
+                Main.screenPosition += shake;
+
+                ScreenShakeIntensity *= 0.95f;
             }
         }
     }

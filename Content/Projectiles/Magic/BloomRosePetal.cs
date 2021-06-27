@@ -1,15 +1,18 @@
 ﻿using TrelamiumTwo.Content.Dusts;
 using TrelamiumTwo.Core;
-using TrelamiumTwo.Helpers.Extensions;
+using TrelamiumTwo.Helpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
+using TrelamiumTwo.Core.Mechanics.Trails;
 
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {
 	public class BloomRosePetal : ModProjectile
 	{
+		public override string Texture => Assets.Items.Materials + "BloomRosePetal";
+
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Bloom Rose Petal");
 
 		public override void SetDefaults()
@@ -39,14 +42,11 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
 		}
-
-		public override bool OnTileCollide(Vector2 oldVelocity)
+        public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-
 			return true;
 		}
-
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
 	}
 }

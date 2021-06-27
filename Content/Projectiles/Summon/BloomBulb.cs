@@ -1,6 +1,10 @@
 ﻿using TrelamiumTwo.Content.Projectiles.Magic;
+using TrelamiumTwo.Core;
+
 using Microsoft.Xna.Framework;
+
 using System;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,6 +13,8 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 {
 	public class BloomBulb : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Summon + "BloomBulb";
+
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bloom Bulb");
@@ -50,15 +56,16 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 		}
 
 		private NPC Target => Main.npc[(int)projectile.ai[1]];
-
-		public override void AI()
+        public override bool CanDamage() => false;
+        
+        public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
 
 			if (player.dead || !player.active)
-				player.ClearBuff(ModContent.BuffType<Buffs.Minion.BloomBulbBuff>()); 
+				player.ClearBuff(ModContent.BuffType<Buffs.Minions.BloomBulb>()); 
 
-			if (player.HasBuff(ModContent.BuffType<Buffs.Minion.BloomBulbBuff>()))
+			if (player.HasBuff(ModContent.BuffType<Buffs.Minions.BloomBulb>()))
 				projectile.timeLeft = 2;
 
 			float attackRange = 40f * 16f;

@@ -1,12 +1,14 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
+using TrelamiumTwo.Core;
 namespace TrelamiumTwo.Content.Items.Accessory
 {
-	public class CactusInAPot : TrelamiumItem
+	public class CactusInAPot : ModItem
 	{
-        public float MoveTimer;
-        public override void SetStaticDefaults()
+       public override string Texture => Assets.Items.Accessory + "CactusInAPot";
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cactus In a Pot");
 			Tooltip.SetDefault("Taking damage returns 20% of taken damage");

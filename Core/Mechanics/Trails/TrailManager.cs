@@ -31,9 +31,9 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 
         public void DrawTrails()
         {
-            foreach (var trail in Trails)
+            for (int i = 0; i < Trails.Count; i++)
             {
-                trail.Draw();
+                Trails[i].Draw();
             }
         }
 
@@ -44,9 +44,9 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
                 return;
             }
 
-            foreach (var trail in Trails)
+            for (int i = 0; i < Trails.Count; i++)
             {
-                trail.Update();
+                Trails[i].Update();
             }
         }
 

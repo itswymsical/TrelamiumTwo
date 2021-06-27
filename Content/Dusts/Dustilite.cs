@@ -1,14 +1,17 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Dusts
 {
-	public sealed class Dustilite : ModDust
+	public class Dustilite : ModDust
 	{
+		public override bool Autoload(ref string name, ref string texture)
+		{
+			texture = Assets.Dusts + "Dustilite";
+			return mod.Properties.Autoload;
+		}
 		public override void OnSpawn(Dust dust)
 		{
 			dust.noGravity = true;

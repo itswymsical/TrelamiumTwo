@@ -1,24 +1,20 @@
-﻿#region Using directives
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Materials
 {
-    public sealed class DesolateHusk : TrelamiumItem
-    {
-        public override void SetDefaults()
-        {
-            item.width = 26;
-            item.height = 18;
-            item.maxStack = 999;
-            item.rare = ItemRarityID.White;
-            item.value = Item.buyPrice(copper: 50);
-
-			item.material = true;
-        }
-    }
+	public class DesolateHusk : ModItem
+	{
+		public override string Texture => Assets.Items.Materials + "DesolateHusk";
+		public override void SetDefaults()
+		{
+			item.width = item.height = 20;
+			item.maxStack = 999;
+			item.value = Item.sellPrice(copper: 1);
+			item.rare = ItemRarityID.White;
+		}
+	}
 }

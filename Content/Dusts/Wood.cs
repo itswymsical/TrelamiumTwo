@@ -1,4 +1,5 @@
 ﻿using TrelamiumTwo.Core;
+
 using Terraria;
 using Terraria.ModLoader;
 
@@ -8,6 +9,7 @@ namespace TrelamiumTwo.Content.Dusts
 	{
 		public override bool Autoload(ref string name, ref string texture)
 		{
+			texture = Assets.Dusts + "Wood";
 			return mod.Properties.Autoload;
 		}
 

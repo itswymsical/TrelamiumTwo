@@ -1,21 +1,20 @@
-﻿#region Using directives
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-#endregion
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Fish
 {
-	public sealed class Fleurer : TrelamiumItem
+	public class Fleurer : ModItem
 	{
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Fleurer");
-        public override void SetDefaults()
+		public override string Texture => Assets.Items.Fish + "Fleurer";
+		public override void SetDefaults()
 		{
+			item.width = item.height = 22;
 			item.maxStack = 999;
+			item.value = Item.sellPrice(silver: 3);
 			item.rare = ItemRarityID.Green;
-			item.value = Item.sellPrice(0, 0, 3, 0);
 		}
 	}
 }
