@@ -118,7 +118,6 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width, Main.projectileTexture[projectile.type].Height);
 			Texture2D texture2D = mod.GetTexture("Assets/Glow");
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{

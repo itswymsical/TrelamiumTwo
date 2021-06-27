@@ -11,7 +11,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
     public class WoodDaibo : ModItem
     {
         public override string Texture => Assets.Items.Melee + "WoodDaibo";
-        public override void SetStaticDefaults() => Tooltip.SetDefault("Spins and reflects projectiles");
+        public override void SetStaticDefaults() => Tooltip.SetDefault("Destroys weak projectiles that come into contact");
 		public override void SetDefaults()
 		{
 			item.width = item.height = 44;
