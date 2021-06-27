@@ -36,15 +36,7 @@ namespace TrelamiumTwo.Common.Globals
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
             }
         }
-        public override void SetDefaults(Item item)
-        {
-            if (item.type == ItemID.Acorn)
-            {
-                item.damage = 1;
-                item.ranged = true;
-                item.ammo = item.type;
-            }
-        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(item, tooltips);

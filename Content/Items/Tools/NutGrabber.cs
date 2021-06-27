@@ -11,11 +11,20 @@ namespace TrelamiumTwo.Content.Items.Tools
 		{
 			item.CloneDefaults(ItemID.AmethystHook);
 
-			item.damage = 10;
+			item.damage = 6;
 			item.knockBack = 0.1f;
 
 			item.shootSpeed = 12f;
 			item.shoot = ModContent.ProjectileType<Projectiles.Typeless.NutGrabberProjectile>();
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.VineRope, 18);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 8);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

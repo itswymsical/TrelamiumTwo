@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ModLoader;
 
 using TrelamiumTwo.Common.Projectiles;
 using TrelamiumTwo.Core;
-using TrelamiumTwo.Core.Mechanics.Trails;
-using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Content.Projectiles.Ranged
 {
@@ -23,7 +21,6 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
         public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
-			player.ApplyScreenShake(.6f, default, default);
 			int num281 = 22;
 			for (int num282 = 0; num282 < num281; num282++)
 			{

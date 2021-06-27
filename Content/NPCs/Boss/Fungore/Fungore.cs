@@ -73,7 +73,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             drawOffsetY = 8;
 
-            npc.lifeMax = 1840;
+            npc.lifeMax = 1640;
             npc.defense = 5;
             npc.damage = 15;
 
@@ -254,7 +254,11 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     AttackCooldown = 0;
                 }
             
-
+                if (npc.velocity.X == 0 && AttackCooldown > 60)
+                {
+                    State = States.SuperJumping;
+                    AttackCooldown = 0;
+                }
                 if (Main.rand.Next(48) == 0)
                 {
                     frameY = 0;
@@ -325,7 +329,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         private void Leap()
         {
             const float leapVelocity = 8.5f;
-
+            npc.noTileCollide = true;
             if (npc.velocity.X < -leapVelocity || npc.velocity.X > leapVelocity)
             {
                 if (npc.velocity.Y == 0f)
@@ -434,6 +438,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (frameY > 2 && frameY < 4)
             {
+                npc.noTileCollide = false;
                 npc.velocity.Y = Main.rand.NextFloat(-13f, -12f);
                 npc.TargetClosest();
                 npc.netUpdate = true;
@@ -461,10 +466,12 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
                 }
-
-                for (int i = 0; i < 2; ++i)
+                if (Main.rand.Next(6) == 0)
                 {
-                    NPC.NewNPC((int)npc.position.X + Main.rand.Next(-i * -20, i * 20), (int)npc.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), 0, i);
+                    for (int i = 0; i < 2; ++i)
+                    {
+                        NPC.NewNPC((int)npc.position.X + Main.rand.Next(-i * -20, i * 20), (int)npc.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), 0, i);
+                    }
                 }
                 
                 frameY = 0;

@@ -16,6 +16,7 @@
 		{
 			public const string Directory = Assets.Directory + "Items/";
 
+			public const string Misc = Directory + "Misc/";
 
 			public const string Accessory = Directory + "Accessory/";
 
@@ -38,6 +39,13 @@
 
 			#endregion
 
+			#region Vanity
+			public const string Vanity = Directory + "Vanity/";
+
+			public const string Peepo = Vanity + "Peepo/";
+
+			#endregion
+
 			#region Boss
 			public const string Boss = Directory + "Boss/";
 
@@ -48,6 +56,8 @@
             public const string Weapons = Directory + "Weapons/";
 
 			public const string BloomRose = Weapons + "BloomRose/";
+
+			public const string AntlionW = Weapons + "Antlion/";
 
 			public const string Nut = Weapons + "Nut/";
 

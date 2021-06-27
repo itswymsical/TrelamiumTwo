@@ -118,17 +118,16 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width, Main.projectileTexture[projectile.type].Height);
 			Texture2D texture2D = mod.GetTexture("Assets/Glow");
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
-				float scale = projectile.scale * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .35f;
-				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+				float scale = projectile.scale * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .45f;
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + Main.projectileTexture[projectile.type].Size() / 2f;
 				Color color = projectile.GetAlpha(Color.SandyBrown) * ((projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				projectile.DrawProjectileTrailCenteredWithTexture(texture2D, spriteBatch, default);
-				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.rotation, drawOrigin, scale, SpriteEffects.None, 0f);
+
+				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.rotation, Main.projectileTexture[projectile.type].Size(), scale, SpriteEffects.None, 0f);
 			}
-			return false;
+			return true;
 		}
 	}
 }

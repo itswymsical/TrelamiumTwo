@@ -66,6 +66,13 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
             player.itemTime = 2;
             player.itemAnimation = 2;
             player.itemRotation = projectile.rotation;
+            foreach (Projectile hProjectile in Main.projectile)
+            {
+                if (hProjectile.Hitbox.Intersects(projectile.Hitbox) && hProjectile.type != projectile.type && hProjectile.hostile && hProjectile.damage < 10)
+                {
+                    hProjectile.Kill();
+                }
+            }
         }
     }
 }
