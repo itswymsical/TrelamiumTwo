@@ -52,10 +52,8 @@ namespace TrelamiumTwo.Common.Cutscenes
 			{
 				case CreditsSection.Introduction:
 					{
-						Texture2D icon = ModContent.GetTexture("DreamscapeMod/icon");
+						Texture2D icon = ModContent.GetTexture("TrelamiumTwo/Assets/logo");
 						spriteBatch.Draw(icon, new Vector2(screenCenter.X, 200f) - icon.Size() / 2f, Color.White);
-
-						Helper.DrawText(spriteBatch, Color.White, "Dreamscape", labelOffset);
 
 						break;
 					}
@@ -63,16 +61,21 @@ namespace TrelamiumTwo.Common.Cutscenes
 				case CreditsSection.Developers:
 					{
 						Helper.DrawText(spriteBatch, Color.White, "Developers", labelOffset);
-						Helper.DrawText(spriteBatch, Color.White, "Naka", defaultOffset, fontScale);
-
+						Helper.DrawText(spriteBatch, Color.White, "Sig", defaultOffset, 0.65f);
+						Helper.DrawText(spriteBatch, Color.White, "HugeKraken", new Vector2(screenCenter.X, 320f), 0.65f);
+						Helper.DrawText(spriteBatch, Color.White, "Blossom", new Vector2(screenCenter.X, 340f), 0.65f);
+						Helper.DrawText(spriteBatch, Color.White, "Tiredghostdude", new Vector2(screenCenter.X, 360f), 0.65f);
+						Helper.DrawText(spriteBatch, Color.White, "ToyotaAristoMoment", new Vector2(screenCenter.X, 380f), 0.65f);
 						break;
 					}
 
 				case CreditsSection.Contributors:
 					{
 						Helper.DrawText(spriteBatch, Color.White, "Contributors", labelOffset);
-						Helper.DrawText(spriteBatch, Color.White, "LolXD87", defaultOffset, fontScale);
-
+						Helper.DrawText(spriteBatch, Color.White, "MountainyBear49", defaultOffset, fontScale);
+						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", defaultOffset, fontScale);
+						Helper.DrawText(spriteBatch, Color.White, "Pyxis", defaultOffset, fontScale);
+						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", defaultOffset, fontScale);
 						break;
 					}
 

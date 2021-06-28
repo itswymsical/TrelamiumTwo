@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace TrelamiumTwo.Helpers

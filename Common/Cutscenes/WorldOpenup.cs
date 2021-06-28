@@ -1,9 +1,10 @@
 ﻿using TrelamiumTwo.Core.Mechanics;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using Terraria;
 using Terraria.ModLoader;
-using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Common.Cutscenes
 {
@@ -21,15 +22,10 @@ namespace TrelamiumTwo.Common.Cutscenes
 
 			timer++;
 
-			Texture2D icon = ModContent.GetTexture("TrelamiumTwo/icon");
+			Texture2D icon = ModContent.GetTexture("TrelamiumTwo/Assets/logo");
 			var iconPosition = new Vector2(screenCenter.X, 200f) - icon.Size() / 2f;
-
 			alpha = MathHelper.SmoothStep(alpha, timer < 300 ? 1f : 0f, 0.1f);
-
-			spriteBatch.Draw(icon, iconPosition, Color.White * alpha);
-
-			var textPosition = new Vector2(screenCenter.X, 200f + icon.Size().Y + 5f);
-			Helper.DrawText(spriteBatch, Color.White * alpha, "Trelamium 2", textPosition, 0.8f);
+			spriteBatch.Draw(icon, iconPosition, null, Color.White * alpha, 0, iconPosition, 1f, SpriteEffects.None, default);
 
 			if (timer > 300 && alpha <= 0.01f)
 				End();

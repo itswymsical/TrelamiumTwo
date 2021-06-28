@@ -34,7 +34,7 @@ namespace TrelamiumTwo.Content.Items
 
         public override bool UseItem(Player player)
         {
-            CutsceneLoader.GetCutscene<WorldOpenup>().Visible = !CutsceneLoader.GetCutscene<WorldOpenup>().Visible;
+            CutsceneLoader.GetCutscene<Credits>().Visible = !CutsceneLoader.GetCutscene<Credits>().Visible;
 
             return true;
         }
