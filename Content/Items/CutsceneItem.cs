@@ -15,8 +15,8 @@ namespace TrelamiumTwo.Content.Items
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cutscene Item");
-            Tooltip.SetDefault("Used to load a cutscene.");
+            DisplayName.SetDefault("Debug Item");
+            Tooltip.SetDefault("Used to debug stuff. Only usable with debug mode on.");
         }
 
         public override void SetDefaults()
@@ -24,17 +24,19 @@ namespace TrelamiumTwo.Content.Items
             item.autoReuse = true;
             item.useTurn = true;
 
-			item.width = item.height = 64;
+            item.width = item.height = 64;
 
             item.useTime = item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
         }
 
-		public override bool UseItem(Player player)
-		{
-			CutsceneLoader.GetCutscene<Credits>().Visible = !CutsceneLoader.GetCutscene<Credits>().Visible;
+        public override bool CanUseItem(Player player) => ModContent.GetInstance<TrelamiumConfig>().Debug;
 
-			return true;
-		}
-	}
+        public override bool UseItem(Player player)
+        {
+            CutsceneLoader.GetCutscene<WorldOpenup>().Visible = !CutsceneLoader.GetCutscene<WorldOpenup>().Visible;
+
+            return true;
+        }
+    }
 }
