@@ -59,6 +59,8 @@
 
 			public const string AntlionW = Weapons + "Antlion/";
 
+			public const string BrassW = Weapons + "Brass/";
+
 			public const string Nut = Weapons + "Nut/";
 
 			public const string Viking = Weapons + "Viking/";
@@ -69,6 +71,26 @@
 
 			public const string Summoner = Weapons + "Summoner/";
 			#endregion
+		}
+		internal class Weapons
+		{
+			public const string Directory = Assets.Directory + "Items/Weapons/";
+
+			public const string BloomRose = Directory + "BloomRose/";
+
+			public const string Antlion = Directory + "Antlion/";
+
+			public const string Brass = Directory + "Brass/";
+
+			public const string Nut = Directory + "Nut/";
+
+			public const string Viking = Directory + "Viking/";
+
+			public const string Melee = Directory + "Melee/";
+
+			public const string Magic = Directory + "Magic/";
+
+			public const string Summoner = Directory + "Summoner/";
 		}
 		internal class Buffs
 		{

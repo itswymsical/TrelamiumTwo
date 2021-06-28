@@ -20,7 +20,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.VineRope, 18);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
 			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 8);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);

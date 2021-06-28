@@ -18,6 +18,7 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
             item.melee = true;
             item.damage = 2;
             item.useTime = item.useAnimation = 16;
+            item.width = item.height = 32;
 
             item.autoReuse = item.useTurn = true;
 
