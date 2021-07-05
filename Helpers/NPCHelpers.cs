@@ -129,6 +129,19 @@ namespace TrelamiumTwo.Helpers
 
 			if (collisionBottom)
 				ApplyJump(npc, canJump, jumpHeightModifier);
+
+			Player player = Main.player[npc.target];
+			bool onplatform = true;
+			for (int i = (int)npc.position.X; i < npc.position.X + npc.width; i += npc.height / 2)
+			{
+				Tile tile = Framing.GetTileSafely(new Point((int)npc.position.X / 16, (int)(npc.position.Y + npc.height + 8) / 16));
+				if (!TileID.Sets.Platforms[tile.type])
+					onplatform = false;
+			}
+			if (onplatform && (npc.Center.Y < player.position.Y - 20))
+				npc.noTileCollide = true;
+			else
+				npc.noTileCollide = false;
 		}
 		public static void GenericCritterAI(this NPC npc, float maxSpeed = 1f, int idleTime = 300)
 		{

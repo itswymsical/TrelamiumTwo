@@ -7,7 +7,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 {
 	public class SharpnutSpear : ModItem
 	{
-		public override string Texture => Assets.Items.Nut + "SharpnutSpear";
+		public override string Texture => Assets.Weapons.Nut + "SharpnutSpear";
 		public override void SetDefaults() 
 		{
 			item.width = 32;

@@ -222,5 +222,15 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             item.value = Item.sellPrice(copper: 80);
             item.createTile = ModContent.TileType<ChestnutTile>();
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Materials.Leaf>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Items.Materials.Nut>(), 2);
+            recipe.AddIngredient(ItemID.Wood, 10);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

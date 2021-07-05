@@ -1,26 +1,20 @@
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
-using System.Collections.Generic;
 using Terraria;
 
 using TrelamiumTwo.Core.Mechanics.Trails;
 
 public class TestTrail : Trail
 {
-    public TestTrail(Entity entity)
+    public TestTrail(Entity entity, Color color, int width = 12, int size = 20)
     {
         Entity = entity;
-        Color = Microsoft.Xna.Framework.Color.Pink;
-        Width = 13;
+        Color = Color.Pink;
+        Color = color;
+        Width = width;
+        Size = size;
     }
     public override void SetShaders() => SetBasicShader();
-    public override void SetVertices()
-    {
-        if (!Entity.active)
-        {
-            return;
-        }
-    }
 
     public override void Update()
     {

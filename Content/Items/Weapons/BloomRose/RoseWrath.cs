@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 {
 	public class RoseWrath : ModItem
 	{
-		public override string Texture => Assets.Items.BloomRose + "RoseWrath";
+		public override string Texture => Assets.Weapons.BloomRose + "RoseWrath";
 
 		public override void SetStaticDefaults()
 		{
@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			item.noMelee = true;
 			item.autoReuse = false;
 
-			item.damage = 13;
+			item.damage = 10;
 			item.knockBack = 1f;
 			item.mana = 4;
 

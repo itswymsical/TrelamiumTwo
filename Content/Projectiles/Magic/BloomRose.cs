@@ -7,13 +7,10 @@ using Terraria.ModLoader;
 
 using TrelamiumTwo.Content.Dusts;
 using TrelamiumTwo.Core;
-using TrelamiumTwo.Helpers;
-using TrelamiumTwo.Core.Mechanics.Trails;
-using TrelamiumTwo.Core.Abstraction.Interfaces;
 
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {
-	public class BloomRose : ModProjectile, IDrawTrail
+	public class BloomRose : ModProjectile
 	{
         public override string Texture => Assets.Items.Materials + "BloomRose";
 
@@ -26,10 +23,6 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 			projectile.timeLeft = 180;
 			projectile.aiStyle = 0;
-		}
-		public void DoDrawTrail(TrailManager trailManager)
-        {
-			trailManager.CreateTrail(new TestTrail(projectile));
 		}
 		public override void AI()
 		{
@@ -55,6 +48,19 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 			return true;
 		}
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+		{
+			Texture2D texture2D = mod.GetTexture("Assets/Glow");
+			for (int k = 0; k < projectile.oldPos.Length; k++)
+			{
+				float scale = projectile.scale * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .45f;
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + Main.projectileTexture[projectile.type].Size() / 2f;
+				Color color = projectile.GetAlpha(Color.Pink) * ((projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
+
+				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.rotation, Main.projectileTexture[projectile.type].Size(), scale, SpriteEffects.None, 0f);
+			}
+			return true;
+		}
 		public override void Kill(int timeLeft)
 		{
 			for (int i = 0; i < 16; i++)
@@ -74,6 +80,5 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 				projectile.netUpdate = true;
 			}
 		}
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);	
 	}
 }

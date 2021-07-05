@@ -104,7 +104,7 @@ namespace TrelamiumTwo.Content.Tiles.Ambience
 			if (tile.frameY >= 1 * (short)animationFrameHeight)
 				return false;
 
-			Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Materials.BloomRose>());
+			Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Materials.BloomRose>(), Main.rand.Next(1, 2));
 
 			return false;
 		}

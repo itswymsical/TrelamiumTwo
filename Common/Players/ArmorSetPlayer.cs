@@ -4,7 +4,7 @@ namespace TrelamiumTwo.Common.Players
 {
 	public class ArmorSetPlayer : ModPlayer
 	{
-		public bool AntlionSet;
+		public bool sandcrawlerSet;
 
 		public bool WildWarriorSet;
 
@@ -18,7 +18,7 @@ namespace TrelamiumTwo.Common.Players
 
         public override void ResetEffects()
 		{
-			AntlionSet = false;
+			sandcrawlerSet = false;
 
 			WildWarriorSet = false;
 

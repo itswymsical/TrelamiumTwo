@@ -11,7 +11,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 {
 	public class AromaticBouquet : ModItem
 	{
-		public override string Texture => Assets.Items.BloomRose + "AromaticBouquet";
+		public override string Texture => Assets.Weapons.BloomRose + "AromaticBouquet";
 
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Aromatic Bouquet");
 

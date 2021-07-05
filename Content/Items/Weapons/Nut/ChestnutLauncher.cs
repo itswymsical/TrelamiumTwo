@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 {
 	public class ChestnutLauncher : ModItem
 	{
-		public override string Texture => Assets.Items.Nut + "ChestnutLauncher";
+		public override string Texture => Assets.Weapons.Nut + "ChestnutLauncher";
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Chestnut Launcher");

@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Common.Tiles
 		{
 			if (Main.tile[i, j].nactive())
 			{
-				if ((type == TileID.Grass || type == TileID.HallowedGrass) && Main.rand.Next(62) == 0)
+				if ((type == TileID.Grass || type == TileID.HallowedGrass) && Main.rand.Next(55) == 0)
 				{
 					TryBloomRose(i, j);
 				}

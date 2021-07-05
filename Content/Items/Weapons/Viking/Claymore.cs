@@ -8,7 +8,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Viking
 {
 	public class Claymore : ModItem
 	{
-		public override string Texture => Assets.Items.Viking + "Claymore";
+		public override string Texture => Assets.Weapons.Viking + "Claymore";
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Attacks have a chance to inflict frostburn");
         public override void SetDefaults()
 		{

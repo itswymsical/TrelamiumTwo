@@ -19,7 +19,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
 
             npc.damage = 12;
             npc.lifeMax = 20;
-            npc.defense = 1;
+            npc.defense = 5;
             npc.aiStyle = 1;
             aiType = NPCID.YellowSlime;
             npc.knockBackResist = 0.75f;

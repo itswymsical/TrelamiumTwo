@@ -8,7 +8,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 {
 	public class TheWalnut : ModItem
 	{
-		public override string Texture => Assets.Items.Nut + "TheWalnut";
+		public override string Texture => Assets.Weapons.Nut + "TheWalnut";
 		public override void SetDefaults()
 		{
 			item.width = item.height = 44;
@@ -16,7 +16,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 			item.value = Item.sellPrice(copper: 66);
 			
 			item.crit = 4;
-			item.damage = 7;
+			item.damage = 13;
 			item.knockBack = 6f;
 			
 			item.useTime = 20;

@@ -71,7 +71,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
             npc.width = npc.height = 88;
 
-            drawOffsetY = 8;
+            drawOffsetY = 22;
 
             npc.lifeMax = 1640;
             npc.defense = 5;
@@ -130,6 +130,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 3;
 
             if (State == States.Walking && frameY > 7)
+            {
+                frameY = 0;
+            }
+            if (State == States.Jumping && frameY > 11)
+            {
+                frameY = 0;
+            }
+            if (State == States.SuperJumping && frameY > 15)
             {
                 frameY = 0;
             }

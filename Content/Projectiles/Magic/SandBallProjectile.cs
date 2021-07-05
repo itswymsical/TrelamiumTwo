@@ -121,7 +121,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 			Texture2D texture2D = mod.GetTexture("Assets/Glow");
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
-				float scale = projectile.scale * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .45f;
+				float scale = (projectile.scale - .1f) * (projectile.oldPos.Length - k) / projectile.oldPos.Length * .45f;
 				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + Main.projectileTexture[projectile.type].Size() / 2f;
 				Color color = projectile.GetAlpha(Color.SandyBrown) * ((projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
 

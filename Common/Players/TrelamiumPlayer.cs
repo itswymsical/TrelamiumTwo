@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using TrelamiumTwo.Core.Mechanics.Trails;
 using TrelamiumTwo.Helpers;
 using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TrelamiumTwo.Common.Players
 {

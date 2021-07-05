@@ -14,14 +14,6 @@ namespace TrelamiumTwo.Common.Globals
                 return true;
             }
         }
-        private Player player;
-        public override void AI(NPC npc)
-        {
-            player = Main.player[npc.target];
-            if (Main.LocalPlayer.GetModPlayer<Players.ArmorSetPlayer>().AntlionSet && (npc.type == NPCID.Antlion || npc.type == NPCID.WalkingAntlion || npc.type == NPCID.FlyingAntlion))
-                npc.damage = npc.damage / 4;
-            
-        }
         public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
         {
           if (projectile.type == ModContent.ProjectileType<Content.Projectiles.Typeless.NutGrabberProjectile>() && npc.life <= 0)
