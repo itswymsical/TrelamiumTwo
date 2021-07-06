@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 			npc.aiStyle = -1;
 			aiType = -1;
 
-			npc.HitSound = SoundID.NPCHit1;
+			npc.HitSound = SoundID.NPCHit31;
 			npc.DeathSound = SoundID.NPCDeath16;
 
 			drawOffsetY = -2f;

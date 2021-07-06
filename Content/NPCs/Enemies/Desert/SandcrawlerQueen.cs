@@ -31,7 +31,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 			aiType = -1;
 
 			npc.value = Item.sellPrice(copper: 22);
-			npc.HitSound = SoundID.NPCHit1;
+			npc.HitSound = SoundID.NPCHit31;
 			npc.DeathSound = SoundID.NPCDeath1;
 		}
 

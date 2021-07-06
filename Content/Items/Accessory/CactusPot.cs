@@ -12,7 +12,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cactus In a Pot");
-			Tooltip.SetDefault("Taking damage returns 10% of taken damage");
+			Tooltip.SetDefault("Taking damage returns 5% of taken damage");
 		}
 		public override void SetDefaults()
 		{
@@ -22,7 +22,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 			item.height = 26;
 			item.accessory = true;
 		}
-        public override void UpdateAccessory(Player player, bool hideVisual) => player.thorns += .1f;
+        public override void UpdateAccessory(Player player, bool hideVisual) => player.thorns += .05f;
         public override void AddRecipes()
         {
 			var recipe = new ModRecipe(mod);

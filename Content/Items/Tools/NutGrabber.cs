@@ -11,9 +11,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 		{
 			item.CloneDefaults(ItemID.AmethystHook);
 
-			item.damage = 6;
-			item.knockBack = 0.1f;
-
+			item.rare = ItemRarityID.Blue;
 			item.shootSpeed = 12f;
 			item.shoot = ModContent.ProjectileType<Projectiles.Typeless.NutGrabberProjectile>();
 		}
@@ -22,7 +20,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
 			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 8);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

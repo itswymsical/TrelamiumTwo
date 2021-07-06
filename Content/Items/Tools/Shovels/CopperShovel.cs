@@ -7,17 +7,16 @@ using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Tools.Shovels
 {
-    public class WoodShovel : ShovelItem
+    public class CopperShovel : ShovelItem
     {
-        public override string Texture => Assets.Items.Shovels + "WoodShovel";
-        public override void SetStaticDefaults() => Tooltip.SetDefault("Breaks a cluster of blocks");
+        public override string Texture => Assets.Items.Shovels + "CopperShovel";
         public override void SetDefaults()
         {
-            DiggingPower(26);
+            DiggingPower(32);
 
             item.melee = true;
             item.damage = 2;
-            item.useTime = item.useAnimation = 17;
+            item.useTime = item.useAnimation = 19;
             item.width = item.height = 32;
 
             item.autoReuse = item.useTurn = true;
@@ -30,8 +29,9 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 20);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddIngredient(ItemID.Wood, 8);
+            recipe.AddIngredient(ItemID.CopperBar, 10);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

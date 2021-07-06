@@ -43,7 +43,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-			Main.PlaySound(SoundID.Dig, projectile.position);
+			Main.PlaySound(SoundID.Grass, projectile.position);
 			Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
 
 			return true;
@@ -75,7 +75,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 				float rotation = i / (float)petalAmount * MathHelper.TwoPi;
 				var velocity = rotation.ToRotationVector2() * 5f;
 
-				Projectile.NewProjectile(projectile.Center, velocity, ModContent.ProjectileType<BloomRosePetal>(), projectile.damage / 2, projectile.knockBack / 2f, projectile.owner);
+				Projectile.NewProjectile(projectile.Center, velocity, ModContent.ProjectileType<BloomRosePetal>(), projectile.damage / 3, projectile.knockBack / 2f, projectile.owner);
 
 				projectile.netUpdate = true;
 			}

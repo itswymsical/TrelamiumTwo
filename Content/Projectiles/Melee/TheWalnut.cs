@@ -16,7 +16,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 	{
 		public override string Texture => Assets.Projectiles.Melee + "TheWalnut";
 		private readonly float rotationSpeed = MathHelper.TwoPi / 50;
-		public override void SetStaticDefaults()
+
+        public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
@@ -37,11 +38,25 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			if (owner.channel)
 			{
+				projectile.ai[2]++;
 				projectile.ai[0] += rotationSpeed;
+
 				projectile.Center = Vector2.Lerp(projectile.Center, owner.Center + new Vector2((float)Math.Cos(projectile.ai[0]) * 100f, (float)Math.Sin(projectile.ai[0]) * 60f), 0.15f);
+
+				if (projectile.ai[2] > 60)
+				{
+					Main.PlaySound(SoundID.DD2_MonkStaffSwing, projectile.position);
+					projectile.ai[2] = 0;
+				}
 			}
 			else
 			{
+				projectile.ai[3]++;
+				if (projectile.ai[3] > 60)
+				{
+					projectile.tileCollide = false;
+				}
+
 				if (projectile.localAI[0] == 0)
 				{
 					projectile.localAI[0] = 1;

@@ -18,16 +18,17 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 			item.width = 26;
 			item.height = 18;
 
-			item.rare = ItemRarityID.White;
+			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(silver: 1, copper: 20);
 		}
 
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 5);
-			recipe.AddIngredient(ModContent.ItemType<BloomRose>(), 2);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
+			recipe.AddIngredient(ItemID.Wood, 15);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

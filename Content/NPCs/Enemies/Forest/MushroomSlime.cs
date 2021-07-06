@@ -35,8 +35,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
         public override void AI() => npc.direction = npc.spriteDirection;
         public override void NPCLoot()
         {
-            if (Main.rand.NextBool(3))
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));
         }
         public override void HitEffect(int hitDirection, double damage)
         {

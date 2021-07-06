@@ -16,10 +16,10 @@ namespace TrelamiumTwo.Content.Items.Weapons.Viking
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(silver: 2);
 
-			item.damage = 11;
-			item.knockBack = 2.5f;
+			item.damage = 9;
+			item.knockBack = 3.5f;
 
-			item.useTime = item.useAnimation = 25;
+			item.useTime = item.useAnimation = 28;
 			item.useStyle = ItemUseStyleID.SwingThrow;
 
 			item.melee = true;
@@ -35,9 +35,9 @@ namespace TrelamiumTwo.Content.Items.Weapons.Viking
         public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BorealWood, 10);
-			recipe.AddIngredient(ItemID.IceBlock, 4);
-			recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+			recipe.AddIngredient(ItemID.BorealWood, 18);
+			recipe.AddRecipeGroup(RecipeGroupID.IronBar, 8);
+			recipe.AddIngredient(ItemID.IceBlock, 3);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

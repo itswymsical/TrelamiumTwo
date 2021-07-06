@@ -16,8 +16,28 @@ namespace TrelamiumTwo.Common.Globals
         }
         public override void NPCLoot(NPC npc)
         {
+            if (npc.type == NPCID.Antlion)
+                if (Main.rand.Next(2) == 0)
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AntlionChitin>(), Main.rand.Next(2));
+
+            if (npc.type == NPCID.WalkingAntlion)
+                if (Main.rand.Next(2) == 0)
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AntlionChitin>(), Main.rand.Next(2));
+                else
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.HardenedCarapace>(), Main.rand.Next(2));
+
+            if (npc.type == NPCID.FlyingAntlion)
+                if (Main.rand.Next(2) == 0)
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AntlionChitin>(), Main.rand.Next(2));
+
             if (npc.type == NPCID.Tumbleweed)
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AridFiber>(), Main.rand.Next(1, 3));
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AridFiber>(), Main.rand.Next(3));
+
+            if (npc.type == NPCID.Zombie)
+                Item.NewItem(npc.getRect(), ItemID.Leather, Main.rand.Next(2));
+
+            if (npc.type == NPCID.ArmedZombie)
+                Item.NewItem(npc.getRect(), ItemID.Leather, Main.rand.Next(2));
         }
         public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
         {
