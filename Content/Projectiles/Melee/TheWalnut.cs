@@ -28,6 +28,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			
 			projectile.penetrate = -1;
 
+			projectile.tileCollide = false;
 			projectile.melee = true;
 			projectile.friendly = true;
 		}
@@ -38,25 +39,11 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 			if (owner.channel)
 			{
-				projectile.ai[2]++;
 				projectile.ai[0] += rotationSpeed;
-
 				projectile.Center = Vector2.Lerp(projectile.Center, owner.Center + new Vector2((float)Math.Cos(projectile.ai[0]) * 100f, (float)Math.Sin(projectile.ai[0]) * 60f), 0.15f);
-
-				if (projectile.ai[2] > 60)
-				{
-					Main.PlaySound(SoundID.DD2_MonkStaffSwing, projectile.position);
-					projectile.ai[2] = 0;
-				}
 			}
 			else
 			{
-				projectile.ai[3]++;
-				if (projectile.ai[3] > 60)
-				{
-					projectile.tileCollide = false;
-				}
-
 				if (projectile.localAI[0] == 0)
 				{
 					projectile.localAI[0] = 1;
@@ -88,8 +75,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			return (false);
 		}
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
-			=> false;
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Player owner = Main.player[projectile.owner];
