@@ -14,6 +14,11 @@ namespace TrelamiumTwo.Common.Globals
                 return true;
             }
         }
+        public override void NPCLoot(NPC npc)
+        {
+            if (npc.type == NPCID.Tumbleweed)
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Content.Items.Materials.AridFiber>(), Main.rand.Next(1, 3));
+        }
         public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
         {
           if (projectile.type == ModContent.ProjectileType<Content.Projectiles.Typeless.NutGrabberProjectile>() && npc.life <= 0)

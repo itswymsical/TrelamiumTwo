@@ -72,7 +72,7 @@
 
 			public const string Magic = Directory + "Magic/";
 
-			public const string Summoner = Directory + "Summoner/";
+			public const string Summon = Directory + "Summon/";
 		}
 		internal class Buffs
 		{

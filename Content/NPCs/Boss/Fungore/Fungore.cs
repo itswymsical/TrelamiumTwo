@@ -474,7 +474,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
                 }
-                if (Main.rand.Next(6) == 0)
+                if (Main.rand.Next(5) == 0)
                 {
                     for (int i = 0; i < 2; ++i)
                     {

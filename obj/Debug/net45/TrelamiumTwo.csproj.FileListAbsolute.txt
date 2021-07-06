@@ -55,10 +55,10 @@ C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\bin\Debug\net45\tModLoader.xml
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\bin\Debug\net45\MonoMod.Utils.xml
-C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.csprojAssemblyReference.cache
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.AssemblyInfoInputs.cache
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.AssemblyInfo.cs
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.csproj.CoreCompileInputs.cache
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.csproj.CopyComplete
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.dll
 C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.pdb
+C:\Users\NewUser\Documents\My Games\Terraria\ModLoader\Mod Sources\TrelamiumTwo\obj\Debug\net45\TrelamiumTwo.csproj.AssemblyReference.cache

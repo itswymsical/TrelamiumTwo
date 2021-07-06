@@ -19,7 +19,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            projectile.width = projectile.height = 66;
+            projectile.width = projectile.height = 64;
             projectile.penetrate = -1;
             projectile.friendly =
                 projectile.ignoreWater =
@@ -31,6 +31,11 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
         private Player player;
         public override void AI()
         {
+            Player owner = Main.player[projectile.owner];
+            if (!owner.active || owner.dead)
+            {
+                projectile.Kill();
+            }
             player = Main.player[projectile.owner];
             projectile.soundDelay--;
             if (projectile.soundDelay <= 0)
@@ -47,8 +52,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
                 }
             }
 
-            projectile.Center = player.MountedCenter;
-            projectile.position.X += player.width / 2 * player.direction;
+            projectile.Center = player.Center;
 
             projectile.spriteDirection = player.direction;
             projectile.rotation += 0.2f * player.direction;
@@ -73,6 +77,25 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
                     hProjectile.Kill();
                 }
             }
+
+            SetOwnerAnimation(owner);
+        }
+        private void SetOwnerAnimation(Player owner)
+        {
+            owner.itemTime = owner.itemAnimation = 10;
+
+            owner.heldProj = projectile.whoAmI;
+
+            float currentAnimationFraction = projectile.rotation;
+
+            if (currentAnimationFraction < 0.4f)
+                owner.bodyFrame.Y = owner.bodyFrame.Height * 3;
+
+            else if (currentAnimationFraction < 0.75f)
+                owner.bodyFrame.Y = owner.bodyFrame.Height * 2;
+
+            else
+                owner.bodyFrame.Y = owner.bodyFrame.Height;
         }
     }
 }
