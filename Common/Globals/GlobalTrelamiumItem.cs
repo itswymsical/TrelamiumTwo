@@ -36,7 +36,6 @@ namespace TrelamiumTwo.Common.Globals
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
             }
         }
-
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(item, tooltips);

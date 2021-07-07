@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,13 +12,22 @@ namespace TrelamiumTwo.Common.Items
 {
     public abstract class ShovelItem : ModItem
     {
-        public override bool CloneNewInstances => false;    
+        public override bool CloneNewInstances => false;
         public void DiggingPower(int digPower)
         {
             item.IsShovel();
             item.GetGlobalItem<GlobalTrelamiumItem>().digPower = digPower;
             item.GetGlobalItem<GlobalTrelamiumItem>().radius = 6;
             return;
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (item.IsShovel())
+            {
+                TooltipLine tooltip = tooltips.FirstOrDefault(x => x.Name == "PickPower" && x.mod == "Terraria");
+                if (tooltip != null)
+                    tooltip.text = item.GetGlobalItem<GlobalTrelamiumItem>().digPower + "% digging power";               
+            }
         }
         public static int GetDigPower(int shovel)
         {
@@ -40,15 +51,15 @@ namespace TrelamiumTwo.Common.Items
             DigTile(player, 5);
             return true;
         }
-        public override int ChoosePrefix(UnifiedRandom rand) => rand.Next(new int[] 
-        { 
-            PrefixID.Agile, 
-            PrefixID.Quick, 
+        public override int ChoosePrefix(UnifiedRandom rand) => rand.Next(new int[]
+        {
+            PrefixID.Agile,
+            PrefixID.Quick,
             PrefixID.Light,
 
-            PrefixID.Slow, 
-            PrefixID.Sluggish, 
-            PrefixID.Lazy, 
+            PrefixID.Slow,
+            PrefixID.Sluggish,
+            PrefixID.Lazy,
 
             PrefixID.Large,
             PrefixID.Tiny,
@@ -64,6 +75,6 @@ namespace TrelamiumTwo.Common.Items
             PrefixID.Dull,
             PrefixID.Awkward
         });
-        
+
     }
 }

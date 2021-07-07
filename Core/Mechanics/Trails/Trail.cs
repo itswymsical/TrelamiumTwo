@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 using System.Collections.Generic;
+
 using Terraria;
 
 namespace TrelamiumTwo.Core.Mechanics.Trails
@@ -10,17 +12,18 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
     {
         public GraphicsDevice Device;
 
+        public BasicEffect BasicEffect { get; protected set; }
+
         public Effect Effect;
 
         public Entity Entity;
 
-        public Color Color;
+        public Color Color { get; protected set; } = new Color(255, 255, 255);
 
         public float Alpha;
 
         public float Width;
-
-        public int Size;
+        public int Size { get; protected set; }
 
         public int PointCount;
 
@@ -33,7 +36,7 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
         public Trail()
         {
             Device = Main.graphics.GraphicsDevice;
-
+            BasicEffect = new BasicEffect(Device) { VertexColorEnabled = true };
             SetDefaults();
 
             Vertices = new VertexPositionColorTexture[Size];
@@ -45,7 +48,6 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
             CurrentIndex = 0;
 
             SetShaders();
-            SetVertices();
 
             if (PointCount >= 1)
             {
@@ -53,7 +55,7 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
                 {
                     pass.Apply();
 
-                    Device.DrawUserPrimitives(PrimitiveType.TriangleList, Vertices, 0, PointCount / 3);
+                    Device.DrawUserPrimitives(PrimitiveType.TriangleStrip, Vertices, 0, PointCount / 3);
                 }
             }
         }
@@ -61,8 +63,6 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
         public virtual void Kill() => TrailManager.Instance.Trails.Remove(this);
 
         public virtual void SetShaders() => SetBasicShader();
-
-        public virtual void SetVertices() { }
 
         public virtual void SetDefaults() { }
 

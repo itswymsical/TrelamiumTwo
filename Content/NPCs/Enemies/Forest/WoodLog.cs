@@ -88,7 +88,11 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
 				Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Wood>(), hitDirection, -1f);		
 		}
 
-		public override void NPCLoot() => Item.NewItem(npc.getRect(), ItemID.Wood, Main.rand.Next(4, 9));
+		public override void NPCLoot()
+		{
+			Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Leaf>(), Main.rand.Next(4));
+			Item.NewItem(npc.getRect(), ItemID.Wood, Main.rand.Next(4, 9));
+		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDay.Chance * 0.2f;
 

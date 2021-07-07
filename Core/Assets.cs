@@ -20,6 +20,8 @@
 
 			public const string Accessory = Directory + "Accessory/";
 
+			public const string Consumable = Directory + "Consumable/";
+
 			public const string Materials = Directory + "Materials/";
 
 			public const string Tools = Directory + "Tools/";
@@ -31,7 +33,7 @@
             #region Armor
             public const string Armor = Directory + "Armor/";
 
-			public const string Antlion = Armor + "Antlion/";
+			public const string Sandcrawler = Armor + "Sandcrawler/";
 
 			public const string Everbloom = Armor + "Everbloom/";
 
@@ -51,24 +53,26 @@
 
 			public const string Fungore = Boss + "Fungore/";
             #endregion
+		}
+		internal class Weapons
+		{
+			public const string Directory = Assets.Directory + "Items/Weapons/";
 
-            #region Weapons
-            public const string Weapons = Directory + "Weapons/";
+			public const string BloomRose = Directory + "BloomRose/";
 
-			public const string BloomRose = Weapons + "BloomRose/";
+			public const string Sandcrawler = Directory + "Sandcrawler/";
 
-			public const string AntlionW = Weapons + "Antlion/";
+			public const string Brass = Directory + "Brass/";
 
-			public const string Nut = Weapons + "Nut/";
+			public const string Nut = Directory + "Nut/";
 
-			public const string Viking = Weapons + "Viking/";
+			public const string Viking = Directory + "Viking/";
 
-			public const string Melee = Weapons + "Melee/";
+			public const string Melee = Directory + "Melee/";
 
-			public const string Magic = Weapons + "Magic/";
+			public const string Magic = Directory + "Magic/";
 
-			public const string Summoner = Weapons + "Summoner/";
-			#endregion
+			public const string Summon = Directory + "Summon/";
 		}
 		internal class Buffs
 		{
@@ -94,6 +98,10 @@
 			public const string Enemies = Directory + "Enemies/";
 
 			public const string Forest = Enemies + "Forest/";
+
+			public const string Desert = Enemies + "Desert/";
+
+			public const string Underground = Enemies + "Underground/";
 		}
 		internal class Projectiles
 		{

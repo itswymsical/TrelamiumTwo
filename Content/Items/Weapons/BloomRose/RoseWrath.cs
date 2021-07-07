@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 {
 	public class RoseWrath : ModItem
 	{
-		public override string Texture => Assets.Items.BloomRose + "RoseWrath";
+		public override string Texture => Assets.Weapons.BloomRose + "RoseWrath";
 
 		public override void SetStaticDefaults()
 		{
@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			item.noMelee = true;
 			item.autoReuse = false;
 
-			item.damage = 13;
+			item.damage = 9;
 			item.knockBack = 1f;
 			item.mana = 4;
 
@@ -38,7 +38,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			item.shoot = ModContent.ProjectileType<Projectiles.Magic.BloomRose>();
 			item.shootSpeed = 8f;
 
-			item.rare = ItemRarityID.White;
+			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(silver: 1, copper: 20);
 
 			item.UseSound = SoundID.Item43;
@@ -57,8 +57,10 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 4);
 			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
+			recipe.AddIngredient(ItemID.Wood, 16);
+			recipe.AddTile(TileID.Anvils);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

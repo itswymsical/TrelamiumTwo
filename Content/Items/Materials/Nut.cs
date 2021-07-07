@@ -37,10 +37,6 @@ namespace TrelamiumTwo.Content.Items.Materials
 					item.position = projectile.Center;
 					item.Center = projectile.position;
 				}
-				if (!projectile.active)
-                {
-					item.position = item.position;
-                }
 			}
 		}
         public override bool ConsumeItem(Player player)

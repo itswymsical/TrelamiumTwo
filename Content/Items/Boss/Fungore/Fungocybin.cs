@@ -21,7 +21,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 				item.maxStack = 20;
 
 			item.value = Item.sellPrice(0);
-			item.rare = ItemRarityID.Yellow;
+			item.rare = ItemRarityID.White;
 
 			item.useAnimation = item.useTime = 30;
 

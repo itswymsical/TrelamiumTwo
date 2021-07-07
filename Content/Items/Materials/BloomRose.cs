@@ -17,7 +17,7 @@ namespace TrelamiumTwo.Content.Items.Materials
 			item.width = item.height = 20;
 			item.maxStack = 999;
 			item.value = Item.sellPrice(copper: 2);
-			item.rare = ItemRarityID.White;
+			item.rare = ItemRarityID.Blue;
 		}
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {

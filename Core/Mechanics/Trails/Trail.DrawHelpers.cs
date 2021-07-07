@@ -1,10 +1,12 @@
-﻿using Terraria.Graphics.Effects;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System.Collections.Generic;
+
 using Terraria;
-using TrelamiumTwo.Helpers;
 using Terraria.ModLoader;
+
+using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Core.Mechanics.Trails
 {

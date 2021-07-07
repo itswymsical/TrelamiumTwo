@@ -4,8 +4,6 @@ namespace TrelamiumTwo.Common.Players
 {
 	public class MinionPlayer : ModPlayer
 	{
-		public bool Avalanche;
-
 		public bool BloomBulb;
 
 		public bool floralSpirit;
@@ -13,12 +11,13 @@ namespace TrelamiumTwo.Common.Players
 		public bool mossMonarch;
 
 		public bool pholiotaMinion;
+
 		public bool tuskscaleMinion;
+
+		public bool Tumbleweed;
 
         public override void ResetEffects()
 		{
-			Avalanche = false;
-
 			BloomBulb = false;
 
 			floralSpirit = false;
@@ -26,6 +25,8 @@ namespace TrelamiumTwo.Common.Players
 			mossMonarch = false;
 
 			pholiotaMinion = false;
+
+			Tumbleweed = false;
 		}
 	}
 }

@@ -7,16 +7,17 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 {
 	public class SharpnutSpear : ModItem
 	{
-		public override string Texture => Assets.Items.Nut + "SharpnutSpear";
-		public override void SetDefaults() 
+		public override string Texture => Assets.Weapons.Nut + "SharpnutSpear";
+		public override void SetStaticDefaults() => Tooltip.SetDefault("Pierces through enemies and damages on retrieval");
+        public override void SetDefaults() 
 		{
 			item.width = 32;
 			item.height = 28;
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(copper: 50);
 			
-			item.damage = 4;
-			item.knockBack = 3f;
+			item.damage = 2;
+			item.knockBack = 2.5f;
 			
 			item.useTime = item.useAnimation = 20;
 			item.useStyle = ItemUseStyleID.HoldingOut;
@@ -37,8 +38,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 16);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 4);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 14);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 8);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

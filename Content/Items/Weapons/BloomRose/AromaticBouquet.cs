@@ -11,9 +11,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 {
 	public class AromaticBouquet : ModItem
 	{
-		public override string Texture => Assets.Items.BloomRose + "AromaticBouquet";
-
-		public override void SetStaticDefaults() => DisplayName.SetDefault("Aromatic Bouquet");
+		public override string Texture => Assets.Weapons.BloomRose + "AromaticBouquet";
+		public override void SetStaticDefaults() => Tooltip.SetDefault("Summons a flower bulb that spews petals at enemies");
 
 		public override void SetDefaults()
 		{
@@ -21,7 +20,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			item.noMelee = true;
 			item.autoReuse = false;
 
-			item.damage = 10;
+			item.damage = 8;
 			item.knockBack = 1f;
 			item.mana = 10;
 
@@ -35,7 +34,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 
 			item.buffType = ModContent.BuffType<Buffs.Minions.BloomBulb>();
 
-			item.rare = ItemRarityID.White;
+			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(silver: 1, copper: 80);
 
 			item.UseSound = SoundID.Item44;
@@ -52,7 +51,9 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 		{
 			var recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 3);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
+			recipe.AddIngredient(ItemID.Wood, 18);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

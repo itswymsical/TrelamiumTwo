@@ -16,7 +16,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 		public override void SetDefaults()
 		{
             item.value = Item.sellPrice(silver: 2);
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.defense = 2;
 		} 
 
@@ -37,9 +37,9 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BorealWood, 16);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 3);
-            recipe.AddIngredient(ItemID.IceBlock, 6);
+            recipe.AddIngredient(ItemID.Leather, 6);
+            recipe.AddIngredient(ItemID.Chain, 4);
+            recipe.AddIngredient(ItemID.IceBlock, 8);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

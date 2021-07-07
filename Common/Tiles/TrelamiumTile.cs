@@ -5,19 +5,20 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
 using TrelamiumTwo.Content.Items.Materials;
+using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Common.Tiles
 {
 	public class TrelamiumTile : GlobalTile
 	{
-		private const float nutSpawnChance = 0.25f;
-		private const float leafSpawnChance = 0.1f;
-
+		private const float nutSpawnChance = 0.05f;
+		private const float leafSpawnChance = 0.025f;
+		private Player player;
 		public override void RandomUpdate(int i, int j, int type)
 		{
 			if (Main.tile[i, j].nactive())
 			{
-				if ((type == TileID.Grass || type == TileID.HallowedGrass) && Main.rand.Next(62) == 0)
+				if ((type == TileID.Grass || type == TileID.HallowedGrass) && Main.rand.Next(55) == 0)
 				{
 					TryBloomRose(i, j);
 				}
@@ -70,12 +71,16 @@ namespace TrelamiumTwo.Common.Tiles
 
 		public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
 		{
+			player = Main.LocalPlayer;
 			if (!effectOnly)
 			{
-				if (Main.netMode != NetmodeID.MultiplayerClient && type == TileID.Trees)
+				if (player.ZoneForest())
 				{
-					TrySpawnLeaf(i, j);
-					TrySpawnNut(i, j, fail);
+					if (Main.netMode != NetmodeID.MultiplayerClient && type == TileID.Trees)
+					{
+						TrySpawnLeaf(i, j);
+						TrySpawnNut(i, j, fail);
+					}
 				}
 			}
 		}

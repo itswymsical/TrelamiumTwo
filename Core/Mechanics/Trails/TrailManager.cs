@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+
 using Terraria;
 using Terraria.ID;
+
 using TrelamiumTwo.Core.Abstraction.Interfaces;
 
 namespace TrelamiumTwo.Core.Mechanics.Trails
@@ -39,11 +41,6 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 
         public void UpdateTrails()
         {
-            if (Main.gameInactive)
-            {
-                return;
-            }
-
             for (int i = 0; i < Trails.Count; i++)
             {
                 Trails[i].Update();

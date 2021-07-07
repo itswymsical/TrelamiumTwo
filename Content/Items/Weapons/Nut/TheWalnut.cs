@@ -8,16 +8,17 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 {
 	public class TheWalnut : ModItem
 	{
-		public override string Texture => Assets.Items.Nut + "TheWalnut";
-		public override void SetDefaults()
+		public override string Texture => Assets.Weapons.Nut + "TheWalnut";
+		public override void SetStaticDefaults() => Tooltip.SetDefault("When used the player swings a full 360 with the Walnut");
+        public override void SetDefaults()
 		{
 			item.width = item.height = 44;
 			item.rare = ItemRarityID.White;
 			item.value = Item.sellPrice(copper: 66);
 			
-			item.crit = 4;
-			item.damage = 7;
-			item.knockBack = 6f;
+			item.crit = 2;
+			item.damage = 10;
+			item.knockBack = 5f;
 			
 			item.useTime = 20;
 			item.useAnimation = 40;
@@ -43,8 +44,8 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.VineRope, 6);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 18);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 20);
+			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 6);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -12,7 +12,7 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 	{
 		public override string Texture => Assets.Projectiles.Typeless + "NutGrabberProjectile";
 
-		private readonly float hangDistance = 20f;
+		private readonly float hangDistance = 16f;
 		public override void SetDefaults()
 			=> projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
 
@@ -23,16 +23,16 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 			=> player.ownedProjectileCounts[projectile.type] < 1;
 
 		public override float GrappleRange()
-			=> 250f;
+			=> 215f;
 
 		public override void NumGrappleHooks(Player player, ref int numHooks)
 			=> numHooks = 1;
 
 		public override void GrappleRetreatSpeed(Player player, ref float speed)
-			=> speed = 12.5f;
+			=> speed = 6.5f;
 
 		public override void GrapplePullSpeed(Player player, ref float speed)
-			=> speed = 7.5f;
+			=> speed = 6.5f;
 
 		public override void GrappleTargetPoint(Player player, ref float grappleX, ref float grappleY)
 		{

@@ -16,7 +16,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 	{
 		public override string Texture => Assets.Projectiles.Melee + "TheWalnut";
 		private readonly float rotationSpeed = MathHelper.TwoPi / 50;
-		public override void SetStaticDefaults()
+
+        public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
@@ -27,6 +28,7 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			
 			projectile.penetrate = -1;
 
+			projectile.tileCollide = false;
 			projectile.melee = true;
 			projectile.friendly = true;
 		}
@@ -73,8 +75,6 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			return (false);
 		}
 
-		public override bool OnTileCollide(Vector2 oldVelocity)
-			=> false;
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Player owner = Main.player[projectile.owner];

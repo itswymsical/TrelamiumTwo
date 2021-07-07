@@ -13,8 +13,8 @@ namespace TrelamiumTwo.Content.Items.Materials
 		{
 			item.width = item.height = 20;
 			item.maxStack = 999;
-			item.value = Item.sellPrice(copper: 1);
-			item.rare = ItemRarityID.White;
+			item.value = Item.sellPrice(silver: 11);
+			item.rare = ItemRarityID.Blue;
 		}
 	}
 }

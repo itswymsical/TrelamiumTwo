@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+
 using Terraria;
-using Terraria.GameInput;
+
 using Terraria.ModLoader;
-using TrelamiumTwo.Core.Mechanics.Trails;
+
 using TrelamiumTwo.Helpers;
 using Terraria.ID;
+
+using TrelamiumTwo.Content.Items.Fish;
 
 namespace TrelamiumTwo.Common.Players
 {
@@ -50,29 +52,34 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (player.ZoneForest() && Main.rand.NextBool(1050 / power))
+            if (player.ZoneForest() && Main.rand.NextBool(6))
             {
-               //caughtType = ModContent.ItemType<Fleurer>();
+               caughtType = ModContent.ItemType<Fleurer>();
             }
-            if (player.ZoneForest() && Main.rand.NextBool(300 / power))
+
+            if (player.ZoneForest() && Main.rand.NextBool(5))
             {
-                //caughtType = ModContent.ItemType<Barkfish>();
+                caughtType = ModContent.ItemType<Barkfish>();
             }
-            if (player.ZoneForest() && Main.rand.NextBool(300 / power))
+
+            if (player.ZoneForest() && Main.rand.NextBool(5))
             {
-                //caughtType = ModContent.ItemType<ShreemCarp>();
+                caughtType = ModContent.ItemType<ShreemCarp>();
             }
-            if (player.ZoneDesert && Main.rand.NextBool(1050 / power))
+
+            if (player.ZoneDesert && Main.rand.NextBool(11))
             {
-                //caughtType = ModContent.ItemType<UraeusEel>();
+                caughtType = ModContent.ItemType<UraeusEel>();
             }
-            if (player.ZoneDesert && Main.rand.NextBool(300 / power))
+
+            if (player.ZoneDesert && Main.rand.NextBool(7))
             {
-                //caughtType = ModContent.ItemType<Scaracod>();
+                caughtType = ModContent.ItemType<Sunfish>();
             }
-            if (player.ZoneDesert && Main.rand.NextBool(300 / power))
+
+            if (player.ZoneDesert && Main.rand.NextBool(5))
             {
-                //caughtType = ModContent.ItemType<Sunfish>();
+                caughtType = ModContent.ItemType<Scaracod>();
             }
         }
         public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
