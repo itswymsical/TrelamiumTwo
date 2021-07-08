@@ -16,9 +16,9 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 		public override string Texture => Assets.NPCs.Underground + "SentientGeode";
 		public override void SetDefaults()
 		{
-			npc.damage = 20;
-			npc.defense = 5;
-			npc.lifeMax = 175;
+			npc.damage = 15;
+			npc.defense = 12;
+			npc.lifeMax = 98;
 			npc.width = npc.height = 36;
 			npc.knockBackResist = 0f;
 			npc.behindTiles = npc.lavaImmune = true;
@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 
 			npc.HitSound = SoundID.NPCHit52;
 			npc.DeathSound = SoundID.NPCDeath52;
-			npc.value = Item.buyPrice(copper: 20);
+			npc.value = Item.buyPrice(copper: 75);
 		}
 		public override void AI()
 		{
@@ -326,11 +326,6 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			return SpawnCondition.Cavern.Chance * 0.185f;
-		}
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-		{
-			npc.lifeMax = (int)(npc.lifeMax * 0.35f * bossLifeScale);
-			npc.damage = (int)(npc.damage * 0.35f);
 		}
 		public override void NPCLoot()
 		{
