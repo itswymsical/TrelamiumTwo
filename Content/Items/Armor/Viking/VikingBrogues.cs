@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 	[AutoloadEquip(EquipType.Legs)]
 	public class VikingBrogues : ModItem
     {
-        public override string Texture => Assets.Items.VikingArmor + "VikingBrogues";
+        public override string Texture => Assets.Armors.Viking + "VikingBrogues";
         public override void SetStaticDefaults() => Tooltip.SetDefault("Increases melee speed by 4%");	
 
 		public override void SetDefaults()

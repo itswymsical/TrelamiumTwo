@@ -9,7 +9,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 	[AutoloadEquip(EquipType.Body)]
 	public class VikingLamellar : ModItem
     {
-        public override string Texture => Assets.Items.VikingArmor + "VikingLamellar";
+        public override string Texture => Assets.Armors.Viking + "VikingLamellar";
         public override void SetStaticDefaults() => Tooltip.SetDefault("Increases melee damage by 5%");	
 
 		public override void SetDefaults()

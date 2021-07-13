@@ -30,30 +30,33 @@
 
 			public const string Shovels = Tools + "Shovels/";
 
-            #region Armor
-            public const string Armor = Directory + "Armor/";
-
-			public const string Sandcrawler = Armor + "Sandcrawler/";
-
-			public const string Everbloom = Armor + "Everbloom/";
-
-			public const string VikingArmor = Armor + "Viking/";
-
-			#endregion
-
-			#region Vanity
-			public const string Vanity = Directory + "Vanity/";
-
-			public const string Peepo = Vanity + "Peepo/";
-
-			#endregion
-
 			#region Boss
 			public const string Boss = Directory + "Boss/";
 
 			public const string Fungore = Boss + "Fungore/";
             #endregion
 		}
+		internal class Armors
+		{
+			public const string Directory = Assets.Directory + "Items/";
+			// Armor //
+			public const string Armor = Directory + "Armor/";
+
+			public const string BloomRose = Armor + "BloomRose/";
+
+			public const string Sandcrawler = Armor + "Sandcrawler/";
+
+			public const string Wildlife = Armor + "Wildlife/";
+
+			public const string Viking = Armor + "Viking/";
+
+			// Vanity //
+
+			public const string Vanity = Directory + "Vanity/";
+
+			public const string Peepo = Vanity + "Peepo/";
+		}
+
 		internal class Weapons
 		{
 			public const string Directory = Assets.Directory + "Items/Weapons/";

@@ -1,5 +1,6 @@
 ﻿using TrelamiumTwo.Content.Items.Materials;
 using TrelamiumTwo.Core;
+
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,9 +8,9 @@ using Terraria.ModLoader;
 namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class EverbloomLeggings : ModItem
+	public class BlossomLeggings : ModItem
 	{
-		public override string Texture => Assets.Items.Everbloom + "EverbloomLeggings";
+		public override string Texture => Assets.Armors.BloomRose + "BlossomLeggings";
 
 		public override void SetDefaults()
 		{
@@ -25,8 +26,8 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
+			recipe.AddIngredient(ModContent.ItemType<BloomRose>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<Leaf>(), 4);
 			recipe.AddIngredient(ItemID.Wood, 15);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
