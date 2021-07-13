@@ -22,13 +22,11 @@ namespace TrelamiumTwo.Common.Items
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (item.IsShovel())
-            {
-                TooltipLine tooltip = tooltips.FirstOrDefault(x => x.Name == "PickPower" && x.mod == "Terraria");
-                if (tooltip != null)
-                    tooltip.text = item.GetGlobalItem<GlobalTrelamiumItem>().digPower + "% digging power";               
-            }
+            TooltipLine tooltipLine;
+            tooltipLine = new TooltipLine(mod, "T2:Digging Power", item.GetGlobalItem<GlobalTrelamiumItem>().digPower + "% digging power");
+            tooltips.Add(tooltipLine);
         }
+        
         public static int GetDigPower(int shovel)
         {
             Item i = ModContent.GetModItem(shovel).item;

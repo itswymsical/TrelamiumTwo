@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
 		}
-		public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDayDesert.Chance * 0.095f;
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) => Main.LocalPlayer.ZoneDesert ? 0.15f : 0f;
 		public override void FindFrame(int frameHeight)
 		{
 			npc.spriteDirection = -npc.direction;

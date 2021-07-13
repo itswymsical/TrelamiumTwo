@@ -11,7 +11,12 @@ namespace TrelamiumTwo.Common.Worlds
 	public partial class TrelamiumWorld : ModWorld
 	{
 		public static bool downedFungore;
-		public override void Initialize() => downedFungore = false;
+		public static bool initialCutscene;
+		public override void Initialize()
+		{
+			downedFungore = false;
+			initialCutscene = false;
+		}
 		
 		public override TagCompound Save()
 		{
@@ -19,6 +24,10 @@ namespace TrelamiumTwo.Common.Worlds
 			if (downedFungore)
 			{
 				downed.Add("Fungore");
+			}
+			if (initialCutscene)
+			{
+				downed.Add("Initial_Cutscene");
 			}
 			return new TagCompound
 			{
@@ -28,6 +37,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			var downed = tag.GetList<string>("downed");
 			downedFungore = downed.Contains("Fungore");
+			initialCutscene = downed.Contains("Initial_Cutscene");
 		}
 
 		public override void LoadLegacy(BinaryReader reader)
@@ -37,6 +47,7 @@ namespace TrelamiumTwo.Common.Worlds
 			{
 				BitsByte flags = reader.ReadByte();
 				downedFungore = flags[0];
+				initialCutscene = flags[1];
 			}
 			else
 			{
@@ -48,6 +59,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			var flags = new BitsByte();
 			flags[0] = downedFungore;
+			flags[1] = initialCutscene;
 			writer.Write(flags);
 		}
 
@@ -55,6 +67,7 @@ namespace TrelamiumTwo.Common.Worlds
 		{
 			BitsByte flags = reader.ReadByte();
 			downedFungore = flags[0];
+			initialCutscene = flags[1];
 		}
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

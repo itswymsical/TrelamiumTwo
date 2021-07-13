@@ -325,14 +325,12 @@ namespace TrelamiumTwo.Helpers
 
 			return false;
 		}
-
 		public static bool DrawNPCCentered(this NPC npc, SpriteBatch spriteBatch, Color color)
 		{
 			Texture2D texture = Main.npcTexture[npc.type];
 
 			return npc.DrawNPCCenteredWithTexture(texture, spriteBatch, npc.GetAlpha(color));
 		}
-
 		public static void DrawNPCTrailCenteredWithTexture(this NPC npc, Texture2D texture, SpriteBatch spriteBatch, Color color, float initialOpacity = 0.8f, float opacityDegrade = 0.2f, int stepSize = 1)
 		{
 			Vector2 origin = npc.frame.Size() / 2f;
@@ -348,7 +346,6 @@ namespace TrelamiumTwo.Helpers
 				spriteBatch.Draw(texture, position, npc.frame, color * opacity, npc.oldRot[i], origin, npc.scale, effects, 0f);
 			}
 		}
-
 		public static void DrawNPCTrailCentered(this NPC npc, SpriteBatch spriteBatch, Color color, float initialOpacity = 0.8f, float opacityDegrade = 0.2f, int stepSize = 1)
 		{
 			Texture2D texture = Main.npcTexture[npc.type];

@@ -101,7 +101,7 @@ namespace TrelamiumTwo.Common.Tiles
 				return;
 			}
 
-			Item.NewItem(new Vector2(x * 16, y * 16), ModContent.ItemType<Nut>());
+			Item.NewItem(new Vector2(x * 16, y * 16), ModContent.ItemType<Nut>(), Main.rand.Next(5));
 		}
 
 		private void TrySpawnLeaf(int x, int y)

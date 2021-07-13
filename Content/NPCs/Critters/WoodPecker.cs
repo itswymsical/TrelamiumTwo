@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Content.NPCs.Critters
 			animationType = NPCID.BirdRed;
 			npc.catchItem = (short)ModContent.ItemType<Items.Misc.WoodPecker>();
 		}
-		public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.ZoneForest() && Main.dayTime ? 0.1f : 0;
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDayBirdCritter.Chance * 0.7f;
 		public override void HitEffect(int hitDirection, double damage)
 		{
 			if (npc.life <= 0)

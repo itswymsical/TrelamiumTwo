@@ -323,10 +323,8 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 			npc.rotation += npc.velocity.X * 0.05f;
 			npc.spriteDirection = -npc.direction;
 		}
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			return SpawnCondition.Cavern.Chance * 0.185f;
-		}
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.1995f;
+		
 		public override void NPCLoot()
 		{
 			int choice = Main.rand.Next(7);

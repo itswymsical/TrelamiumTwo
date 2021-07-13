@@ -38,6 +38,9 @@ namespace TrelamiumTwo.Common.Cutscenes
 
 		public override void Draw()
 		{
+			Player player = Main.LocalPlayer;
+			player.stoned = true;
+			player.immune = true;
 			CreditsTimer++;
 
 			SpriteBatch spriteBatch = Main.spriteBatch;
@@ -46,7 +49,7 @@ namespace TrelamiumTwo.Common.Cutscenes
 			var fontScale = 0.8f;
 
 			var labelOffset = new Vector2(screenCenter.X, 200f);
-			var defaultOffset = new Vector2(screenCenter.X, 300f);
+			var defaultOffset = new Vector2(screenCenter.X, 260f);
 
 			switch (CurrentSection)
 			{
@@ -61,21 +64,21 @@ namespace TrelamiumTwo.Common.Cutscenes
 				case CreditsSection.Developers:
 					{
 						Helper.DrawText(spriteBatch, Color.White, "Developers", labelOffset);
-						Helper.DrawText(spriteBatch, Color.White, "Sig", defaultOffset, 0.65f);
-						Helper.DrawText(spriteBatch, Color.White, "HugeKraken", new Vector2(screenCenter.X, 320f), 0.65f);
-						Helper.DrawText(spriteBatch, Color.White, "Blossom", new Vector2(screenCenter.X, 340f), 0.65f);
-						Helper.DrawText(spriteBatch, Color.White, "Tiredghostdude", new Vector2(screenCenter.X, 360f), 0.65f);
-						Helper.DrawText(spriteBatch, Color.White, "ToyotaAristoMoment", new Vector2(screenCenter.X, 380f), 0.65f);
+						Helper.DrawText(spriteBatch, Color.White, "Sig", defaultOffset, 0.5f);
+						Helper.DrawText(spriteBatch, Color.White, "HugeKraken", new Vector2(screenCenter.X, 300f), 0.5f);
+						Helper.DrawText(spriteBatch, Color.White, "Blossom", new Vector2(screenCenter.X, 340f), .5f);
+						Helper.DrawText(spriteBatch, Color.White, "Tiredghostdude", new Vector2(screenCenter.X, 380f), .5f);
+						Helper.DrawText(spriteBatch, Color.White, "ToyotaAristoMoment", new Vector2(screenCenter.X, 420f), .5f);
 						break;
 					}
 
 				case CreditsSection.Contributors:
 					{
 						Helper.DrawText(spriteBatch, Color.White, "Contributors", labelOffset);
-						Helper.DrawText(spriteBatch, Color.White, "MountainyBear49", defaultOffset, fontScale);
-						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", defaultOffset, fontScale);
-						Helper.DrawText(spriteBatch, Color.White, "Pyxis", defaultOffset, fontScale);
-						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", defaultOffset, fontScale);
+						Helper.DrawText(spriteBatch, Color.White, "MountainyBear49", defaultOffset, 0.5f);
+						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", new Vector2(screenCenter.X, 300f), .5f);
+						Helper.DrawText(spriteBatch, Color.White, "Pyxis", new Vector2(screenCenter.X, 340f), .5f);
+						Helper.DrawText(spriteBatch, Color.White, "Andrizinho16", new Vector2(screenCenter.X, 380f), .5f);
 						break;
 					}
 
@@ -85,8 +88,8 @@ namespace TrelamiumTwo.Common.Cutscenes
 
 						string[] names =
 						{
-							"Endless Escapade (For some sprites)",
-							"Toothbrush (For the icon)"
+							"Ethereal Horizons - Our past mod that brought us all together",
+							"IBanPlay - Creating Fungore animation & Mod Logo"
 					};
 
 						var namePosition = new Vector2(screenCenter.X, 300f);
@@ -104,9 +107,8 @@ namespace TrelamiumTwo.Common.Cutscenes
 						string[] text =
 						{
 						"Thanks to you!",
-						"Seriously, thank you so much for playing",
-						"It means a lot to me and the team",
-						"S2"
+						"Seriously, thank you so much for playing!",
+						"It means a lot to us!"
 					};
 
 						var textPosition = new Vector2(screenCenter.X, 300f);
@@ -119,7 +121,7 @@ namespace TrelamiumTwo.Common.Cutscenes
 			}
 
 			// There's probably a better way to do this.
-			if (CreditsTimer < 300)
+			if (CreditsTimer < 240)
 				flashIntensity *= 0.95f;
 			else
 				HandleCreditsTransition();

@@ -77,7 +77,6 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 			if (Main.rand.Next(2) == 0)
 				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.CrackedScarabHorn>());
 		}
-
-		public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDayDesert.Chance * 0.35f;
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) => Main.LocalPlayer.ZoneDesert ? 0.35f : 0f;
 	}
 }

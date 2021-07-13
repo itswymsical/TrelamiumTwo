@@ -31,17 +31,15 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Forest
             npc.value = Item.buyPrice(copper: 20);
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.215f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.OverworldDaySlime.Chance * 0.225f;
         public override void AI() => npc.direction = npc.spriteDirection;
-        public override void NPCLoot()
-        {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Mushroom, Main.rand.Next(1, 3));
-        }
+        public override void NPCLoot() => Item.NewItem(npc.getRect(), ItemID.Mushroom, Main.rand.Next(3));
+        
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
-                for (int i = 1; i <= 30; i++)
-                    Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, -1f);
+                for (int i = 1; i <= 35; i++)
+                    Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, 1f);
 
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using TrelamiumTwo.Common.Items;
 using TrelamiumTwo.Common.Players;
 using TrelamiumTwo.Helpers;
 
@@ -15,8 +15,18 @@ namespace TrelamiumTwo.Common.Globals
         public override bool CloneNewInstances => true;
 
         public bool Shovel;
-        public int digPower = 0;
+        public int digPower;
         public int radius = 2;
+        public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
+        {
+            if (extractType == ItemID.DesertFossil)
+            {
+                if (Main.rand.NextFloat() < 0.005f)
+                {
+                    //resultType = ModContent.ItemType<Microlith>();
+                }
+            }
+        }
         public static int GetDigPower(int shovel)
         {
             Item i = ModContent.GetModItem(shovel).item;
@@ -34,16 +44,6 @@ namespace TrelamiumTwo.Common.Globals
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));
-            }
-        }
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            base.ModifyTooltips(item, tooltips);
-            TooltipLine sline;
-            if (item.IsShovel())
-            {
-                sline = new TooltipLine(mod, "TrelamiumTwo:Digging Power", $"{digPower}% digging power");
-                tooltips.Add(sline);
             }
         }
     }

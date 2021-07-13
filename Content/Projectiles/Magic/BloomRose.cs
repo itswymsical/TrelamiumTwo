@@ -13,8 +13,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 	public class BloomRose : ModProjectile
 	{
         public override string Texture => Assets.Items.Materials + "BloomRose";
-
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			projectile.magic = true;
 			projectile.friendly = true;

@@ -8,7 +8,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using TrelamiumTwo.Common.Worlds;
 
 namespace TrelamiumTwo.Common.Players
 {
@@ -49,7 +49,7 @@ namespace TrelamiumTwo.Common.Players
 
         public override void OnEnterWorld(Player player)
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode == NetmodeID.Server && !TrelamiumWorld.initialCutscene)
                 CutsceneLoader.GetCutscene<WorldOpenup>().Begin();
         }
 
@@ -61,15 +61,15 @@ namespace TrelamiumTwo.Common.Players
                 {
                     Tile tile = Framing.GetTileSafely(i, j);
 
-                    if (tile.type == TileID.CorruptGrass || tile.type == TileID.FleshGrass)
+                    if (tile.type == TileID.Emerald || tile.type == TileID.Sapphire)
                         CreditsScreenPosition[0] = new Vector2(i, j) * 16f;
 
-                    if (tile.type == TileID.Sunplate)
+                    if (tile.type == TileID.Cactus)
                         CreditsScreenPosition[1] = new Vector2(i, j) * 16f;
 
                     CreditsScreenPosition[2] = new Vector2(Main.dungeonX, Main.dungeonY) * 16f;
 
-                    if (tile.type == TileID.LihzahrdAltar)
+                    if (tile.type == TileID.JunglePlants)
                         CreditsScreenPosition[3] = new Vector2(i, j) * 16f;
                 }
             }

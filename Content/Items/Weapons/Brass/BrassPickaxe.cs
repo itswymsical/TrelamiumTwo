@@ -7,16 +7,16 @@ using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Weapons.Brass
 {
-    public class BrassShovel : ShovelItem
+    public class BrassPickaxe : ModItem
     {
-        public override string Texture => Assets.Weapons.Brass + "BrassShovel";
+        public override string Texture => Assets.Weapons.Brass + "BrassPickaxe";
         public override void SetDefaults()
         {
-            DiggingPower(40);
+            item.pick = 45;
 
             item.melee = true;
             item.damage = 4;
-            item.useTime = item.useAnimation = 18;
+            item.useTime = item.useAnimation = 20;
             item.width = item.height = 36;
 
             item.autoReuse = item.useTurn = true;
@@ -29,7 +29,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Brass
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Materials.BrassChunk>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Materials.BrassChunk>(), 12);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
