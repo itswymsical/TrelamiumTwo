@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 	[AutoloadEquip(EquipType.Body)]
 	public class WildWarriorGarb : ModItem
 	{
-		public override string Texture => Assets.Armors.Wildlife + "WildWarriorGarb";
+		public override string Texture => Assets.Armor.Wildlife + "WildWarriorGarb";
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Wild Warrior Garb");
 
 		public override void SetDefaults()

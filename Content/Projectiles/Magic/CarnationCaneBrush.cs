@@ -9,11 +9,12 @@ using TrelamiumTwo.Helpers;
 
 namespace TrelamiumTwo.Content.Projectiles.Magic
 {
-	internal sealed class CarnationCaneBrush : ModProjectile
+	internal class CarnationCaneBrush : ModProjectile
 	{
+		public override string Texture => Assets.Projectiles.Magic + "CarnationCaneBrush";
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Brush");
+			DisplayName.SetDefault("Bush");
 		}
 		public override void SetDefaults()
 		{
@@ -38,7 +39,10 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 				projectile.ai[0] = 1;
 			}
-
+			if (Main.player[projectile.owner].ownedProjectileCounts[projectile.type] > 4)
+            {
+				projectile.Kill();
+            }
 			return (false);
 		}
 

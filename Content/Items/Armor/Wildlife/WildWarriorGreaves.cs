@@ -1,14 +1,16 @@
-﻿using TrelamiumTwo.Content.Items.Materials;
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
+using TrelamiumTwo.Content.Items.Materials;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 {
 	[AutoloadEquip(EquipType.Legs)]
 	public class WildWarriorGreaves : ModItem
 	{
+		public override string Texture => Assets.Armor.Wildlife + "WildWarriorGreaves";
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Wild Warrior Greaves");
 
 		public override void SetDefaults()

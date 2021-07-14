@@ -12,7 +12,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Sandcrawler
 	[AutoloadEquip(EquipType.Head)]
 	public class SandcrawlerMask : ModItem
 	{
-		public override string Texture => Assets.Items.Sandcrawler + "SandcrawlerMask";
+		public override string Texture => Assets.Armor.Sandcrawler + "SandcrawlerMask";
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Increases critical strike chance by 2");
         public override void SetDefaults()
 		{

@@ -1,4 +1,4 @@
-﻿namespace TrelamiumTwo.Core
+﻿namespace TrelamiumTwo
 {
 	/// <summary>
 	/// Contains directories for all asset paths, inspired by Starlight River's system.
@@ -36,25 +36,23 @@
 			public const string Fungore = Boss + "Fungore/";
             #endregion
 		}
-		internal class Armors
+		internal class Armor
 		{
-			public const string Directory = Assets.Directory + "Items/";
-			// Armor //
-			public const string Armor = Directory + "Armor/";
+			public const string Directory = Assets.Directory + "Items/Armor/";
 
-			public const string BloomRose = Armor + "BloomRose/";
+			public const string BloomRose = Directory + "BloomRose/";
 
-			public const string Sandcrawler = Armor + "Sandcrawler/";
+			public const string Sandcrawler = Directory + "Sandcrawler/";
 
-			public const string Wildlife = Armor + "Wildlife/";
+			public const string Wildlife = Directory + "Wildlife/";
 
-			public const string Viking = Armor + "Viking/";
+			public const string Viking = Directory + "Viking/";
+		}
+		internal class Vanity
+		{
+			public const string Directory = Assets.Directory + "Items/Vanity/";
 
-			// Vanity //
-
-			public const string Vanity = Directory + "Vanity/";
-
-			public const string Peepo = Vanity + "Peepo/";
+			public const string Peepo = Directory + "Peepo/";
 		}
 
 		internal class Weapons

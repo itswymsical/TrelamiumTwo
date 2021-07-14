@@ -5,12 +5,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace TrelamiumTwo.Content.Items.Armor.Everbloom
+namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 {
 	[AutoloadEquip(EquipType.Legs)]
 	public class BlossomLeggings : ModItem
 	{
-		public override string Texture => Assets.Armors.BloomRose + "BlossomLeggings";
+		public override string Texture => Assets.Armor.BloomRose + "BlossomLeggings";
 
 		public override void SetDefaults()
 		{
@@ -26,7 +26,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<BloomRose>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 1);
 			recipe.AddIngredient(ModContent.ItemType<Leaf>(), 4);
 			recipe.AddIngredient(ItemID.Wood, 15);
 			recipe.AddTile(TileID.Anvils);

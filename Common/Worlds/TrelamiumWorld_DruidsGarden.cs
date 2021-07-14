@@ -13,264 +13,369 @@ namespace TrelamiumTwo.Common.Worlds
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int num = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Stalac"));
-            if (num != -1)
+            int DruidsGardenIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Stalac"));
+            if (DruidsGardenIndex != -1)
             {
-                tasks.Insert(num + 1, new PassLegacy("World Tree Generation", delegate (GenerationProgress progress)
+                tasks.Insert(DruidsGardenIndex + 1, new PassLegacy("DG Tree Generation", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "World Tree & Druid's Garden";
-                    int posX = (WorldGen.dungeonX > Main.spawnTileX) ? (Main.spawnTileX - 200) : (Main.spawnTileX  - 200);
-                    int baseRaycast = Raycast(posX, (int)Main.worldSurface - 200);
+                    progress.Message = "Planting Druid's Garden Tree...";
+					DG_Tree(Main.spawnTileX - 400, Main.spawnTileY - 50);
+					DG_TreeWall(Main.spawnTileX - 400, Main.spawnTileY - 50);
+				}));
+            }
+        }
+		private void DG_Tree(int spawnX, int spawnY)
+		{
+			int[,] _structure = {
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,1,1,2,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,1,1,1,1,1,1,2,1,1,2,2,2,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,2,1,1,1,2,2,1,1,1,1,1,1,1,0,0,0,0,0,0},
+				{0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,2,1,1,1,1,1,1,3,0,0,0,0,0,0,0},
+				{0,0,0,1,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,1,1,1,3,0,0,0,0,0,0,0,0},
+				{0,1,1,1,1,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,2,1,3,1,1,1,1,0,0,0,0,0,0,0,0},
+				{0,0,3,1,1,0,1,2,0,0,0,0,0,0,4,0,0,0,0,0,0,0,3,0,1,1,3,0,0,0,0,0,0,0,0},
+				{0,0,3,0,0,1,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,0,0,0,0,0},
+				{0,0,3,0,1,1,1,1,2,0,9,0,7,0,8,0,0,5,0,0,6,0,0,0,3,0,3,0,0,0,0,0,0,0,0},
+				{0,0,3,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,10,0,0,3,0,3,0,0,0,0,0,0,0,0},
+				{0,0,3,0,0,1,1,1,1,2,2,2,2,1,2,2,2,2,2,0,0,0,10,0,3,0,0,0,0,0,0,0,0,0,0},
+				{0,0,3,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,11,0,0,0,10,12,12,13,0,0,0,0,0,0,0,0},
+				{0,0,3,0,0,0,0,3,1,1,3,3,1,1,1,1,0,2,2,2,14,1,1,1,1,1,1,1,12,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,3,0,0,3,3,0,1,3,0,0,2,2,2,2,2,1,1,2,2,2,1,1,1,3,0,0,0,0},
+				{0,0,0,0,0,0,0,3,0,0,3,3,0,0,3,0,0,2,2,0,15,2,2,2,2,1,1,1,16,3,3,0,0,0,0},
+				{0,0,0,0,0,0,0,3,0,0,3,3,0,0,3,0,0,2,2,0,3,1,1,1,1,1,1,3,3,3,3,0,0,0,0},
+				{0,0,0,0,0,0,0,3,0,0,3,0,0,0,3,0,0,2,2,0,0,3,3,1,1,1,3,3,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,3,0,0,0,3,0,0,2,2,0,0,3,0,0,1,1,3,0,0,3,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,1,0,0,0,3,0,0,2,2,0,0,3,0,0,0,0,3,3,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,2,2,0,0,3,0,0,0,0,0,3,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,2,1,1,1,1,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,11,0,2,2,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,3,1,1,1,1,1,1,1,1,2,0,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,3,3,3,1,1,1,3,0,0,15,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,3,3,3,1,1,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,3,0,3,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,3,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,18,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,0,17,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,0,0,3,17,17,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,17,0,0,0,17,0,0,0,17,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,17,17,0,0,17,0,0,0,17,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,0,0,17,17,0,0,0,17,0,0},
+				{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,0,0,0,17,0,0,17,17,0,0},
+				{0,0,0,0,1,1,0,0,0,0,0,0,20,2,14,0,0,0,0,0,0,0,0,17,17,0,0,17,17,17,0,17,17,17,21},
+				{0,0,0,0,1,1,22,22,22,22,22,23,23,23,2,2,14,0,0,0,19,0,21,23,23,23,23,23,23,23,23,23,23,23,23},
+				{0,0,0,0,1,1,24,24,24,24,25,23,26,26,2,2,2,2,2,23,23,23,23,23,26,26,26,26,26,26,26,26,26,26,26},
+				{25,24,24,1,1,1,1,24,24,25,23,26,26,26,26,26,2,2,2,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26}
+			};
+			int PosX = spawnX - 0;
+			int PosY = spawnY - 0;
+			for (int confirmPlatforms = 0; confirmPlatforms < 2; confirmPlatforms++)
+			{
+				for (int i = 0; i < _structure.GetLength(0); i++)
+				{
+					for (int j = _structure.GetLength(1) - 1; j >= 0; j--)
+					{
+						int k = PosX + j;
+						int l = PosY + i;
+						if (WorldGen.InWorld(k, l, 30))
+						{
+							Tile tile = Framing.GetTileSafely(k, l);
+							switch (_structure[i, j])
+							{
+								case 0:
+									if (confirmPlatforms == 0)
+									{
+										tile.active(false);
+										tile.halfBrick(false);
+										tile.slope(0);
+									}
+									break;
+								case 1:
+									tile.active(true);
+									tile.type = 192;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 2:
+									tile.active(true);
+									tile.type = 191;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 3:
+									tile.active(true);
+									tile.type = 353;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 4:
+									if (confirmPlatforms == 0)
+										tile.active(false);
+									WorldGen.PlaceTile(k, l, 33, true, true, -1, 14);
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 5:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 304, true, true, -1, 0);
+									}
+									break;
+								case 6:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 10, true, true, -1, 7);
+									}
+									break;
+								case 7:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 15, true, true, -1, 5);
+									}
+									break;
+								case 8:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 14, true, true, -1, 6);
+									}
+									break;
+								case 9:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 18, true, true, -1, 26);
+									}
+									break;
+								case 10:
+									if (confirmPlatforms == 0)
+										tile.active(false);
+									WorldGen.PlaceTile(k, l, 19, true, true, -1, 23);
+									tile.slope(1);
+									tile.halfBrick(false);
+									break;
+								case 11:
+									tile.active(true);
+									tile.type = 191;
+									tile.slope(1);
+									tile.halfBrick(false);
+									break;
+								case 12:
+									tile.active(true);
+									tile.type = 192;
+									tile.slope(0);
+									tile.halfBrick(true);
+									break;
+								case 13:
+									tile.active(true);
+									tile.type = 192;
+									tile.slope(1);
+									tile.halfBrick(false);
+									break;
+								case 14:
+									tile.active(true);
+									tile.type = 191;
+									tile.slope(0);
+									tile.halfBrick(true);
+									break;
+								case 15:
+									tile.active(true);
+									tile.type = 191;
+									tile.slope(4);
+									tile.halfBrick(false);
+									break;
+								case 16:
+									tile.active(true);
+									tile.type = 192;
+									tile.slope(3);
+									tile.halfBrick(false);
+									break;
+								case 17:
+									tile.active(true);
+									tile.type = 5;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 18:
+									if (confirmPlatforms == 0)
+										tile.active(false);
+									WorldGen.PlaceTile(k, l, 4, true, true, -1, 0);
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 19:
+									if (confirmPlatforms == 1)
+									{
+										tile.active(false);
+										tile.slope(0);
+										tile.halfBrick(false);
+										WorldGen.PlaceTile(k, l, 27, true, true, -1, 0);
+									}
+									break;
+								case 20:
+									tile.active(true);
+									tile.type = 191;
+									tile.slope(2);
+									tile.halfBrick(false);
+									break;
+								case 21:
+									tile.active(true);
+									tile.type = 73;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 22:
+									if (confirmPlatforms == 0)
+									{
+										tile.active(false);
+										tile.halfBrick(false);
+										tile.slope(0);
+										tile.liquid = 253;
+										tile.liquidType(0);
+									}
+									break;
+								case 23:
+									tile.active(true);
+									tile.type = 2;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+								case 24:
+									if (confirmPlatforms == 0)
+									{
+										tile.active(false);
+										tile.halfBrick(false);
+										tile.slope(0);
+										tile.liquid = 255;
+										tile.liquidType(0);
+									}
+									break;
+								case 25:
+									tile.active(true);
+									tile.type = 2;
+									tile.slope(2);
+									tile.halfBrick(false);
+									break;
+								case 26:
+									tile.active(true);
+									tile.type = 0;
+									tile.slope(0);
+									tile.halfBrick(false);
+									break;
+							}
+						}
+					}
+				}
+			}
+		}	
+		private void DG_TreeWall(int spawnX, int spawnY)
+        {
+			int[,] _structure = {
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,1,0,2,2,2,2,2,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0},
+				{0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,2,2,2,1,2,1,2,2,2,2,1,1,2,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
+				{0,0,1,1,0,0,0,0,1,2,2,2,1,1,1,1,2,2,2,2,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0},
+				{0,1,1,1,1,1,0,0,1,2,2,2,2,2,2,1,2,2,2,2,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0},
+				{0,1,0,1,1,1,0,0,0,1,2,2,1,1,2,1,2,2,2,2,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,1,1,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,1,0,0,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,1,1,1,0,0,1,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,2,0,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,2,2,1,0,0,1,1,1,0,0,0,0,1,1,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,2,2,2,2,1,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,1,1,1,0,2,2,2,2,2,2,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0},
+				{0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,2,2,2,2,2,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0},
+				{0,0,0,0,0,0,0,0,1,1,1,0,0,3,0,0,0,2,0,2,2,1,0,0,0,3,3,3,3,3,3,3,3,0,1},
+				{0,0,0,0,0,0,1,1,1,0,0,0,0,3,3,3,3,2,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3}
+			};
+			int PosX = spawnX - 0;
+			int PosY = spawnY - 0;
+			for (int i = 0; i < _structure.GetLength(0); i++)
+			{
+				for (int j = _structure.GetLength(1) - 1; j >= 0; j--)
+				{
+					int k = PosX + j;
+					int l = PosY + i;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (_structure[i, j])
+						{
+							case 0:
+								tile.wall = 0;
+								break;
+							case 1:
+								tile.wall = 60;
+								break;
+							case 2:
+								tile.wall = 78;
+								break;
+							case 3:
+								tile.wall = 2;
+								break;
+							case 4:
+								tile.wall = 59;
+								break;
+						}
+					}
+				}
+			}
+		}
 
-                    if (baseRaycast > (int)Main.worldSurface - 150)
-                    {
-                        baseRaycast = (int)Main.worldSurface - 150;
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 147)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-460) : 460);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 41 || (Main.tile[posX, Raycast(posX, baseRaycast)].type == 43 || (Main.tile[posX, Raycast(posX, baseRaycast)].type == 44)))
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-150) : 150);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 60)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-200) : 200);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 226)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-100) : 100);
-                    }
-                    if (Main.tile[posX, Raycast(posX, baseRaycast)].type == 404)
-                    {
-                        posX += ((posX < Main.spawnTileX) ? (-100) : 100);
-                    }
-                    int maxValue = 0;
-                    int num4 = WorldGen.genRand.Next(5, 8);
-                    for (int i = 0; i < num4; i++)
-                    {
-                        int strengthForBase = baseRaycast + WorldGen.genRand.Next(50, 70) * i;
-                        for (int j = 0; j < 20; j++)
-                        {
-                            int posXRand = WorldGen.genRand.Next(-120, 120);
-                            int baseSteps = WorldGen.genRand.Next(0, 120);
-                            for (int k = -50; k < 50; k++)
-                            {
-                                if (posXRand + k >= 20 && posXRand + k <= Main.maxTilesX - 20)
-                                {
-                                    for (int l = -50; l < 50; l++)
-                                    {
-                                        if (baseSteps + l >= 20 && baseSteps + l <= Main.maxTilesY - 20)
-                                        {
-                                            ushort type = Main.tile[posXRand + k, baseSteps + l].type;
-                                        }
-                                    }
-                                }
-                            }
-                            int num8 = WorldGen.genRand.Next(70, 100);
-                            if (Main.tile[posX, baseRaycast].type != TileID.BlueDungeonBrick 
-                            || Main.tile[posX, baseRaycast].type != TileID.PinkDungeonBrick 
-                            || Main.tile[posX, baseRaycast].type != TileID.GreenDungeonBrick)
-                            {
-                                WorldGen.TileRunner(posX - posXRand, strengthForBase - baseSteps, (double)num8, 10, ModContent.TileType<Content.Tiles.LoamBlockTile>(), false, 9f, 9f, false, true);
-                                WorldGen.SpreadGrass(posX - posXRand, strengthForBase - baseSteps, ModContent.TileType<Content.Tiles.LoamBlockTile>(), ModContent.TileType<Content.Tiles.LoamBlockGrassTile>(), true, Main.tile[i, j].color());
-                            }
-                            if (strengthForBase - baseSteps < Main.maxTilesY - 170)
-                            {
-                                SmoothWallRunner(new Point(posX - posXRand, strengthForBase - baseSteps), num8 / 3, WallID.Dirt);
-                            }
-                        }
-                        maxValue = baseRaycast + i * 60;
-                    }
-
-                    WorldTree(new Vector2((float)posX, (float)(baseRaycast - 240)));
-                    CleanUpTree(new Point(posX, baseRaycast - 240));
-                    for (int num9 = 0; num9 < 55; num9++)
-                    {
-                        WorldGen.TileRunner(posX + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(baseRaycast, maxValue), (double)WorldGen.genRand.Next(8, 14), 10, ModContent.TileType<Content.Tiles.LimestoneTile>(), true, 0f, 0f, false, true);
-                    }
-                    for (int num9 = 0; num9 < 12; num9++)
-                    {
-                        WorldGen.Caverer(posX + WorldGen.genRand.Next(-60, 60), WorldGen.genRand.Next(baseRaycast, maxValue));
-                    }
-                    for (int i = 0; i < Main.maxTilesX; ++i)
-                    {
-                        for (int k = 0; k < Main.maxTilesY; ++k)
-                        {
-                            if (Main.tile[i, k].active() && Main.tile[i, k].type == ModContent.TileType<Content.Tiles.LoamBlockTile>() && !Main.tile[i, k - 1].active() && !Main.tile[i, k - 2].active() && WorldGen.genRand.Next(5) == 0)
-                            {
-                                if (WorldGen.genRand.Next(18) == 0)
-                                {
-                                    WorldGen.PlaceTile(i, k - 1, ModContent.TileType<Content.Tiles.AlderwoodTree>());
-                                }
-                            }
-                        }
-                    }
-                }));
-            }
-        }
-        public void WorldTree(Vector2 pos)
-        {
-            Point leafMiddle = pos.ToPoint();
-            for (int i = 0; i < 10; ++i)
-            {
-                int size = WorldGen.genRand.Next(27, 35);
-                Point position = (pos - new Vector2(WorldGen.genRand.Next(-30, 30), WorldGen.genRand.Next(-30, 30))).ToPoint();
-                WorldGen.TileRunner(position.X, position.Y, size * 3, 8, TileID.LivingMahoganyLeaves, true, 0, 0, false, true);
-            }
-            int trunkSize = 10;
-            int lastY = 0;
-            for (int i = 0; i < 20; ++i)
-            {
-                WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10), trunkSize * 3, 10, TileID.LivingMahogany, true, 0, 0, false, true);
-                SmoothWallRunnerActive(new Point(leafMiddle.X, leafMiddle.Y + (i * 10)), trunkSize, WallID.LivingWood);
-                if (i < 7)
-                {
-                    if (i % 3 == 0)
-                        trunkSize++;
-                }
-                else if (i < 12)
-                    trunkSize++;
-                else if (i < 15)
-                    trunkSize += WorldGen.genRand.Next(1, 3);
-                else
-                    trunkSize += 3;
-                lastY = leafMiddle.Y + (i * 10) + trunkSize;
-                if (i >= 15)
-                    WorldGen.TileRunner(leafMiddle.X, leafMiddle.Y + (i * 10) + 15, 25, 10, -1);
-            }
-            int xSize = 7;
-            for (int i = leafMiddle.Y; i < lastY + 5; ++i)
-            {
-                LineTunnel(new Point(leafMiddle.X, i), xSize);
-                int rand = WorldGen.genRand.Next(3);
-                if (rand == 0)
-                    xSize++;
-                if (rand == 1)
-                    xSize--;
-                if (xSize < 6)
-                    xSize++;
-                if (xSize > 12)
-                    xSize--;
-            }
-        }
-        public void CleanUpTree(Point pos)
-        {
-            for (int i = -130; i < 130; ++i)
-            {
-                if (pos.X + i < 20) continue;
-                if (pos.X + i > Main.maxTilesX - 20) continue;
-                for (int k = -200; k < 200; ++k)
-                {
-                    if (pos.Y + k < 20) continue;
-                    if (pos.Y + k > Main.maxTilesY - 20) continue;
-                    if (Main.tile[pos.X + i, pos.Y + k].type == TileID.LivingMahoganyLeaves)
-                    {
-                        if (Main.tile[pos.X + i, pos.Y + k].active())
-                        {
-                            try
-                            {
-                                int tilesConnected = 0;
-                                if (Main.tile[pos.X + i, pos.Y + k + 1].active()) tilesConnected++;
-                                if (Main.tile[pos.X + i, pos.Y + k - 1].active()) tilesConnected++;
-                                if (Main.tile[pos.X + i + 1, pos.Y + k].active()) tilesConnected++;
-                                if (Main.tile[pos.X + i - 1, pos.Y + k].active()) tilesConnected++;
-                                if (tilesConnected < 2)
-                                    WorldGen.KillTile(pos.X + i, pos.Y + k);
-                                WorldGen.KillWall(pos.X + i, pos.Y + k);
-                            }
-                            catch
-                            {
-                                continue;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        #region Runners
-        public void SmoothWallRunner(Point position, int size, int wallID)
-        {
-            for (int i = position.X - size; i <= position.X + size; i++)
-            {
-                for (int j = position.Y - size; j <= position.Y + size; j++)
-                {
-                    bool flag = i > 10 && i < Main.maxTilesX - 10 && j > 10 && j < Main.maxTilesY - 10;
-                    if (Vector2.Distance(new Vector2((float)position.X, (float)position.Y), new Vector2((float)i, (float)j)) <= (float)size && flag && Main.tile[i, j] != null)
-                    {
-                        WorldGen.KillWall(i, j, false);
-                        WorldGen.PlaceWall(i, j, (ushort)wallID, true);
-                    }
-                }
-            }
-        }
-        public void SmoothWallRunnerActive(Point position, int size, int wallID)
-        {
-            for (int i = position.X - size; i <= position.X + size; i++)
-            {
-                for (int j = position.Y - size; j <= position.Y + size; j++)
-                {
-                    bool flag = i > 10 && i < Main.maxTilesX - 10 && j > 10 && j < Main.maxTilesY - 10;
-                    if (Vector2.Distance(new Vector2((float)position.X, (float)position.Y), new Vector2((float)i, (float)j)) <= (float)size && flag && Main.tile[i, j] != null && Main.tile[i, j].active())
-                    {
-                        WorldGen.KillWall(i, j, false);
-                        WorldGen.PlaceWall(i, j, (ushort)wallID, true);
-                    }
-                }
-            }
-        }
-        public void SmoothTileRunner(Point position, int size, int type)
-        {
-            for (int i = position.X - size; i <= position.X + size; i++)
-            {
-                for (int j = position.Y - size; j <= position.Y + size; j++)
-                {
-                    if (Vector2.Distance(new Vector2((float)position.X, (float)position.Y), new Vector2((float)i, (float)j)) <= (float)size && Main.tile[i, j] != null)
-                    {
-                        WorldGen.KillTile(i, j, false, false, true);
-                        WorldGen.PlaceTile(i, j, (ushort)type, true, true, -1, 0);
-                    }
-                }
-            }
-        }
-        public void SmoothTunnel(Point position, int size)
-        {
-            for (int i = position.X - size; i <= position.X + size; i++)
-            {
-                for (int j = position.Y - size; j <= position.Y + size; j++)
-                {
-                    bool flag = i > 10 && i < Main.maxTilesX - 10 && j > 10 && j < Main.maxTilesY - 10;
-                    if (Vector2.Distance(new Vector2((float)position.X, (float)position.Y), new Vector2((float)i, (float)j)) <= (float)size && flag && Main.tile[i, j] != null)
-                    {
-                        WorldGen.KillTile(i, j, false, false, true);
-                    }
-                }
-            }
-        }
-        public void SquareRunner(Point position, int size, int type)
-        {
-            for (int i = position.X - size; i <= position.X + size; i++)
-            {
-                for (int j = position.Y - size; j <= position.Y + size; j++)
-                {
-                    KillPlaceTile(i, j, (ushort)type, 0);
-                }
-            }
-        }
-        public void LineTunnel(Point position, int xReps)
-        {
-            for (int i = position.X - xReps / 2; i <= position.X + xReps / 2; i++)
-            {
-                WorldGen.KillTile(i, position.Y, false, false, true);
-            }
-        }
-        public void KillPlaceTile(int x, int y, int type, int style = 0)
-        {
-            WorldGen.KillTile(x, y, false, false, true);
-            WorldGen.PlaceTile(x, y, type, true, true, -1, style);
-        }
-        #endregion
         public int Raycast(int x, int y)
         {
             if (x < 2 || x > Main.maxTilesX - 2)

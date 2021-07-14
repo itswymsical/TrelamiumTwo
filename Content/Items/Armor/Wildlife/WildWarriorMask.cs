@@ -1,14 +1,16 @@
-﻿using TrelamiumTwo.Content.Items.Materials;
-
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
+using TrelamiumTwo.Content.Items.Materials;
+using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class WildWarriorMask : ModItem
 	{
+		public override string Texture => Assets.Armor.Wildlife + "WildWarriorMask";
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Wild Warrior Mask");
 
 		public override void SetDefaults()

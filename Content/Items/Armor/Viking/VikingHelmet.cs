@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 	[AutoloadEquip(EquipType.Head)]
 	public class VikingHelmet : ModItem
     {
-        public override string Texture => Assets.Armors.Viking + "VikingHelmet";
+        public override string Texture => Assets.Armor.Viking + "VikingHelmet";
         public override void SetStaticDefaults() => Tooltip.SetDefault("Increases melee critical strike chance by 5%");
 
 		public override void SetDefaults()

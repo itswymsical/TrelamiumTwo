@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Sandcrawler
 	[AutoloadEquip(EquipType.Body)]
 	public class SandcrawlerChestplate : ModItem
 	{
-		public override string Texture => Assets.Items.Sandcrawler + "SandcrawlerChestplate";
+		public override string Texture => Assets.Armor.Sandcrawler + "SandcrawlerChestplate";
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Increases movement speed by 4%");
         public override void SetDefaults()
 		{

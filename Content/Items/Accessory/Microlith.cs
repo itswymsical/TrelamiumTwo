@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Core;
 
 namespace TrelamiumTwo.Content.Items.Accessory
 {

@@ -19,7 +19,7 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		private readonly float
 			xAcceleration = 0.08f,
 			yAcceleration = 0.1f;
-
+		public override string Texture => Assets.Projectiles.Magic + "CarnationCanePetal";
 		public override void SetStaticDefaults() => DisplayName.SetDefault("Petal");
 		
 		public override void SetDefaults()

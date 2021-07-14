@@ -6,12 +6,12 @@ using TrelamiumTwo.Common.Players;
 using TrelamiumTwo.Content.Items.Materials;
 using TrelamiumTwo.Core;
 
-namespace TrelamiumTwo.Content.Items.Armor.Everbloom
+namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class BlossomCrown : ModItem
 	{
-		public override string Texture => Assets.Armors.BloomRose + "BlossomCrown";
+		public override string Texture => Assets.Armor.BloomRose + "BlossomCrown";
 		public override void SetDefaults()
 		{
 			item.defense = 2;
@@ -25,8 +25,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 
 		public override void DrawHair(ref bool drawHair, ref bool drawAltHair) => drawHair = true;
 
-		public override bool IsArmorSet(Item head, Item body, Item legs) 
-			=> body.type == ModContent.ItemType<EverbloomTunic>() && legs.type == ModContent.ItemType<EverbloomLeggings>();
+		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<BlossomTunic>() && legs.type == ModContent.ItemType<BlossomLeggings>();
 
 		public override void UpdateArmorSet(Player player)
 		{
@@ -38,7 +37,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Everbloom
 		public override void AddRecipes()
 		{
 			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<BloomRose>(), 2);
+			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2);
 			recipe.AddIngredient(ModContent.ItemType<Leaf>(), 6);
 			recipe.AddIngredient(ItemID.Wood, 20);
 			recipe.AddTile(TileID.Anvils);

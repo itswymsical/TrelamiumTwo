@@ -5,8 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using TrelamiumTwo.Core;
-
 namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 {
     public class IllustriousSlime : ModNPC
@@ -51,7 +49,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
             Color whiteAlpha = new Color(255, 0, 0, alpha / 2);
 
             Texture2D text = Main.npcTexture[npc.type];
-            Texture2D textGlow = mod.GetTexture(Texture + "_Glow");
+            //Texture2D textGlow = ModContent.GetTexture(Texture + "_Glow");
 
             Vector2 drawOrigin = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
             Vector2 rot = npc.rotation.ToRotationVector2();
@@ -106,7 +104,7 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Underground
 
             for (int i3 = 0; i3 < 4; i3++)
             {
-                spriteBatch.Draw(textGlow, drawOrigin + rot.RotatedBy(1.57079637f * i3, default) * 4f, new Rectangle?(rectangle), whiteAlpha, npc.rotation, origin2, npc.scale, spriteEffects, 0f);
+                spriteBatch.Draw(text, drawOrigin + rot.RotatedBy(1.57079637f * i3, default) * 4f, new Rectangle?(rectangle), whiteAlpha, npc.rotation, origin2, npc.scale, spriteEffects, 0f);
             }
             
             spriteBatch.Draw(text, drawOrigin, new Rectangle?(rectangle), npc.GetAlpha(color), npc.rotation, origin2, npc.scale, spriteEffects, 0f);

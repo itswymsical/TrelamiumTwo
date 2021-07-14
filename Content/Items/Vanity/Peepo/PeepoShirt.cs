@@ -8,7 +8,7 @@ namespace TrelamiumTwo.Content.Items.Vanity.Peepo
 	[AutoloadEquip(EquipType.Body)]
 	public class PeepoShirt : ModItem
 	{
-		public override string Texture => Assets.Items.Peepo + "PeepoShirt";
+		public override string Texture => Assets.Vanity.Peepo + "PeepoShirt";
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Peepo's Shirt");

@@ -10,11 +10,16 @@ namespace TrelamiumTwo.Content.Items.Weapons.Magic
 {
 	public class CarnationCane : ModItem
 	{
-		public override void SetStaticDefaults() => Item.staff[item.type] = true;
+		public override string Texture => Assets.Weapons.BloomRose + "CarnationCane";
+		public override void SetStaticDefaults()
+		{
+			Tooltip.SetDefault("Releases a burst of petal which create bushes on tile collison");
+			Item.staff[item.type] = true;
+		}
 		
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
+			item.width = item.height = 11;
 			item.rare = ItemRarityID.Blue;
 			item.value = Item.sellPrice(silver: 80, copper: 30);
 
