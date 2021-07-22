@@ -39,10 +39,6 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 				projectile.ai[0] = 1;
 			}
-			if (Main.player[projectile.owner].ownedProjectileCounts[projectile.type] > 4)
-            {
-				projectile.Kill();
-            }
 			return (false);
 		}
 

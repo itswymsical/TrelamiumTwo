@@ -2,8 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using TrelamiumTwo.Core;
-
 namespace TrelamiumTwo.Content.Items.Boss.Fungore
 {
 	public class FungoreBag : ModItem
@@ -29,15 +27,17 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 		public override void OpenBossBag(Player player)
 		{
 			player.QuickSpawnItem(ModContent.ItemType<Equippable.Fungroids>());
-			int choice = Main.rand.Next(2);
+			int choice = Main.rand.Next(3);
+
 			if (Main.rand.Next(7) == 0)
-			{
 				player.QuickSpawnItem(ModContent.ItemType<Equippable.FungoreMask>());
-			}
+			
 			if (choice == 0)
 				player.QuickSpawnItem(ModContent.ItemType<MycelialWarhammer>());
 			if (choice == 1)
 				player.QuickSpawnItem(ModContent.ItemType<ToadstoolClusterclot>());
+			if (choice == 2)
+				player.QuickSpawnItem(ModContent.ItemType<FunguyStaff>());
 
 		}
 	}

@@ -8,6 +8,8 @@ namespace TrelamiumTwo.Common.Players
 
 		public bool floralSpirit;
 
+		public bool funguy;
+
 		public bool mossMonarch;
 
 		public bool pholiotaMinion;
@@ -21,6 +23,8 @@ namespace TrelamiumTwo.Common.Players
 			BloomBulb = false;
 
 			floralSpirit = false;
+
+			funguy = false;
 
 			mossMonarch = false;
 

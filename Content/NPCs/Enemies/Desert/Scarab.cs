@@ -66,6 +66,9 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 			for (int i = 1; i <= 2; i++)
 				Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Content/Gores/Scarab/ScarabGore" + i));
 
+			for (int i = 1; i <= 2; i++)
+				Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Content/Gores/Scarab/ScarabGore2"));
+
 			for (int i = 0; i < 50; ++i)
 				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Vile, hitDirection, -2f, npc.alpha, npc.color, npc.scale);
 			

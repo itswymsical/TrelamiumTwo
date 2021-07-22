@@ -167,7 +167,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         public override void NPCLoot()
         {
-            int choice = Main.rand.Next(2);
+            int choice = Main.rand.Next(3);
             if (Main.expertMode)
             {
                 npc.DropBossBags();
@@ -181,6 +181,10 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 else if (choice == 1)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<ToadstoolClusterclot>());
+                }
+                else if (choice == 2)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<FunguyStaff>());
                 }
             }
         }

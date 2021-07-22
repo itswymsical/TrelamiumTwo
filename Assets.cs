@@ -22,6 +22,8 @@
 
 			public const string Consumable = Directory + "Consumable/";
 
+			public const string Food = Consumable + "Food/";
+
 			public const string Materials = Directory + "Materials/";
 
 			public const string Tools = Directory + "Tools/";
@@ -94,7 +96,11 @@
 
 			public const string Fungore = Boss + "Fungore/";
 
-            public const string Critters = Directory + "Critters/";
+			public const string FoodLegion = Boss + "FoodLegion/";
+
+			public const string Cumulor = Boss + "Cumulor/";
+
+			public const string Critters = Directory + "Critters/";
 
 			public const string Enemies = Directory + "Enemies/";
 
@@ -129,6 +135,10 @@
 			public const string Ores = Directory + "Ores/";
 
 			public const string Forest = Directory + "Forest/";
+
+			public const string Furniture = Directory + "Furniture/";
+
+			public const string Paintings = Furniture + "Paintings/";
 		}
 	}
 }
