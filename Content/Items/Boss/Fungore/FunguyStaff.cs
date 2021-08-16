@@ -12,33 +12,33 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 
 		public override void SetDefaults()
 		{
-			item.summon = true;
-			item.noMelee = true;
-			item.autoReuse = false;
+			Item.DamageType = DamageClass.Summon;
+			Item.noMelee = true;
+			// item.autoReuse = false;
 
-			item.damage = 7;
-			item.knockBack = 4f;
-			item.mana = 10;
+			Item.damage = 7;
+			Item.knockBack = 4f;
+			Item.mana = 10;
 
-			item.width = 42;
-			item.height = 48;
+			Item.width = 42;
+			Item.height = 48;
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.SwingThrow;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.Swing;
 
-			item.shoot = ModContent.ProjectileType<Projectiles.Summon.Funguy>();
+			Item.shoot = ModContent.ProjectileType<Projectiles.Summon.Funguy>();
 
-			item.buffType = ModContent.BuffType<Buffs.Minions.Funguy>();
+			Item.buffType = ModContent.BuffType<Buffs.Minions.Funguy>();
 
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 5);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 5);
 
-			item.UseSound = SoundID.Item44;
+			Item.UseSound = SoundID.Item44;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			player.AddBuff(item.buffType, 2);
+			player.AddBuff(Item.buffType, 2);
 			position = Main.MouseWorld;
 
 			return true;

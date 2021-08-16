@@ -17,26 +17,26 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 		}
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(copper: 30);
+			Item.width = Item.height = 20;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(copper: 30);
 
-			item.crit = 2;
-			item.damage = 3;
-			item.knockBack = .5f;
+			Item.crit = 2;
+			Item.damage = 3;
+			Item.knockBack = .5f;
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			
-			item.ranged = true;
-			item.noMelee = true;
-			item.useTurn = false;
-			item.autoReuse = false;
+			Item.DamageType = DamageClass.Ranged;
+			Item.noMelee = true;
+			// item.useTurn = false;
+			// item.autoReuse = false;
 			
-			item.shootSpeed = 7f;
-			item.useAmmo = ModContent.ItemType<Materials.Nut>();
-			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();		
-			item.UseSound = SoundID.Item61;
+			Item.shootSpeed = 7f;
+			Item.useAmmo = ModContent.ItemType<Materials.Nut>();
+			Item.shoot = ModContent.ProjectileType<Projectiles.Ranged.NutRocketProjectile>();		
+			Item.UseSound = SoundID.Item61;
 		}
 		
 		public override Vector2? HoldoutOffset()
@@ -55,12 +55,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 16);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.Nut>(), 16).AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

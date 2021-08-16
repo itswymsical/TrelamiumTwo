@@ -33,10 +33,10 @@ namespace TrelamiumTwo.Helpers
 
 		public static void AddAllCrit(this Player player, int crit)
 		{
-			player.meleeCrit += crit;
-			player.rangedCrit += crit;
-			player.magicCrit += crit;
-			player.thrownCrit += crit;
+			player.GetCritChance(DamageClass.Melee) += crit;
+			player.GetCritChance(DamageClass.Ranged) += crit;
+			player.GetCritChance(DamageClass.Magic) += crit;
+			player.GetCritChance(DamageClass.Throwing) += crit;
 		}
 	}
 }

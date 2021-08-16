@@ -40,7 +40,7 @@ namespace TrelamiumTwo.Core.Mechanics.Trails
 
 		protected void SetBasicShader()
 		{
-			Effect = Effect ?? ModContent.GetInstance<TrelamiumTwo>().GetEffect("Effects/Primitives");
+			Effect = Effect ?? ModContent.GetInstance<TrelamiumTwo>().Assets.Request<Effect>("Effects/Primitives").Value;
 
 			Effect.Parameters["WorldViewProjection"].SetValue(Helper.DefaultEffectMatrix);
 			Effect.Parameters["uScreenPos"].SetValue(Main.screenPosition);

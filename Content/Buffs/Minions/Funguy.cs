@@ -10,9 +10,9 @@ namespace TrelamiumTwo.Content.Buffs.Minions
         {
             texture = Assets.Buffs.Minions + "Funguy";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Funguy");
 			Description.SetDefault("The fungi is quite a fun-guy!");

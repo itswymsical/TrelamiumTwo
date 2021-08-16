@@ -16,12 +16,12 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 		public override void SetDefaults()
 		{
-			item.width = 30;
-			item.height = 28;
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 30);
+			Item.width = 30;
+			Item.height = 28;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 30);
             
-			item.accessory = true;
+			Item.accessory = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

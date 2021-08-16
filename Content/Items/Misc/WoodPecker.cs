@@ -10,19 +10,19 @@ namespace TrelamiumTwo.Content.Items.Misc
 		public override string Texture => Assets.Items.Misc + "WoodPecker";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 12;
-			item.maxStack = 999;
+			Item.width = Item.height = 12;
+			Item.maxStack = 999;
 
-			item.useTime = 10;
-			item.useAnimation = 15;
-			item.useStyle = ItemUseStyleID.SwingThrow;
+			Item.useTime = 10;
+			Item.useAnimation = 15;
+			Item.useStyle = ItemUseStyleID.Swing;
 
-			item.useTurn = true;
-			item.autoReuse = true;
-			item.consumable = true;
-			item.noUseGraphic = true;
+			Item.useTurn = true;
+			Item.autoReuse = true;
+			Item.consumable = true;
+			Item.noUseGraphic = true;
 
-			item.makeNPC = (short)ModContent.NPCType<NPCs.Critters.WoodPecker>();
+			Item.makeNPC = (short)ModContent.NPCType<NPCs.Critters.WoodPecker>();
 		}
 	}
 }

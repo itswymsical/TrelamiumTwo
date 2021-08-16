@@ -14,33 +14,26 @@ namespace TrelamiumTwo.Content.Items.Consumable
 		
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 30;
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.buyPrice(silver: 2);
+			Item.width = Item.height = 20;
+			Item.maxStack = 30;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.buyPrice(silver: 2);
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.EatingUsing;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.EatFood;
 
-			item.useTurn = true;
-			item.consumable = true;
+			Item.useTurn = true;
+			Item.consumable = true;
 
-			item.buffTime = 10800;
-			item.buffType = ModContent.BuffType<Buffs.Potions.SolarAuraPotion>();
+			Item.buffTime = 10800;
+			Item.buffType = ModContent.BuffType<Buffs.Potions.SolarAuraPotion>();
 
-			item.UseSound = SoundID.Item3;
+			Item.UseSound = SoundID.Item3;
 		}
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Bottle);
-			recipe.AddIngredient(ItemID.Daybloom);
-			recipe.AddIngredient(ItemID.Fireblossom);
-			recipe.AddIngredient(ModContent.ItemType<Fish.Sunfish>());
-			recipe.AddTile(TileID.AlchemyTable);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.Daybloom).AddIngredient(ItemID.Fireblossom).AddIngredient(ModContent.ItemType<Fish.Sunfish>()).AddTile(TileID.AlchemyTable).Register();
 		}
 	}
 }

@@ -14,25 +14,21 @@ namespace TrelamiumTwo.Content.Items.Weapons.Brass
         {
             DiggingPower(40);
 
-            item.melee = true;
-            item.damage = 4;
-            item.useTime = item.useAnimation = 18;
-            item.width = item.height = 36;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 4;
+            Item.useTime = Item.useAnimation = 18;
+            Item.width = Item.height = 36;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 6);
+            Item.value = Item.sellPrice(silver: 6);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Materials.BrassChunk>(), 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.BrassChunk>(), 10).AddTile(TileID.Anvils).Register();
         }
     }
 }

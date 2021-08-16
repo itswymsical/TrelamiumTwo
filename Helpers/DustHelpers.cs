@@ -22,7 +22,7 @@ namespace TrelamiumTwo.Helpers
 			if (Main.netMode != NetmodeID.Server)
 			{
 				float rotation = Main.rand.NextFloat(-rot, rot);
-				Texture2D texture = ModContent.GetTexture(imagePath);
+				Texture2D texture = ModContent.Request<Texture2D>(imagePath);
 				int[] pixelData = new int[texture.Width * texture.Height];
 
 				texture.GetData(pixelData);

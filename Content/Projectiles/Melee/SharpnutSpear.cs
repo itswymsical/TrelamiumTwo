@@ -12,40 +12,40 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		public override string Texture => Assets.Projectiles.Melee + "SharpnutSpear";
 		public float MovementFactor
 		{
-			get => projectile.ai[0];
-			set => projectile.ai[0] = value;
+			get => Projectile.ai[0];
+			set => Projectile.ai[0] = value;
 		}
 
 		public override void SetDefaults() 
 		{
-			projectile.width = projectile.height = 28;
+			Projectile.width = Projectile.height = 28;
 			
-			projectile.aiStyle = 19;
-			projectile.scale = 1.1f;
-			projectile.penetrate = -1;
+			Projectile.aiStyle = 19;
+			Projectile.scale = 1.1f;
+			Projectile.penetrate = -1;
 
-			projectile.hide = true;
-			projectile.melee = true;
-			projectile.friendly = true;
-			projectile.tileCollide = false;
-			projectile.ownerHitCheck = true;
+			Projectile.hide = true;
+			Projectile.DamageType = DamageClass.Melee;
+			Projectile.friendly = true;
+			Projectile.tileCollide = false;
+			Projectile.ownerHitCheck = true;
 		}
 		
 		public override void AI() 
 		{
-			Player projOwner = Main.player[projectile.owner];
+			Player projOwner = Main.player[Projectile.owner];
 			Vector2 ownerCenter = projOwner.RotatedRelativePoint(projOwner.Center, true);
-			projectile.direction = projOwner.direction;
-			projOwner.heldProj = projectile.whoAmI;
+			Projectile.direction = projOwner.direction;
+			projOwner.heldProj = Projectile.whoAmI;
 			projOwner.itemTime = projOwner.itemAnimation;
-			projectile.position = ownerCenter - projectile.Size / 2;
+			Projectile.position = ownerCenter - Projectile.Size / 2;
 
 			if (!projOwner.frozen)
 			{
 				if (MovementFactor == 0f) 
 				{
 					MovementFactor = 3f; 
-					projectile.netUpdate = true; 
+					Projectile.netUpdate = true; 
 				}
 				if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3) 
 				{
@@ -57,17 +57,17 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 				}
 			}
 
-			projectile.position += projectile.velocity * MovementFactor;
+			Projectile.position += Projectile.velocity * MovementFactor;
 			if (projOwner.itemAnimation == 0) 
 			{
-				projectile.Kill();
+				Projectile.Kill();
 			}
 			
-			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
 
-			if (projectile.spriteDirection == -1) 
+			if (Projectile.spriteDirection == -1) 
 			{
-				projectile.rotation -= MathHelper.ToRadians(90f);
+				Projectile.rotation -= MathHelper.ToRadians(90f);
 			}
 		}
 

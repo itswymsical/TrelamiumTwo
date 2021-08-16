@@ -14,13 +14,13 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 
 		private readonly float hangDistance = 16f;
 		public override void SetDefaults()
-			=> projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
+			=> Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
 
 		public override bool? SingleGrappleHook(Player player)
 			=> true;
 
 		public override bool? CanUseGrapple(Player player)
-			=> player.ownedProjectileCounts[projectile.type] < 1;
+			=> player.ownedProjectileCounts[Projectile.type] < 1;
 
 		public override float GrappleRange()
 			=> 215f;
@@ -36,23 +36,23 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 
 		public override void GrappleTargetPoint(Player player, ref float grappleX, ref float grappleY)
 		{
-			Vector2 dirToPlayer = projectile.DirectionTo(player.Center);
+			Vector2 dirToPlayer = Projectile.DirectionTo(player.Center);
 			grappleX += dirToPlayer.X * hangDistance;
 			grappleY += dirToPlayer.Y * hangDistance;
 		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Player owner = Main.player[projectile.owner];
+			Player owner = Main.player[Projectile.owner];
 
 			Vector2 mountedCenter = owner.MountedCenter;
 			Texture2D[] chainTextures = new Texture2D[] {
-				ModContent.GetTexture(Texture + "_Chain1"),
-				ModContent.GetTexture(Texture + "_Chain2"),
-				ModContent.GetTexture(Texture + "_Chain3")
+				ModContent.Request<Texture2D>(Texture + "_Chain1"),
+				ModContent.Request<Texture2D>(Texture + "_Chain2"),
+				ModContent.Request<Texture2D>(Texture + "_Chain3")
 			};
 			Rectangle chainFrame = chainTextures[0].Frame(1, 1, 0, 0);
 
-			var drawPosition = projectile.Center;
+			var drawPosition = Projectile.Center;
 			var remainingVectorToPlayer = mountedCenter - drawPosition;
 
 			float rotation = remainingVectorToPlayer.ToRotation();

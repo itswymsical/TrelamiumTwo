@@ -55,7 +55,7 @@ namespace TrelamiumTwo.Common.Cutscenes
 			{
 				case CreditsSection.Introduction:
 					{
-						Texture2D icon = ModContent.GetTexture("TrelamiumTwo/Assets/logo");
+						var icon = ModContent.Request<Texture2D>("TrelamiumTwo/Assets/logo");
 						spriteBatch.Draw(icon, new Vector2(screenCenter.X, 200f) - icon.Size() / 2f, Color.White);
 
 						break;

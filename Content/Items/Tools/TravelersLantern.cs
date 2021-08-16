@@ -28,14 +28,14 @@ namespace TrelamiumTwo.Content.Items.Tools
 		}
 		public override void SetDefaults()
 		{
-			item.width = item.height = 12;
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 20);
+			Item.width = Item.height = 12;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 20);
 
-			item.useTime = item.useAnimation = 18;
-			item.useStyle = item.holdStyle = ItemHoldStyleID.HoldingOut;
-			item.noMelee = true;
-			item.UseSound = SoundID.Item1;
+			Item.useTime = Item.useAnimation = 18;
+			Item.useStyle = Item.holdStyle = ItemHoldStyleID.HoldingOut;
+			Item.noMelee = true;
+			Item.UseSound = SoundID.Item1;
 		}
 
 		public override bool AltFunctionUse(Player player)
@@ -117,7 +117,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 
 		private void TravelersLanternGlow(Player player, TrelamiumPlayer ep)
 		{
-			Texture2D glowmask = ModContent.GetTexture(Texture + "_Glow");
+			Texture2D glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
 			Rectangle frame = glowmask.Frame();
 			SpriteEffects effects = player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			Vector2 origin = new Vector2(0, 0);
@@ -133,7 +133,7 @@ namespace TrelamiumTwo.Content.Items.Tools
 			{
 				opacity = 1f;
 			}
-			DrawData glowmaskData = new DrawData(glowmask, drawPosition, frame, Color.White * opacity, 0, origin, item.scale, effects, 0);
+			DrawData glowmaskData = new DrawData(glowmask, drawPosition, frame, Color.White * opacity, 0, origin, Item.scale, effects, 0);
 			Main.playerDrawData.Add(glowmaskData);
 		}
 	}

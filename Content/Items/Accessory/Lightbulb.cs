@@ -15,21 +15,15 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		
 		public override void SetDefaults()
 		{
-			item.value = Item.sellPrice(silver: 68);
-			item.rare = ItemRarityID.White;
-			item.width = item.height = 30;
-			item.accessory = true;
+			Item.value = Item.sellPrice(silver: 68);
+			Item.rare = ItemRarityID.White;
+			Item.width = Item.height = 30;
+			Item.accessory = true;
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual) => Lighting.AddLight(player.Center, Color.Orange.ToVector3() * Main.essScale);
         public override void AddRecipes()
         {
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Bottle);
-			recipe.AddIngredient(ItemID.FallenStar, 2);
-			recipe.AddIngredient(ItemID.Chain);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.FallenStar, 2).AddIngredient(ItemID.Chain).AddTile(TileID.Anvils).Register();
         }
     }
 }

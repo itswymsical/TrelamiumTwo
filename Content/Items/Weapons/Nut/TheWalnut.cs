@@ -12,27 +12,27 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 		public override void SetStaticDefaults() => Tooltip.SetDefault("When used the player swings a full 360 with the Walnut");
         public override void SetDefaults()
 		{
-			item.width = item.height = 44;
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(copper: 66);
+			Item.width = Item.height = 44;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(copper: 66);
 			
-			item.crit = 2;
-			item.damage = 10;
-			item.knockBack = 5f;
+			Item.crit = 2;
+			Item.damage = 10;
+			Item.knockBack = 5f;
 			
-			item.useTime = 20;
-			item.useAnimation = 40;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = 20;
+			Item.useAnimation = 40;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			
-			item.melee = 
-				item.noMelee = 
+			Item.DamageType = 
+				// item.noMelee = 
 				item.channel = 
 				item.noUseGraphic = true;
 			
-			item.shootSpeed = 12f;
+			Item.shootSpeed = 12f;
 
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.TheWalnut>();
-			item.UseSound = SoundID.Item1;
+			Item.shoot = ModContent.ProjectileType<Projectiles.Melee.TheWalnut>();
+			Item.UseSound = SoundID.Item1;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -43,12 +43,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Nut
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Nut>(), 20);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 6);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.Nut>(), 20).AddIngredient(ModContent.ItemType<Materials.Leaf>(), 6).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace TrelamiumTwo.Content.Dusts
 		public override bool Autoload(ref string name, ref string texture)
 		{
 			texture = Assets.Dusts + "PinkPetal";
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
 
 		public override void OnSpawn(Dust dust)
@@ -54,7 +54,7 @@ namespace TrelamiumTwo.Content.Dusts
 				dust.alpha += 5;
 
 				if (dust.scale < 0.1f)
-					dust.active = false;
+					// dust.active = false;
 			}
 
 			return false;

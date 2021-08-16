@@ -12,10 +12,10 @@ namespace TrelamiumTwo.Content.Buffs.Minions
 		{
 			texture = Assets.Buffs.Minions + "BloomBulb";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
 
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bloom Bulb");
 			Description.SetDefault("The Bloom Bulb will fight for you");

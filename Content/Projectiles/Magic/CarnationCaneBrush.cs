@@ -18,39 +18,39 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = 18;
-			projectile.height = 28;
+			Projectile.width = 18;
+			Projectile.height = 28;
 
-			projectile.penetrate = 3;
-			projectile.timeLeft = 300;
+			Projectile.penetrate = 3;
+			Projectile.timeLeft = 300;
 
-			projectile.friendly = true;
-			projectile.tileCollide = false;
-			projectile.ignoreWater = false;
+			Projectile.friendly = true;
+			// projectile.tileCollide = false;
+			// projectile.ignoreWater = false;
 		}
 
 		public override bool PreAI()
 		{
-			if (projectile.ai[0] == 0)
+			if (Projectile.ai[0] == 0)
 			{
 				DustEffect();
 
-				projectile.position.Y += 2;
+				Projectile.position.Y += 2;
 
-				projectile.ai[0] = 1;
+				Projectile.ai[0] = 1;
 			}
 			return (false);
 		}
 
 		public override void Kill(int timeLeft) => DustEffect();
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)=> projectile.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)=> Projectile.DrawProjectileCentered(spriteBatch, lightColor);
 
 		private void DustEffect()
 		{
 			for (int i = 0; i < 10; ++i)
 			{
-				Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.BloomRose>(), 0, 0, 100);
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Dusts.BloomRose>(), 0, 0, 100);
 			}
 		}
 	}

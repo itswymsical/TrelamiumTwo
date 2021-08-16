@@ -14,22 +14,16 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 
 		public override void SetDefaults()
 		{
-            item.value = Item.sellPrice(silver: 2);
-            item.rare = ItemRarityID.Blue;
-            item.defense = 2;
+            Item.value = Item.sellPrice(silver: 2);
+            Item.rare = ItemRarityID.Blue;
+            Item.defense = 2;
 		}
 
         public override void UpdateAccessory(Player player, bool hideVisual) => player.meleeSpeed += 0.04f;
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Leather, 8);
-            recipe.AddIngredient(ItemID.Chain, 2);
-            recipe.AddIngredient(ItemID.IceBlock, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Leather, 8).AddIngredient(ItemID.Chain, 2).AddIngredient(ItemID.IceBlock, 5).AddTile(TileID.Anvils).Register();
         }
     }
 }

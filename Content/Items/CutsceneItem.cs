@@ -21,18 +21,18 @@ namespace TrelamiumTwo.Content.Items
 
         public override void SetDefaults()
         {
-            item.autoReuse = true;
-            item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useTurn = true;
 
-            item.width = item.height = 64;
+            Item.width = Item.height = 64;
 
-            item.useTime = item.useAnimation = 15;
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.useTime = Item.useAnimation = 15;
+            Item.useStyle = ItemUseStyleID.Swing;
         }
 
         public override bool CanUseItem(Player player) => ModContent.GetInstance<TrelamiumConfig>().Debug;
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             CutsceneLoader.GetCutscene<Credits>().Visible = !CutsceneLoader.GetCutscene<Credits>().Visible;
 

@@ -18,8 +18,8 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Cumulor
         }
         private States State
         {
-            get => (States)npc.ai[0];
-            set => npc.ai[0] = (int)value;
+            get => (States)NPC.ai[0];
+            set => NPC.ai[0] = (int)value;
         }
         private Player target;
 
@@ -34,28 +34,28 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Cumulor
         }
         public override void SetDefaults()
         {
-            npc.boss = true;
-            npc.lavaImmune = true;
-            npc.noGravity = true;
+            NPC.boss = true;
+            NPC.lavaImmune = true;
+            NPC.noGravity = true;
 
-            npc.width = npc.height = 190;
+            NPC.width = NPC.height = 190;
 
-            npc.lifeMax = 16000;
-            npc.defense = 26;
-            npc.damage = 0;
+            NPC.lifeMax = 16000;
+            NPC.defense = 26;
+            NPC.damage = 0;
 
-            npc.knockBackResist = 0f;
+            NPC.knockBackResist = 0f;
 
-            npc.aiStyle = aiType = -1;
+            NPC.aiStyle = aiType = -1;
 
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = Item.buyPrice(gold: 1);
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = Item.buyPrice(gold: 1);
         }
         public override void AI() => HandleAll();
         
 
-        public override void FindFrame(int frameHeight) => npc.spriteDirection = npc.direction;
+        public override void FindFrame(int frameHeight) => NPC.spriteDirection = NPC.direction;
         
         private void HandleAll()
         {
@@ -69,9 +69,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Cumulor
         }
         private void HandleStates()
         {
-            npc.TargetClosest();
+            NPC.TargetClosest();
 
-            target = Main.player[npc.target];
+            target = Main.player[NPC.target];
 
             switch (State)
             {
@@ -82,11 +82,11 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Cumulor
         }
         private void Move(Vector2 position, float speed)
         {
-            Vector2 direction = npc.DirectionTo(position);
+            Vector2 direction = NPC.DirectionTo(position);
 
             Vector2 velocity = direction * speed;
 
-            npc.velocity = Vector2.SmoothStep(npc.velocity, velocity, 0.2f);
+            NPC.velocity = Vector2.SmoothStep(NPC.velocity, velocity, 0.2f);
         }
         private void Movement()
         {
@@ -97,12 +97,12 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Cumulor
             else if (target.direction == 0)
                 dist = 200;
             
-            npc.noTileCollide = true;
+            NPC.noTileCollide = true;
             var position = new Vector2(target.Center.X - dist, target.Center.Y);
-            float speed = Vector2.Distance(npc.Center, position);
+            float speed = Vector2.Distance(NPC.Center, position);
             speed = MathHelper.Clamp(speed, -20f, 20f);
             Move(position, speed);
-            npc.rotation = Utils.AngleLerp(npc.rotation, npc.velocity.X * 0.01f, 0.2f);
+            NPC.rotation = Utils.AngleLerp(NPC.rotation, NPC.velocity.X * 0.01f, 0.2f);
         }
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor) => HandleScreenText(spriteBatch);
         private void HandleScreenText(SpriteBatch spriteBatch)

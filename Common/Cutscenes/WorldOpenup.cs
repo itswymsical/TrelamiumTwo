@@ -23,7 +23,7 @@ namespace TrelamiumTwo.Common.Cutscenes
 
 			timer++;
 
-			Texture2D icon = ModContent.GetTexture("TrelamiumTwo/Assets/logo");
+			Texture2D icon = ModContent.Request<Texture2D>("TrelamiumTwo/Assets/logo");
 			var iconPosition = new Vector2(screenCenter.X, 200f) - icon.Size() / 2f;
 			alpha = MathHelper.SmoothStep(alpha, timer < 300 ? 1f : 0f, 0.1f);
 			spriteBatch.Draw(icon, iconPosition, Color.White * alpha);

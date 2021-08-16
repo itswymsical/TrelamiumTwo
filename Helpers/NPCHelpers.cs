@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Helpers
 
 			npc.checkDead();
 
-			npc.active = false;
+			// npc.active = false;
 		}
 		public static void GenericFighterAI(this NPC npc, float maxSpeed = 1.5f, int maxAllowedStuckTime = 60, float jumpHeightModifier = 1f)
 		{
@@ -141,7 +141,7 @@ namespace TrelamiumTwo.Helpers
 			if (onplatform && (npc.Center.Y < player.position.Y - 20))
 				npc.noTileCollide = true;
 			else
-				npc.noTileCollide = false;
+				// npc.noTileCollide = false;
 		}
 		public static void GenericCritterAI(this NPC npc, float maxSpeed = 1f, int idleTime = 300)
 		{

@@ -11,10 +11,10 @@ namespace TrelamiumTwo.Content.Items.Materials
 		public override string Texture => Assets.Items.Materials + "SandcrawlerShell";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 999;
-			item.value = Item.sellPrice(silver: 4);
-			item.rare = ItemRarityID.Blue;
+			Item.width = Item.height = 20;
+			Item.maxStack = 999;
+			Item.value = Item.sellPrice(silver: 4);
+			Item.rare = ItemRarityID.Blue;
 		}
 	}
 }

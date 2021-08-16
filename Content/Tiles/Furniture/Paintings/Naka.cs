@@ -13,9 +13,9 @@ namespace TrelamiumTwo.Content.Tiles.Furniture.Paintings
 		{
 			texture = Assets.Tiles.Paintings + "NakaTile";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
@@ -42,19 +42,19 @@ namespace TrelamiumTwo.Content.Tiles.Furniture.Paintings
 		public override string Texture => Assets.Tiles.Paintings + "Naka";
 		public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.White;
-			item.maxStack = 999;
+			Item.rare = ItemRarityID.White;
+			Item.maxStack = 999;
 
-			item.width = item.height = 24;
-			item.useAnimation = item.useTime = 18;
+			Item.width = Item.height = 24;
+			Item.useAnimation = Item.useTime = 18;
 
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useTurn =
-				item.autoReuse =
-				item.consumable = true;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn =
+				Item.autoReuse =
+				Item.consumable = true;
 
-			item.value = Item.sellPrice(gold: 10);
-			item.createTile = ModContent.TileType<NakaTile>();
+			Item.value = Item.sellPrice(gold: 10);
+			Item.createTile = ModContent.TileType<NakaTile>();
 		}
 	}
 }

@@ -48,7 +48,7 @@ namespace TrelamiumTwo.Core.Loaders
 
 		internal static void LoadShader(string shaderName, string shaderPath)
 		{
-			var shaderRef = new Ref<Effect>(TrelamiumTwo.Instance.GetEffect(shaderPath));
+			var shaderRef = new Ref<Effect>(TrelamiumTwo.Instance.Assets.Request<Effect>(shaderPath).Value);
 
 			if (TrelamiumClientConfig.Instance.Debug)
             {

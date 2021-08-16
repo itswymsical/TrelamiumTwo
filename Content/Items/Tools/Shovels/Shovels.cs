@@ -15,25 +15,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(28);
 
-            item.melee = true;
-            item.damage = 2;
-            item.useTime = item.useAnimation = 17;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 2;
+            Item.useTime = Item.useAnimation = 17;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(copper: 33);
+            Item.value = Item.sellPrice(copper: 33);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 20);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 20).AddTile(TileID.WorkBenches).Register();
         }
     }
     public class CopperShovel : ShovelItem
@@ -43,26 +39,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(32);
 
-            item.melee = true;
-            item.damage = 2;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 2;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(copper: 33);
+            Item.value = Item.sellPrice(copper: 33);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.CopperBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.CopperBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class TinShovel : ShovelItem
@@ -72,26 +63,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(34);
 
-            item.melee = true;
-            item.damage = 2;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 2;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(copper: 46);
+            Item.value = Item.sellPrice(copper: 46);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.TinBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.TinBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class IronShovel : ShovelItem
@@ -101,26 +87,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(36);
 
-            item.melee = true;
-            item.damage = 2;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 2;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(copper: 80);
+            Item.value = Item.sellPrice(copper: 80);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.IronBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.IronBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class LeadShovel : ShovelItem
@@ -130,26 +111,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(38);
 
-            item.melee = true;
-            item.damage = 3;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 3;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 1);
+            Item.value = Item.sellPrice(silver: 1);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.LeadBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.LeadBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class SilverShovel : ShovelItem
@@ -159,26 +135,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(42);
 
-            item.melee = true;
-            item.damage = 3;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 3;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 4);
+            Item.value = Item.sellPrice(silver: 4);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.SilverBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.SilverBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class TungstenShovel : ShovelItem
@@ -188,26 +159,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(48);
 
-            item.melee = true;
-            item.damage = 4;
-            item.useTime = item.useAnimation = 19;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 4;
+            Item.useTime = Item.useAnimation = 19;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 4);
+            Item.value = Item.sellPrice(silver: 4);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.TungstenBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.TungstenBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class GoldShovel : ShovelItem
@@ -217,26 +183,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(50);
 
-            item.melee = true;
-            item.damage = 5;
-            item.useTime = item.useAnimation = 21;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 5;
+            Item.useTime = Item.useAnimation = 21;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 5);
+            Item.value = Item.sellPrice(silver: 5);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.GoldBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.GoldBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
     public class PlatinumShovel : ShovelItem
@@ -246,26 +207,21 @@ namespace TrelamiumTwo.Content.Items.Tools.Shovels
         {
             DiggingPower(58);
 
-            item.melee = true;
-            item.damage = 5;
-            item.useTime = item.useAnimation = 21;
-            item.width = item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 5;
+            Item.useTime = Item.useAnimation = 21;
+            Item.width = Item.height = 32;
 
-            item.autoReuse = item.useTurn = true;
+            Item.autoReuse = Item.useTurn = true;
 
-            item.value = Item.sellPrice(silver: 7);
+            Item.value = Item.sellPrice(silver: 7);
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 8);
-            recipe.AddIngredient(ItemID.PlatinumBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Wood, 8).AddIngredient(ItemID.PlatinumBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
 }

@@ -14,29 +14,29 @@ namespace TrelamiumTwo.Content.Items.Weapons.Sandcrawler
         public override void SetStaticDefaults() => Tooltip.SetDefault("Casts a burst of sandballs");
         public override void SetDefaults()
         {
-            item.damage = 7;
-            item.crit = 2;
-            item.mana = 8;
-            item.knockBack = 2.5f;
+            Item.damage = 7;
+            Item.crit = 2;
+            Item.mana = 8;
+            Item.knockBack = 2.5f;
 
-            item.useAnimation = item.useTime = 40;
-            item.width = item.height = 52;
+            Item.useAnimation = Item.useTime = 40;
+            Item.width = Item.height = 52;
 
-            Item.staff[item.type] = 
-                item.magic = 
-                item.noMelee = 
+            Item.staff[Item.type] = 
+                Item.DamageType = 
+                // item.noMelee = 
                 item.autoReuse = true;
 
-            item.useTurn = false;
+            // item.useTurn = false;
 
-            item.rare = ItemRarityID.Blue;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.UseSound = SoundID.Item9;
+            Item.rare = ItemRarityID.Blue;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.UseSound = SoundID.Item9;
 
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SandBall>();
-            item.shootSpeed = 6.7f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Magic.SandBall>();
+            Item.shootSpeed = 6.7f;
 
-            item.value = Item.buyPrice(silver: 80);
+            Item.value = Item.buyPrice(silver: 80);
         }  
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -56,13 +56,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Sandcrawler
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.AntlionMandible, 2);
-            recipe.AddIngredient(ModContent.ItemType<Materials.AntlionChitin>(), 7);
-            recipe.AddIngredient(ModContent.ItemType<Materials.SandcrawlerShell>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.AntlionMandible, 2).AddIngredient(ModContent.ItemType<Materials.AntlionChitin>(), 7).AddIngredient(ModContent.ItemType<Materials.SandcrawlerShell>(), 2).AddTile(TileID.Anvils).Register();
         }
     }
 }

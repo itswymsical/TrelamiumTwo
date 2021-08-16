@@ -15,26 +15,26 @@ namespace TrelamiumTwo.Common.Items
         public override bool CloneNewInstances => false;
         public void DiggingPower(int digPower)
         {
-            item.IsShovel();
-            item.GetGlobalItem<GlobalTrelamiumItem>().digPower = digPower;
-            item.GetGlobalItem<GlobalTrelamiumItem>().radius = 6;
+            Item.IsShovel();
+            Item.GetGlobalItem<GlobalTrelamiumItem>().digPower = digPower;
+            Item.GetGlobalItem<GlobalTrelamiumItem>().radius = 6;
             return;
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             TooltipLine tooltipLine;
-            tooltipLine = new TooltipLine(mod, "T2:Digging Power", item.GetGlobalItem<GlobalTrelamiumItem>().digPower + "% digging power");
+            tooltipLine = new TooltipLine(Mod, "T2:Digging Power", Item.GetGlobalItem<GlobalTrelamiumItem>().digPower + "% digging power");
             tooltips.Add(tooltipLine);
         }
         
         public static int GetDigPower(int shovel)
         {
-            Item i = ModContent.GetModItem(shovel).item;
+            Item i = ModContent.GetModItem(shovel).Item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
         }
         public static int GetShovelRadius(int shovel)
         {
-            Item i = ModContent.GetModItem(shovel).item;
+            Item i = ModContent.GetModItem(shovel).Item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().radius;
         }
         public void DigTile(Player player, int rangeinBlocks)
@@ -44,7 +44,7 @@ namespace TrelamiumTwo.Common.Items
                 player.GetModPlayer<Players.TrelamiumPlayer>().ShovelPickTile((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y);
             }
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             DigTile(player, 5);
             return true;

@@ -10,21 +10,21 @@ namespace TrelamiumTwo.Content.Items.Consumable.Food
 		public override string Texture => Assets.Items.Food + "Onion";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 30;
-			item.rare = ItemRarityID.White;
-			item.value = Item.buyPrice(copper: 25);
+			Item.width = Item.height = 20;
+			Item.maxStack = 30;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.buyPrice(copper: 25);
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.EatingUsing;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.EatFood;
 
-			item.useTurn = true;
-			item.consumable = true;
+			Item.useTurn = true;
+			Item.consumable = true;
 
-			item.buffTime = 450;
-			item.buffType = BuffID.Endurance;
+			Item.buffTime = 450;
+			Item.buffType = BuffID.Endurance;
 
-			item.UseSound = SoundID.Item3;
+			Item.UseSound = SoundID.Item3;
 		}
         public override void OnConsumeItem(Player player) => CombatText.NewText(player.getRect(), Color.BlueViolet, "Damage Reduction [15s]", true, false);	
     }

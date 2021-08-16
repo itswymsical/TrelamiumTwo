@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using Terraria.GameContent.Generation;
 using Microsoft.Xna.Framework;
 
@@ -26,12 +26,12 @@ namespace TrelamiumTwo.Common.Worlds
         {
             if (x < 2 || x > Main.maxTilesX - 2)
             {
-                mod.Logger.Error("X is dead.");
+                Mod.Logger.Error("X is dead.");
                 return 0;
             }
             if (y < 2 || y > Main.maxTilesY - 2)
             {
-                mod.Logger.Error("Y is not alive");
+                Mod.Logger.Error("Y is not alive");
                 return 0;
             }
             while (!Main.tile[x, y].active())

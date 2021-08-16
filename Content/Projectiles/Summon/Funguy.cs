@@ -14,35 +14,35 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
         {
             DisplayName.SetDefault("Funguy");
 
-            Main.projFrames[projectile.type] = 9;
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[Projectile.type] = 9;
+            Main.projPet[Projectile.type] = true;
 
-            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-            ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
-            ProjectileID.Sets.Homing[projectile.type] = true;
+            ProjectileID.Sets.Homing[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.tileCollide = true;
-            projectile.ignoreWater = true;
-            projectile.friendly = true;
-            projectile.minion = true;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = true;
+            Projectile.friendly = true;
+            Projectile.minion = true;
 
-            projectile.usesLocalNPCImmunity = true;
-            projectile.localNPCHitCooldown = 60;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 60;
 
-            projectile.width = projectile.height = 36;
+            Projectile.width = Projectile.height = 36;
 
-            projectile.minionSlots = 1f;
-            projectile.penetrate = -1;
+            Projectile.minionSlots = 1f;
+            Projectile.penetrate = -1;
 
-            projectile.aiStyle = -1;
+            Projectile.aiStyle = -1;
             aiType = -1;
         }
 
-        private NPC Target => Main.npc[(int)projectile.ai[1]];
+        private NPC Target => Main.npc[(int)Projectile.ai[1]];
 
         private const float AttackRange = 32f * 16f;
 
@@ -52,13 +52,13 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = Main.player[Projectile.owner];
 
-            if (player.position.Y < projectile.position.Y - 200f && Main.rand.NextBool(10))
+            if (player.position.Y < Projectile.position.Y - 200f && Main.rand.NextBool(10))
             {
-                projectile.velocity.Y = -Main.rand.NextFloat(8f, 12f);
+                Projectile.velocity.Y = -Main.rand.NextFloat(8f, 12f);
 
-                projectile.netUpdate = true;
+                Projectile.netUpdate = true;
             }
 
             return false;
@@ -71,7 +71,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
                 target.velocity.Y = -Main.rand.NextFloat(8f, 12f);
 
                 target.netUpdate = true;
-                projectile.netUpdate = true;
+                Projectile.netUpdate = true;
             }
         }
 
@@ -83,7 +83,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
         public override bool? CanCutTiles() => false;
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = Main.player[Projectile.owner];
 
             if (player.dead || !player.active)
             {
@@ -92,7 +92,7 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
 
             if (player.HasBuff(ModContent.BuffType<Buffs.Minions.Funguy>()))
             {
-                projectile.timeLeft = 5;
+                Projectile.timeLeft = 5;
             }
 
             if (attacking)
@@ -106,24 +106,24 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
                 TargetClosest();
             }
 
-            projectile.velocity.Y += 0.3f;
+            Projectile.velocity.Y += 0.3f;
 
-            if (player.Distance(projectile.Center) > PlayerRange)
+            if (player.Distance(Projectile.Center) > PlayerRange)
             {
-                projectile.position = player.position;
-                projectile.netUpdate = true;
+                Projectile.position = player.position;
+                Projectile.netUpdate = true;
             }
 
             RightClickTarget(player);
 
             Animate();
 
-            Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);
+            Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
         }
 
         private void Idle(Player player)
         {
-            Vector2 position = player.Center - new Vector2(36f * (projectile.minionPos + 1f) * player.direction, 0f);
+            Vector2 position = player.Center - new Vector2(36f * (Projectile.minionPos + 1f) * player.direction, 0f);
 
             Move(position, 3f); 
         }
@@ -132,10 +132,10 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
         {
             Move(Target.Center, 6f);
 
-            if (!Target.active || Target.Distance(projectile.Center) > AttackRange)
+            if (!Target.active || Target.Distance(Projectile.Center) > AttackRange)
             {
                 attacking = false;
-                projectile.netUpdate = true;
+                Projectile.netUpdate = true;
             }
         }
 
@@ -145,12 +145,12 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
             {
                 NPC npc = Main.npc[player.MinionAttackTargetNPC];
 
-                if (npc.CanBeChasedBy() && npc.Distance(projectile.Center) < AttackRange)
+                if (npc.CanBeChasedBy() && npc.Distance(Projectile.Center) < AttackRange)
                 {
-                    projectile.ai[1] = npc.whoAmI;
+                    Projectile.ai[1] = npc.whoAmI;
 
                     attacking = true;
-                    projectile.netUpdate = true;
+                    Projectile.netUpdate = true;
                 }
             }
         }
@@ -161,52 +161,52 @@ namespace TrelamiumTwo.Content.Projectiles.Summon
             {
                 NPC npc = Main.npc[i];
 
-                if (npc.CanBeChasedBy() && npc.Distance(projectile.Center) < AttackRange)
+                if (npc.CanBeChasedBy() && npc.Distance(Projectile.Center) < AttackRange)
                 {
-                    projectile.ai[1] = npc.whoAmI;
+                    Projectile.ai[1] = npc.whoAmI;
 
                     attacking = true;
-                    projectile.netUpdate = true;
+                    Projectile.netUpdate = true;
                 }
             }
         }
 
         private void Animate()
         {
-            projectile.spriteDirection = projectile.direction;
+            Projectile.spriteDirection = Projectile.direction;
 
-            if (projectile.velocity.Y > 1f)
+            if (Projectile.velocity.Y > 1f)
             {
-                projectile.frame = 8;
+                Projectile.frame = 8;
                 return;
             }
 
-            if (projectile.velocity.X != 0f)
+            if (Projectile.velocity.X != 0f)
             {
-                projectile.frameCounter++;
+                Projectile.frameCounter++;
             }
 
-            if (projectile.frameCounter > 5)
+            if (Projectile.frameCounter > 5)
             {
-                projectile.frame++;
-                projectile.frameCounter = 0;
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
             }
 
             int maxFrame = !attacking ? 3 : 7;
             int minFrame = !attacking ? 0 : 4;
 
-            if (projectile.frame > maxFrame)
+            if (Projectile.frame > maxFrame)
             {
-                projectile.frame = minFrame;
+                Projectile.frame = minFrame;
             }
         }
 
         private void Move(Vector2 position, float maxSpeed)
         {
-            int direction = Math.Sign(position.X - projectile.position.X);
+            int direction = Math.Sign(position.X - Projectile.position.X);
 
-            projectile.velocity.X += direction * 0.2f;
-            projectile.velocity.X = MathHelper.Clamp(projectile.velocity.X, -maxSpeed, maxSpeed);
+            Projectile.velocity.X += direction * 0.2f;
+            Projectile.velocity.X = MathHelper.Clamp(Projectile.velocity.X, -maxSpeed, maxSpeed);
         }
     }
 }

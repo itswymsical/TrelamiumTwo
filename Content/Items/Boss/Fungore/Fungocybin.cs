@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 using TrelamiumTwo.Core;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Content.Items.Fungore
 {
@@ -12,26 +13,26 @@ namespace TrelamiumTwo.Content.Items.Fungore
 		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("Summons the pea-brained fungus giant");
-			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 12;
+			ItemID.Sets.SortingPriorityBossSpawns[Item.type] = 12;
 		}
 
 		public override void SetDefaults() {
-			item.width = 
-				item.height = 
-				item.maxStack = 20;
+			Item.width = 
+				Item.height = 
+				Item.maxStack = 20;
 
-			item.value = Item.sellPrice(0);
-			item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(0);
+			Item.rare = ItemRarityID.White;
 
-			item.useAnimation = item.useTime = 30;
+			Item.useAnimation = Item.useTime = 30;
 
-			item.useStyle = ItemUseStyleID.HoldingUp;
-			item.consumable = true;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.consumable = true;
 		}
 
 		public override bool CanUseItem(Player player) => !NPC.AnyNPCs(ModContent.NPCType<NPCs.Boss.Fungore.Fungore>());
 
-		public override bool UseItem(Player player)
+		public override bool? UseItem(Player player)
 		{
 			NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Boss.Fungore.Fungore>());
 			Main.PlaySound(SoundID.Roar, player.position, 0);
@@ -39,12 +40,7 @@ namespace TrelamiumTwo.Content.Items.Fungore
 		}
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Mushroom, 8);
-			recipe.AddIngredient(ItemID.Chain, 2);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Mushroom, 8).AddIngredient(ItemID.Chain, 2).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

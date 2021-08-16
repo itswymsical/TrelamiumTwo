@@ -11,10 +11,10 @@ namespace TrelamiumTwo.Content.Items.Fish
 		public override string Texture => Assets.Items.Fish + "UraeusEel";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 22;
-			item.maxStack = 999;
-			item.value = Item.sellPrice(silver: 4, copper: 25);
-			item.rare = ItemRarityID.Green;
+			Item.width = Item.height = 22;
+			Item.maxStack = 999;
+			Item.value = Item.sellPrice(silver: 4, copper: 25);
+			Item.rare = ItemRarityID.Green;
 		}
 	}
 }

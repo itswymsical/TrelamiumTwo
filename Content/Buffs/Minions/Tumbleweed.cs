@@ -11,10 +11,10 @@ namespace TrelamiumTwo.Content.Buffs.Minions
 		{
 			texture = Assets.Buffs.Minions + "Tumbleweed";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
 
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tumbleweed");
 			Description.SetDefault("The Tumbleweed will fight for you");

@@ -19,71 +19,71 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
         public override void SetStaticDefaults()
 		{
-			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 36;
+			Projectile.width = Projectile.height = 36;
 			
-			projectile.penetrate = -1;
+			Projectile.penetrate = -1;
 
-			projectile.tileCollide = false;
-			projectile.melee = true;
-			projectile.friendly = true;
+			Projectile.tileCollide = false;
+			Projectile.DamageType = DamageClass.Melee;
+			Projectile.friendly = true;
 		}
 
 		public override bool PreAI()
 		{			
-			Player owner = Main.player[projectile.owner];
+			Player owner = Main.player[Projectile.owner];
 
 			if (owner.channel)
 			{
-				projectile.ai[0] += rotationSpeed;
-				projectile.Center = Vector2.Lerp(projectile.Center, owner.Center + new Vector2((float)Math.Cos(projectile.ai[0]) * 100f, (float)Math.Sin(projectile.ai[0]) * 60f), 0.15f);
+				Projectile.ai[0] += rotationSpeed;
+				Projectile.Center = Vector2.Lerp(Projectile.Center, owner.Center + new Vector2((float)Math.Cos(Projectile.ai[0]) * 100f, (float)Math.Sin(Projectile.ai[0]) * 60f), 0.15f);
 			}
 			else
 			{
-				if (projectile.localAI[0] == 0)
+				if (Projectile.localAI[0] == 0)
 				{
-					projectile.localAI[0] = 1;
-					projectile.netUpdate = true;
+					Projectile.localAI[0] = 1;
+					Projectile.netUpdate = true;
 				}
 
-				if (++projectile.ai[1] >= 30f)
+				if (++Projectile.ai[1] >= 30f)
 				{
-					Vector2 directionToOwner = Vector2.Normalize(owner.Center - projectile.Center);
-					projectile.velocity = Vector2.Lerp(projectile.velocity, directionToOwner * 8f, 0.08f);
+					Vector2 directionToOwner = Vector2.Normalize(owner.Center - Projectile.Center);
+					Projectile.velocity = Vector2.Lerp(Projectile.velocity, directionToOwner * 8f, 0.08f);
 				}
 				else
 				{
-					projectile.velocity = (projectile.ai[0] + MathHelper.PiOver2).ToRotationVector2() * 10f;
+					Projectile.velocity = (Projectile.ai[0] + MathHelper.PiOver2).ToRotationVector2() * 10f;
 				}
 
-				if (Vector2.DistanceSquared(projectile.Center, owner.Center) <= 20 * 20)
+				if (Vector2.DistanceSquared(Projectile.Center, owner.Center) <= 20 * 20)
 				{
-					projectile.Kill();
+					Projectile.Kill();
 				}
 			}
 
 			owner.itemTime = owner.itemAnimation = 10;
-			owner.ChangeDir((projectile.Center.X > owner.Center.X).ToDirectionInt());
-			owner.itemRotation = owner.DirectionTo(projectile.Center).ToRotation() * Math.Sign(projectile.Center.X - owner.Center.X);
+			owner.ChangeDir((Projectile.Center.X > owner.Center.X).ToDirectionInt());
+			owner.itemRotation = owner.DirectionTo(Projectile.Center).ToRotation() * Math.Sign(Projectile.Center.X - owner.Center.X);
 
-			projectile.rotation += Main.windSpeed / 2f + 0.1f * Math.Sign(Main.windSpeed);
+			Projectile.rotation += Main.windSpeed / 2f + 0.1f * Math.Sign(Main.windSpeed);
 
 			return (false);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Player owner = Main.player[projectile.owner];
+			Player owner = Main.player[Projectile.owner];
 
 			Vector2 mountedCenter = owner.MountedCenter;
-			Texture2D chainTexture = ModContent.GetTexture(Texture + "_Chain");
+			Texture2D chainTexture = ModContent.Request<Texture2D>(Texture + "_Chain");
 			Rectangle chainFrame = chainTexture.Frame(1, 1, 0, 0);
 
-			var drawPosition = projectile.Center;
+			var drawPosition = Projectile.Center;
 			var remainingVectorToPlayer = mountedCenter - drawPosition;
 
 			float rotation = remainingVectorToPlayer.ToRotation();
@@ -112,8 +112,8 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 			}
 
 
-			projectile.DrawProjectileTrailCentered(spriteBatch, lightColor);
-			return projectile.DrawProjectileCentered(spriteBatch, lightColor);
+			Projectile.DrawProjectileTrailCentered(spriteBatch, lightColor);
+			return Projectile.DrawProjectileCentered(spriteBatch, lightColor);
 		}
 	}
 }

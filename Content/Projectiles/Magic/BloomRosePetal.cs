@@ -17,36 +17,36 @@ namespace TrelamiumTwo.Content.Projectiles.Magic
 
 		public override void SetDefaults()
 		{
-			projectile.magic = true;
-			projectile.friendly = true; 
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.friendly = true; 
 
-			projectile.width = projectile.height = 10;
+			Projectile.width = Projectile.height = 10;
 
-			projectile.timeLeft = 120;
-			projectile.aiStyle = 0;
+			Projectile.timeLeft = 120;
+			Projectile.aiStyle = 0;
 		}
 
 		public override void AI()
 		{
-			projectile.ai[0]++;
+			Projectile.ai[0]++;
 
-			if (projectile.ai[0] > 20f)
-				projectile.velocity.Y += 0.2f;
+			if (Projectile.ai[0] > 20f)
+				Projectile.velocity.Y += 0.2f;
 
 			if (Main.rand.NextBool(10))
 			{
-				Dust.NewDustDirect(projectile.Center, 0, 0, ModContent.DustType<PinkPetal>(), -projectile.velocity.X, -projectile.velocity.Y);
+				Dust.NewDustDirect(Projectile.Center, 0, 0, ModContent.DustType<PinkPetal>(), -Projectile.velocity.X, -Projectile.velocity.Y);
 
-				projectile.netUpdate = true;
+				Projectile.netUpdate = true;
 			}
 
-			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 		}
         public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-			Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+			Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 			return true;
 		}
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => Projectile.DrawProjectileCentered(spriteBatch, lightColor);
 	}
 }

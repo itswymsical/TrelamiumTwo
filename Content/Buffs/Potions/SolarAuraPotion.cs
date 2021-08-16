@@ -11,9 +11,9 @@ namespace TrelamiumTwo.Content.Buffs.Potions
 		{
 			texture = Assets.Items.Consumable + "SolarAuraPotion";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Solar Aura");
 			Description.SetDefault("Increases the damage of fire related buffs and increases defense while in lava" +

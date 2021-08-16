@@ -16,8 +16,8 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 		public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.Blue;
-			item.accessory = true;
+			Item.rare = ItemRarityID.Blue;
+			Item.accessory = true;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -27,12 +27,7 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.DesolateHusk>(), 5);
-			recipe.AddIngredient(ModContent.ItemType<Materials.CrackedScarabHorn>(), 2);
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.DesolateHusk>(), 5).AddIngredient(ModContent.ItemType<Materials.CrackedScarabHorn>(), 2).AddTile(TileID.TinkerersWorkbench).Register();
 		}
 	}
 }

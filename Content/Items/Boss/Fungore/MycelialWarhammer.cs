@@ -11,26 +11,26 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 		public override string Texture => Assets.Items.Fungore + "MycelialWarhammer";
 		public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 5);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 5);
 
-			item.crit = 5;
-			item.damage = 18;
-			item.knockBack = 5f;
+			Item.crit = 5;
+			Item.damage = 18;
+			Item.knockBack = 5f;
 
-			item.useTime = item.useAnimation = 26;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = Item.useAnimation = 26;
+			Item.useStyle = ItemUseStyleID.Shoot;
 
-			item.noUseGraphic = 
-				item.melee = 
-				item.noMelee = 
+			Item.noUseGraphic = 
+				Item.DamageType = 
+				// item.noMelee = 
 				item.channel = true;
 
-			item.autoReuse = false;
+			// item.autoReuse = false;
 
-			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.MycelialWarhammer>();		
-			item.UseSound = SoundID.DD2_MonkStaffSwing;
+			Item.shootSpeed = 6f;
+			Item.shoot = ModContent.ProjectileType<Projectiles.Melee.MycelialWarhammer>();		
+			Item.UseSound = SoundID.DD2_MonkStaffSwing;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

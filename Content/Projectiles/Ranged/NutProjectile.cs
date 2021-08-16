@@ -14,27 +14,27 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 		public override string Texture => Assets.Projectiles.Ranged + "NutProjectile";
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 8;
+			Projectile.width = Projectile.height = 8;
 			
-			projectile.scale = 1.25f;
-			projectile.penetrate = 1;
-			projectile.timeLeft = 180;
-			
-			projectile.ranged = 
-				projectile.friendly = 
-				projectile.ignoreWater = 
-				projectile.tileCollide = true;
+			Projectile.scale = 1.25f;
+			Projectile.penetrate = 1;
+			Projectile.timeLeft = 180;
+
+			Projectile.DamageType = DamageClass.Ranged;
+				Projectile.friendly = 
+				Projectile.ignoreWater =
+				Projectile.tileCollide = true;
 		}
 
 		public override bool PreAI()
 		{
-			if (++projectile.ai[0] >= 10)
+			if (++Projectile.ai[0] >= 10)
 			{
-				projectile.velocity.Y += 0.2f;
-				projectile.velocity.X *= 0.98f;
+				Projectile.velocity.Y += 0.2f;
+				Projectile.velocity.X *= 0.98f;
 			}
 
-			projectile.rotation += projectile.velocity.Length() * 0.1f * projectile.direction;
+			Projectile.rotation += Projectile.velocity.Length() * 0.1f * Projectile.direction;
 
 			return false;
 		}
@@ -43,12 +43,12 @@ namespace TrelamiumTwo.Content.Projectiles.Ranged
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 78, 0f, 0f, 100, default, 2f);
+				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 78, 0f, 0f, 100, default, 2f);
 				dust.scale *= 0.756f;
 				dust.noGravity = true;
 			}
 		}
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => Projectile.DrawProjectileCentered(spriteBatch, lightColor);
 	}
 }

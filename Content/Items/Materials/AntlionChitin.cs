@@ -11,10 +11,10 @@ namespace TrelamiumTwo.Content.Items.Materials
 		public override string Texture => Assets.Items.Materials + "AntlionChitin";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 999;
-			item.value = Item.sellPrice(copper: 16);
-			item.rare = ItemRarityID.White;
+			Item.width = Item.height = 20;
+			Item.maxStack = 999;
+			Item.value = Item.sellPrice(copper: 16);
+			Item.rare = ItemRarityID.White;
 		}
 	}
 }

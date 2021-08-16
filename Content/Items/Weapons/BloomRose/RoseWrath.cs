@@ -17,31 +17,31 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 			DisplayName.SetDefault("Rose Wrath");
 			Tooltip.SetDefault("Shoots a Bloom Rose, that releases petals when it hits a tile or enemy.");
 
-			Item.staff[item.type] = true;
+			Item.staff[Item.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
-			item.magic = true;
-			item.noMelee = true;
-			item.autoReuse = false;
+			Item.DamageType = DamageClass.Magic;
+			Item.noMelee = true;
+			// item.autoReuse = false;
 
-			item.damage = 9;
-			item.knockBack = 1f;
-			item.mana = 4;
+			Item.damage = 9;
+			Item.knockBack = 1f;
+			Item.mana = 4;
 
-			item.width = item.height = 38;
+			Item.width = Item.height = 38;
 
-			item.useTime = item.useAnimation = 26;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = Item.useAnimation = 26;
+			Item.useStyle = ItemUseStyleID.Shoot;
 
-			item.shoot = ModContent.ProjectileType<Projectiles.Magic.BloomRose>();
-			item.shootSpeed = 8f;
+			Item.shoot = ModContent.ProjectileType<Projectiles.Magic.BloomRose>();
+			Item.shootSpeed = 8f;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 1, copper: 20);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 1, copper: 20);
 
-			item.UseSound = SoundID.Item43;
+			Item.UseSound = SoundID.Item43;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -56,14 +56,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.BloomRose
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2);
-			recipe.AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4);
-			recipe.AddIngredient(ItemID.Wood, 16);
-			recipe.AddTile(TileID.Anvils);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2).AddIngredient(ModContent.ItemType<Materials.Leaf>(), 4).AddIngredient(ItemID.Wood, 16).AddTile(TileID.Anvils).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

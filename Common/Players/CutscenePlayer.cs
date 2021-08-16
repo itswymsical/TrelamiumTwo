@@ -44,7 +44,7 @@ namespace TrelamiumTwo.Common.Players
         public override void UpdateLifeRegen()
         {
             if (CutsceneLoader.GetCutscene<Credits>().Visible)
-                player.lifeRegen = 0;
+                Player.lifeRegen = 0;
         }
 
         public override void OnEnterWorld(Player player)

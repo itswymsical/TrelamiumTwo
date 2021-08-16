@@ -15,13 +15,13 @@ namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 
 		public override void SetDefaults()
 		{
-			item.defense = 2;
+			Item.defense = 2;
 
-			item.width = 22;
-			item.height = 20;
+			Item.width = 22;
+			Item.height = 20;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 1, copper: 20);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 1, copper: 20);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<BlossomTunic>() && legs.type == ModContent.ItemType<BlossomLeggings>();
@@ -37,13 +37,7 @@ namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<Leaf>(), 8);
-			recipe.AddIngredient(ItemID.Wood, 20);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 1).AddIngredient(ModContent.ItemType<Leaf>(), 8).AddIngredient(ItemID.Wood, 20).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

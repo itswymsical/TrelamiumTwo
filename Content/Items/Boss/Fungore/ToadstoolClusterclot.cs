@@ -14,26 +14,26 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Fires a cluster of fungi clots that stick to enemies");
         public override void SetDefaults()
 		{
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 5);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 5);
 
-			item.crit = 2;
-			item.damage = 10;
-			item.knockBack = 5f;
+			Item.crit = 2;
+			Item.damage = 10;
+			Item.knockBack = 5f;
 
-			item.useTime = item.useAnimation = 26;
-			item.useStyle = ItemUseStyleID.SwingThrow;
+			Item.useTime = Item.useAnimation = 26;
+			Item.useStyle = ItemUseStyleID.Swing;
 
-			item.noUseGraphic =
-				item.ranged =
-				item.noMelee = true;
+			Item.noUseGraphic =
+				Item.DamageType =
+				// item.noMelee = true;
 
-			item.autoReuse = true;
+			Item.autoReuse = true;
 
-			item.shootSpeed = 8f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Ranged.ToadstoolClusterclot>();
+			Item.shootSpeed = 8f;
+			Item.shoot = ModContent.ProjectileType<Projectiles.Ranged.ToadstoolClusterclot>();
 			
-			item.UseSound = SoundID.Item1;
+			Item.UseSound = SoundID.Item1;
 		}
 	}
 }

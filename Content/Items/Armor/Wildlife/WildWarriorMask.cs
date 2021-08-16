@@ -15,13 +15,13 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 
 		public override void SetDefaults()
 		{
-			item.width = 24;
-			item.height = 22;
+			Item.width = 24;
+			Item.height = 22;
 
-			item.defense = 1;
+			Item.defense = 1;
 
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 3);
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 3);
 		}
 
 		public override void DrawHair(ref bool drawHair, ref bool drawAltHair) => drawHair = true;
@@ -36,11 +36,7 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<WildlifeFragment>(), 6);
-			recipe.AddTile(TileID.LivingLoom);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<WildlifeFragment>(), 6).AddTile(TileID.LivingLoom).Register();
 		}
 	}
 }

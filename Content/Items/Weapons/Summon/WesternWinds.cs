@@ -17,46 +17,40 @@ namespace TrelamiumTwo.Content.Items.Weapons.Summon
 
 		public override void SetDefaults()
 		{
-			item.summon = true;
-			item.noMelee = true;
-			item.autoReuse = false;
+			Item.DamageType = DamageClass.Summon;
+			Item.noMelee = true;
+			// item.autoReuse = false;
 
-			item.damage = 10;
-			item.knockBack = 1f;
-			item.mana = 10;
+			Item.damage = 10;
+			Item.knockBack = 1f;
+			Item.mana = 10;
 
-			item.width = 28;
-			item.height = 24;
+			Item.width = 28;
+			Item.height = 24;
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.SwingThrow;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.Swing;
 
-			item.shoot = ModContent.ProjectileType<Tumbleweed>();
+			Item.shoot = ModContent.ProjectileType<Tumbleweed>();
 
-			item.buffType = ModContent.BuffType<Buffs.Minions.Tumbleweed>();
+			Item.buffType = ModContent.BuffType<Buffs.Minions.Tumbleweed>();
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 1, copper: 80);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 1, copper: 80);
 
-			item.UseSound = SoundID.Item44;
+			Item.UseSound = SoundID.Item44;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			player.AddBuff(item.buffType, 2);
+			player.AddBuff(Item.buffType, 2);
 			position = Main.MouseWorld;
 			return true;
 		}
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.PalmWood, 12);
-			recipe.AddIngredient(ModContent.ItemType<Materials.AridFiber>(), 6);
-			recipe.AddIngredient(ItemID.FallenStar, 2);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.PalmWood, 12).AddIngredient(ModContent.ItemType<Materials.AridFiber>(), 6).AddIngredient(ItemID.FallenStar, 2).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

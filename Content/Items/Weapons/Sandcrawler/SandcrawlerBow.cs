@@ -17,28 +17,28 @@ namespace TrelamiumTwo.Content.Items.Weapons.Sandcrawler
 		}
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 60;
+			Item.width = 32;
+			Item.height = 60;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 5);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 5);
 
-			item.damage = 7;
-			item.knockBack = 3.25f;
+			Item.damage = 7;
+			Item.knockBack = 3.25f;
 
-			item.useTime = item.useAnimation = 26;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = Item.useAnimation = 26;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			
-			item.ranged = 
-				item.noMelee = true;
+			Item.DamageType = 
+				// item.noMelee = true;
 
-			item.useTurn = 
-				item.autoReuse = false;
+			Item.useTurn = 
+				// item.autoReuse = false;
 			
-			item.shootSpeed = 7f;
-			item.useAmmo = AmmoID.Arrow;
-			item.shoot = ProjectileID.WoodenArrowFriendly;
-			item.UseSound = SoundID.Item5;
+			Item.shootSpeed = 7f;
+			Item.useAmmo = AmmoID.Arrow;
+			Item.shoot = ProjectileID.WoodenArrowFriendly;
+			Item.UseSound = SoundID.Item5;
 		}
 		
 		public override Vector2? HoldoutOffset() => new Vector2(-2.5f, 0f);
@@ -53,13 +53,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Sandcrawler
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.AntlionMandible, 2);
-			recipe.AddIngredient(ModContent.ItemType<Materials.AntlionChitin>(), 7);
-			recipe.AddIngredient(ModContent.ItemType<Materials.SandcrawlerShell>(), 2);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.AntlionMandible, 2).AddIngredient(ModContent.ItemType<Materials.AntlionChitin>(), 7).AddIngredient(ModContent.ItemType<Materials.SandcrawlerShell>(), 2).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

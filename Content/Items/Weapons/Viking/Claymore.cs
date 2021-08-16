@@ -12,20 +12,20 @@ namespace TrelamiumTwo.Content.Items.Weapons.Viking
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Attacks have a chance to inflict frostburn");
         public override void SetDefaults()
 		{
-			item.width = item.height = 58;
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(silver: 2);
+			Item.width = Item.height = 58;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(silver: 2);
 
-			item.damage = 9;
-			item.knockBack = 3.5f;
+			Item.damage = 9;
+			Item.knockBack = 3.5f;
 
-			item.useTime = item.useAnimation = 28;
-			item.useStyle = ItemUseStyleID.SwingThrow;
+			Item.useTime = Item.useAnimation = 28;
+			Item.useStyle = ItemUseStyleID.Swing;
 
-			item.melee = true;
-			item.autoReuse = true;
+			Item.DamageType = DamageClass.Melee;
+			Item.autoReuse = true;
 
-			item.UseSound = SoundID.Item18;
+			Item.UseSound = SoundID.Item18;
 		}
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
@@ -34,13 +34,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Viking
         }
         public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BorealWood, 18);
-			recipe.AddRecipeGroup(RecipeGroupID.IronBar, 8);
-			recipe.AddIngredient(ItemID.IceBlock, 3);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.BorealWood, 18).AddRecipeGroup(RecipeGroupID.IronBar, 8).AddIngredient(ItemID.IceBlock, 3).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

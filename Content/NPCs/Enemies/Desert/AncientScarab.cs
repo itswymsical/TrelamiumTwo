@@ -9,42 +9,42 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 	public class AncientScarab : ModNPC
 	{
 		public override string Texture => Assets.NPCs.Desert + "AncientScarab";
-		public override void SetStaticDefaults() => Main.npcFrameCount[npc.type] = 4;
+		public override void SetStaticDefaults() => Main.npcFrameCount[NPC.type] = 4;
 		private int frameY;
 		public override void SetDefaults()
 		{
-			npc.width = 62;
-			npc.height = 50;
-			npc.value = Item.buyPrice(silver: 1);
+			NPC.width = 62;
+			NPC.height = 50;
+			NPC.value = Item.buyPrice(silver: 1);
 
-			npc.noGravity = true;
+			NPC.noGravity = true;
 
-			npc.damage = 17;
-			npc.defense = 4;
-			npc.aiStyle = 44;
-			npc.lifeMax = 124;
-			npc.knockBackResist = 0f;
+			NPC.damage = 17;
+			NPC.defense = 4;
+			NPC.aiStyle = 44;
+			NPC.lifeMax = 124;
+			NPC.knockBackResist = 0f;
 			
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => Main.LocalPlayer.ZoneDesert ? 0.15f : 0f;
 		public override void FindFrame(int frameHeight)
 		{
-			npc.spriteDirection = -npc.direction;
-			npc.frameCounter++;
+			NPC.spriteDirection = -NPC.direction;
+			NPC.frameCounter++;
 			int frameRate = 4;
 			if (frameY > 2)
 			{
 				frameY = 0;
 			}
-			if (npc.frameCounter > frameRate)
+			if (NPC.frameCounter > frameRate)
 			{
 				frameY++;
 
-				npc.frameCounter = 0;
+				NPC.frameCounter = 0;
 			}
-			npc.frame.Y = frameY * frameHeight;
+			NPC.frame.Y = frameY * frameHeight;
 		}
 	}
 }

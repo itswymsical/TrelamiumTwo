@@ -9,21 +9,21 @@ namespace TrelamiumTwo.Content.Items.Consumable.Food
 		public override string Texture => Assets.Items.Food + "Apple";
 		public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 30;
-			item.rare = ItemRarityID.White;
-			item.value = Item.buyPrice(copper: 15);
+			Item.width = Item.height = 20;
+			Item.maxStack = 30;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.buyPrice(copper: 15);
 
-			item.useTime = item.useAnimation = 25;
-			item.useStyle = ItemUseStyleID.EatingUsing;
+			Item.useTime = Item.useAnimation = 25;
+			Item.useStyle = ItemUseStyleID.EatFood;
 
-			item.useTurn = true;
-			item.consumable = true;
+			Item.useTurn = true;
+			Item.consumable = true;
 
-			item.healLife = 35;
-			item.potion = true;
+			Item.healLife = 35;
+			Item.potion = true;
 
-			item.UseSound = SoundID.Item3;
+			Item.UseSound = SoundID.Item3;
 		}
 	}
 }

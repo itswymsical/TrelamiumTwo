@@ -9,25 +9,25 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 	public class SaharanEagle : ModNPC
 	{
         public override string Texture => Assets.NPCs.Desert + "SaharanEagle";
-        public override void SetStaticDefaults() => Main.npcFrameCount[npc.type] = 8;
+        public override void SetStaticDefaults() => Main.npcFrameCount[NPC.type] = 8;
 		private int frameY;
 		public override void SetDefaults()
 		{
-			npc.width = 88;			
-			npc.height = 74;
+			NPC.width = 88;			
+			NPC.height = 74;
 
-			npc.value = Item.buyPrice(silver: 4);
+			NPC.value = Item.buyPrice(silver: 4);
 
-			npc.noGravity = true;
+			NPC.noGravity = true;
 
-			npc.damage = 19;
-			npc.defense = 4;
-			npc.aiStyle = 44;
-			npc.lifeMax = 190;
-			npc.knockBackResist = 0f;
+			NPC.damage = 19;
+			NPC.defense = 4;
+			NPC.aiStyle = 44;
+			NPC.lifeMax = 190;
+			NPC.knockBackResist = 0f;
 			
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
@@ -37,20 +37,20 @@ namespace TrelamiumTwo.Content.NPCs.Enemies.Desert
 		}
 		public override void FindFrame(int frameHeight)
 		{
-			npc.spriteDirection = -npc.direction;
-			npc.frameCounter++;
+			NPC.spriteDirection = -NPC.direction;
+			NPC.frameCounter++;
 			int frameRate = 3;
 			if (frameY > 6)
 			{
 				frameY = 0;
 			}
-			if (npc.frameCounter > frameRate)
+			if (NPC.frameCounter > frameRate)
 			{
 				frameY++;
 
-				npc.frameCounter = 0;
+				NPC.frameCounter = 0;
 			}
-			npc.frame.Y = frameY * frameHeight;
+			NPC.frame.Y = frameY * frameHeight;
 		}
 	}
 }

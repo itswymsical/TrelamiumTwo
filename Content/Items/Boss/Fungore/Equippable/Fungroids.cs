@@ -14,12 +14,12 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore.Equippable
             => Tooltip.SetDefault("Multiplies damage by 12%, in trade reduces health by 12%" + "\nAdditionally, mushrooms heal x3 more health");
         public override void SetDefaults()
         {
-            item.width = item.height = 34;
-            item.rare = ItemRarityID.Expert;
-            item.expert = item.expertOnly = true;
-            item.accessory = true;
+            Item.width = Item.height = 34;
+            Item.rare = ItemRarityID.Expert;
+            Item.expert = Item.expertOnly = true;
+            Item.accessory = true;
 
-            item.value = Item.sellPrice(gold: 1, silver: 20);
+            Item.value = Item.sellPrice(gold: 1, silver: 20);
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

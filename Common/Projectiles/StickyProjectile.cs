@@ -6,7 +6,7 @@ namespace TrelamiumTwo.Common.Projectiles
 {
 	public abstract class StickyProjectile : ModProjectile
 	{
-		protected NPC Target => Main.npc[(int)projectile.ai[1]];
+		protected NPC Target => Main.npc[(int)Projectile.ai[1]];
 
 		protected bool stickToNPC;
 		protected bool stickToTile;
@@ -24,35 +24,35 @@ namespace TrelamiumTwo.Common.Projectiles
 			{
 				if (Target.active && !Target.dontTakeDamage)
 				{
-					projectile.tileCollide = false;
+					// projectile.tileCollide = false;
 
-					projectile.Center = Target.Center - offset;
+					Projectile.Center = Target.Center - offset;
 
-					projectile.gfxOffY = Target.gfxOffY;
+					Projectile.gfxOffY = Target.gfxOffY;
 				}
 				else
 				{
-					projectile.Kill();
+					Projectile.Kill();
 				}
 			}
 
 			if (stickingToTile || stickingToNPC)
-				projectile.rotation = oldRotation;
+				Projectile.rotation = oldRotation;
 		}
 
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
 			if (!stickingToNPC && !stickingToTile && stickToNPC)
 			{
-				projectile.ai[1] = target.whoAmI;
+				Projectile.ai[1] = target.whoAmI;
 
-				oldRotation = projectile.rotation;
+				oldRotation = Projectile.rotation;
 
-				offset = target.Center - projectile.Center + (projectile.velocity * 0.75f);
+				offset = target.Center - Projectile.Center + (Projectile.velocity * 0.75f);
 
 				stickingToNPC = true;
 
-				projectile.netUpdate = true;
+				Projectile.netUpdate = true;
 			}
 			else
 			{
@@ -64,9 +64,9 @@ namespace TrelamiumTwo.Common.Projectiles
 		{
 			if (!stickingToTile && !stickingToNPC && stickToTile)
 			{
-				oldRotation = projectile.rotation;
+				oldRotation = Projectile.rotation;
 
-				projectile.velocity = Vector2.Zero;
+				Projectile.velocity = Vector2.Zero;
 
 				stickingToTile = true;
 			}
@@ -83,10 +83,10 @@ namespace TrelamiumTwo.Common.Projectiles
 			{
 				Projectile currentProjectile = Main.projectile[i];
 
-				if (i != projectile.whoAmI 
+				if (i != Projectile.whoAmI 
 					&& currentProjectile.active 
 					&& currentProjectile.owner == Main.myPlayer
-					&& currentProjectile.type == projectile.type 
+					&& currentProjectile.type == Projectile.type 
 					&& currentProjectile.ai[0] == 1f 
 					&& currentProjectile.ai[1] == Target.whoAmI
 				) 

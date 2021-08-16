@@ -15,13 +15,13 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
+			Item.width = 32;
+			Item.height = 22;
 
-			item.defense = 2;
+			Item.defense = 2;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 3);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 3);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<WildWarriorGarb>() && legs.type == ModContent.ItemType<WildWarriorGreaves>();
@@ -34,11 +34,7 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<WildlifeFragment>(), 6);
-			recipe.AddTile(TileID.LivingLoom);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<WildlifeFragment>(), 6).AddTile(TileID.LivingLoom).Register();
 		}
 	}
 }

@@ -15,15 +15,15 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 
 		public override void SetDefaults()
 		{
-            item.value = Item.sellPrice(silver: 2);
-            item.rare = ItemRarityID.Blue;
-            item.defense = 2;
+            Item.value = Item.sellPrice(silver: 2);
+            Item.rare = ItemRarityID.Blue;
+            Item.defense = 2;
 		} 
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
             => body.type == ModContent.ItemType<VikingLamellar>() && legs.type == ModContent.ItemType<VikingBrogues>();
 
-        public override void UpdateAccessory(Player player, bool hideVisual) => player.meleeCrit += 5;
+        public override void UpdateAccessory(Player player, bool hideVisual) => player.GetCritChance(DamageClass.Melee) += 5;
 
         public override void UpdateArmorSet(Player player)
         {
@@ -36,13 +36,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Viking
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Leather, 6);
-            recipe.AddIngredient(ItemID.Chain, 4);
-            recipe.AddIngredient(ItemID.IceBlock, 8);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Leather, 6).AddIngredient(ItemID.Chain, 4).AddIngredient(ItemID.IceBlock, 8).AddTile(TileID.Anvils).Register();
         }
     }
 }

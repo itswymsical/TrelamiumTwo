@@ -17,13 +17,13 @@ namespace TrelamiumTwo.Common.Players
         {
             if (gleamingNectar)
             {
-                player.lifeRegen += 4;
-                player.manaRegen += 4;
+                Player.lifeRegen += 4;
+                Player.manaRegen += 4;
             }
             if (solarAura)
             {
-                if (player.lavaWet)
-                    player.statDefense %= 10;
+                if (Player.lavaWet)
+                    Player.statDefense %= 10;
             }
         }
     }

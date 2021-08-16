@@ -11,6 +11,7 @@ using TrelamiumTwo.Content.Items.Boss.Fungore;
 using TrelamiumTwo.Content.Projectiles.Melee;
 using TrelamiumTwo.Core;
 using TrelamiumTwo.Helpers;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 {
@@ -27,20 +28,20 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private States State
         {
-            get => (States)npc.ai[0];
-            set => npc.ai[0] = (int)value;
+            get => (States)NPC.ai[0];
+            set => NPC.ai[0] = (int)value;
         }
 
         private float AttackCooldown
         {
-            get => npc.ai[1];
-            set => npc.ai[1] = value;
+            get => NPC.ai[1];
+            set => NPC.ai[1] = value;
         }
 
         private float TimeGrounded
         {
-            get => npc.ai[2];
-            set => npc.ai[2] = value;
+            get => NPC.ai[2];
+            set => NPC.ai[2] = value;
         }
 
         private Player player;
@@ -61,42 +62,42 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         {
             DisplayName.SetDefault("Fungore");
 
-            Main.npcFrameCount[npc.type] = 16;
+            Main.npcFrameCount[NPC.type] = 16;
         }
 
         public override void SetDefaults()
         {
-            npc.boss = true;
-            npc.lavaImmune = true;
+            NPC.boss = true;
+            NPC.lavaImmune = true;
 
-            npc.width = npc.height = 88;
+            NPC.width = NPC.height = 88;
 
             drawOffsetY = 22;
 
-            npc.lifeMax = 1640;
-            npc.defense = 5;
-            npc.damage = 15;
+            NPC.lifeMax = 1640;
+            NPC.defense = 5;
+            NPC.damage = 15;
 
-            npc.knockBackResist = 0f;
+            NPC.knockBackResist = 0f;
 
-            npc.aiStyle = -1;
+            NPC.aiStyle = -1;
             aiType = -1;
 
-            npc.HitSound = SoundID.DD2_OgreHurt;
-            npc.DeathSound = SoundID.DD2_SkeletonDeath;
+            NPC.HitSound = SoundID.DD2_OgreHurt;
+            NPC.DeathSound = SoundID.DD2_SkeletonDeath;
             bossBag = ModContent.ItemType<FungoreBag>();
-            npc.value = Item.buyPrice(gold: 1);
+            NPC.value = Item.buyPrice(gold: 1);
             //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FungalFracas");
             //musicPriority = MusicPriority.BossMedium;
         }
 
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = State == States.Punching ? punchDirection : npc.direction;
+            NPC.spriteDirection = State == States.Punching ? punchDirection : NPC.direction;
 
-            npc.frame.Width = 138;
-            npc.frame.Height = 134;
-            npc.frameCounter++;
+            NPC.frame.Width = 138;
+            NPC.frame.Height = 134;
+            NPC.frameCounter++;
 
             int frameRate = 4;
             // Make the actual punch last slightly longer.
@@ -120,11 +121,11 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 frameRate = 30;
             }
-            if (npc.frameCounter > frameRate)
+            if (NPC.frameCounter > frameRate)
             {
                 frameY++;
 
-                npc.frameCounter = 0;
+                NPC.frameCounter = 0;
             }
 
             frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 3;
@@ -141,21 +142,21 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 frameY = 0;
             }
-            npc.frame.Y = frameY * frameHeight;
-            npc.frame.X = frameX * npc.frame.Width;
+            NPC.frame.Y = frameY * frameHeight;
+            NPC.frame.X = frameX * NPC.frame.Width;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.625f * bossLifeScale);
-            float damage = npc.damage;
-            npc.damage += (int)(damage * .15f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.625f * bossLifeScale);
+            float damage = NPC.damage;
+            NPC.damage += (int)(damage * .15f);
         }
 
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ItemID.LesserHealingPotion;
-            Item.NewItem(npc.Hitbox, ItemID.Mushroom, Main.rand.Next(2, 7));
+            Item.NewItem(NPC.Hitbox, ItemID.Mushroom, Main.rand.Next(2, 7));
 
             if (Main.netMode == NetmodeID.Server)
             {
@@ -170,21 +171,21 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             int choice = Main.rand.Next(3);
             if (Main.expertMode)
             {
-                npc.DropBossBags();
+                NPC.DropBossBags();
             }
             else
             {
                 if (choice == 0)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Boss.Fungore.MycelialWarhammer>());
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Boss.Fungore.MycelialWarhammer>());
                 }
                 else if (choice == 1)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<ToadstoolClusterclot>());
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<ToadstoolClusterclot>());
                 }
                 else if (choice == 2)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<FunguyStaff>());
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<FunguyStaff>());
                 }
             }
         }
@@ -202,9 +203,9 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
 
         private void HandleStates()
         {
-            npc.TargetClosest();
+            NPC.TargetClosest();
 
-            player = Main.player[npc.target];
+            player = Main.player[NPC.target];
 
             switch (State)
             {
@@ -228,16 +229,16 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         private void CheckPlatform(Player player) // credits to Spirit Mod :sex:
         {
             bool onplatform = true;
-            for (int i = (int)npc.position.X; i < npc.position.X + npc.width; i += npc.height / 2)
+            for (int i = (int)NPC.position.X; i < NPC.position.X + NPC.width; i += NPC.height / 2)
             {
-                Tile tile = Framing.GetTileSafely(new Point((int)npc.position.X / 16, (int)(npc.position.Y + npc.height + 8) / 16));
+                Tile tile = Framing.GetTileSafely(new Point((int)NPC.position.X / 16, (int)(NPC.position.Y + NPC.height + 8) / 16));
                 if (!TileID.Sets.Platforms[tile.type])
                     onplatform = false;
             }
-            if (onplatform && (npc.Center.Y < player.position.Y - 20))
-                npc.noTileCollide = true;
+            if (onplatform && (NPC.Center.Y < player.position.Y - 20))
+                NPC.noTileCollide = true;
             else
-                npc.noTileCollide = false;
+                NPC.noTileCollide = false;
         }
         private void HandleAttacks()
         {
@@ -249,16 +250,16 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             {
                 const float minPunchDistance = 120;
                 // Punch if the player is close enough to Fungore.
-                if (player.Distance(npc.Center) < minPunchDistance && (Main.rand.Next(20) == 0) || (Main.rand.Next(52) == 0))
+                if (player.Distance(NPC.Center) < minPunchDistance && (Main.rand.Next(20) == 0) || (Main.rand.Next(52) == 0))
                 {
-                    punchDirection = Math.Sign(player.position.X - npc.position.X);
+                    punchDirection = Math.Sign(player.position.X - NPC.position.X);
 
                     frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
 
                     State = States.Punching;
                     AttackCooldown = 0;
                 }
-                if (player.Distance(npc.Center) > 220f && (Main.rand.Next(40) == 0) || (Main.rand.Next(70) == 0))
+                if (player.Distance(NPC.Center) > 220f && (Main.rand.Next(40) == 0) || (Main.rand.Next(70) == 0))
                 {
                     frameY = 0;
 
@@ -266,7 +267,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                     AttackCooldown = 0;
                 }
             
-                if (npc.velocity.X == 0 && AttackCooldown > 60)
+                if (NPC.velocity.X == 0 && AttackCooldown > 60)
                 {
                     State = States.SuperJumping;
                     AttackCooldown = 0;
@@ -288,14 +289,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 State = States.SuperJumping;
                 if (++AITimer == 220)
                 {
-                    npc.active = false;
-                    npc.TargetClosest(false);
+                    // npc.active = false;
+                    NPC.TargetClosest(false);
                 }
             }
         }
         private void HandleCollision(int maxTime, float jumpHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
                 TimeGrounded++;
             }
@@ -304,86 +305,86 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
                 TimeGrounded = 0;
             }
 
-            if (TimeGrounded > maxTime && npc.collideX && npc.position.X == npc.oldPosition.X)
+            if (TimeGrounded > maxTime && NPC.collideX && NPC.position.X == NPC.oldPosition.X)
             {
-                npc.velocity.Y = -jumpHeight;
+                NPC.velocity.Y = -jumpHeight;
             }
 
-            Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY);
+            Collision.StepUp(ref NPC.position, ref NPC.velocity, NPC.width, NPC.height, ref NPC.stepSpeed, ref NPC.gfxOffY);
         }
         private void Walk()
         {
             const float maxSpeed = 2.7f;
 
-            if (npc.velocity.X < -maxSpeed || npc.velocity.X > maxSpeed)
+            if (NPC.velocity.X < -maxSpeed || NPC.velocity.X > maxSpeed)
             {
-                if (npc.velocity.Y == 0f)
+                if (NPC.velocity.Y == 0f)
                 {
-                    npc.velocity *= 0.8f;
+                    NPC.velocity *= 0.8f;
                 }
             }
             else
             {
-                if (npc.velocity.X < maxSpeed && npc.direction == 1)
+                if (NPC.velocity.X < maxSpeed && NPC.direction == 1)
                 {
-                    npc.velocity.X += 0.07f;
+                    NPC.velocity.X += 0.07f;
                 }
 
-                if (npc.velocity.X > -maxSpeed && npc.direction == -1)
+                if (NPC.velocity.X > -maxSpeed && NPC.direction == -1)
                 {
-                    npc.velocity.X -= 0.07f;
+                    NPC.velocity.X -= 0.07f;
                 }
 
-                npc.velocity.X = MathHelper.Clamp(npc.velocity.X, -maxSpeed, maxSpeed);
+                NPC.velocity.X = MathHelper.Clamp(NPC.velocity.X, -maxSpeed, maxSpeed);
             }
-            Dust.NewDust(npc.oldPosition, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), npc.oldVelocity.X, npc.oldVelocity.Y, 0, default, 1f);
+            Dust.NewDust(NPC.oldPosition, NPC.width, NPC.height, ModContent.DustType<Dusts.Mushroom>(), NPC.oldVelocity.X, NPC.oldVelocity.Y, 0, default, 1f);
         }
         private void Leap()
         {
             const float leapVelocity = 8.5f;
-            npc.noTileCollide = true;
-            if (npc.velocity.X < -leapVelocity || npc.velocity.X > leapVelocity)
+            NPC.noTileCollide = true;
+            if (NPC.velocity.X < -leapVelocity || NPC.velocity.X > leapVelocity)
             {
-                if (npc.velocity.Y == 0f)
+                if (NPC.velocity.Y == 0f)
                 {
-                    npc.velocity *= 3f;
+                    NPC.velocity *= 3f;
                 }
             }
             else
             {
                 if (!(frameY >= 6 && State == States.SuperJumping))
                 {
-                    if (npc.velocity.X < leapVelocity && npc.direction == 1)
+                    if (NPC.velocity.X < leapVelocity && NPC.direction == 1)
                     {
-                        npc.velocity.X += 2f;
+                        NPC.velocity.X += 2f;
                     }
 
-                    if (npc.velocity.X > -leapVelocity && npc.direction == -1)
+                    if (NPC.velocity.X > -leapVelocity && NPC.direction == -1)
                     {
-                        npc.velocity.X -= 2f;
+                        NPC.velocity.X -= 2f;
                     }
                 }
-                npc.velocity.X = MathHelper.Clamp(npc.velocity.X, -leapVelocity, leapVelocity);
+                NPC.velocity.X = MathHelper.Clamp(NPC.velocity.X, -leapVelocity, leapVelocity);
             }
         }
         private void Punch()
         {
             if (frameY == 3)
-                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreAttack, NPC.position);
 
             if (frameY == 4 || frameY == 5)
             {
-                npc.velocity.X += punchDirection * 1.75f;
-                npc.velocity.X = MathHelper.Clamp(npc.velocity.X, -6f, 6f);
+                NPC.velocity.X += punchDirection * 1.75f;
+                NPC.velocity.X = MathHelper.Clamp(NPC.velocity.X, -6f, 6f);
             }
             else
             {
-                npc.velocity.X *= 0.95f;
+                NPC.velocity.X *= 0.95f;
             }
 
-            if (npc.velocity.X != 0f)
+            if (NPC.velocity.X != 0f)
             {
-                var scaleMult = Math.Abs(npc.velocity.X) * 0.05f;
+                var scaleMult = Math.Abs(NPC.velocity.X) * 0.05f;
 
                 scale.X += scaleMult;
 
@@ -394,7 +395,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
 
             // Go back to walking after finishing punching or if it collides with a side tile.
-            if (frameY > 10 || npc.collideX)
+            if (frameY > 10 || NPC.collideX)
             {
                 frameY = 0; // Make sure to reset the frame. Will cause weird looks if you dont.
                 State = States.Walking; 
@@ -405,35 +406,35 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             Walk();
             if (frameY > 2 && frameY < 4)
             {
-                npc.velocity.Y = Main.rand.NextFloat(-9f, -8f);
-                npc.TargetClosest();
-                npc.netUpdate = true;
-                if (npc.velocity.Y >= 0f)
+                NPC.velocity.Y = Main.rand.NextFloat(-9f, -8f);
+                NPC.TargetClosest();
+                NPC.netUpdate = true;
+                if (NPC.velocity.Y >= 0f)
                 {
-                    Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+                    Collision.StepUp(ref NPC.position, ref NPC.velocity, NPC.width, NPC.height, ref NPC.stepSpeed, ref NPC.gfxOffY, 1, false, 1);
                 }
             }
             if (frameY == 4)
-                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);              
+                SoundEngine.PlaySound(SoundID.DD2_OgreAttack, NPC.position);              
          
-            if (frameY >= 8 && (npc.collideY || npc.collideX))
+            if (frameY >= 8 && (NPC.collideY || NPC.collideX))
             {
-                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.position);
                 Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 3f;
 
-                Projectile.NewProjectile(new Vector2(npc.Center.X, npc.Center.Y + 40), new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSmoke>(), npc.damage / 2, 16f, Main.myPlayer);
+                Projectile.NewProjectile(new Vector2(NPC.Center.X, NPC.Center.Y + 40), new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSmoke>(), NPC.damage / 2, 16f, Main.myPlayer);
                 for (int i = 0; i < 6; ++i)
                 {
-                    var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
+                    var index = Projectile.NewProjectile(NPC.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(NPC.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
                 }
 
                 frameY = 0;
                 State = States.Walking;
             }
-            if (frameY > 15 && (npc.collideY || npc.collideX))
+            if (frameY > 15 && (NPC.collideY || NPC.collideX))
             {
-                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.position);
                 frameY = 0; 
                 State = States.Walking;
             }
@@ -442,7 +443,7 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         {
             if (frameY < 4)
             {
-                npc.velocity.X = 0;
+                NPC.velocity.X = 0;
             }
             else
             {
@@ -450,53 +451,53 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
             }
             if (frameY > 2 && frameY < 4)
             {
-                npc.noTileCollide = false;
-                npc.velocity.Y = Main.rand.NextFloat(-13f, -12f);
-                npc.TargetClosest();
-                npc.netUpdate = true;
-                if (npc.velocity.Y >= 0f)
+                // npc.noTileCollide = false;
+                NPC.velocity.Y = Main.rand.NextFloat(-13f, -12f);
+                NPC.TargetClosest();
+                NPC.netUpdate = true;
+                if (NPC.velocity.Y >= 0f)
                 {
-                    Collision.StepUp(ref npc.position, ref npc.velocity, npc.width, npc.height, ref npc.stepSpeed, ref npc.gfxOffY, 1, false, 1);
+                    Collision.StepUp(ref NPC.position, ref NPC.velocity, NPC.width, NPC.height, ref NPC.stepSpeed, ref NPC.gfxOffY, 1, false, 1);
                 }
                 if (flag)
                 {
-                    npc.velocity.Y = Main.rand.NextFloat(-20f, -20f);
+                    NPC.velocity.Y = Main.rand.NextFloat(-20f, -20f);
                 }
             }
 
             if (frameY == 4)
-                Main.PlaySound(SoundID.DD2_OgreAttack, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreAttack, NPC.position);
 
-            if (frameY >= 8 && (npc.collideY || npc.collideX))
+            if (frameY >= 8 && (NPC.collideY || NPC.collideX))
             {
-                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.position);
                 Main.LocalPlayer.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = 5f;
 
-                Projectile.NewProjectile(npc.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSlam>(), npc.damage / 2, 16f, Main.myPlayer);
+                Projectile.NewProjectile(NPC.position, new Vector2(0), ModContent.ProjectileType<Projectiles.FungoreSlam>(), NPC.damage / 2, 16f, Main.myPlayer);
                 for (int i = 0; i < 12; ++i)
                 {
-                    var index = Projectile.NewProjectile(npc.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(npc.damage * 0.25f), 0.5f);
+                    var index = Projectile.NewProjectile(NPC.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 12f, ModContent.ProjectileType<Mushroom>(), (int)(NPC.damage * 0.25f), 0.5f);
                     Main.projectile[index].hostile = true;
                 }
                 if (Main.rand.Next(5) == 0)
                 {
                     for (int i = 0; i < 2; ++i)
                     {
-                        NPC.NewNPC((int)npc.position.X + Main.rand.Next(-i * -20, i * 20), (int)npc.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), 0, i);
+                        NPC.NewNPC((int)NPC.position.X + Main.rand.Next(-i * -20, i * 20), (int)NPC.oldPosition.Y, ModContent.NPCType<Enemies.Forest.MushroomSlime>(), 0, i);
                     }
                 }
                 
                 frameY = 0;
                 State = States.Walking;
             }
-            if (frameY > 15 && (npc.collideY || npc.collideX))
+            if (frameY > 15 && (NPC.collideY || NPC.collideX))
             {
-                Main.PlaySound(SoundID.DD2_OgreGroundPound, npc.position);
+                SoundEngine.PlaySound(SoundID.DD2_OgreGroundPound, NPC.position);
                 frameY = 0;
                 State = States.Walking;
             }
         }
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) => npc.DrawNPCCenteredWithTexture(Main.npcTexture[npc.type], spriteBatch, drawColor);        
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor) => NPC.DrawNPCCenteredWithTexture(Main.npcTexture[NPC.type], spriteBatch, drawColor);        
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor) => HandleScreenText(spriteBatch);
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -540,16 +541,16 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int i = 1; i <= 5; i++)
                 {
-                    Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/Fungore/FungoreGore" + i));
+                    Gore.NewGore(NPC.Center, NPC.velocity, Mod.GetGoreSlot("Gores/Fungore/FungoreGore" + i));
                 }
             }
             
             for (int i = 0; i < 28; i++)
-                Dust.NewDust(npc.Center, npc.width, npc.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, -1f);
+                Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.Mushroom>(), hitDirection, -1f);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace TrelamiumTwo.Common.Players
     {    
         public void ShovelPickTile(int x, int y)
         {
-            int digTile = player.HeldItem.GetGlobalItem<Globals.GlobalTrelamiumItem>().digPower;
+            int digTile = Player.HeldItem.GetGlobalItem<Globals.GlobalTrelamiumItem>().digPower;
             for (int i = -1; i < 2; i++)
             {
                 int posx = x / 16 + i;
@@ -20,8 +20,8 @@ namespace TrelamiumTwo.Common.Players
                     && Main.tile[posx, y / 16].type != TileID.ShadowOrbs && Main.tile[x / 16, posy].type != TileID.ShadowOrbs
                     && Main.tile[posx, y / 16].type != TileID.Cactus && Main.tile[x / 16, posy].type != TileID.Cactus)
                 {
-                    player.PickTile(posx, y / 16, digTile);
-                    player.PickTile(x / 16, posy, digTile);
+                    Player.PickTile(posx, y / 16, digTile);
+                    Player.PickTile(x / 16, posy, digTile);
                 }
             }
         }

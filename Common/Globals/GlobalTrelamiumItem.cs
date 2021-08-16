@@ -29,12 +29,12 @@ namespace TrelamiumTwo.Common.Globals
         }
         public static int GetDigPower(int shovel)
         {
-            Item i = ModContent.GetModItem(shovel).item;
+            Item i = ModContent.GetModItem(shovel).Item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().digPower;
         }
         public static int GetShovelRadius(int shovel)
         {
-            Item i = ModContent.GetModItem(shovel).item;
+            Item i = ModContent.GetModItem(shovel).Item;
             return i.GetGlobalItem<GlobalTrelamiumItem>().radius;
         }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)

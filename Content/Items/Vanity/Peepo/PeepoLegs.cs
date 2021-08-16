@@ -17,10 +17,10 @@ namespace TrelamiumTwo.Content.Items.Vanity.Peepo
 
 		public override void SetDefaults()
 		{
-			item.width = item.height = 22;
-			item.value = Item.sellPrice(0);
-			item.rare = ItemRarityID.Cyan;
-			item.vanity = true;
+			Item.width = Item.height = 22;
+			Item.value = Item.sellPrice(0);
+			Item.rare = ItemRarityID.Cyan;
+			Item.vanity = true;
 		}
 	}
 }

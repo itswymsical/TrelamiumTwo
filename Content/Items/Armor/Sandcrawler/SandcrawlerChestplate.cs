@@ -14,24 +14,18 @@ namespace TrelamiumTwo.Content.Items.Armor.Sandcrawler
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Increases movement speed by 4%");
         public override void SetDefaults()
 		{
-			item.defense = 3;
+			Item.defense = 3;
 
-			item.width = 34;
-			item.height = 18;
+			Item.width = 34;
+			Item.height = 18;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 2, copper: 80);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 2, copper: 80);
 		}
 		public override void UpdateEquip(Player player) => player.moveSpeed += .04f;
         public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<HardenedCarapace>(), 2);
-			recipe.AddIngredient(ModContent.ItemType<AntlionChitin>(), 3);
-			recipe.AddIngredient(ModContent.ItemType<SandcrawlerShell>(), 2);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<HardenedCarapace>(), 2).AddIngredient(ModContent.ItemType<AntlionChitin>(), 3).AddIngredient(ModContent.ItemType<SandcrawlerShell>(), 2).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

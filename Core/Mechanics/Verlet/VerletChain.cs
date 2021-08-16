@@ -91,7 +91,7 @@ namespace TrelamiumTwo.Core.Mechanics.Verlet
 
         private void DrawPoints(SpriteBatch spriteBatch)
         {
-            Texture2D texture = ModContent.GetTexture("TestMod/Assets/Point");
+            Texture2D texture = ModContent.Request<Texture2D>("TestMod/Assets/Point");
 
             for (int i = 0; i < Points.Count; i++)
             {

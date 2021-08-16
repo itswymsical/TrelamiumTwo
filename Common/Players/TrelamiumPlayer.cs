@@ -52,32 +52,32 @@ namespace TrelamiumTwo.Common.Players
         }
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (player.ZoneForest() && Main.rand.NextBool(6))
+            if (Player.ZoneForest() && Main.rand.NextBool(6))
             {
                caughtType = ModContent.ItemType<Fleurer>();
             }
 
-            if (player.ZoneForest() && Main.rand.NextBool(5))
+            if (Player.ZoneForest() && Main.rand.NextBool(5))
             {
                 caughtType = ModContent.ItemType<Barkfish>();
             }
 
-            if (player.ZoneForest() && Main.rand.NextBool(5))
+            if (Player.ZoneForest() && Main.rand.NextBool(5))
             {
                 caughtType = ModContent.ItemType<ShreemCarp>();
             }
 
-            if (player.ZoneDesert && Main.rand.NextBool(11))
+            if (Player.ZoneDesert && Main.rand.NextBool(11))
             {
                 caughtType = ModContent.ItemType<UraeusEel>();
             }
 
-            if (player.ZoneDesert && Main.rand.NextBool(7))
+            if (Player.ZoneDesert && Main.rand.NextBool(7))
             {
                 caughtType = ModContent.ItemType<Sunfish>();
             }
 
-            if (player.ZoneDesert && Main.rand.NextBool(5))
+            if (Player.ZoneDesert && Main.rand.NextBool(5))
             {
                 caughtType = ModContent.ItemType<Scaracod>();
             }

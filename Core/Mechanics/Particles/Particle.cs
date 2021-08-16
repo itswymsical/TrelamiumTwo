@@ -28,7 +28,7 @@ namespace TrelamiumTwo.Core.Mechanics.Particles
             {
                 string texturePath = GetType().FullName.Replace(".", "/");
 
-                return ModContent.GetTexture(texturePath);
+                return ModContent.Request<Texture2D>(texturePath);
             }
         }
 

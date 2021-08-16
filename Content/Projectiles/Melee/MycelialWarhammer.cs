@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 
 using TrelamiumTwo.Helpers;
 using TrelamiumTwo.Core;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Content.Projectiles.Melee
 {
@@ -19,56 +20,56 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 		}
 		AIState State
 		{
-			get => (AIState)projectile.ai[0];
-			set => projectile.ai[0] = (int)value;
+			get => (AIState)Projectile.ai[0];
+			set => Projectile.ai[0] = (int)value;
 		}
 		private bool IsMaxCharge;
 		private readonly float MaxChargeTime = 35f;
-		private float RotationStart => MathHelper.PiOver2 + (projectile.direction == -1 ? MathHelper.Pi : 0);
-		private float RotationOffset => projectile.direction == 1 ? 0 : MathHelper.PiOver2;
+		private float RotationStart => MathHelper.PiOver2 + (Projectile.direction == -1 ? MathHelper.Pi : 0);
+		private float RotationOffset => Projectile.direction == 1 ? 0 : MathHelper.PiOver2;
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 74;
-			projectile.penetrate = -1;
+			Projectile.width = Projectile.height = 74;
+			Projectile.penetrate = -1;
 
-			projectile.melee =
-				projectile.friendly =
-				projectile.netImportant =
-				projectile.ownerHitCheck =
-				projectile.manualDirectionChange = true;
+			Projectile.DamageType = DamageClass.Melee;
+				Projectile.friendly =
+				Projectile.netImportant =
+				Projectile.ownerHitCheck =
+				Projectile.manualDirectionChange = true;
 
-			projectile.tileCollide = IsMaxCharge = false;
+			Projectile.tileCollide = IsMaxCharge = false;
 		}
 		private Player player;
 		public override bool PreAI()
 		{
-			Player owner = Main.player[projectile.owner];
+			Player owner = Main.player[Projectile.owner];
 			if (!owner.active || owner.dead)
 			{
-				projectile.Kill();
+				Projectile.Kill();
 			}
 
 			if (State == AIState.Swinging)
 			{
-				projectile.ai[1] -= 4;
+				Projectile.ai[1] -= 4;
 
-				if (projectile.ai[1] <= 0)
+				if (Projectile.ai[1] <= 0)
 				{
-					projectile.Kill();
+					Projectile.Kill();
 				}
 			}
 			else
 			{
-				if (++projectile.ai[1] >= MaxChargeTime)
+				if (++Projectile.ai[1] >= MaxChargeTime)
 				{
 					IsMaxCharge = true;
-					projectile.ai[1] = MaxChargeTime;
+					Projectile.ai[1] = MaxChargeTime;
 				}
 
-				if (Main.myPlayer == projectile.owner && !owner.channel && projectile.ai[1] >= (MaxChargeTime / 2))
+				if (Main.myPlayer == Projectile.owner && !owner.channel && Projectile.ai[1] >= (MaxChargeTime / 2))
 				{
 					State = AIState.Swinging;
-					projectile.netUpdate = true;
+					Projectile.netUpdate = true;
 				}
 			}
 
@@ -83,42 +84,42 @@ namespace TrelamiumTwo.Content.Projectiles.Melee
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
+			SoundEngine.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
 
-			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 60);
+			Helper.SpawnDustCloud(Projectile.position, Projectile.width, Projectile.height, 0, 60);
 		}
 		public override void Kill(int timeLeft)
 		{
-			player = Main.player[projectile.owner];
-			Main.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
-			if (IsMaxCharge && Main.myPlayer == projectile.owner)
+			player = Main.player[Projectile.owner];
+			SoundEngine.PlaySound(SoundID.DD2_MonkStaffGroundImpact, -1, -1);
+			if (IsMaxCharge && Main.myPlayer == Projectile.owner)
 			{
 				for (int i = 0; i < 3; ++i)
 				{
-					Projectile.NewProjectile(projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(projectile.damage * 0.5f), 0.5f, projectile.owner);
+					Projectile.NewProjectile(Projectile.Center, -Vector2.UnitY.RotatedByRandom(MathHelper.PiOver2) * 8f, ModContent.ProjectileType<Mushroom>(), (int)(Projectile.damage * 0.5f), 0.5f, Projectile.owner);
 				}
 			}
 			player.GetModPlayer<Common.Players.TrelamiumPlayer>().ScreenShakeIntensity = .7f;
-			Helper.SpawnDustCloud(projectile.position, projectile.width, projectile.height, 0, 50);
+			Helper.SpawnDustCloud(Projectile.position, Projectile.width, Projectile.height, 0, 50);
 		}
 
 		private void SetProjectilePosition(Player owner)
 		{
-			projectile.spriteDirection = projectile.direction;
+			Projectile.spriteDirection = Projectile.direction;
 
 			Vector2 rotatedPoint = owner.RotatedRelativePoint(owner.MountedCenter);
 
-			projectile.rotation = RotationStart - (MathHelper.Pi / MaxChargeTime * projectile.ai[1]) * projectile.direction;
-			projectile.Center = rotatedPoint + (projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 60;
+			Projectile.rotation = RotationStart - (MathHelper.Pi / MaxChargeTime * Projectile.ai[1]) * Projectile.direction;
+			Projectile.Center = rotatedPoint + (Projectile.rotation - MathHelper.PiOver4 - RotationOffset).ToRotationVector2() * 60;
 		}
 
 		private void SetOwnerAnimation(Player owner)
 		{
 			owner.itemTime = owner.itemAnimation = 10;
 
-			owner.heldProj = projectile.whoAmI;
+			owner.heldProj = Projectile.whoAmI;
 
-			float currentAnimationFraction = projectile.ai[1] / MaxChargeTime;
+			float currentAnimationFraction = Projectile.ai[1] / MaxChargeTime;
 
 			if (currentAnimationFraction < 0.4f)
 				owner.bodyFrame.Y = owner.bodyFrame.Height * 3;

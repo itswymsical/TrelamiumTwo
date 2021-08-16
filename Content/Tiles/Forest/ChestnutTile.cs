@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 using TrelamiumTwo.Core;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Content.Tiles.Forest
 {
@@ -19,9 +20,9 @@ namespace TrelamiumTwo.Content.Tiles.Forest
         {
             texture = Assets.Tiles.Forest + "ChestnutTile";
 
-            return mod.Properties.Autoload;
+            return Mod.Properties.Autoload;
         }
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSpelunker[Type] = 
                 Main.tileContainer[Type] = 
@@ -39,7 +40,7 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.AfterPlacement_Hook), -1, 0, false);
             TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.LavaDeath = false;
+            // TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
@@ -60,11 +61,11 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             Chest.DestroyChest(i, j);
         }
         public override bool HasSmartInteract() => true;
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
             Tile tile = Main.tile[i, j];
-            Main.mouseRightRelease = false;
+            // Main.mouseRightRelease = false;
             int left = i;
             int top = j;
             if (tile.frameX % 36 != 0)
@@ -77,21 +78,21 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             }
             if (player.sign >= 0)
             {
-                Main.PlaySound(SoundID.MenuClose);
+                SoundEngine.PlaySound(SoundID.MenuClose);
                 player.sign = -1;
-                Main.editSign = false;
+                // Main.editSign = false;
                 Main.npcChatText = "";
             }
             if (Main.editChest)
             {
-                Main.PlaySound(SoundID.MenuTick);
-                Main.editChest = false;
+                SoundEngine.PlaySound(SoundID.MenuTick);
+                // Main.editChest = false;
                 Main.npcChatText = "";
             }
             if (player.editedChestName)
             {
                 NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
-                player.editedChestName = false;
+                // player.editedChestName = false;
             }
             bool isLocked = IsLockedChest(left, top);
             if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked)
@@ -100,7 +101,7 @@ namespace TrelamiumTwo.Content.Tiles.Forest
                 {
                     player.chest = -1;
                     Recipe.FindRecipes();
-                    Main.PlaySound(SoundID.MenuClose);
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                 }
                 else
                 {
@@ -117,16 +118,16 @@ namespace TrelamiumTwo.Content.Tiles.Forest
                     if (chest == player.chest)
                     {
                         player.chest = -1;
-                        Main.PlaySound(SoundID.MenuClose);
+                        SoundEngine.PlaySound(SoundID.MenuClose);
                     }
                     else
                     {
                         player.chest = chest;
                         Main.playerInventory = true;
-                        Main.recBigList = false;
+                        // Main.recBigList = false;
                         player.chestX = left;
                         player.chestY = top;
-                        Main.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
+                        SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
                     }
                     Recipe.FindRecipes();
                 }
@@ -198,7 +199,7 @@ namespace TrelamiumTwo.Content.Tiles.Forest
             Player player = Main.LocalPlayer;
             if (player.showItemIconText == "")
             {
-                player.showItemIcon = false;
+                // player.showItemIcon = false;
                 player.showItemIcon2 = 0;
             }
         }
@@ -208,29 +209,23 @@ namespace TrelamiumTwo.Content.Tiles.Forest
         public override string Texture => Assets.Tiles.Forest + "Chestnut";
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.White;
-            item.maxStack = 999;
+            Item.rare = ItemRarityID.White;
+            Item.maxStack = 999;
 
-            item.width = item.height = 24;
-            item.useAnimation = item.useTime = 18;
+            Item.width = Item.height = 24;
+            Item.useAnimation = Item.useTime = 18;
 
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useTurn = 
-                item.autoReuse = 
-                item.consumable = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTurn = 
+                Item.autoReuse = 
+                Item.consumable = true;
 
-            item.value = Item.sellPrice(copper: 80);
-            item.createTile = ModContent.TileType<ChestnutTile>();
+            Item.value = Item.sellPrice(copper: 80);
+            Item.createTile = ModContent.TileType<ChestnutTile>();
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Items.Materials.Leaf>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Items.Materials.Nut>(), 2);
-            recipe.AddIngredient(ItemID.Wood, 10);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Items.Materials.Leaf>(), 2).AddIngredient(ModContent.ItemType<Items.Materials.Nut>(), 2).AddIngredient(ItemID.Wood, 10).AddTile(TileID.WorkBenches).Register();
         }
     }
 }

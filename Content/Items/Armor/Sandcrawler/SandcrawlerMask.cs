@@ -16,13 +16,13 @@ namespace TrelamiumTwo.Content.Items.Armor.Sandcrawler
 		public override void SetStaticDefaults() => Tooltip.SetDefault("Increases critical strike chance by 2");
         public override void SetDefaults()
 		{
-			item.defense = 2;
+			Item.defense = 2;
 
-			item.width = 22;
-			item.height = 20;
+			Item.width = 22;
+			Item.height = 20;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 1, copper: 65);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 1, copper: 65);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<SandcrawlerChestplate>() && legs.type == ModContent.ItemType<SandcrawlerLeggings>();
@@ -40,14 +40,7 @@ namespace TrelamiumTwo.Content.Items.Armor.Sandcrawler
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<HardenedCarapace>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<AntlionChitin>(), 3);
-			recipe.AddIngredient(ItemID.AntlionMandible, 2);
-			recipe.AddIngredient(ModContent.ItemType<SandcrawlerShell>(), 3);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<HardenedCarapace>(), 1).AddIngredient(ModContent.ItemType<AntlionChitin>(), 3).AddIngredient(ItemID.AntlionMandible, 2).AddIngredient(ModContent.ItemType<SandcrawlerShell>(), 3).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

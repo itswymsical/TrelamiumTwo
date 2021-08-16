@@ -14,13 +14,13 @@ namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 		public override string Texture => Assets.Armor.BloomRose + "BlossomCrown";
 		public override void SetDefaults()
 		{
-			item.defense = 2;
+			Item.defense = 2;
 
-			item.width = 30;
-			item.height = 22;
+			Item.width = 30;
+			Item.height = 22;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 1, copper: 20);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 1, copper: 20);
 		}
 
 		public override void DrawHair(ref bool drawHair, ref bool drawAltHair) => drawHair = true;
@@ -36,13 +36,7 @@ namespace TrelamiumTwo.Content.Items.Armor.BloomRose
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2);
-			recipe.AddIngredient(ModContent.ItemType<Leaf>(), 6);
-			recipe.AddIngredient(ItemID.Wood, 20);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Materials.BloomRose>(), 2).AddIngredient(ModContent.ItemType<Leaf>(), 6).AddIngredient(ItemID.Wood, 20).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

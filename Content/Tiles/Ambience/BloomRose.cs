@@ -19,9 +19,9 @@ namespace TrelamiumTwo.Content.Tiles.Ambience
 		{
 			texture = Assets.Tiles.Ambience + "BloomRose";
 
-			return mod.Properties.Autoload;
+			return Mod.Properties.Autoload;
 		}
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileNoFail[Type] = true;
 			Main.tileSpelunker[Type] = true;

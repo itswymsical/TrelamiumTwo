@@ -15,22 +15,18 @@ namespace TrelamiumTwo.Content.Items.Armor.WildWarrior
 
 		public override void SetDefaults()
 		{
-			item.defense = 3;
+			Item.defense = 3;
 
-			item.width = 38;
-			item.height = 22;
+			Item.width = 38;
+			Item.height = 22;
 
-			item.rare = ItemRarityID.Blue;
-			item.value = Item.sellPrice(silver: 8);
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.sellPrice(silver: 8);
 		}
 
 		public override void AddRecipes()
 		{
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<WildlifeFragment>(), 10);
-			recipe.AddTile(TileID.LivingLoom);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<WildlifeFragment>(), 10).AddTile(TileID.LivingLoom).Register();
 		}
 	}
 }

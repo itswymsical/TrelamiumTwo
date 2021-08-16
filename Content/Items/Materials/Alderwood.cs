@@ -13,10 +13,10 @@ namespace TrelamiumTwo.Content.Items.Materials
 		public override string Texture => Assets.PlaceholderTexture;
         public override void SetDefaults()
 		{
-			item.width = item.height = 20;
-			item.maxStack = 999;
-			item.value = 0;
-			item.rare = ItemRarityID.White;
+			Item.width = Item.height = 20;
+			Item.maxStack = 999;
+			Item.value = 0;
+			Item.rare = ItemRarityID.White;
 		}
     }
 }

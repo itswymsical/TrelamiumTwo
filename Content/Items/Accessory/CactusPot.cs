@@ -16,21 +16,16 @@ namespace TrelamiumTwo.Content.Items.Accessory
 		}
 		public override void SetDefaults()
 		{
-			item.value = Item.sellPrice(silver: 5);
-			item.rare = ItemRarityID.White;
-			item.width = 16;
-			item.height = 26;
-			item.accessory = true;
+			Item.value = Item.sellPrice(silver: 5);
+			Item.rare = ItemRarityID.White;
+			Item.width = 16;
+			Item.height = 26;
+			Item.accessory = true;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) => player.thorns += .05f;
         public override void AddRecipes()
         {
-			var recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Cactus, 15);
-			recipe.AddIngredient(ItemID.ClayPot);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Cactus, 15).AddIngredient(ItemID.ClayPot).AddTile(TileID.WorkBenches).Register();
         }
     }
 }

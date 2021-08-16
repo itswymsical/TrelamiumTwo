@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Common.Projectiles
 {
@@ -11,40 +13,40 @@ namespace TrelamiumTwo.Common.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.friendly = true;
-			projectile.tileCollide = true;
+			Projectile.friendly = true;
+			Projectile.tileCollide = true;
 
 			stickToTile = true;
 			stickToNPC = true;
 
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 60;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 60;
 
-			projectile.timeLeft = 180;
-			projectile.penetrate = -1;
-			projectile.aiStyle = 0;
+			Projectile.timeLeft = 180;
+			Projectile.penetrate = -1;
+			Projectile.aiStyle = 0;
 		}
 
 		public override void AI()
 		{
 			if (!stickingToNPC)
 			{
-				projectile.ai[0]++;
+				Projectile.ai[0]++;
 
-				if (projectile.ai[0] >= 20f)
-					projectile.velocity.Y += 0.2f;
+				if (Projectile.ai[0] >= 20f)
+					Projectile.velocity.Y += 0.2f;
 
-				projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) / 25f * projectile.direction;
+				Projectile.rotation += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) / 25f * Projectile.direction;
 			}
 
-			if (projectile.timeLeft < 255 / 5)
-				projectile.alpha += 5;
+			if (Projectile.timeLeft < 255 / 5)
+				Projectile.alpha += 5;
 
 			base.AI();
 		}
@@ -53,8 +55,8 @@ namespace TrelamiumTwo.Common.Projectiles
 		{
 			if (!stickingToTile)
 			{
-				Main.PlaySound(SoundID.Dig, projectile.position);
-				Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+				SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
 			}
 
 			return base.OnTileCollide(oldVelocity);
@@ -62,9 +64,9 @@ namespace TrelamiumTwo.Common.Projectiles
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
 		{
-			projectile.DrawProjectileTrailCentered(spriteBatch, drawColor);
+			Projectile.DrawProjectileTrailCentered(spriteBatch, drawColor);
 
-			return projectile.DrawProjectileCentered(spriteBatch, drawColor);
+			return Projectile.DrawProjectileCentered(spriteBatch, drawColor);
 		}
 	}
 }

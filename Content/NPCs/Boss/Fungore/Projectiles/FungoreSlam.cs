@@ -10,28 +10,28 @@ namespace TrelamiumTwo.Content.NPCs.Boss.Fungore.Projectiles
         public override string Texture => Assets.NPCs.Fungore + "FungoreSlam";
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[Projectile.type] = 6;
         }
         public override void SetDefaults()
         {
-            projectile.width = 244;
-            projectile.height = 208;
-            projectile.hostile = true;
-            projectile.tileCollide = false;
+            Projectile.width = 244;
+            Projectile.height = 208;
+            Projectile.hostile = true;
+            // projectile.tileCollide = false;
         }
         public override void AI()
         {
-            projectile.frameCounter++;
-            if (projectile.frameCounter >= 6)
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter >= 6)
             {
-                projectile.frame++;
-                projectile.frameCounter = 0;
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
             }
 
-            if (projectile.frame > 5)
+            if (Projectile.frame > 5)
             {
-                projectile.Kill();
-                projectile.frame = 0;
+                Projectile.Kill();
+                Projectile.frame = 0;
             }
         }
     }

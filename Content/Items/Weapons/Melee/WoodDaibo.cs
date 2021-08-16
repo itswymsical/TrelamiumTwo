@@ -14,26 +14,26 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
         public override void SetStaticDefaults() => Tooltip.SetDefault("Destroys weak projectiles that come into contact");
 		public override void SetDefaults()
 		{
-			item.width = item.height = 44;
-			item.rare = ItemRarityID.White;
-			item.value = Item.sellPrice(copper: 20);
+			Item.width = Item.height = 44;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(copper: 20);
 
-			item.crit = 2;
-			item.damage = 8;
-			item.knockBack = 6f;
+			Item.crit = 2;
+			Item.damage = 8;
+			Item.knockBack = 6f;
 
-			item.useTime = item.useAnimation = 20;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			Item.useTime = Item.useAnimation = 20;
+			Item.useStyle = ItemUseStyleID.Shoot;
 
-			item.melee =
-				item.noMelee =
+			Item.DamageType =
+				// item.noMelee =
 				item.channel =
 				item.noUseGraphic = true;
 
-			item.shootSpeed = 7f;
+			Item.shootSpeed = 7f;
 
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.WoodDaibo>();
-			item.UseSound = SoundID.Item1;
+			Item.shoot = ModContent.ProjectileType<Projectiles.Melee.WoodDaibo>();
+			Item.UseSound = SoundID.Item1;
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -44,11 +44,7 @@ namespace TrelamiumTwo.Content.Items.Weapons.Melee
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Wood, 15);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Wood, 15).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

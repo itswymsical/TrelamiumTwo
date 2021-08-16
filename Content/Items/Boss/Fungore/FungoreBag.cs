@@ -15,11 +15,11 @@ namespace TrelamiumTwo.Content.Items.Boss.Fungore
 
 		public override void SetDefaults()
 		{
-			item.maxStack = 999;
-			item.consumable = true;
-			item.width = item.height = 24;
-			item.rare = ItemRarityID.Expert;
-			item.expert = true;
+			Item.maxStack = 999;
+			Item.consumable = true;
+			Item.width = Item.height = 24;
+			Item.rare = ItemRarityID.Expert;
+			Item.expert = true;
 		}
 		public override bool CanRightClick() => true;
 		

@@ -24,14 +24,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.FoodLegion
 
         private States State
         {
-            get => (States)npc.ai[0];
-            set => npc.ai[0] = (int)value;
+            get => (States)NPC.ai[0];
+            set => NPC.ai[0] = (int)value;
         }
 
         private float AttackCooldown
         {
-            get => npc.ai[1];
-            set => npc.ai[1] = value;
+            get => NPC.ai[1];
+            set => NPC.ai[1] = value;
         }
 
         private Player player;
@@ -45,29 +45,29 @@ namespace TrelamiumTwo.Content.NPCs.Boss.FoodLegion
         {
             DisplayName.SetDefault("Food Legion");
 
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[NPC.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.boss = true;
-            npc.lavaImmune = true;
+            NPC.boss = true;
+            NPC.lavaImmune = true;
 
-            npc.width = npc.height = 94;
+            NPC.width = NPC.height = 94;
 
-            npc.lifeMax = 5000;
-            npc.defense = 16;
-            npc.damage = 22;
+            NPC.lifeMax = 5000;
+            NPC.defense = 16;
+            NPC.damage = 22;
 
-            npc.knockBackResist = 0f;
+            NPC.knockBackResist = 0f;
 
-            npc.aiStyle = -1;
+            NPC.aiStyle = -1;
             aiType = -1;
 
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
             //bossBag = ModContent.ItemType<FungoreBag>();
-            npc.value = Item.buyPrice(gold: 1);
+            NPC.value = Item.buyPrice(gold: 1);
         }
         public override void AI()
         {
@@ -75,19 +75,19 @@ namespace TrelamiumTwo.Content.NPCs.Boss.FoodLegion
         }
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = State == States.Punching ? punchDirection : npc.direction;
+            NPC.spriteDirection = State == States.Punching ? punchDirection : NPC.direction;
 
-            npc.frame.Width = 94;
-            npc.frame.Height = 96;
-            npc.frameCounter++;
+            NPC.frame.Width = 94;
+            NPC.frame.Height = 96;
+            NPC.frameCounter++;
 
             int frameRate = 4;
 
-            if (npc.frameCounter > frameRate)
+            if (NPC.frameCounter > frameRate)
             {
                 frameY++;
 
-                npc.frameCounter = 0;
+                NPC.frameCounter = 0;
             }
 
             frameX = State == States.Walking ? 0 : State == States.Punching ? 1 : State == States.Jumping ? 2 : 3;
@@ -96,14 +96,14 @@ namespace TrelamiumTwo.Content.NPCs.Boss.FoodLegion
             {
                 frameY = 0;
             }
-            npc.frame.Y = frameY * frameHeight;
-            npc.frame.X = frameX * npc.frame.Width;
+            NPC.frame.Y = frameY * frameHeight;
+            NPC.frame.X = frameX * NPC.frame.Width;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * .5f * bossLifeScale);
-            float damage = npc.damage;
-            npc.damage += (int)(damage * .15f);
+            NPC.lifeMax = (int)(NPC.lifeMax * .5f * bossLifeScale);
+            float damage = NPC.damage;
+            NPC.damage += (int)(damage * .15f);
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -111,15 +111,15 @@ namespace TrelamiumTwo.Content.NPCs.Boss.FoodLegion
             int foodChoice = Main.rand.Next(5);
 
             if (foodChoice == 0)
-                Item.NewItem(npc.Hitbox, ModContent.ItemType<Apple>(), Main.rand.Next(4));
+                Item.NewItem(NPC.Hitbox, ModContent.ItemType<Apple>(), Main.rand.Next(4));
             if (foodChoice == 1)
-                Item.NewItem(npc.Hitbox, ModContent.ItemType<Banana>(), Main.rand.Next(4));
+                Item.NewItem(NPC.Hitbox, ModContent.ItemType<Banana>(), Main.rand.Next(4));
             if (foodChoice == 2)
-                Item.NewItem(npc.Hitbox, ModContent.ItemType<Onion>(), Main.rand.Next(3));
+                Item.NewItem(NPC.Hitbox, ModContent.ItemType<Onion>(), Main.rand.Next(3));
             if (foodChoice == 3)
-                Item.NewItem(npc.Hitbox, ModContent.ItemType<Elderberry>(), Main.rand.Next(3));
+                Item.NewItem(NPC.Hitbox, ModContent.ItemType<Elderberry>(), Main.rand.Next(3));
             if (foodChoice == 4)
-                Item.NewItem(npc.Hitbox, ModContent.ItemType<Carrot>(), Main.rand.Next(3));
+                Item.NewItem(NPC.Hitbox, ModContent.ItemType<Carrot>(), Main.rand.Next(3));
 
             if (Main.netMode == NetmodeID.Server)
             {

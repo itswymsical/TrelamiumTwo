@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using TrelamiumTwo.Helpers;
 using TrelamiumTwo.Core;
+using Terraria.Audio;
 
 namespace TrelamiumTwo.Content.Projectiles.Typeless
 {
@@ -15,37 +16,37 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 		public override string Texture => Assets.Projectiles.Typeless + "FallingLeaf";
         public override void SetStaticDefaults()
 		{
-			Main.projFrames[projectile.type] = 4;
+			Main.projFrames[Projectile.type] = 4;
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 10;
+			Projectile.width = Projectile.height = 10;
 
-			projectile.friendly = true;
+			Projectile.friendly = true;
 		}
 
 		public override bool PreAI()
 		{
-			if (projectile.localAI[0] == 0)
+			if (Projectile.localAI[0] == 0)
 			{
-				projectile.localAI[0] = 1;
-				Main.PlaySound(SoundID.Grass, projectile.position);
-				Helper.SpawnDustCloud(projectile.position, projectile.height, projectile.height, ModContent.DustType<Dusts.Wood>());
+				Projectile.localAI[0] = 1;
+				SoundEngine.PlaySound(SoundID.Grass, Projectile.position);
+				Helper.SpawnDustCloud(Projectile.position, Projectile.height, Projectile.height, ModContent.DustType<Dusts.Wood>());
 			}
 
-			projectile.velocity.Y = MathHelper.Clamp(projectile.velocity.Y + 0.05f, 0, 2f);
+			Projectile.velocity.Y = MathHelper.Clamp(Projectile.velocity.Y + 0.05f, 0, 2f);
 
-			projectile.spriteDirection = projectile.direction;
-			if (++projectile.frameCounter >= 5)
+			Projectile.spriteDirection = Projectile.direction;
+			if (++Projectile.frameCounter >= 5)
 			{
-				projectile.frameCounter = 0;
-				projectile.frame = (projectile.frame + 1) % Main.projFrames[projectile.type];
+				Projectile.frameCounter = 0;
+				Projectile.frame = (Projectile.frame + 1) % Main.projFrames[Projectile.type];
 			}
 
-			projectile.rotation = projectile.velocity.ToRotation() - MathHelper.PiOver4;
-			if (projectile.spriteDirection == -1)
+			Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver4;
+			if (Projectile.spriteDirection == -1)
 			{
-				projectile.rotation -= MathHelper.PiOver2;
+				Projectile.rotation -= MathHelper.PiOver2;
 			}
 
 			return (false);
@@ -55,15 +56,15 @@ namespace TrelamiumTwo.Content.Projectiles.Typeless
 
 		public override void Kill(int timeLeft)
 		{
-			Main.PlaySound(SoundID.Grass, projectile.position);
-			Helper.SpawnDustCloud(projectile.position, projectile.height, projectile.height, ModContent.DustType<Dusts.Wood>());
+			SoundEngine.PlaySound(SoundID.Grass, Projectile.position);
+			Helper.SpawnDustCloud(Projectile.position, Projectile.height, Projectile.height, ModContent.DustType<Dusts.Wood>());
 
-			if (Main.myPlayer == projectile.owner)
+			if (Main.myPlayer == Projectile.owner)
 			{
-				Item.NewItem(projectile.getRect(), ModContent.ItemType<Items.Materials.Leaf>());
+				Item.NewItem(Projectile.getRect(), ModContent.ItemType<Items.Materials.Leaf>());
 			}
 		}
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => projectile.DrawProjectileCentered(spriteBatch, lightColor);
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) => Projectile.DrawProjectileCentered(spriteBatch, lightColor);
 	}
 }

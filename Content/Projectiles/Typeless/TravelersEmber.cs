@@ -17,17 +17,17 @@ namespace TrelamiumTwo.Content.Projectiles
 		}
 		private AIState State
 		{
-			get => (AIState)projectile.ai[0];
-			set => projectile.ai[0] = (int)value;
+			get => (AIState)Projectile.ai[0];
+			set => Projectile.ai[0] = (int)value;
 		}
 
 		private Vector2 TargetPosition
 		{
-			get => new Vector2(projectile.localAI[0], projectile.localAI[1]);
+			get => new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
 			set
 			{
-				projectile.localAI[0] = value.X;
-				projectile.localAI[1] = value.Y;
+				Projectile.localAI[0] = value.X;
+				Projectile.localAI[1] = value.Y;
 			}
 		}
 
@@ -37,20 +37,20 @@ namespace TrelamiumTwo.Content.Projectiles
 		}
 		public override void SetDefaults()
 		{
-			projectile.width = projectile.height = 8;
+			Projectile.width = Projectile.height = 8;
 
-			projectile.friendly = true;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = false;
+			Projectile.friendly = true;
+			Projectile.ignoreWater = true;
+			// projectile.tileCollide = false;
 		}
 
 		public override bool PreAI()
 		{
-			Player owner = Main.player[projectile.owner];
+			Player owner = Main.player[Projectile.owner];
 
 			if (!CheckAliveState(owner))
 			{
-				projectile.Kill();
+				Projectile.Kill();
 				return (false);
 			}
 
@@ -73,7 +73,7 @@ namespace TrelamiumTwo.Content.Projectiles
 				return (false);
 			}
 
-			projectile.timeLeft = 60;
+			Projectile.timeLeft = 60;
 
 			return (true);
 		}
@@ -94,51 +94,51 @@ namespace TrelamiumTwo.Content.Projectiles
 			{
 				targetPosition = TargetPosition;
 
-				if (++projectile.ai[1] >= 1600)
+				if (++Projectile.ai[1] >= 1600)
 				{
-					projectile.netUpdate = true;
-					projectile.ai[0] = projectile.ai[1] = 0f;
+					Projectile.netUpdate = true;
+					Projectile.ai[0] = Projectile.ai[1] = 0f;
 				}
 			}
 
 			// Prevent swarming of projectile.
 			for (int i = 0; i < Main.maxProjectiles; ++i)
 			{
-				if (Main.projectile[i].active && Main.projectile[i].type == projectile.type && Main.projectile[i].owner == projectile.owner)
+				if (Main.projectile[i].active && Main.projectile[i].type == Projectile.type && Main.projectile[i].owner == Projectile.owner)
 				{
-					Vector2 directionFromOther = projectile.Center - Main.projectile[i].Center;
+					Vector2 directionFromOther = Projectile.Center - Main.projectile[i].Center;
 					if (directionFromOther.LengthSquared() <= 256)
 					{
 						directionFromOther.SafeNormalize(Vector2.UnitY);
-						projectile.velocity += directionFromOther * 0.03f;
+						Projectile.velocity += directionFromOther * 0.03f;
 					}
 				}
 			}
 
 			// Slightly randomized floating code.
-			float distanceToTargetPosition = Vector2.Distance(projectile.Center, targetPosition);
+			float distanceToTargetPosition = Vector2.Distance(Projectile.Center, targetPosition);
 			if (distanceToTargetPosition >= 32)
 			{
 				if (distanceToTargetPosition >= 500)
 				{
-					projectile.netUpdate = true;
-					projectile.position = targetPosition;
+					Projectile.netUpdate = true;
+					Projectile.position = targetPosition;
 				}
 				else
 				{
 					currentspeed = MathHelper.Lerp(minSpeed, maxSpeed, distanceToTargetPosition / 500);
-					projectile.velocity += projectile.DirectionTo(targetPosition) * (currentspeed / 10f);
+					Projectile.velocity += Projectile.DirectionTo(targetPosition) * (currentspeed / 10f);
 				}
 			}
 
-			projectile.velocity = Vector2.Clamp(projectile.velocity, -Vector2.One * currentspeed, Vector2.One * currentspeed);
+			Projectile.velocity = Vector2.Clamp(Projectile.velocity, -Vector2.One * currentspeed, Vector2.One * currentspeed);
 		}
 
 		private void Effects()
 		{
 			if (Main.rand.NextBool(2))
 			{
-				Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Fire, projectile.velocity.X * -0.2f, projectile.velocity.Y * -0.2f, 100);
+				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Fire, Projectile.velocity.X * -0.2f, Projectile.velocity.Y * -0.2f, 100);
 				dust.noGravity = true;
 			}
 
@@ -148,7 +148,7 @@ namespace TrelamiumTwo.Content.Projectiles
 				lightModifier = 1f;
 			}
 			
-			Lighting.AddLight(projectile.Center, new Vector3(0.5f, 0.2f, 0f) * lightModifier);
+			Lighting.AddLight(Projectile.Center, new Vector3(0.5f, 0.2f, 0f) * lightModifier);
 		}
 
 		#region Networking
