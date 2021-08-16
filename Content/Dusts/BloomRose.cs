@@ -7,13 +7,8 @@ namespace TrelamiumTwo.Content.Dusts
 {
 	public class BloomRose : ModDust
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = Assets.Dusts + "PinkPetal";
-			return Mod.Properties.Autoload;
-		}
-
-		public override void OnSpawn(Dust dust)
+        public override string Texture => Assets.Dusts + "PinkPetal";
+        public override void OnSpawn(Dust dust)
 		{
 			dust.noGravity = true;
 
@@ -54,7 +49,7 @@ namespace TrelamiumTwo.Content.Dusts
 				dust.alpha += 5;
 
 				if (dust.scale < 0.1f)
-					// dust.active = false;
+					dust.active = false;
 			}
 
 			return false;

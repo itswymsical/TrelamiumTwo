@@ -13,7 +13,7 @@ namespace TrelamiumTwo.Helpers
     {
 		public static void Kill(this NPC npc, bool hitEffect = true)
 		{
-			if (npc.modNPC?.CheckDead() == false)
+			if (npc.ModNPC?.CheckDead() == false)
 			{
 				return;
 			}
@@ -27,7 +27,7 @@ namespace TrelamiumTwo.Helpers
 
 			npc.checkDead();
 
-			// npc.active = false;
+			//npc.active = false;
 		}
 		public static void GenericFighterAI(this NPC npc, float maxSpeed = 1.5f, int maxAllowedStuckTime = 60, float jumpHeightModifier = 1f)
 		{
@@ -141,7 +141,7 @@ namespace TrelamiumTwo.Helpers
 			if (onplatform && (npc.Center.Y < player.position.Y - 20))
 				npc.noTileCollide = true;
 			else
-				// npc.noTileCollide = false;
+				npc.noTileCollide = false;
 		}
 		public static void GenericCritterAI(this NPC npc, float maxSpeed = 1f, int idleTime = 300)
 		{
@@ -315,7 +315,7 @@ namespace TrelamiumTwo.Helpers
 		}
 		public static bool DrawNPCCenteredWithTexture(this NPC npc, Texture2D texture, SpriteBatch spriteBatch, Color color)
 		{
-			Vector2 origin = npc.frame.Size() / 2f + new Vector2(0f, npc.modNPC.drawOffsetY);
+			Vector2 origin = npc.frame.Size() / 2f + new Vector2(0f, npc.ModNPC.DrawOffsetY);
 
 			SpriteEffects effects = npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 

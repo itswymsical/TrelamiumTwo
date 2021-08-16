@@ -7,15 +7,11 @@ namespace TrelamiumTwo.Content.Dusts
 {
 	public class Wood : ModDust
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = Assets.Dusts + "Wood";
-			return Mod.Properties.Autoload;
-		}
+		public override string Texture => Assets.Dusts + "Wood";
 
 		public override void OnSpawn(Dust dust)
 		{
-			// dust.noGravity = false;
+			dust.noGravity = false;
 
 			dust.velocity *= 0.6f;
 
@@ -30,7 +26,7 @@ namespace TrelamiumTwo.Content.Dusts
 			dust.scale -= 0.02f;
 
 			if (dust.scale < 0.2f)
-				// dust.active = false;
+				dust.active = false;
 
 			return false;
 		}

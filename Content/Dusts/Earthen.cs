@@ -7,11 +7,7 @@ namespace TrelamiumTwo.Content.Dusts
 {
 	public class Earthen : ModDust
 	{
-		public override bool Autoload(ref string name, ref string texture)
-		{
-			texture = Assets.Dusts + "Earthen";
-			return Mod.Properties.Autoload;
-		}
+		public override string Texture => Assets.Dusts + "Earthen";
 		public override void OnSpawn(Dust dust)
 		{
 			// dust.noGravity = false;
@@ -20,8 +16,7 @@ namespace TrelamiumTwo.Content.Dusts
 
 			dust.scale = Main.rand.NextFloat(0.8f, 1f);
 		}
-
-		public override bool Update(Dust dust)
+        public override bool Update(Dust dust)
 		{
 			dust.position += dust.velocity;
 			dust.rotation += dust.velocity.X * 0.1f;
@@ -29,7 +24,7 @@ namespace TrelamiumTwo.Content.Dusts
 			dust.scale -= 0.02f;
 
 			if (dust.scale < 0.2f)
-				// dust.active = false;
+				dust.active = false;
 
 			return false;
 		}

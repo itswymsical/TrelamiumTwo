@@ -1,19 +1,15 @@
-using System.Collections.Generic;
-
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TrelamiumTwo.Common.Items;
+
 using TrelamiumTwo.Common.Players;
-using TrelamiumTwo.Helpers;
+using TrelamiumTwo.Content.Items.Accessory;
 
 namespace TrelamiumTwo.Common.Globals
 {
     public class GlobalTrelamiumItem : GlobalItem
     {
         public override bool InstancePerEntity => true;
-        public override bool CloneNewInstances => true;
-
         public bool Shovel;
         public int digPower;
         public int radius = 2;
@@ -23,7 +19,7 @@ namespace TrelamiumTwo.Common.Globals
             {
                 if (Main.rand.NextFloat() < 0.005f)
                 {
-                    //resultType = ModContent.ItemType<Microlith>();
+                    resultType = ModContent.ItemType<Microlith>();
                 }
             }
         }
@@ -40,7 +36,7 @@ namespace TrelamiumTwo.Common.Globals
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             ArmorSetPlayer armorSetPlayer = Main.LocalPlayer.GetModPlayer<ArmorSetPlayer>();
-            if (armorSetPlayer.vikingSet && item.melee)
+            if (armorSetPlayer.vikingSet && item.DamageType == DamageClass.Melee)
             {
                 if (Main.rand.Next(12) == 0)
                     target.AddBuff(BuffID.Frostburn, Main.rand.Next(60, 140));

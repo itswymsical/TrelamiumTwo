@@ -4,13 +4,8 @@ using System.Linq;
 
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
-using TrelamiumTwo.Common.Cutscenes;
 using TrelamiumTwo.Core.Abstraction.Interfaces;
-using TrelamiumTwo.Core.Loaders;
-using TrelamiumTwo.Core.Mechanics.Particles;
-using TrelamiumTwo.Core.Mechanics.Trails;
-using TrelamiumTwo.Core.Mechanics.Verlet;
+
 
 namespace TrelamiumTwo
 {
@@ -26,35 +21,11 @@ namespace TrelamiumTwo
 
 		public static TrelamiumTwo Instance => ModContent.GetInstance<TrelamiumTwo>();
 
-		private List<ILoadable> loadCache;
-
 		public override void Load() => LoadCache();
 
 		public override void Unload() => UnloadCache();
 
 		public override void PostSetupContent() => PostLoad();
-
-        public override void PostUpdateEverything()
-        {
-            if (!Main.dedServ)
-            {
-				ParticleManager.Instance.UpdateParticles();
-				TrailManager.Instance.UpdateTrails();
-				VerletManager.Instance.UpdateChains();
-            }
-        }
-		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-		{
-			for (int i = 0; i < CutsceneLoader.Cutscenes.Count; i++)
-			{
-				var cutscene = CutsceneLoader.Cutscenes[i];
-				CutsceneLoader.AddCutsceneLayer(layers, cutscene, cutscene.InsertionIndex(layers), cutscene.Visible);
-			}
-
-			if (CutsceneLoader.GetCutscene<Credits>().Visible)
-				foreach (var layer in layers.Where(l => !l.Name.Equals("TM:Credits")))
-					layer.Active = false;
-		}
 		private void PostLoad()
 		{
 			foreach (Type type in Code.GetTypes())
