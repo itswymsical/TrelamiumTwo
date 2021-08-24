@@ -1,5 +1,13 @@
-displayName = Trelamium 2 (No Music)
-author = Signia, Blossom, HugeKraken, Lemmy, & More
+displayName = Trelamium Two (No Music)
+author = Signia and the Development Team
 version = 0.1
+
 homepage = https://discord.gg/HmZ6GUP3mm
+
+hideCode = false
+hideResources = false
+
+includeSource = true
+includePDB = true
+
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .git\*

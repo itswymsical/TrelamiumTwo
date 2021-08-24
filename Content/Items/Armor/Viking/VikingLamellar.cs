@@ -1,35 +1,30 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using TrelamiumTwo.Core;
-
 namespace TrelamiumTwo.Content.Items.Armor.Viking
 {
-	[AutoloadEquip(EquipType.Body)]
-	public class VikingLamellar : ModItem
+    [AutoloadEquip(EquipType.Body)]
+    public class VikingLamellar : ModItem
     {
-        public override string Texture => Assets.Armor.Viking + "VikingLamellar";
-        public override void SetStaticDefaults() => Tooltip.SetDefault("Increases melee damage by 5%");	
-
-		public override void SetDefaults()
-		{
-            item.value = Item.sellPrice(silver: 2);
-            item.rare = ItemRarityID.Blue;
-            item.defense = 3;
-		}
-
-        public override void UpdateAccessory(Player player, bool hideVisual) => player.meleeDamage += 0.05f;
-
-        public override void AddRecipes()
+        public override void SetStaticDefaults()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Leather, 14);
-            recipe.AddIngredient(ItemID.Chain, 2);
-            recipe.AddIngredient(ItemID.IceBlock, 8);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            DisplayName.SetDefault("Viking Lamellar");
+            Tooltip.SetDefault("+4% increased critical strike chance");
         }
+
+        public override void SetDefaults()
+        {
+            Item.defense = 4;
+
+            Item.width = 34;
+            Item.height = 32;
+
+            Item.rare = ItemRarityID.White;
+        }
+
+        public override void UpdateEquip(Player player) => player.GetCritChance(DamageClass.Generic) += 4;
+
+        public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.IceBlock, 20).AddIngredient(ItemID.Leather, 2).AddRecipeGroup("IronBar", 4).Register();
     }
 }

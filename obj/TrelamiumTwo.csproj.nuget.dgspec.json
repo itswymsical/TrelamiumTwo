@@ -1,32 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj": {}
+    "C:\\Users\\Naka\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj": {
+    "C:\\Users\\Naka\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
+        "projectUniqueName": "C:\\Users\\Naka\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
         "projectName": "TrelamiumTwo",
-        "projectPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
-        "packagesPath": "C:\\Users\\NewUser\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NewUser\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\TrelamiumTwo\\obj\\",
+        "projectPath": "C:\\Users\\Naka\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TrelamiumTwo\\TrelamiumTwo.csproj",
+        "packagesPath": "C:\\Users\\Naka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Naka\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TrelamiumTwo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\NewUser\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Naka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net45"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net45": {
-            "targetAlias": "net45",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -37,15 +41,30 @@
         }
       },
       "frameworks": {
-        "net45": {
-          "targetAlias": "net45",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "tModLoader.CodeAssist": {
               "target": "Package",
               "version": "[0.1.*, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
